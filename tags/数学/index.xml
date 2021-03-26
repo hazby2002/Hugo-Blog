@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数学 on HolyK&#39;s Blog</title>
-    <link>http://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</link>
+    <link>https://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</link>
     <description>Recent content in 数学 on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 10:28:29 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Mar 2021 10:28:29 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数论知识总结</title>
-      <link>http://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link>
+      <link>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link>
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
-      <guid>http://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
       <description>1 欧几里得算法  欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
  不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
 一方面，设 \(d_1\) 为 \(a, b\) 的一个公约数，则 \[ \begin{aligned} a &amp;amp;= k_ad_1\\ b &amp;amp;= k_bd_1\\ r &amp;amp;= a - kb\\ &amp;amp;= (k_a - kk_b)d_1 \end{aligned} \] 即 \(d_1\) 也是 \(r\) 的约数，\(b, r\) 的公约数。
@@ -22,10 +22,10 @@
     
     <item>
       <title>[Codeforces566C] Logistical Questions</title>
-      <link>http://blog.asukakyle.top/post/codeforces566c-logistical-questions/</link>
+      <link>https://blog.asukakyle.top/post/codeforces566c-logistical-questions/</link>
       <pubDate>Mon, 07 Dec 2020 21:36:10 +0800</pubDate>
       
-      <guid>http://blog.asukakyle.top/post/codeforces566c-logistical-questions/</guid>
+      <guid>https://blog.asukakyle.top/post/codeforces566c-logistical-questions/</guid>
       <description>一棵 \(n\) 个节点的树，点有点权，边有边权。求这棵树的一个点 \(r\) 使下面的式子最小： \[ \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32} \] \(n \le 2 \times 10^5, val_i, dist(u, v) \ge 0\)。
  带权重心问题，有点妙。
 设 \[ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} \] 这里函数 \(f\) 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。

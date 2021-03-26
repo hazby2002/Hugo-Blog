@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>动态DP on HolyK&#39;s Blog</title>
-    <link>http://blog.asukakyle.top/tags/%E5%8A%A8%E6%80%81dp/</link>
+    <link>https://blog.asukakyle.top/tags/%E5%8A%A8%E6%80%81dp/</link>
     <description>Recent content in 动态DP on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 10:09:39 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/tags/%E5%8A%A8%E6%80%81dp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Mar 2021 10:09:39 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%8A%A8%E6%80%81dp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Codeforces1413F]Roads and Ramen</title>
-      <link>http://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</link>
+      <link>https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</link>
       <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
       
-      <guid>http://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
+      <guid>https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
       <description>给定一棵 \(n\) 个点的无根树，每条边都有标记0或1。现在有 \(m\) 次操作，每次操作将第 \(id\) 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。
 \(n,m \leq 5 \times 10^5\)。
  动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。

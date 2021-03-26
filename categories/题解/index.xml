@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>题解 on HolyK&#39;s Blog</title>
-    <link>http://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/</link>
+    <link>https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/</link>
     <description>Recent content in 题解 on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 10:09:39 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Mar 2021 10:09:39 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Codeforces1413F]Roads and Ramen</title>
-      <link>http://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</link>
+      <link>https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</link>
       <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
       
-      <guid>http://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
+      <guid>https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
       <description>给定一棵 \(n\) 个点的无根树，每条边都有标记0或1。现在有 \(m\) 次操作，每次操作将第 \(id\) 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。
 \(n,m \leq 5 \times 10^5\)。
  动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
@@ -22,10 +22,10 @@
     
     <item>
       <title>[Codechef CCC]Hit the Coconuts</title>
-      <link>http://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/</link>
+      <link>https://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/</link>
       <pubDate>Thu, 18 Mar 2021 21:51:42 +0800</pubDate>
       
-      <guid>http://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/</guid>
+      <guid>https://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/</guid>
       <description>题意： \(N\) 个椰子, 第 \(i\) 个需要敲 \(a_i\) 下才能打开，问最坏情况下最少要敲多少下才能打开 \(k\) 个椰子。
  不妨设 \(a_i \le a_{i + 1}\)。
 要敲开一个椰子，现在有两种方法：
@@ -36,10 +36,10 @@
     
     <item>
       <title>[PKUWC2018]猎人杀</title>
-      <link>http://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</link>
+      <link>https://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</link>
       <pubDate>Thu, 18 Mar 2021 21:47:16 +0800</pubDate>
       
-      <guid>http://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</guid>
+      <guid>https://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</guid>
       <description>\(n\) 个人，每个人有个权值 \(a_i\)。进行 \(n\) 轮操作，每轮开枪杀死一个人，\(i\) 被杀死的概率 \(p_i=\dfrac{a_i}{\sum_{x\ is\ alive}a_x}\) ，求最后死的那个人是 \(1\) 的概率。答案对 \(998244353\) 取模。
 \(a_i &amp;gt; 0, 1 \le \sum a_i \le 10^5\)。
  设 \(s = \sum_{i=1}^na_i,w=\sum_{x\ is\ alive}a_x\)，那么有 \[ \begin{aligned} p_i &amp;amp;= \frac{a_i}{w}\\ \frac wsp_i &amp;amp;= \frac {a_i}{s}\\ p_i &amp;amp;= \frac {a_i}{s} + \frac{s - w}s p_i \end{aligned} \] 最后的这个式子可以理解为，每次开枪的目标是所有活人和死人，如果打到活人就会杀死他，如果打到死人不算，重打。
@@ -49,10 +49,10 @@
     
     <item>
       <title>[Codeforces1148H] Holy Diver</title>
-      <link>http://blog.asukakyle.top/post/codeforces1148h-holy-diver/</link>
+      <link>https://blog.asukakyle.top/post/codeforces1148h-holy-diver/</link>
       <pubDate>Sat, 13 Mar 2021 00:43:08 +0800</pubDate>
       
-      <guid>http://blog.asukakyle.top/post/codeforces1148h-holy-diver/</guid>
+      <guid>https://blog.asukakyle.top/post/codeforces1148h-holy-diver/</guid>
       <description>给定一个最初为空的数组，然后进行 \(n\) 次操作，每次操作给定 \(x,l,r,k\)，在数组末尾插入 \(x\) ，然后查询满足 \(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\) 的数对 \((i,j)\) 的个数，强制在线。
 \(mex(S)\) 表示集合 \(S\) 中最小的未出现的 自然数。
 \(n \leq 2 \times 10^5\)。
@@ -65,10 +65,10 @@
     
     <item>
       <title>[Codeforces566C] Logistical Questions</title>
-      <link>http://blog.asukakyle.top/post/codeforces566c-logistical-questions/</link>
+      <link>https://blog.asukakyle.top/post/codeforces566c-logistical-questions/</link>
       <pubDate>Mon, 07 Dec 2020 21:36:10 +0800</pubDate>
       
-      <guid>http://blog.asukakyle.top/post/codeforces566c-logistical-questions/</guid>
+      <guid>https://blog.asukakyle.top/post/codeforces566c-logistical-questions/</guid>
       <description>一棵 \(n\) 个节点的树，点有点权，边有边权。求这棵树的一个点 \(r\) 使下面的式子最小： \[ \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32} \] \(n \le 2 \times 10^5, val_i, dist(u, v) \ge 0\)。
  带权重心问题，有点妙。
 设 \[ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} \] 这里函数 \(f\) 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。
