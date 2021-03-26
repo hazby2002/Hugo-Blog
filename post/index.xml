@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on HolyK&#39;s Blog</title>
+    <link>http://asukakyle.top/post/</link>
+    <description>Recent content in Posts on HolyK&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Fri, 19 Mar 2021 10:28:29 +0800</lastBuildDate><atom:link href="http://asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数论知识总结</title>
+      <link>http://asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
+      <description>1 欧几里得算法  欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
+ 不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
+一方面，设 \(d_1\) 为 \(a, b\) 的一个公约数，则 \[ \begin{aligned} a &amp;amp;= k_ad_1\\ b &amp;amp;= k_bd_1\\ r &amp;amp;= a - kb\\ &amp;amp;= (k_a - kk_b)d_1 \end{aligned} \] 即 \(d_1\) 也是 \(r\) 的约数，\(b, r\) 的公约数。
+另一方面，设 \(d_2\) 为 \(b, r\) 的一个公约数，则 \[ \begin{aligned} b &amp;amp;= k&amp;#39;_bd_2\\ r &amp;amp;= k_r&amp;#39;d_2\\ a &amp;amp;= kb + r\\ &amp;amp;= (kk&amp;#39;_b + k_r&amp;#39;)d_2 \end{aligned} \] 即 \(d_2\) 也是 \(a\) 的约数，\(a, b\) 的公约数。</description>
+    </item>
+    
+    <item>
+      <title>[Codeforces1413F]Roads and Ramen</title>
+      <link>http://asukakyle.top/post/codeforces1413froads-and-ramen/</link>
+      <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
+      <description>给定一棵 \(n\) 个点的无根树，每条边都有标记0或1。现在有 \(m\) 次操作，每次操作将第 \(id\) 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。
+\(n,m \leq 5 \times 10^5\)。
+ 动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
+容易写出转移（\(val_y\) 表示 \(y\) 的父边的权值）： \[ \begin{aligned} dp&amp;#39;[x][0] &amp;amp;= \max\{dp[x][0], dp[y][val_y] + 1\}\\ dp&amp;#39;[x][1] &amp;amp;= \max\{dp[x][1], dp[y][val_y \oplus 1] + 1\}\\ dp&amp;#39;[x][2] &amp;amp;= \max\{dp[x][0] + dp[y][val_y] + 1, dp[x][1] + dp[y][val_y \oplus 1] + 1, dp[x][2],dp[y][2]\} \end{aligned} \] 改写成 \(x\) 从重儿子 \(y\) 转移的矩阵（这里以 \(val_y = 0\) 为例）： \[ \begin{bmatrix} dp&amp;#39;[x][0]\\ dp&amp;#39;[x][1]\\ dp&amp;#39;[x][2]\\ 0 \end{bmatrix} = \begin{bmatrix} 1 &amp;amp; -\infty &amp;amp; -\infty &amp;amp; dp[x][0]\\ -\infty &amp;amp; 1 &amp;amp; -\infty &amp;amp; dp[x][1]\\ dp[x][0] + 1 &amp;amp; dp[x][1] + 1 &amp;amp; 0 &amp;amp; dp[x][2]\\ -\infty &amp;amp; -\infty &amp;amp; -\infty &amp;amp; 0 \end{bmatrix} \begin{bmatrix} dp[y][0]\\ dp[y][1]\\ dp[y][2]\\ 0 \end{bmatrix} \] 上面的 \(dp[x]\) 是指排除掉 \(x\) 重儿子的答案，\(dp&amp;#39;[x]\) 是指完整的 \(x\) 的答案。</description>
+    </item>
+    
+    <item>
+      <title>[Codechef CCC]Hit the Coconuts</title>
+      <link>http://asukakyle.top/post/codechef-ccchit-the-coconuts/</link>
+      <pubDate>Thu, 18 Mar 2021 21:51:42 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/codechef-ccchit-the-coconuts/</guid>
+      <description>题意： \(N\) 个椰子, 第 \(i\) 个需要敲 \(a_i\) 下才能打开，问最坏情况下最少要敲多少下才能打开 \(k\) 个椰子。
+ 不妨设 \(a_i \le a_{i + 1}\)。
+要敲开一个椰子，现在有两种方法：
+随便拿起一个椰子不停地敲，最多要 \(a_n\) 次。 有目的性地想要敲开某个椰子 \(a_i\)，可以发现最优的策略就是每个椰子都敲 \(a_i\) 次，最多要敲 \(a_i\times(n - i + 1)\) 次，所有情况下取最小值。  第二种情况实际上包含了第一种。
+那么要敲开 \(k\) 个椰子，也有两种方法：
+每次都随便拿一个敲开，最多要 \(a_n + a_{n - 1}+ \dots + a_{n - k + 1}\) 次。 选 \(k\) 个椰子 \(a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &amp;lt; b_{i + 1})\)，有目的性地敲开它们。发现最优策略下最多要敲 \(\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)\) 次，其中 \(a_{b_0} = 0\)，所有情况下取最小值。  第二种情况也包含了第一种。</description>
+    </item>
+    
+    <item>
+      <title>[PKUWC2018]猎人杀</title>
+      <link>http://asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</link>
+      <pubDate>Thu, 18 Mar 2021 21:47:16 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</guid>
+      <description>\(n\) 个人，每个人有个权值 \(a_i\)。进行 \(n\) 轮操作，每轮开枪杀死一个人，\(i\) 被杀死的概率 \(p_i=\dfrac{a_i}{\sum_{x\ is\ alive}a_x}\) ，求最后死的那个人是 \(1\) 的概率。答案对 \(998244353\) 取模。
+\(a_i &amp;gt; 0, 1 \le \sum a_i \le 10^5\)。
+ 设 \(s = \sum_{i=1}^na_i,w=\sum_{x\ is\ alive}a_x\)，那么有 \[ \begin{aligned} p_i &amp;amp;= \frac{a_i}{w}\\ \frac wsp_i &amp;amp;= \frac {a_i}{s}\\ p_i &amp;amp;= \frac {a_i}{s} + \frac{s - w}s p_i \end{aligned} \] 最后的这个式子可以理解为，每次开枪的目标是所有活人和死人，如果打到活人就会杀死他，如果打到死人不算，重打。
+这样变成进行无限轮，每轮的目标都是所有人，打到某个人的概率更容易表示。
+然后考虑容斥，设 \(A = \{ a_2, a_3, \dots, a_n \}\)， \(1\) 在第 \(r\) 轮被打死，且至少有 \(k\) 个人在 \(1\) 之后被打死。 \[ \begin{aligned} ans &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \sum_{r = 1}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r - 1} \cdot \frac{a_1}{s}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \sum_{r = 0}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \frac{1}{1 - \dfrac{s - a_1 - \sum_{i \in S} a_i}{s}}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{a_1 + \sum_{i \in S} a_i}\\ &amp;amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times \sum_{S \subseteq A, \sum_{i \in S} a_i = k} (-1)^{|S|}\\ &amp;amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times [x^k] \prod_{i=2}^n(1 - x^{a_i}) \end{aligned} \] 分治求 \(\prod_{i=2}^n(1 - x^{a_i})\) 即可，复杂度 \(O(n \log n \log s)\) 。</description>
+    </item>
+    
+    <item>
+      <title>一类DP优化</title>
+      <link>http://asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Thu, 18 Mar 2021 21:30:30 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</guid>
+      <description>对于一切形如 \(dp[i]=\max\{f_1(j)\times g_1(i)+f_2(j)\}+g_2(i)\) 的状态转移方程，
+设 \(L_j(x)=f_1(j)x+f_2(j)\) 那么就有 \(dp[i]=max\{L_j(g_1(i))\}+g_2(i)\)。
+从几何角度来看，只需要求出一些直线和 \(x=g_1(i)\) 交点的纵坐标的最大值。
+李超线段树 利用李超线段树可以很好地维护上述信息。
+李超线段树就是支持 \(O(\log N)\) 插入直线和查询 \(\max{L_i(x)}\) 的数据结构。
+线段树的每个节点保存 \(L(mid)\) 最大的那条直线。
+插入一条直线时，比较 \(L_{old}(mid)\) 和 \(L_{new}(mid)\)，较大者保留，较小者继续递归。
+#define ls o&amp;lt;&amp;lt;1 #define rs o&amp;lt;&amp;lt;1|1 struct Line {  int k, b;  inline int func(int x) {  return k * x + b;  } } t[N &amp;lt;&amp;lt; 2]; void ins(int o, int l, int r, Line x) {  int mid = l + r &amp;gt;&amp;gt; 1;  bool lf = t[o].</description>
+    </item>
+    
+    <item>
+      <title>循环卷积优化</title>
+      <link>http://asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Thu, 18 Mar 2021 21:11:58 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</guid>
+      <description>前置知识  Fast Fourier Transform - HolyK 多项式系列操作  循环卷积优化  简介：目前网上关于多项式操作的文章和模板大多仍然是朴素的实现，常数巨大，这个技巧利用循环卷积优化多项式操作的常数。
+（这个trick在N年前就有了，「循环卷积优化」这个名字是我瞎起的，如果有人知道这个trick的名字请联系我。）
+ 多项式求逆  求 \(B(x)\) 满足 \(A(x)B(x) \equiv 1 \pmod n\)。
+ 牛顿迭代得 \[ B_{t+1}(x) \equiv B_t(x)\left(2-A(x)B_t(x)\right)\pmod{x^{2^{t+1}}} \] 朴素的实现需要做3次长度为 \(2^{t+2}\) 的FFT，把多余的部分舍去，常数较大。
+发现 \(B_{t+1}(x)\) 的前 \(2^t\) 项和 \(B_t(x)\) 一样，所以只需要求后 \(2^t\) 项，即求 \(A(x)B_t^2(x)\) 的 \(x^{2^t}\dots x^{2^{t+1}-1}\) 项系数。
+设 \[ A(x)B_t(x) \equiv 1 + b_0x^{2^t}+b_1x^{2^t+1}+\dots+b_{2^t-1}x^{2^{t+1}-1} \pmod{x^{2^{t+1}}} \] 这个结果的前 \(2^t\) 项确定是1了，所以只有后半部分是有用的。
+由于 \(\deg B_t = 2^t\)，如果做长度为 \(2^{t+1}\) 的卷积，多余的部分会循环到前半部分，不会影响后半部分的结果。
+同样的， \(A(x)B_t^2(x) = A(x)B_t(x) \times B_t(x)\) ，卷积多余的部分会循环到前 \(2^t\) 项，后半部分不会受到影响。</description>
+    </item>
+    
+    <item>
+      <title>Fast Fourier Transform</title>
+      <link>http://asukakyle.top/post/fft/</link>
+      <pubDate>Thu, 18 Mar 2021 15:28:59 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/fft/</guid>
+      <description>Introduction  快速傅里叶变换(Fast Fourier Transform，FFT)是一种可在 \(O(n \log n)\) 时间内完成的离散傅里叶变换 (Discrete Fourier Transform，DFT) 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。
+ FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
+多项式 形如 \[ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} \] 的式子称为 \(x\) 的 \(n - 1\) 次多项式，其中 \(a_0, a_1, \dots, a_{n - 1}\) 称为多项式系数，\(n-1\) 称为多项式的次数，记为 \(\deg A(x)\) 或 \(\deg A\)。
+点值 \(n - 1\) 次多项式 \(A(x)\) 在 \(x = m\) 处的点值 \[ A(m) = \sum_{k=0}^{n-1} a_km^k \]</description>
+    </item>
+    
+    <item>
+      <title>Hello, World</title>
+      <link>http://asukakyle.top/post/hello-world/</link>
+      <pubDate>Sat, 13 Mar 2021 11:36:40 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/hello-world/</guid>
+      <description>新博客开通。
+原博客 https://www.cnblogs.com/HolyK/</description>
+    </item>
+    
+    <item>
+      <title>[Codeforces1148H] Holy Diver</title>
+      <link>http://asukakyle.top/post/codeforces1148h-holy-diver/</link>
+      <pubDate>Sat, 13 Mar 2021 00:43:08 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/codeforces1148h-holy-diver/</guid>
+      <description>给定一个最初为空的数组，然后进行 \(n\) 次操作，每次操作给定 \(x,l,r,k\)，在数组末尾插入 \(x\) ，然后查询满足 \(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\) 的数对 \((i,j)\) 的个数，强制在线。
+\(mex(S)\) 表示集合 \(S\) 中最小的未出现的 自然数。
+\(n \leq 2 \times 10^5\)。
+ 为表示方便，下面记 \(mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})\)。
+容易发现，如果向集合 \(S\) 中添加数，\(mex(S)\) 不会减小。
+所以如果固定右端点 \(j\)，\(mex(i, j)\) 是非严格单调减的；固定左端点 \(i\)，\(mex(i, j)\) 是非严格单调增的。
+维护一个 \(n \times n\) 矩阵，\(A[i][j] = mex(j, i)\)，则矩阵 \(A\) 的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。
+第 \(i\) 次操作增加一个数 \(x\)，考虑从第 \(i - 1\) 行拓展到第 \(i\) 行时矩阵 \(A\) 的变化。</description>
+    </item>
+    
+    <item>
+      <title>[Codeforces566C] Logistical Questions</title>
+      <link>http://asukakyle.top/post/codeforces566c-logistical-questions/</link>
+      <pubDate>Mon, 07 Dec 2020 21:36:10 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/codeforces566c-logistical-questions/</guid>
+      <description>一棵 \(n\) 个节点的树，点有点权，边有边权。求这棵树的一个点 \(r\) 使下面的式子最小： \[ \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32} \] \(n \le 2 \times 10^5, val_i, dist(u, v) \ge 0\)。
+ 带权重心问题，有点妙。
+设 \[ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} \] 这里函数 \(f\) 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。
+下面研究这个函数的性质。
+树上的函数显然不太方便研究，所以考虑换一个 \(\R\) 上的函数研究。
+随便选择一条树上路径 \(u \rightarrow v\) 作为 \(x\) 轴，把 \(u\) 当作原点，这样 \(x\) 就是路径上的点到 \(u\) 的距离。
+ image-20201207203647011  这里以 \(0 \rightarrow 5\) 为例，节点 \(6 \dots 11\) 分别代表其父亲的一些子树。</description>
+    </item>
+    
+  </channel>
+</rss>

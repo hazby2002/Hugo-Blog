@@ -1,0 +1,2167 @@
+<!DOCTYPE html>
+<html><head>
+<title>数论知识总结</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="对算法竞赛中的数论知识做一个简单的总结。">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="http://asukakyle.top/scss/journal.min.fb512c7d9994393b2bb01672ce42555cd125eded462a15df65887df9192ee794.css" integrity="sha256-&#43;1EsfZmUOTsrsBZyzkJVXNEl7e1GKhXfZYh9&#43;Rku55Q=" media="screen">
+
+
+
+<script src="http://asukakyle.top/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [["$", "$"]], [["\\(", "\\)"]],
+    },
+    displayMath: [
+      ["$$", "$$"],
+      ["\\[", "\\]"],
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    MathJax.Hub.Queue(function () {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+<style>
+  code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+  }
+</style>
+
+<link href="https://cdn.bootcss.com/highlight.js/10.6.0/styles/atom-one-dark.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/highlight.js/10.6.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+    <script src="http://asukakyle.top/js/toc-collapse.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://asukakyle.top">
+    
+        <div class="nav-title">
+            HolyK&#39;s Blog
+        </div>
+        
+        <div class="nav-subtitle">
+            明日は明日の風が吹く
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/post">
+                Archive
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                Categories
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	MIT
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95" onclick="onNavClick(`#欧几里得算法-nav`)" id="欧几里得算法-nav">
+									1 欧几里得算法
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%a3%b4%e8%9c%80%e5%ae%9a%e7%90%86" onclick="onNavClick(`#裴蜀定理-nav`)" id="裴蜀定理-nav">
+									2 裴蜀定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%8b%93%e5%b1%95%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95" onclick="onNavClick(`#拓展欧几里得算法-nav`)" id="拓展欧几里得算法-nav">
+									2.1 拓展欧几里得算法
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%ba%bf%e6%80%a7%e5%90%8c%e4%bd%99%e6%96%b9%e7%a8%8b" onclick="onNavClick(`#线性同余方程-nav`)" id="线性同余方程-nav">
+									2.2 线性同余方程
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%b9%98%e6%b3%95%e9%80%86%e5%85%83" onclick="onNavClick(`#乘法逆元-nav`)" id="乘法逆元-nav">
+									2.3 乘法逆元
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e7%ba%bf%e6%80%a7%e9%80%92%e6%8e%a8%e9%80%86%e5%85%83" onclick="onNavClick(`#线性递推逆元-nav`)" id="线性递推逆元-nav">
+									2.3.1 线性递推逆元
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%b4%b9%e9%a9%ac%e5%b0%8f%e5%ae%9a%e7%90%86" onclick="onNavClick(`#费马小定理-nav`)" id="费马小定理-nav">
+									3 费马小定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%ad%e5%9b%bd%e5%89%a9%e4%bd%99%e5%ae%9a%e7%90%86chinese-remainder-theorem" onclick="onNavClick(`#中国剩余定理chinese-remainder-theorem-nav`)" id="中国剩余定理chinese-remainder-theorem-nav">
+									4 中国剩余定理(Chinese Remainder Theorem)
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%8b%93%e5%b1%95%e4%b8%ad%e5%9b%bd%e5%89%a9%e4%bd%99%e5%ae%9a%e7%90%86" onclick="onNavClick(`#拓展中国剩余定理-nav`)" id="拓展中国剩余定理-nav">
+									4.1 拓展中国剩余定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%ac%a7%e6%8b%89%e5%87%bd%e6%95%b0" onclick="onNavClick(`#欧拉函数-nav`)" id="欧拉函数-nav">
+									5 欧拉函数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%ac%a7%e6%8b%89%e5%87%bd%e6%95%b0%e5%85%ac%e5%bc%8f" onclick="onNavClick(`#欧拉函数公式-nav`)" id="欧拉函数公式-nav">
+									5.1 欧拉函数公式
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%ac%a7%e6%8b%89%e5%ae%9a%e7%90%86" onclick="onNavClick(`#欧拉定理-nav`)" id="欧拉定理-nav">
+									5.2 欧拉定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%8b%93%e5%b1%95%e6%ac%a7%e6%8b%89%e5%ae%9a%e7%90%86" onclick="onNavClick(`#拓展欧拉定理-nav`)" id="拓展欧拉定理-nav">
+									5.3 拓展欧拉定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%b4%a0%e6%95%b0" onclick="onNavClick(`#素数-nav`)" id="素数-nav">
+									6 素数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%97%a0%e7%a9%b7%e5%a4%9a%e7%b4%a0%e6%95%b0%e5%ae%9a%e7%90%86" onclick="onNavClick(`#无穷多素数定理-nav`)" id="无穷多素数定理-nav">
+									6.1 无穷多素数定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%ae%97%e6%9c%af%e7%ba%a7%e6%95%b0%e7%9a%84%e7%b4%a0%e6%95%b0%e7%8b%84%e5%88%a9%e5%85%8b%e9%9b%b7%e5%ae%9a%e7%90%86" onclick="onNavClick(`#算术级数的素数狄利克雷定理-nav`)" id="算术级数的素数狄利克雷定理-nav">
+									6.2 算术级数的素数狄利克雷定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%b4%a0%e6%95%b0%e5%ae%9a%e7%90%86" onclick="onNavClick(`#素数定理-nav`)" id="素数定理-nav">
+									6.3 素数定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%ae%97%e6%95%b0%e5%9f%ba%e6%9c%ac%e5%ae%9a%e7%90%86%e5%94%af%e4%b8%80%e5%88%86%e8%a7%a3%e5%ae%9a%e7%90%86" onclick="onNavClick(`#算数基本定理唯一分解定理-nav`)" id="算数基本定理唯一分解定理-nav">
+									6.4 算数基本定理（唯一分解定理）
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%a2%85%e6%a3%ae%e7%b4%a0%e6%95%b0%e5%92%8c%e5%ae%8c%e5%85%a8%e6%95%b0" onclick="onNavClick(`#梅森素数和完全数-nav`)" id="梅森素数和完全数-nav">
+									6.5 梅森素数和完全数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#miller-rabin-%e7%b4%a0%e6%80%a7%e6%b5%8b%e8%af%95" onclick="onNavClick(`#miller-rabin-素性测试-nav`)" id="miller-rabin-素性测试-nav">
+									6.6 Miller-Rabin 素性测试
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#pollard-rho-%e8%b4%a8%e5%9b%a0%e6%95%b0%e5%88%86%e8%a7%a3" onclick="onNavClick(`#pollard-rho-质因数分解-nav`)" id="pollard-rho-质因数分解-nav">
+									6.7 Pollard-Rho 质因数分解
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8c%e9%a1%b9%e5%bc%8f%e7%b3%bb%e6%95%b0" onclick="onNavClick(`#二项式系数-nav`)" id="二项式系数-nav">
+									7 二项式系数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%a8%a1-p-%e4%ba%8c%e9%a1%b9%e5%bc%8f%e5%ae%9a%e7%90%86" onclick="onNavClick(`#模-p-二项式定理-nav`)" id="模-p-二项式定理-nav">
+									7.1 模 p 二项式定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#lucas-%e5%ae%9a%e7%90%86" onclick="onNavClick(`#lucas-定理-nav`)" id="lucas-定理-nav">
+									7.2 Lucas 定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%8b%93%e5%b1%95-lucas-%e5%ae%9a%e7%90%86" onclick="onNavClick(`#拓展-lucas-定理-nav`)" id="拓展-lucas-定理-nav">
+									7.3 拓展 Lucas 定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#kummer-%e5%ae%9a%e7%90%86" onclick="onNavClick(`#kummer-定理-nav`)" id="kummer-定理-nav">
+									7.4 Kummer 定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8c%e6%ac%a1%e5%89%a9%e4%bd%99" onclick="onNavClick(`#二次剩余-nav`)" id="二次剩余-nav">
+									8 二次剩余
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%a6%bb%e6%95%a3%e5%af%b9%e6%95%b0" onclick="onNavClick(`#离散对数-nav`)" id="离散对数-nav">
+									9 离散对数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e5%a4%a7%e6%ad%a5%e5%b0%8f%e6%ad%a5%e7%ae%97%e6%b3%95baby-step-giant-step" onclick="onNavClick(`#大步小步算法baby-step-giant-step-nav`)" id="大步小步算法baby-step-giant-step-nav">
+									9.1 大步小步算法(Baby Step Giant Step)
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#exbsgs%e7%ae%97%e6%b3%95" onclick="onNavClick(`#exbsgs算法-nav`)" id="exbsgs算法-nav">
+									9.2 EXBSGS算法
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8e%9f%e6%a0%b9%e4%b8%8e%e6%8c%87%e6%a0%87" onclick="onNavClick(`#原根与指标-nav`)" id="原根与指标-nav">
+									10 原根与指标
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+<div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/post">
+                    Archive
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    Categories
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95" onclick="onNavClick(`#欧几里得算法-nav`)" id="欧几里得算法-nav">
+									1 欧几里得算法
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%a3%b4%e8%9c%80%e5%ae%9a%e7%90%86" onclick="onNavClick(`#裴蜀定理-nav`)" id="裴蜀定理-nav">
+									2 裴蜀定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%8b%93%e5%b1%95%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95" onclick="onNavClick(`#拓展欧几里得算法-nav`)" id="拓展欧几里得算法-nav">
+									2.1 拓展欧几里得算法
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%ba%bf%e6%80%a7%e5%90%8c%e4%bd%99%e6%96%b9%e7%a8%8b" onclick="onNavClick(`#线性同余方程-nav`)" id="线性同余方程-nav">
+									2.2 线性同余方程
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%b9%98%e6%b3%95%e9%80%86%e5%85%83" onclick="onNavClick(`#乘法逆元-nav`)" id="乘法逆元-nav">
+									2.3 乘法逆元
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e7%ba%bf%e6%80%a7%e9%80%92%e6%8e%a8%e9%80%86%e5%85%83" onclick="onNavClick(`#线性递推逆元-nav`)" id="线性递推逆元-nav">
+									2.3.1 线性递推逆元
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%b4%b9%e9%a9%ac%e5%b0%8f%e5%ae%9a%e7%90%86" onclick="onNavClick(`#费马小定理-nav`)" id="费马小定理-nav">
+									3 费马小定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%ad%e5%9b%bd%e5%89%a9%e4%bd%99%e5%ae%9a%e7%90%86chinese-remainder-theorem" onclick="onNavClick(`#中国剩余定理chinese-remainder-theorem-nav`)" id="中国剩余定理chinese-remainder-theorem-nav">
+									4 中国剩余定理(Chinese Remainder Theorem)
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%8b%93%e5%b1%95%e4%b8%ad%e5%9b%bd%e5%89%a9%e4%bd%99%e5%ae%9a%e7%90%86" onclick="onNavClick(`#拓展中国剩余定理-nav`)" id="拓展中国剩余定理-nav">
+									4.1 拓展中国剩余定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%ac%a7%e6%8b%89%e5%87%bd%e6%95%b0" onclick="onNavClick(`#欧拉函数-nav`)" id="欧拉函数-nav">
+									5 欧拉函数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%ac%a7%e6%8b%89%e5%87%bd%e6%95%b0%e5%85%ac%e5%bc%8f" onclick="onNavClick(`#欧拉函数公式-nav`)" id="欧拉函数公式-nav">
+									5.1 欧拉函数公式
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%ac%a7%e6%8b%89%e5%ae%9a%e7%90%86" onclick="onNavClick(`#欧拉定理-nav`)" id="欧拉定理-nav">
+									5.2 欧拉定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%8b%93%e5%b1%95%e6%ac%a7%e6%8b%89%e5%ae%9a%e7%90%86" onclick="onNavClick(`#拓展欧拉定理-nav`)" id="拓展欧拉定理-nav">
+									5.3 拓展欧拉定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%b4%a0%e6%95%b0" onclick="onNavClick(`#素数-nav`)" id="素数-nav">
+									6 素数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%97%a0%e7%a9%b7%e5%a4%9a%e7%b4%a0%e6%95%b0%e5%ae%9a%e7%90%86" onclick="onNavClick(`#无穷多素数定理-nav`)" id="无穷多素数定理-nav">
+									6.1 无穷多素数定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%ae%97%e6%9c%af%e7%ba%a7%e6%95%b0%e7%9a%84%e7%b4%a0%e6%95%b0%e7%8b%84%e5%88%a9%e5%85%8b%e9%9b%b7%e5%ae%9a%e7%90%86" onclick="onNavClick(`#算术级数的素数狄利克雷定理-nav`)" id="算术级数的素数狄利克雷定理-nav">
+									6.2 算术级数的素数狄利克雷定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%b4%a0%e6%95%b0%e5%ae%9a%e7%90%86" onclick="onNavClick(`#素数定理-nav`)" id="素数定理-nav">
+									6.3 素数定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%ae%97%e6%95%b0%e5%9f%ba%e6%9c%ac%e5%ae%9a%e7%90%86%e5%94%af%e4%b8%80%e5%88%86%e8%a7%a3%e5%ae%9a%e7%90%86" onclick="onNavClick(`#算数基本定理唯一分解定理-nav`)" id="算数基本定理唯一分解定理-nav">
+									6.4 算数基本定理（唯一分解定理）
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%a2%85%e6%a3%ae%e7%b4%a0%e6%95%b0%e5%92%8c%e5%ae%8c%e5%85%a8%e6%95%b0" onclick="onNavClick(`#梅森素数和完全数-nav`)" id="梅森素数和完全数-nav">
+									6.5 梅森素数和完全数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#miller-rabin-%e7%b4%a0%e6%80%a7%e6%b5%8b%e8%af%95" onclick="onNavClick(`#miller-rabin-素性测试-nav`)" id="miller-rabin-素性测试-nav">
+									6.6 Miller-Rabin 素性测试
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#pollard-rho-%e8%b4%a8%e5%9b%a0%e6%95%b0%e5%88%86%e8%a7%a3" onclick="onNavClick(`#pollard-rho-质因数分解-nav`)" id="pollard-rho-质因数分解-nav">
+									6.7 Pollard-Rho 质因数分解
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8c%e9%a1%b9%e5%bc%8f%e7%b3%bb%e6%95%b0" onclick="onNavClick(`#二项式系数-nav`)" id="二项式系数-nav">
+									7 二项式系数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%a8%a1-p-%e4%ba%8c%e9%a1%b9%e5%bc%8f%e5%ae%9a%e7%90%86" onclick="onNavClick(`#模-p-二项式定理-nav`)" id="模-p-二项式定理-nav">
+									7.1 模 p 二项式定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#lucas-%e5%ae%9a%e7%90%86" onclick="onNavClick(`#lucas-定理-nav`)" id="lucas-定理-nav">
+									7.2 Lucas 定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%8b%93%e5%b1%95-lucas-%e5%ae%9a%e7%90%86" onclick="onNavClick(`#拓展-lucas-定理-nav`)" id="拓展-lucas-定理-nav">
+									7.3 拓展 Lucas 定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#kummer-%e5%ae%9a%e7%90%86" onclick="onNavClick(`#kummer-定理-nav`)" id="kummer-定理-nav">
+									7.4 Kummer 定理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8c%e6%ac%a1%e5%89%a9%e4%bd%99" onclick="onNavClick(`#二次剩余-nav`)" id="二次剩余-nav">
+									8 二次剩余
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e7%a6%bb%e6%95%a3%e5%af%b9%e6%95%b0" onclick="onNavClick(`#离散对数-nav`)" id="离散对数-nav">
+									9 离散对数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e5%a4%a7%e6%ad%a5%e5%b0%8f%e6%ad%a5%e7%ae%97%e6%b3%95baby-step-giant-step" onclick="onNavClick(`#大步小步算法baby-step-giant-step-nav`)" id="大步小步算法baby-step-giant-step-nav">
+									9.1 大步小步算法(Baby Step Giant Step)
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#exbsgs%e7%ae%97%e6%b3%95" onclick="onNavClick(`#exbsgs算法-nav`)" id="exbsgs算法-nav">
+									9.2 EXBSGS算法
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8e%9f%e6%a0%b9%e4%b8%8e%e6%8c%87%e6%a0%87" onclick="onNavClick(`#原根与指标-nav`)" id="原根与指标-nav">
+									10 原根与指标
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://asukakyle.top">
+            HolyK&#39;s Blog
+        </a>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://asukakyle.top">
+        <div class="single-column-header-title">HolyK&#39;s Blog</div>
+        
+        <div class="single-column-header-subtitle">明日は明日の風が吹く</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    数论知识总结
+                    
+                    <div class="post-subtitle">
+                        对算法竞赛中的数论知识做一个简单的总结。
+                    </div>
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-03-19 10:28
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0">算法笔记</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E6%95%B0%E5%AD%A6">数学</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E6%95%B0%E8%AE%BA">数论</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h2 id="欧几里得算法">1 欧几里得算法</h2>
+<blockquote>
+<p>欧几里得算法可以求两个数的最大公约数 <span class="math inline">\(\gcd(a, b)\)</span>。</p>
+</blockquote>
+<p>不妨设 <span class="math inline">\(a \geq b, a = kb + r(k \geq 1, 0 \leq r &lt; b)\)</span>。</p>
+<p>一方面，设 <span class="math inline">\(d_1\)</span> 为 <span class="math inline">\(a, b\)</span> 的一个公约数，则 <span class="math display">\[
+\begin{aligned}
+a &amp;= k_ad_1\\
+b &amp;= k_bd_1\\
+r &amp;= a - kb\\
+  &amp;= (k_a - kk_b)d_1
+\end{aligned}
+\]</span> 即 <span class="math inline">\(d_1\)</span> 也是 <span class="math inline">\(r\)</span> 的约数，<span class="math inline">\(b, r\)</span> 的公约数。</p>
+<p>另一方面，设 <span class="math inline">\(d_2\)</span> 为 <span class="math inline">\(b, r\)</span> 的一个公约数，则 <span class="math display">\[
+\begin{aligned}
+b &amp;= k&#39;_bd_2\\
+r &amp;= k_r&#39;d_2\\
+a &amp;= kb + r\\
+  &amp;= (kk&#39;_b + k_r&#39;)d_2
+\end{aligned}
+\]</span> 即 <span class="math inline">\(d_2\)</span> 也是 <span class="math inline">\(a\)</span> 的约数，<span class="math inline">\(a, b\)</span> 的公约数。</p>
+<p>所以 <span class="math inline">\(a, b\)</span> 的公约数集合和 <span class="math inline">\(b, r\)</span> 的公约数集合相同，于是 <span class="math inline">\(\gcd(a, b) = \gcd(b, r) = \gcd(b, a \bmod b)\)</span></p>
+<p>递归求解，终止状态为 <span class="math inline">\(b = 0\)</span>，此时原 <span class="math inline">\(a, b\)</span> 的公约数集合为 <span class="math inline">\(a\)</span> 的约数集合。</p>
+<p>因为 <span class="math inline">\(a = kb + r &gt; (k + 1)r\)</span> 所以 <span class="math inline">\(r &lt; \frac{a}{k + 1} \leq \frac{a}{2}\)</span>，所以每次 <span class="math inline">\(a\)</span> 最少折半，算法复杂度为 <span class="math inline">\(O(\log a + \log b)\)</span>。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> b <span class="op">?</span> gcd<span class="op">(</span>b<span class="op">,</span> a <span class="op">%</span> b<span class="op">)</span> <span class="op">:</span> a<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="裴蜀定理">2 裴蜀定理</h2>
+<blockquote>
+<p>设 <span class="math inline">\(a, b\)</span> 是不全为零的整数，则存在整数 <span class="math inline">\(x, y\)</span> 使得 <span class="math inline">\(ax + by = \gcd(a, b)\)</span>。</p>
+</blockquote>
+<h3 id="拓展欧几里得算法">2.1 拓展欧几里得算法</h3>
+<blockquote>
+<p>拓展欧几里得算法可以求方程 <span class="math inline">\(ax + by = g\)</span> 的一组解，其中 <span class="math inline">\(g = \gcd(a, b)\)</span>。</p>
+</blockquote>
+<p>不妨设 <span class="math inline">\(a \geq b, a = kb + r(k \geq 1, 0 \leq r &lt; b)\)</span>。</p>
+<p><span class="math display">\[
+\begin{aligned}
+g &amp;= ax + by \\
+  &amp;= (kb + r)x + by \\
+  &amp;=  b(kx + y) + rx\\
+  &amp;= bx&#39; + ry&#39; \\
+\end{aligned}
+\]</span></p>
+<p>假设我们已经得出方程 <span class="math inline">\(bx + ry = g\)</span> 的一组解 <span class="math inline">\(x&#39;, y&#39;\)</span>，那么原方程的解可以表示为： <span class="math display">\[
+\begin{cases}
+x &amp;= y&#39;\\
+y &amp;= x&#39; - ky&#39;
+\end{cases}
+\]</span></p>
+<p>可以在欧几里得算法的递归中完成，<span class="math inline">\(a = g, b = 0\)</span> 时显然 <span class="math inline">\(x = 1, y = 0\)</span> 是一组解。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> exgcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">,</span> <span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">,</span> <span class="dt">int</span> <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>b<span class="op">)</span> <span class="cf">return</span> x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> a<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> g <span class="op">=</span> exgcd<span class="op">(</span>b<span class="op">,</span> a <span class="op">%</span> b<span class="op">,</span> y<span class="op">,</span> x<span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  y <span class="op">-=</span> a <span class="op">/</span> b <span class="op">*</span> x<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> g<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>假设用该算法得出一组解 <span class="math inline">\((x_0, y_0)\)</span>，那么所有解可以表示为 <span class="math inline">\((x_0 + k\dfrac b g, y_0 - k\dfrac a g)\)</span>。</p>
+<blockquote>
+<p><strong>推论：</strong> 方程 <span class="math inline">\(ax + by = c\)</span> 有解的充分必要条件是 <span class="math inline">\(\gcd(a, b) \mid c\)</span>。</p>
+<p><strong>证明：</strong> 充分性由裴蜀定理可得证。</p>
+<p>必要性：设 <span class="math inline">\(\gcd(a, b) = g, a = ug, b = vg\)</span>，则 <span class="math inline">\(c = g(ux + vy)\)</span>，所以 <span class="math inline">\(g \mid c\)</span>。<span class="math inline">\(\square\)</span></p>
+</blockquote>
+<h3 id="线性同余方程">2.2 线性同余方程</h3>
+<blockquote>
+<p>形如 <span class="math inline">\(ax \equiv b \pmod c\)</span> 的方程称为线性同余方程。</p>
+</blockquote>
+<p>求解线性同余方程可以使用拓展欧几里得算法：</p>
+<p>原方程等价于 <span class="math inline">\(ax - b = cy\)</span>，即 <span class="math inline">\(ax - cy = b\)</span>。</p>
+<p>由 <em>裴蜀定理的推论</em> 得知方程有解当且仅当 <span class="math inline">\(\gcd(a, c) \mid b\)</span>，此时可以用拓展欧几里得算法求解。</p>
+<h3 id="乘法逆元">2.3 乘法逆元</h3>
+<blockquote>
+<p>若 <span class="math inline">\(ax \equiv 1 \pmod b\)</span>，则 <span class="math inline">\(x\)</span> 称为 <span class="math inline">\(a \bmod b\)</span> 的乘法逆元，简称逆元，记作 <span class="math inline">\(a^{-1}\)</span>。</p>
+</blockquote>
+<p>求解上述线性方程组即可求出单个整数 <span class="math inline">\(a\)</span> 的乘法逆元。</p>
+<h4 id="线性递推逆元">2.3.1 线性递推逆元</h4>
+<blockquote>
+<p>求 <span class="math inline">\(1 \dots n \bmod p\)</span> 的乘法逆元。</p>
+</blockquote>
+<p>设 <span class="math inline">\(p = kn + r\)</span>，则 <span class="math display">\[
+\begin{aligned}
+kn + r &amp;\equiv 0 &amp;\pmod p\\
+r^{-1}(kn + r) &amp;\equiv 0 &amp;\pmod p\\
+r^{-1}kn + 1 &amp;\equiv 0 &amp;\pmod p\\
+n^{-1} &amp;\equiv -r^{-1}k &amp;\pmod p
+\end{aligned}
+\]</span> 得到线性递推式 <span class="math display">\[
+n^{-1} \equiv
+\begin{cases}
+1, &amp; n = 1\\
+-\lfloor\frac p n \rfloor (p \bmod n)^{-1}, &amp; n &gt; 1
+\end{cases}
+\pmod p
+\]</span></p>
+<h2 id="费马小定理">3 费马小定理</h2>
+<blockquote>
+<p>设 <span class="math inline">\(p\)</span> 是质数，<span class="math inline">\(a\)</span> 是任意整数且 <span class="math inline">\(a \not\equiv 0 \pmod p\)</span>，则 <span class="math display">\[
+a^{p - 1} \equiv 1 \pmod p
+\]</span></p>
+</blockquote>
+<blockquote>
+<p><strong>引理3.1</strong> 若 <span class="math inline">\(p \mid ab, \gcd(p, a) = 1\)</span>，则 <span class="math inline">\(p \mid b\)</span>。</p>
+<p><strong>证明：</strong> 根据 <em>裴蜀定理</em> 方程 <span class="math inline">\(px + ay = 1\)</span> 有整数解 <span class="math inline">\((x_0, y_0)\)</span>。</p>
+<p>所以，<span class="math inline">\(b = pbx_0 + aby_0 = p(bx_0 + \frac{ab}{p})\)</span>。</p>
+<p>又因为 <span class="math inline">\(p \mid ab\)</span> 所以 <span class="math inline">\(p \mid b\)</span>。 <span class="math inline">\(\square\)</span></p>
+</blockquote>
+<blockquote>
+<p><strong>引理3.2</strong> 设 <span class="math inline">\(p\)</span> 是质数，<span class="math inline">\(a\)</span> 是任意整数且 <span class="math inline">\(a \not\equiv 0 \pmod p\)</span>，则数 <span class="math inline">\(a, 2a, 3a, \dots, (p - 1)a \pmod p\)</span> 是 <span class="math inline">\(1 \dots p - 1\)</span> 的一个排列。</p>
+<p><strong>证明：</strong> 因为 <span class="math inline">\(p \nmid a\)</span> 所以 <span class="math inline">\(ia\)</span> 的值只可能在 <span class="math inline">\(1\)</span> 和 <span class="math inline">\(p - 1\)</span> 间，下面证明他们两两不同。</p>
+<p>假设 <span class="math inline">\(1 \leq j, k \leq p - 1, ja \equiv ka \pmod p\)</span>，则 <span class="math inline">\(p \mid (j - k)a\)</span>。</p>
+<p>因为假设 <span class="math inline">\(p \nmid a\)</span>，所以 <span class="math inline">\(p \mid (j - k)\)</span> (<em>引理3.1</em>)。</p>
+<p>又 <span class="math inline">\(2 - p \leq j - k\leq p - 2\)</span>，所以 <span class="math inline">\(j - k = 0\)</span>。</p>
+<p>所以数 <span class="math inline">\(a, 2a, 3a, \dots, (p - 1)a \pmod p\)</span> 两两不同。<span class="math inline">\(\square\)</span></p>
+</blockquote>
+<p><strong>证明：</strong> 由 <em>引理3.2</em> <span class="math display">\[
+\begin{aligned}
+\prod_{i = 1}^{p - 1} ia \equiv (p - 1)! \pmod p\\
+a^{p - 1} (p - 1)! \equiv (p - 1)! \pmod p\\
+p \mid \left(a^{p -1} - 1\right)(p - 1)!
+\end{aligned}
+\]</span> 因为 <span class="math inline">\(p \nmid (p-1)!\)</span>，所以 <span class="math inline">\(p \mid (a^{p - 1} - 1)\)</span> (<em>引理3.1</em>)，即 <span class="math inline">\(a^{p - 1} \equiv 1 \pmod p\)</span>。<span class="math inline">\(\square\)</span></p>
+<p>用费马小定理可以求模质数的逆元： <span class="math display">\[
+\begin{aligned}
+a \cdot a^{p - 2} &amp;\equiv 1 &amp;\pmod p\\
+a^{-1} &amp;\equiv a^{p - 2} &amp;\pmod p
+\end{aligned}
+\]</span></p>
+<h2 id="中国剩余定理chinese-remainder-theorem">4 中国剩余定理(Chinese Remainder Theorem)</h2>
+<blockquote>
+<p>设整数 <span class="math inline">\(m_1, m_2, \dots, m_n\)</span> 其中 <strong>任两数</strong> 互质，<span class="math inline">\(M = \prod_{i = 1}^nm_i, M_i = \frac{M}{m_i}\)</span>，则对任意正整数 <span class="math inline">\(a_1, a_2, \dots, a_n\)</span>，线性同余方程组 <span class="math display">\[
+\begin{cases}
+x &amp;\equiv a_1 \pmod {m_1} \\
+x &amp;\equiv a_2 \pmod {m_2} \\
+&amp;\vdots \\
+x &amp;\equiv a_n \pmod {m_n}
+\end{cases}
+\]</span> 在模 <span class="math inline">\(M\)</span> 意义下有唯一解 <span class="math display">\[
+x \equiv \sum_{i = 1}^{n} a_iM_iv_i \pmod M
+\]</span> 其中 <span class="math inline">\(M_iv_i \equiv 1 \pmod {m_i}\)</span></p>
+</blockquote>
+<p><strong>证明：</strong> 将 <span class="math inline">\(x\)</span> 代入各同余方程，显然都成立。</p>
+<p>另外，假设 <span class="math inline">\(x_1\)</span> 和 <span class="math inline">\(x_2\)</span> 都是方程组的解，那么</p>
+<p><span class="math display">\[
+\forall i \in \{1, 2, \cdots , n\},  x_1 - x_2 \equiv 0 \pmod {m_i}
+\]</span></p>
+<p>因为 <span class="math inline">\(m_1, m_2, \ldots, m_n\)</span> 两两互质，所以 <span class="math inline">\(x_1 - x_2 \equiv 0 \pmod M\)</span>，所以方程组在模 <span class="math inline">\(M\)</span> 意义下有唯一解。<span class="math inline">\(\square\)</span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> a<span class="op">(</span>n<span class="op">),</span> m<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>LL p <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> m<span class="op">[</span>i<span class="op">]</span> <span class="op">&gt;&gt;</span> a<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  p <span class="op">*=</span> m<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>LL ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> x<span class="op">,</span> y<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  exgcd<span class="op">(</span>p <span class="op">/</span> m<span class="op">[</span>i<span class="op">]</span> <span class="op">%</span> m<span class="op">[</span>i<span class="op">],</span> m<span class="op">[</span>i<span class="op">],</span> x<span class="op">,</span> y<span class="op">);</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  ans <span class="op">=</span> <span class="op">(</span>ans <span class="op">+</span> p <span class="op">/</span> m<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> x<span class="op">)</span> <span class="op">%</span> p<span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="op">(</span>ans <span class="op">+</span> p<span class="op">)</span> <span class="op">%</span> p <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span></code></pre></div>
+<h3 id="拓展中国剩余定理">4.1 拓展中国剩余定理</h3>
+<blockquote>
+<p>当 <span class="math inline">\(m_1, m_2, \dots, m_n\)</span> 不满足两两互质时，中国剩余定理失效（因为 <span class="math inline">\(v_i\)</span> 可能不存在），可以通过合并同余方程的方式解决。</p>
+</blockquote>
+<p>考虑线性同余方程组 <span class="math display">\[
+\begin{cases}
+x &amp;\equiv a_1 &amp;\pmod{m_1}\\
+x &amp;\equiv a_2 &amp;\pmod{m_2}
+\end{cases}
+\]</span> 由第一个方程得 <span class="math inline">\(x = a_1 + k_1m_1\)</span>，代入第二个方程，<span class="math inline">\(a_1 + k_1m_1 \equiv a_2 \pmod{m_2}\)</span>，即 <span class="math inline">\(k_1m_1 + k_2m_2 = a_2 - a_1\)</span>。</p>
+<p>由 <em>裴蜀定理的推论</em> 得知方程有解当且仅当 <span class="math inline">\(\gcd(m_1, m_2) \mid (a_2 - a_1)\)</span>，此时可以用拓展欧几里得算法求解 <span class="math inline">\(k_1, k_2\)</span>。</p>
+<p>假设求出 <span class="math inline">\(k_1\)</span> 的一个解 <span class="math inline">\(k_u\)</span>，那么通解为 <span class="math inline">\(k_1 = k_u + t\dfrac{m_1}{\gcd(m_1, m_2)}, x = a_1 + k_1m_1 = a_1 + k_um_1 + t\dfrac{m_1m_2}{\gcd(m_1, m_2)}\)</span>，即 <span class="math display">\[
+x \equiv a_1 + k_um_1 \pmod{\operatorname{lcm}(m_1, m_2)}
+\]</span></p>
+<p>这样我们把两个同余方程合并成了一个，重复上述操作即可求出原方程组的解。</p>
+<h2 id="欧拉函数">5 欧拉函数</h2>
+<blockquote>
+<p>欧拉函数 <span class="math inline">\(\varphi(m)\)</span> 表示在 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(m\)</span> 之间与 <span class="math inline">\(m\)</span> 互素的数的个数。即 <span class="math display">\[
+\varphi(m) = |\{x | \gcd(x, m) = 1, 1 \leq x \leq m\}|
+\]</span></p>
+</blockquote>
+<h3 id="欧拉函数公式">5.1 欧拉函数公式</h3>
+<blockquote>
+<p>① 如果 <span class="math inline">\(p\)</span> 为素数且 <span class="math inline">\(k \geq 1\)</span> 则 <span class="math inline">\(\varphi(p^k) = p^k - p^{k - 1}\)</span>。</p>
+<p>② 如果 <span class="math inline">\(\gcd(m, n) = 1\)</span>，则 <span class="math inline">\(\varphi(mn) = \varphi(m)\varphi(n)\)</span>。</p>
+</blockquote>
+<p><strong>证明：</strong></p>
+<p>① 只有 <span class="math inline">\(p, 2p, 3p, \dots, (p^{k - 1} -1)p, p^k\)</span> 和 <span class="math inline">\(p^k\)</span> 不互素，所以 <span class="math inline">\(\varphi(p^k) = p^k - p^{k - 1}\)</span>。</p>
+<p>② 设 <span class="math display">\[
+A = \{a | 1 \leq a \leq mn, \gcd(a, mn) = 1\}
+\]</span> <span class="math display">\[
+B = \left\{(b, c) | 
+\begin{aligned}
+&amp;1 \leq b \leq m,\gcd(b, m) = 1,\\
+&amp;1 \leq c \leq n,\gcd(c, n) = 1
+\end{aligned}
+\right\}
+\]</span> 则 <span class="math inline">\(|A| = \varphi(mn), |B| = \varphi(m)\varphi(n)\)</span>。</p>
+<p>一方面，对于 <span class="math inline">\(A\)</span> 中的任意元素 <span class="math inline">\(a\)</span>，因为 <span class="math inline">\(m, n\)</span> 互质，所以 <span class="math inline">\(\gcd(a, m) = \gcd(a, n) = 1\)</span>。</p>
+<p>所以 <span class="math inline">\(\gcd(a \bmod m, m) = \gcd(a \bmod n, n) = 1\)</span>。</p>
+<p>所以 <span class="math inline">\((a \bmod m, a \bmod n)\)</span> 一定在集合 <span class="math inline">\(B\)</span> 中。</p>
+<p>假设存在 <span class="math inline">\(a_1, a_2\)</span> 使得 <span class="math inline">\((a_1 \bmod m, a_1 \bmod n) = (a_2 \bmod m, a_2 \bmod n)\)</span>，则 <span class="math inline">\(m \mid (a_1 - a_2), n \mid (a_1 - a_2)\)</span>。</p>
+<p>又因为 <span class="math inline">\(m, n\)</span> 互质，所以 <span class="math inline">\(mn \mid (a_1 - a_2)\)</span>，而 <span class="math inline">\(a_1, a_2 &lt; mn\)</span>，所以 <span class="math inline">\(a_1 = a_2\)</span>。</p>
+<p>另一方面，对于 <span class="math inline">\(B\)</span> 中的任意元素 <span class="math inline">\((b, c)\)</span>，根据中国剩余定理，在模 <span class="math inline">\(mn\)</span> 意义下必定存在唯一的 <span class="math inline">\(x\)</span> 满足</p>
+<p><span class="math display">\[
+\begin{cases}
+&amp;x \equiv b \pmod m\\
+&amp;x \equiv c \pmod n
+\end{cases}
+\]</span></p>
+<p>因为 <span class="math inline">\(\gcd(x, m) = \gcd(b, m) = 1, \gcd(x, n) = \gcd(c, n) = 1\)</span>，所以 <span class="math inline">\(\gcd(x, mn) = 1\)</span>，即 <span class="math inline">\(x\)</span> 在集合 <span class="math inline">\(A\)</span> 中。</p>
+<p>综上我们建立了集合 <span class="math inline">\(A, B\)</span> 之间的单射，所以 <span class="math inline">\(|A| = |B|\)</span>，即 <span class="math inline">\(\varphi(mn) = \varphi(m)\varphi(n)\)</span>。<span class="math inline">\(\square\)</span></p>
+<blockquote>
+<p>③ 设整数 <span class="math inline">\(m\)</span> 可以分解为素数的乘积 <span class="math inline">\(m = p_1^{k_1}p_2^{k_2}\dots p_r^{k_r}\)</span>（由算数基本定理得知这样的分解存在且唯一，这在后文会给出证明），则 <span class="math display">\[
+\varphi(m) = m\prod_{i=1}^{r}(1 - \frac{1}{p_i})
+\]</span></p>
+</blockquote>
+<p><strong>证明：</strong> 由①②得 <span class="math display">\[
+\begin{aligned}
+\varphi(m) &amp;= \prod_{i=1}^r\varphi(p_i^{k_i})\\
+        &amp;= \prod_{i=1}^rp_i^{k_i}(1 - \frac{1}{p_i})\\
+        &amp;= m\prod_{i=1}^{r}(1 - \frac{1}{p_i})
+\end{aligned}
+\]</span> <span class="math inline">\(\square\)</span></p>
+<h3 id="欧拉定理">5.2 欧拉定理</h3>
+<blockquote>
+<p>如果 <span class="math inline">\(\gcd(a, m) = 1\)</span>，则 <span class="math display">\[
+a^{\varphi(m)} \equiv 1 \pmod m
+\]</span></p>
+</blockquote>
+<p>类似费马小定理的证明，取在 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(m\)</span> 之间与 <span class="math inline">\(m\)</span> 互素的数分别与 <span class="math inline">\(a\)</span> 相乘即可。</p>
+<h3 id="拓展欧拉定理">5.3 拓展欧拉定理</h3>
+<blockquote>
+<p><span class="math display">\[
+a^b\equiv
+\begin{cases}
+a^{b\ \bmod\ \varphi(p)},&amp;\gcd(a,p)=1\\
+a^b,&amp;\gcd(a,p)\ne1,b&lt;\varphi(p)\\
+a^{b\ \bmod\ \varphi(p)\ +\ \varphi(p)},&amp;\gcd(a,p)\ne1,b\ge\varphi(p) 
+\end{cases} \pmod p
+\]</span></p>
+</blockquote>
+<p>证明较复杂，这里不给出。</p>
+<h2 id="素数">6 素数</h2>
+<h3 id="无穷多素数定理">6.1 无穷多素数定理</h3>
+<blockquote>
+<p>存在无穷多个素数。</p>
+</blockquote>
+<p><strong>证明：</strong> 设当前已找到素数 <span class="math inline">\(p_1, p_2, \dots, p_r\)</span>，下面证明总可以找到另外的素数。</p>
+<p>令 <span class="math display">\[
+A = p_1p_2\dots p_r + 1
+\]</span> 若 <span class="math inline">\(A\)</span> 本身是素数，则证明已完成，否则存在一个素数 <span class="math inline">\(q\)</span> 整除 <span class="math inline">\(A\)</span>。</p>
+<p>如果 <span class="math inline">\(q\)</span> 是 <span class="math inline">\(p_1p_2\dots p_r\)</span> 中的一个，那么 <span class="math inline">\(A \equiv 1 \pmod q\)</span>，矛盾，所以 <span class="math inline">\(q\)</span> 是一个新素数。 <span class="math inline">\(\square\)</span></p>
+<h3 id="算术级数的素数狄利克雷定理">6.2 算术级数的素数狄利克雷定理</h3>
+<blockquote>
+<p>设 <span class="math inline">\(\gcd(a, m) = 1\)</span>，则存在无穷多个素数满足 <span class="math display">\[
+p \equiv a \pmod m
+\]</span></p>
+</blockquote>
+<h3 id="素数定理">6.3 素数定理</h3>
+<blockquote>
+<p>设 <span class="math inline">\(\pi(x)\)</span> 表示小于 <span class="math inline">\(x\)</span> 的素数个数，则 <span class="math display">\[
+\lim_{x \to \infty}\frac{\pi(x)}{x / \ln(x)} = 1
+\]</span></p>
+</blockquote>
+<h3 id="算数基本定理唯一分解定理">6.4 算数基本定理（唯一分解定理）</h3>
+<blockquote>
+<p>设整数 <span class="math inline">\(n \geq 2\)</span>，则 <span class="math inline">\(n\)</span> 可以唯一分解成素数的乘积 <span class="math display">\[
+n = p_1p_2\dots p_r(p_1 \leq p_2 \leq \dots \leq p_r)
+\]</span></p>
+</blockquote>
+<p>分解的唯一性并不是显然的，因此有必要对这个定理给出证明。 证明分为下面两个部分。</p>
+<blockquote>
+<p>断言1：<span class="math inline">\(n\)</span> 可以分解成素数的乘积。</p>
+</blockquote>
+<p><strong>证明：</strong> <span class="math inline">\((1)\)</span> <span class="math inline">\(n = 2, 3\)</span> 时显然成立。</p>
+<p><span class="math inline">\((2)\)</span> 假设 <span class="math inline">\(n \leq N\)</span> 可分解为素数的乘积。 对于 <span class="math inline">\(N + 1\)</span>，若它已经是素数，则证明完成。</p>
+<p>否则 <span class="math inline">\(N + 1\)</span> 是合数，这说明它可以分解成 <span class="math inline">\(N + 1 = n_1n_2, 2 \leq n_1, n_2 \leq N\)</span>，由归纳假设，<span class="math inline">\(n_1, n_2\)</span> 都可以表示成素数的乘积，因此 <span class="math inline">\(N+1\)</span> 也可以表示成素数的乘积。</p>
+<p>由 <span class="math inline">\((1)(2)\)</span> 归纳得知断言1成立。<span class="math inline">\(\square\)</span></p>
+<blockquote>
+<p>断言2：<span class="math inline">\(n\)</span> 的素数分解是唯一的。</p>
+</blockquote>
+<p><strong>证明：</strong> 假设 <span class="math inline">\(n\)</span> 能分解成两种形式的素数乘积 <span class="math display">\[
+n = p_1p_2\dots p_r = q_1q_2\dots q_s
+\]</span> 根据 <em>引理3.1</em>，因为 <span class="math inline">\(p_1 | q_1q_2\dots q_s\)</span>，所以 <span class="math inline">\(p_1\)</span> 整除 <span class="math inline">\(q_1, q_2, \dots, q_s\)</span> 其中的某一个，设为 <span class="math inline">\(q_k\)</span>。</p>
+<p>因为 <span class="math inline">\(p_1, q_k\)</span> 均为素数，所以 <span class="math inline">\(p_1 = q_k\)</span>，于是可以将它从等式两边除去。重复上述操作 <span class="math inline">\(r\)</span> 次，最终只可能剩下等式 <span class="math inline">\(1 = 1\)</span>，于是 <span class="math inline">\(r = s, p_i = q_i\)</span>。<span class="math inline">\(\square\)</span></p>
+<h3 id="梅森素数和完全数">6.5 梅森素数和完全数</h3>
+<blockquote>
+<p>如果对整数 <span class="math inline">\(a \geq 2, n \geq 2, a^n-1\)</span> 是素数，则 <span class="math inline">\(a = 2\)</span> 且 <span class="math inline">\(n\)</span> 为素数。</p>
+<p>形如 <span class="math inline">\(2^p-1\)</span> 的素数被称为梅森素数。</p>
+</blockquote>
+<p><strong>证明：</strong> 当 <span class="math inline">\(a &gt; 2\)</span> 时，因为 <span class="math display">\[
+a^n-1 = (a - 1)(a^{n-1}+a^{n-2}+\dots+a^2+a+1)
+\]</span> 所以 <span class="math inline">\(a^n-1\)</span> 有约数 <span class="math inline">\(a - 1\)</span>，是合数。</p>
+<p>当 <span class="math inline">\(n\)</span> 是合数时，设 <span class="math inline">\(n = mk\)</span>，则 <span class="math display">\[
+2^n - 1 = \left(2^{m}\right)^k - 1 = (2^m - 1)(2^{m(k-1)}+2^{m(k-2)}+\dots+2^{m}+1)
+\]</span> 所以 <span class="math inline">\(2^n-1\)</span> 有约数 <span class="math inline">\(2^m - 1\)</span>，是合数。<span class="math inline">\(\square\)</span></p>
+<blockquote>
+<p>真因数之和等于本身的正整数称为完全数。（真因数即除了本身以外的因数）</p>
+</blockquote>
+<p>梅森素数和完全数有很大的相关性：</p>
+<blockquote>
+<p><strong>6.4.1 欧几里得完全数公式</strong> 如果 <span class="math inline">\(2^p-1\)</span> 是素数，则 <span class="math inline">\(2^{p-1}(2^p-1)\)</span> 是完全数。</p>
+<p><strong>6.4.2 欧拉完全数定理</strong> 如果 <span class="math inline">\(n\)</span> 是<strong>偶完全数</strong>，则 <span class="math inline">\(n = 2^{p-1}(2^p-1)\)</span>，其中<span class="math inline">\(2^p-1\)</span> 是梅森素数。</p>
+</blockquote>
+<p>至今没有人发现有奇完全数。</p>
+<h3 id="miller-rabin-素性测试">6.6 Miller-Rabin 素性测试</h3>
+<h3 id="pollard-rho-质因数分解">6.7 Pollard-Rho 质因数分解</h3>
+<h2 id="二项式系数">7 二项式系数</h2>
+<h3 id="模-p-二项式定理">7.1 模 p 二项式定理</h3>
+<blockquote>
+<p>设 <span class="math inline">\(p\)</span> 为素数，</p>
+<p>① <span class="math display">\[
+\binom{p}{k} \equiv \begin{cases}
+0, &amp; 1 \leq k \leq p - 1\\
+1, &amp; k = 0 \text{ or } k = p
+\end{cases}
+\pmod p
+\]</span> ② 对任意数 <span class="math inline">\(A, B\)</span>，有 <span class="math display">\[
+(A + B)^p \equiv A^p + B^p \pmod p
+\]</span></p>
+</blockquote>
+<p><strong>证明：</strong> ① <span class="math inline">\(\dbinom{p}{k} = \dfrac{p^{\underline{k}}}{k!}\)</span></p>
+<p>当 <span class="math inline">\(1 \leq k \leq p - 1\)</span> 时，由于 <span class="math inline">\(p\)</span> 是质数，分子上的 <span class="math inline">\(p\)</span> 不会被约去，所以 <span class="math inline">\(\dbinom{p}{k}\equiv 0 \pmod p\)</span>；</p>
+<p>当 <span class="math inline">\(k = 0\)</span> 或 <span class="math inline">\(k = p\)</span> 时，<span class="math inline">\(\binom{p}{k} = 1\)</span>。</p>
+<p>② 用二项式定理展开再套用①的公式即得证。<span class="math inline">\(\square\)</span></p>
+<h3 id="lucas-定理">7.2 Lucas 定理</h3>
+<blockquote>
+<p>设 <span class="math inline">\(p\)</span> 为素数， <span class="math display">\[
+\binom n m \equiv \binom{\lfloor n / p \rfloor}{\lfloor m / p \rfloor} \binom{n \bmod p}{m \bmod p} \pmod p
+\]</span></p>
+</blockquote>
+<p><strong>证明：</strong> <span class="math display">\[
+(1 + x)^p = 1 + \binom{p}{1}x + \binom{p}{2}x^2 + \dots + \binom{p}{p}x^p
+\]</span></p>
+<p>由 <em>模 p 二项式定理</em> 有 <span class="math display">\[
+\begin{aligned}
+(1 + x)^p &amp;\equiv 1 + x^p &amp;\pmod p\\
+(1 + x)^{p^k} &amp;\equiv (1 + x^p)^{p^{k - 1}} \equiv \dots \equiv 1 + x^{p^k} &amp;\pmod p
+\end{aligned}
+\]</span></p>
+<p>设 <span class="math display">\[
+\begin{cases}
+n &amp;= \sum_{i \geq 0}a_ip^i\\
+m &amp;= \sum_{i \geq 0}b_ip^i
+\end{cases}
+\]</span> 则 <span class="math display">\[
+\begin{aligned}
+(1 + x)^n = \prod_{i \geq 0} (1 + x)^{a_ip^i} 
+&amp;\equiv \prod_{i \geq 0}(1 + x^{p^i})^{a_i} &amp;\pmod p\\
+[x^m](1 + x)^n &amp;\equiv [x^m]\prod_{i \geq 0}(1 + x^{p^i})^{a_i} &amp;\pmod p\\
+\binom{n}{m} &amp;\equiv \prod_{i \geq 0} \binom{a_i}{b_i} &amp;\pmod p
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\square\)</span></p>
+<h3 id="拓展-lucas-定理">7.3 拓展 Lucas 定理</h3>
+<blockquote>
+<p>对于 <span class="math inline">\(p\)</span> 是合数的情形，Lucas 定理失效，此时可以通过另外的方法求二项式系数对 <span class="math inline">\(p\)</span> 的模。思路如下：</p>
+<p>将 <span class="math inline">\(p\)</span> 质因数分解为 <span class="math inline">\(p = \sum_{i = 1}^{r} q_i^{k_i}\)</span>，分别求出 <span class="math inline">\(\dbinom{n}{m} \bmod q_i^{k_i}\)</span>，然后用中国剩余定理合并。</p>
+</blockquote>
+<p>通常二项式系数的计算式为 <span class="math inline">\(\dbinom{n}{m} = \dfrac{n!}{m!(n - m)!}\)</span>，需要求出 <span class="math inline">\(m!(n-m)!\)</span> 的逆元，然而在 <span class="math inline">\(q_i \mid m!(n - m)!\)</span> 的情况下逆元不存在，需要特殊处理。</p>
+<p>设 <span class="math inline">\(n = q^{r(n)}k(n)\)</span>，其中 <span class="math inline">\(k \nmid q\)</span>，则 <span class="math display">\[
+\binom{n}{m} = \frac{n!}{m!(n - m)!} = \frac{n!}{k(m!)k((n-m)!)}\cdot q^{-r(m) - r(n - m)}
+\]</span> 这样逆元都是存在的，问题在于求 <span class="math inline">\(r(n!)\)</span>。</p>
+<p><strong>留坑</strong></p>
+<h3 id="kummer-定理">7.4 Kummer 定理</h3>
+<blockquote>
+<p><span class="math inline">\(\dbinom{n + m}{m}\)</span> 中素因子 <span class="math inline">\(p\)</span> 的个数等于 <span class="math inline">\(n, m\)</span> 在 <span class="math inline">\(p\)</span> 进制下做加法的进位次数。</p>
+</blockquote>
+<p>例题 <a href="https://www.luogu.com.cn/problem/CF582D">CF582D</a></p>
+<h2 id="二次剩余">8 二次剩余</h2>
+<h2 id="离散对数">9 离散对数</h2>
+<h3 id="大步小步算法baby-step-giant-step">9.1 大步小步算法(Baby Step Giant Step)</h3>
+<h3 id="exbsgs算法">9.2 EXBSGS算法</h3>
+<h2 id="原根与指标">10 原根与指标</h2>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">最后修改于 2021-03-19</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			下回<br>已经到头啦。
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://asukakyle.top/post/codeforces1413froads-and-ramen/">
+			上回<br>[Codeforces1413F]Roads and Ramen
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	MIT
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="http://asukakyle.top/js/journal.js"></script>
+    </body>
+</html>

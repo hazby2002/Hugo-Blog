@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>斜率优化 on HolyK&#39;s Blog</title>
+    <link>http://asukakyle.top/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/</link>
+    <description>Recent content in 斜率优化 on HolyK&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Thu, 18 Mar 2021 21:51:42 +0800</lastBuildDate><atom:link href="http://asukakyle.top/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Codechef CCC]Hit the Coconuts</title>
+      <link>http://asukakyle.top/post/codechef-ccchit-the-coconuts/</link>
+      <pubDate>Thu, 18 Mar 2021 21:51:42 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/codechef-ccchit-the-coconuts/</guid>
+      <description>题意： \(N\) 个椰子, 第 \(i\) 个需要敲 \(a_i\) 下才能打开，问最坏情况下最少要敲多少下才能打开 \(k\) 个椰子。
+ 不妨设 \(a_i \le a_{i + 1}\)。
+要敲开一个椰子，现在有两种方法：
+随便拿起一个椰子不停地敲，最多要 \(a_n\) 次。 有目的性地想要敲开某个椰子 \(a_i\)，可以发现最优的策略就是每个椰子都敲 \(a_i\) 次，最多要敲 \(a_i\times(n - i + 1)\) 次，所有情况下取最小值。  第二种情况实际上包含了第一种。
+那么要敲开 \(k\) 个椰子，也有两种方法：
+每次都随便拿一个敲开，最多要 \(a_n + a_{n - 1}+ \dots + a_{n - k + 1}\) 次。 选 \(k\) 个椰子 \(a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &amp;lt; b_{i + 1})\)，有目的性地敲开它们。发现最优策略下最多要敲 \(\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)\) 次，其中 \(a_{b_0} = 0\)，所有情况下取最小值。  第二种情况也包含了第一种。</description>
+    </item>
+    
+  </channel>
+</rss>

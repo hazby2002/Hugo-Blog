@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>线段树 on HolyK&#39;s Blog</title>
+    <link>http://asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
+    <description>Recent content in 线段树 on HolyK&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Sat, 13 Mar 2021 00:43:08 +0800</lastBuildDate><atom:link href="http://asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Codeforces1148H] Holy Diver</title>
+      <link>http://asukakyle.top/post/codeforces1148h-holy-diver/</link>
+      <pubDate>Sat, 13 Mar 2021 00:43:08 +0800</pubDate>
+      
+      <guid>http://asukakyle.top/post/codeforces1148h-holy-diver/</guid>
+      <description>给定一个最初为空的数组，然后进行 \(n\) 次操作，每次操作给定 \(x,l,r,k\)，在数组末尾插入 \(x\) ，然后查询满足 \(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\) 的数对 \((i,j)\) 的个数，强制在线。
+\(mex(S)\) 表示集合 \(S\) 中最小的未出现的 自然数。
+\(n \leq 2 \times 10^5\)。
+ 为表示方便，下面记 \(mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})\)。
+容易发现，如果向集合 \(S\) 中添加数，\(mex(S)\) 不会减小。
+所以如果固定右端点 \(j\)，\(mex(i, j)\) 是非严格单调减的；固定左端点 \(i\)，\(mex(i, j)\) 是非严格单调增的。
+维护一个 \(n \times n\) 矩阵，\(A[i][j] = mex(j, i)\)，则矩阵 \(A\) 的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。
+第 \(i\) 次操作增加一个数 \(x\)，考虑从第 \(i - 1\) 行拓展到第 \(i\) 行时矩阵 \(A\) 的变化。</description>
+    </item>
+    
+  </channel>
+</rss>
