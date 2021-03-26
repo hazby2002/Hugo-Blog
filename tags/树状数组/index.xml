@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>树状数组 on HolyK&#39;s Blog</title>
+    <link>https://blog.asukakyle.top/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/</link>
+    <description>Recent content in 树状数组 on HolyK&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Fri, 26 Mar 2021 17:56:38 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Codeforces955D]Scissors</title>
+      <link>https://blog.asukakyle.top/post/codeforces955dscissors/</link>
+      <pubDate>Fri, 26 Mar 2021 17:56:38 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/codeforces955dscissors/</guid>
+      <description>给定两个串 \(s,t\) 整数 \(k\) ,你可以在 \(s\) 中取出任意的两个不相交的长度为 \(k\) 串，将它们按顺序拼在一起形成一个新串。
+求一种取串的方案使得 \(t\) 是新串的子串。
+\(|s|,|t| \leq 5 \times 10^5\)。
+ kmp 算出正串和反串的能匹配 \(t\) 的前/后缀最大长度。
+设 \(s\) 串的前缀 \([pre_1 \dots pre_i]\) 能匹配 \(t\) 的前缀集合为 \(P\)，后缀 \([suf_{i+1},suf_n]\) 能匹配 \(t\) 的后缀集合为 \(Q\)，只要判断是否存在 \(x\in P,y\in Q,x, y\leq k,x+y=|s|\) 即可。
+类似 AC 自动机那样建出 fail 树，那么一个点能匹配的前缀长度集合就是在 fail 树上到根的路径，在正串 fail 树上维护集合 \(P\)，每次添加一个数 \(x\) 时，标记 \(k-x\) 对应在反串 fail 树上的点，每次查询反串 fail 树上一个点的祖先是否被标记。
+具体实现时，标记一个点可以用子树加一，查询的时候单点查询即可。
+复杂度 \(O(n \log n)\)。
+#include &amp;lt;bits/stdc++.h&amp;gt; #define dbg(.</description>
+    </item>
+    
+  </channel>
+</rss>
