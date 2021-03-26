@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FFT on HolyK&#39;s Blog</title>
-    <link>http://asukakyle.top/tags/fft/</link>
+    <link>http://blog.asukakyle.top/tags/fft/</link>
     <description>Recent content in FFT on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Thu, 18 Mar 2021 21:11:58 +0800</lastBuildDate><atom:link href="http://asukakyle.top/tags/fft/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Mar 2021 21:11:58 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/tags/fft/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>循环卷积优化</title>
-      <link>http://asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</link>
+      <link>http://blog.asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</link>
       <pubDate>Thu, 18 Mar 2021 21:11:58 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</guid>
+      <guid>http://blog.asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</guid>
       <description>前置知识  Fast Fourier Transform - HolyK 多项式系列操作  循环卷积优化  简介：目前网上关于多项式操作的文章和模板大多仍然是朴素的实现，常数巨大，这个技巧利用循环卷积优化多项式操作的常数。
 （这个trick在N年前就有了，「循环卷积优化」这个名字是我瞎起的，如果有人知道这个trick的名字请联系我。）
  多项式求逆  求 \(B(x)\) 满足 \(A(x)B(x) \equiv 1 \pmod n\)。
@@ -26,10 +26,10 @@
     
     <item>
       <title>Fast Fourier Transform</title>
-      <link>http://asukakyle.top/post/fft/</link>
+      <link>http://blog.asukakyle.top/post/fft/</link>
       <pubDate>Thu, 18 Mar 2021 15:28:59 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/fft/</guid>
+      <guid>http://blog.asukakyle.top/post/fft/</guid>
       <description>Introduction  快速傅里叶变换(Fast Fourier Transform，FFT)是一种可在 \(O(n \log n)\) 时间内完成的离散傅里叶变换 (Discrete Fourier Transform，DFT) 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。
  FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
 多项式 形如 \[ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} \] 的式子称为 \(x\) 的 \(n - 1\) 次多项式，其中 \(a_0, a_1, \dots, a_{n - 1}\) 称为多项式系数，\(n-1\) 称为多项式的次数，记为 \(\deg A(x)\) 或 \(\deg A\)。

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>算法笔记 on HolyK&#39;s Blog</title>
-    <link>http://asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
+    <link>http://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
     <description>Recent content in 算法笔记 on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 10:28:29 +0800</lastBuildDate><atom:link href="http://asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Mar 2021 10:28:29 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数论知识总结</title>
-      <link>http://asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link>
+      <link>http://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link>
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
+      <guid>http://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
       <description>1 欧几里得算法  欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
  不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
 一方面，设 \(d_1\) 为 \(a, b\) 的一个公约数，则 \[ \begin{aligned} a &amp;amp;= k_ad_1\\ b &amp;amp;= k_bd_1\\ r &amp;amp;= a - kb\\ &amp;amp;= (k_a - kk_b)d_1 \end{aligned} \] 即 \(d_1\) 也是 \(r\) 的约数，\(b, r\) 的公约数。
@@ -22,10 +22,10 @@
     
     <item>
       <title>一类DP优化</title>
-      <link>http://asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</link>
+      <link>http://blog.asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</link>
       <pubDate>Thu, 18 Mar 2021 21:30:30 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</guid>
+      <guid>http://blog.asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</guid>
       <description>对于一切形如 \(dp[i]=\max\{f_1(j)\times g_1(i)+f_2(j)\}+g_2(i)\) 的状态转移方程，
 设 \(L_j(x)=f_1(j)x+f_2(j)\) 那么就有 \(dp[i]=max\{L_j(g_1(i))\}+g_2(i)\)。
 从几何角度来看，只需要求出一些直线和 \(x=g_1(i)\) 交点的纵坐标的最大值。
@@ -38,10 +38,10 @@
     
     <item>
       <title>循环卷积优化</title>
-      <link>http://asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</link>
+      <link>http://blog.asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</link>
       <pubDate>Thu, 18 Mar 2021 21:11:58 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</guid>
+      <guid>http://blog.asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</guid>
       <description>前置知识  Fast Fourier Transform - HolyK 多项式系列操作  循环卷积优化  简介：目前网上关于多项式操作的文章和模板大多仍然是朴素的实现，常数巨大，这个技巧利用循环卷积优化多项式操作的常数。
 （这个trick在N年前就有了，「循环卷积优化」这个名字是我瞎起的，如果有人知道这个trick的名字请联系我。）
  多项式求逆  求 \(B(x)\) 满足 \(A(x)B(x) \equiv 1 \pmod n\)。
@@ -54,10 +54,10 @@
     
     <item>
       <title>Fast Fourier Transform</title>
-      <link>http://asukakyle.top/post/fft/</link>
+      <link>http://blog.asukakyle.top/post/fft/</link>
       <pubDate>Thu, 18 Mar 2021 15:28:59 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/fft/</guid>
+      <guid>http://blog.asukakyle.top/post/fft/</guid>
       <description>Introduction  快速傅里叶变换(Fast Fourier Transform，FFT)是一种可在 \(O(n \log n)\) 时间内完成的离散傅里叶变换 (Discrete Fourier Transform，DFT) 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。
  FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
 多项式 形如 \[ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} \] 的式子称为 \(x\) 的 \(n - 1\) 次多项式，其中 \(a_0, a_1, \dots, a_{n - 1}\) 称为多项式系数，\(n-1\) 称为多项式的次数，记为 \(\deg A(x)\) 或 \(\deg A\)。

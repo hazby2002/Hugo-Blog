@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>容斥 on HolyK&#39;s Blog</title>
-    <link>http://asukakyle.top/tags/%E5%AE%B9%E6%96%A5/</link>
+    <link>http://blog.asukakyle.top/tags/%E5%AE%B9%E6%96%A5/</link>
     <description>Recent content in 容斥 on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Thu, 18 Mar 2021 21:47:16 +0800</lastBuildDate><atom:link href="http://asukakyle.top/tags/%E5%AE%B9%E6%96%A5/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Mar 2021 21:47:16 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/tags/%E5%AE%B9%E6%96%A5/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[PKUWC2018]猎人杀</title>
-      <link>http://asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</link>
+      <link>http://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</link>
       <pubDate>Thu, 18 Mar 2021 21:47:16 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</guid>
+      <guid>http://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</guid>
       <description>\(n\) 个人，每个人有个权值 \(a_i\)。进行 \(n\) 轮操作，每轮开枪杀死一个人，\(i\) 被杀死的概率 \(p_i=\dfrac{a_i}{\sum_{x\ is\ alive}a_x}\) ，求最后死的那个人是 \(1\) 的概率。答案对 \(998244353\) 取模。
 \(a_i &amp;gt; 0, 1 \le \sum a_i \le 10^5\)。
  设 \(s = \sum_{i=1}^na_i,w=\sum_{x\ is\ alive}a_x\)，那么有 \[ \begin{aligned} p_i &amp;amp;= \frac{a_i}{w}\\ \frac wsp_i &amp;amp;= \frac {a_i}{s}\\ p_i &amp;amp;= \frac {a_i}{s} + \frac{s - w}s p_i \end{aligned} \] 最后的这个式子可以理解为，每次开枪的目标是所有活人和死人，如果打到活人就会杀死他，如果打到死人不算，重打。

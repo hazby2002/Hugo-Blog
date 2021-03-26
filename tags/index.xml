@@ -2,99 +2,99 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on HolyK&#39;s Blog</title>
-    <link>http://asukakyle.top/tags/</link>
+    <link>http://blog.asukakyle.top/tags/</link>
     <description>Recent content in Tags on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 10:28:29 +0800</lastBuildDate><atom:link href="http://asukakyle.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Mar 2021 10:28:29 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数学</title>
-      <link>http://asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</link>
+      <link>http://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</link>
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</guid>
+      <guid>http://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</guid>
       <description></description>
     </item>
     
     <item>
       <title>数论</title>
-      <link>http://asukakyle.top/tags/%E6%95%B0%E8%AE%BA/</link>
+      <link>http://blog.asukakyle.top/tags/%E6%95%B0%E8%AE%BA/</link>
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/%E6%95%B0%E8%AE%BA/</guid>
+      <guid>http://blog.asukakyle.top/tags/%E6%95%B0%E8%AE%BA/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DP</title>
-      <link>http://asukakyle.top/tags/dp/</link>
+      <link>http://blog.asukakyle.top/tags/dp/</link>
       <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/dp/</guid>
+      <guid>http://blog.asukakyle.top/tags/dp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>动态DP</title>
-      <link>http://asukakyle.top/tags/%E5%8A%A8%E6%80%81dp/</link>
+      <link>http://blog.asukakyle.top/tags/%E5%8A%A8%E6%80%81dp/</link>
       <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/%E5%8A%A8%E6%80%81dp/</guid>
+      <guid>http://blog.asukakyle.top/tags/%E5%8A%A8%E6%80%81dp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>数据结构</title>
-      <link>http://asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <link>http://blog.asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
       <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <guid>http://blog.asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
       <description></description>
     </item>
     
     <item>
       <title>斜率优化</title>
-      <link>http://asukakyle.top/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/</link>
+      <link>http://blog.asukakyle.top/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/</link>
       <pubDate>Thu, 18 Mar 2021 21:51:42 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/</guid>
+      <guid>http://blog.asukakyle.top/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/</guid>
       <description></description>
     </item>
     
     <item>
       <title>容斥</title>
-      <link>http://asukakyle.top/tags/%E5%AE%B9%E6%96%A5/</link>
+      <link>http://blog.asukakyle.top/tags/%E5%AE%B9%E6%96%A5/</link>
       <pubDate>Thu, 18 Mar 2021 21:47:16 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/%E5%AE%B9%E6%96%A5/</guid>
+      <guid>http://blog.asukakyle.top/tags/%E5%AE%B9%E6%96%A5/</guid>
       <description></description>
     </item>
     
     <item>
       <title>计数</title>
-      <link>http://asukakyle.top/tags/%E8%AE%A1%E6%95%B0/</link>
+      <link>http://blog.asukakyle.top/tags/%E8%AE%A1%E6%95%B0/</link>
       <pubDate>Thu, 18 Mar 2021 21:47:16 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/%E8%AE%A1%E6%95%B0/</guid>
+      <guid>http://blog.asukakyle.top/tags/%E8%AE%A1%E6%95%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>FFT</title>
-      <link>http://asukakyle.top/tags/fft/</link>
+      <link>http://blog.asukakyle.top/tags/fft/</link>
       <pubDate>Thu, 18 Mar 2021 21:11:58 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/fft/</guid>
+      <guid>http://blog.asukakyle.top/tags/fft/</guid>
       <description></description>
     </item>
     
     <item>
       <title>线段树</title>
-      <link>http://asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
+      <link>http://blog.asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
       <pubDate>Sat, 13 Mar 2021 00:43:08 +0800</pubDate>
       
-      <guid>http://asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</guid>
+      <guid>http://blog.asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</guid>
       <description></description>
     </item>
     

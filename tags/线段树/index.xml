@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>线段树 on HolyK&#39;s Blog</title>
-    <link>http://asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
+    <link>http://blog.asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
     <description>Recent content in 线段树 on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Sat, 13 Mar 2021 00:43:08 +0800</lastBuildDate><atom:link href="http://asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 13 Mar 2021 00:43:08 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Codeforces1148H] Holy Diver</title>
-      <link>http://asukakyle.top/post/codeforces1148h-holy-diver/</link>
+      <link>http://blog.asukakyle.top/post/codeforces1148h-holy-diver/</link>
       <pubDate>Sat, 13 Mar 2021 00:43:08 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/codeforces1148h-holy-diver/</guid>
+      <guid>http://blog.asukakyle.top/post/codeforces1148h-holy-diver/</guid>
       <description>给定一个最初为空的数组，然后进行 \(n\) 次操作，每次操作给定 \(x,l,r,k\)，在数组末尾插入 \(x\) ，然后查询满足 \(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\) 的数对 \((i,j)\) 的个数，强制在线。
 \(mex(S)\) 表示集合 \(S\) 中最小的未出现的 自然数。
 \(n \leq 2 \times 10^5\)。

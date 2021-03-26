@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DP on HolyK&#39;s Blog</title>
-    <link>http://asukakyle.top/tags/dp/</link>
+    <link>http://blog.asukakyle.top/tags/dp/</link>
     <description>Recent content in DP on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 10:09:39 +0800</lastBuildDate><atom:link href="http://asukakyle.top/tags/dp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Mar 2021 10:09:39 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/tags/dp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Codeforces1413F]Roads and Ramen</title>
-      <link>http://asukakyle.top/post/codeforces1413froads-and-ramen/</link>
+      <link>http://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</link>
       <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
+      <guid>http://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
       <description>给定一棵 \(n\) 个点的无根树，每条边都有标记0或1。现在有 \(m\) 次操作，每次操作将第 \(id\) 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。
 \(n,m \leq 5 \times 10^5\)。
  动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
@@ -22,10 +22,10 @@
     
     <item>
       <title>[Codechef CCC]Hit the Coconuts</title>
-      <link>http://asukakyle.top/post/codechef-ccchit-the-coconuts/</link>
+      <link>http://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/</link>
       <pubDate>Thu, 18 Mar 2021 21:51:42 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/codechef-ccchit-the-coconuts/</guid>
+      <guid>http://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/</guid>
       <description>题意： \(N\) 个椰子, 第 \(i\) 个需要敲 \(a_i\) 下才能打开，问最坏情况下最少要敲多少下才能打开 \(k\) 个椰子。
  不妨设 \(a_i \le a_{i + 1}\)。
 要敲开一个椰子，现在有两种方法：
@@ -36,10 +36,10 @@
     
     <item>
       <title>一类DP优化</title>
-      <link>http://asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</link>
+      <link>http://blog.asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</link>
       <pubDate>Thu, 18 Mar 2021 21:30:30 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</guid>
+      <guid>http://blog.asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</guid>
       <description>对于一切形如 \(dp[i]=\max\{f_1(j)\times g_1(i)+f_2(j)\}+g_2(i)\) 的状态转移方程，
 设 \(L_j(x)=f_1(j)x+f_2(j)\) 那么就有 \(dp[i]=max\{L_j(g_1(i))\}+g_2(i)\)。
 从几何角度来看，只需要求出一些直线和 \(x=g_1(i)\) 交点的纵坐标的最大值。

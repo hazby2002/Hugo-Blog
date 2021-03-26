@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数据结构 on HolyK&#39;s Blog</title>
-    <link>http://asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+    <link>http://blog.asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
     <description>Recent content in 数据结构 on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 10:09:39 +0800</lastBuildDate><atom:link href="http://asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Mar 2021 10:09:39 +0800</lastBuildDate><atom:link href="http://blog.asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Codeforces1413F]Roads and Ramen</title>
-      <link>http://asukakyle.top/post/codeforces1413froads-and-ramen/</link>
+      <link>http://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</link>
       <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
+      <guid>http://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
       <description>给定一棵 \(n\) 个点的无根树，每条边都有标记0或1。现在有 \(m\) 次操作，每次操作将第 \(id\) 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。
 \(n,m \leq 5 \times 10^5\)。
  动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
@@ -22,10 +22,10 @@
     
     <item>
       <title>[Codeforces1148H] Holy Diver</title>
-      <link>http://asukakyle.top/post/codeforces1148h-holy-diver/</link>
+      <link>http://blog.asukakyle.top/post/codeforces1148h-holy-diver/</link>
       <pubDate>Sat, 13 Mar 2021 00:43:08 +0800</pubDate>
       
-      <guid>http://asukakyle.top/post/codeforces1148h-holy-diver/</guid>
+      <guid>http://blog.asukakyle.top/post/codeforces1148h-holy-diver/</guid>
       <description>给定一个最初为空的数组，然后进行 \(n\) 次操作，每次操作给定 \(x,l,r,k\)，在数组末尾插入 \(x\) ，然后查询满足 \(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\) 的数对 \((i,j)\) 的个数，强制在线。
 \(mex(S)\) 表示集合 \(S\) 中最小的未出现的 自然数。
 \(n \leq 2 \times 10^5\)。
