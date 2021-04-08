@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分块 on HolyK&#39;s Blog</title>
+    <link>https://blog.asukakyle.top/tags/%E5%88%86%E5%9D%97/</link>
+    <description>Recent content in 分块 on HolyK&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Thu, 08 Apr 2021 22:39:55 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%88%86%E5%9D%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gym102441</title>
+      <link>https://blog.asukakyle.top/post/gym102441/</link>
+      <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/gym102441/</guid>
+      <description>A. Template for Search  给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
+\(1 \leq |s| \leq 500\)。
+ 设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
+ \(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段  B. Redistribution of Digits C. Partial Sums  \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]
+给出 \(A_0\)，求 \(\{A_k\}\) 的最小循环节。</description>
+    </item>
+    
+  </channel>
+</rss>

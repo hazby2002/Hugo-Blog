@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html><head>
+<title>Gym102441</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="困难又简单，毒瘤又良心。">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://blog.asukakyle.top/scss/journal.min.fb512c7d9994393b2bb01672ce42555cd125eded462a15df65887df9192ee794.css" integrity="sha256-&#43;1EsfZmUOTsrsBZyzkJVXNEl7e1GKhXfZYh9&#43;Rku55Q=" media="screen">
+
+
+
+<script src="https://blog.asukakyle.top/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [["$", "$"]], [["\\(", "\\)"]],
+    },
+    displayMath: [
+      ["$$", "$$"],
+      ["\\[", "\\]"],
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    MathJax.Hub.Queue(function () {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+<style>
+  code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+  }
+</style>
+
+<link href="https://cdn.bootcss.com/highlight.js/10.6.0/styles/atom-one-dark.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/highlight.js/10.6.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+    <script src="https://blog.asukakyle.top/js/toc-collapse.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://blog.asukakyle.top">
+    
+        <div class="nav-title">
+            HolyK&#39;s Blog
+        </div>
+        
+        <div class="nav-subtitle">
+            明日は明日の風が吹く
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/post">
+                Archive
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                Categories
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	MIT
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#a.-template-for-search" onclick="onNavClick(`#a.-template-for-search-nav`)" id="a.-template-for-search-nav">
+									A. Template for Search
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#b.-redistribution-of-digits" onclick="onNavClick(`#b.-redistribution-of-digits-nav`)" id="b.-redistribution-of-digits-nav">
+									B. Redistribution of Digits
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#c.-partial-sums" onclick="onNavClick(`#c.-partial-sums-nav`)" id="c.-partial-sums-nav">
+									C. Partial Sums
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#d.-lis-on-circle" onclick="onNavClick(`#d.-lis-on-circle-nav`)" id="d.-lis-on-circle-nav">
+									D. Lis on Circle
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#e.-very-simple-sum" onclick="onNavClick(`#e.-very-simple-sum-nav`)" id="e.-very-simple-sum-nav">
+									E. Very Simple Sum
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#f.-random-xor" onclick="onNavClick(`#f.-random-xor-nav`)" id="f.-random-xor-nav">
+									F. Random XOR
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#g.-sum-of-distances-in-cactus" onclick="onNavClick(`#g.-sum-of-distances-in-cactus-nav`)" id="g.-sum-of-distances-in-cactus-nav">
+									G. Sum of Distances in Cactus
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#h.-not-a-b" onclick="onNavClick(`#h.-not-a-b-nav`)" id="h.-not-a-b-nav">
+									H. Not A &#43; B
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#i.-cutting" onclick="onNavClick(`#i.-cutting-nav`)" id="i.-cutting-nav">
+									I. Cutting
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#j.-paternity-testing" onclick="onNavClick(`#j.-paternity-testing-nav`)" id="j.-paternity-testing-nav">
+									J. Paternity Testing
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#k.-chess-positions" onclick="onNavClick(`#k.-chess-positions-nav`)" id="k.-chess-positions-nav">
+									K. Chess Positions
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+<div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/post">
+                    Archive
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    Categories
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#a.-template-for-search" onclick="onNavClick(`#a.-template-for-search-nav`)" id="a.-template-for-search-nav">
+									A. Template for Search
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#b.-redistribution-of-digits" onclick="onNavClick(`#b.-redistribution-of-digits-nav`)" id="b.-redistribution-of-digits-nav">
+									B. Redistribution of Digits
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#c.-partial-sums" onclick="onNavClick(`#c.-partial-sums-nav`)" id="c.-partial-sums-nav">
+									C. Partial Sums
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#d.-lis-on-circle" onclick="onNavClick(`#d.-lis-on-circle-nav`)" id="d.-lis-on-circle-nav">
+									D. Lis on Circle
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#e.-very-simple-sum" onclick="onNavClick(`#e.-very-simple-sum-nav`)" id="e.-very-simple-sum-nav">
+									E. Very Simple Sum
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#f.-random-xor" onclick="onNavClick(`#f.-random-xor-nav`)" id="f.-random-xor-nav">
+									F. Random XOR
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#g.-sum-of-distances-in-cactus" onclick="onNavClick(`#g.-sum-of-distances-in-cactus-nav`)" id="g.-sum-of-distances-in-cactus-nav">
+									G. Sum of Distances in Cactus
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#h.-not-a-b" onclick="onNavClick(`#h.-not-a-b-nav`)" id="h.-not-a-b-nav">
+									H. Not A &#43; B
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#i.-cutting" onclick="onNavClick(`#i.-cutting-nav`)" id="i.-cutting-nav">
+									I. Cutting
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#j.-paternity-testing" onclick="onNavClick(`#j.-paternity-testing-nav`)" id="j.-paternity-testing-nav">
+									J. Paternity Testing
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#k.-chess-positions" onclick="onNavClick(`#k.-chess-positions-nav`)" id="k.-chess-positions-nav">
+									K. Chess Positions
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://blog.asukakyle.top">
+            HolyK&#39;s Blog
+        </a>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://blog.asukakyle.top">
+        <div class="single-column-header-title">HolyK&#39;s Blog</div>
+        
+        <div class="single-column-header-subtitle">明日は明日の風が吹く</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Gym102441
+                    
+                    <div class="post-subtitle">
+                        困难又简单，毒瘤又良心。
+                    </div>
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-04-08 22:39
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/%E9%A2%98%E8%A7%A3">题解</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+                                &nbsp;
+                            
+                                <a href="/tags/dp">DP</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E6%95%B0%E5%AD%A6">数学</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6">组合数学</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E6%95%B0%E8%AE%BA">数论</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91">线段树</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E5%88%86%E5%9D%97">分块</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h2 id="a.-template-for-search">A. Template for Search</h2>
+<blockquote>
+<p>给定由小写字母、字符<code>*</code> 和 <code>?</code> 组成的字符串 <span class="math inline">\(s\)</span>，其中 <code>*</code> 可以被替换成任意串（包括空串），<code>?</code> 可以被替换成任意字符，求 <span class="math inline">\(s\)</span> 可以表示成的最短回文串。</p>
+<p><span class="math inline">\(1 \leq |s| \leq 500\)</span>。</p>
+</blockquote>
+<p>设 <span class="math inline">\(dp[l][r]\)</span> 表示 <span class="math inline">\(l \dots r\)</span> 能组成的最短回文串，有三种转移：</p>
+<ul>
+<li><span class="math inline">\(s_l\)</span> 匹配 <span class="math inline">\(s_r\)</span></li>
+<li><span class="math inline">\(s_l = *\)</span> 匹配右边一段</li>
+<li><span class="math inline">\(s_r = *\)</span> 匹配左边一段</li>
+</ul>
+<h2 id="b.-redistribution-of-digits">B. Redistribution of Digits</h2>
+<h2 id="c.-partial-sums">C. Partial Sums</h2>
+<blockquote>
+<p><span class="math inline">\(n \times m\)</span> 矩阵列 <span class="math inline">\(\{A_k\}\)</span> 满足递推关系 <span class="math display">\[
+A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2
+\]</span></p>
+<p>给出 <span class="math inline">\(A_0\)</span>，求 <span class="math inline">\(\{A_k\}\)</span> 的最小循环节。</p>
+<p><span class="math inline">\(1 \leq n \times m \leq 10^6\)</span></p>
+</blockquote>
+<p>递推关系是二维前缀和。数列 <span class="math inline">\(a_n\)</span> 做 <span class="math inline">\(k\)</span> 次前缀和的结果是 <span class="math display">\[
+a&#39;_n = \sum_{i = 1}^na_i\binom{n - i + k - 1}{n - i}
+\]</span> 这个式子可以这样推导，初始为 <span class="math inline">\(i\)</span> 每步可以加一个非负值，走 <span class="math inline">\(k\)</span> 步，求 <span class="math inline">\(i\)</span> 到 <span class="math inline">\(n\)</span> 的路径数，等价于 <span class="math inline">\(x_i+x_{i+1}+\dots+x_{n}=k, x_i, x_{i+1}, \dots, x_{n-1} \geq 0, x_n \geq 1\)</span>，用隔板法可得答案为 <span class="math inline">\(\dbinom{n - i + k - 1}{n - i}\)</span>。</p>
+<p>二维相互独立，所以 <span class="math display">\[
+A_k[i, j] = \sum_{u, v}A_0[u, v]\binom{i - u + k - 1}{i - u}\binom{j - v + k - 1}{j - v} \bmod 2
+\]</span></p>
+<p>由卢卡斯定理，当 <span class="math inline">\(k = 2^d_0 &gt; n\)</span> 时，<span class="math inline">\(\binom{i - u + k - 1}{i - u} \equiv 1 \pmod 2\)</span>，所以循环节是 <span class="math inline">\(2^d_0\)</span> 的因子。</p>
+<p>枚举循环节 <span class="math inline">\(k = 2^d\)</span>，由卢卡斯定理 <span class="math inline">\(\binom{i - u + k - 1}{i - u} \equiv 1 \pmod 2\)</span> 当且仅当 <span class="math inline">\(i - u = t \times 2^d\)</span>，即 <span class="math inline">\(u = i - 2^dt\)</span>，用二维前缀和可以 <span class="math inline">\(O(nm)\)</span> 验证。</p>
+<p>复杂度 <span class="math inline">\(O(nm\log(nm))\)</span>。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>ios<span class="bu">::</span>sync_with_stdio(<span class="kw">false</span>);</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin.tie(<span class="kw">nullptr</span>);</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n, m;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin &gt;&gt; n &gt;&gt; m;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt;&gt; a(n);</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++) {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    a[i].resize(m);</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string s;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cin &gt;&gt; s;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; m; j++) a[i][j] = s[j] - <span class="ch">&#39;0&#39;</span>;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> b = a;</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> k = <span class="dv">1</span>; ; k &lt;&lt;= <span class="dv">1</span>) {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ([&amp;]{</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; m; j++) {</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>          b[i][j] = a[i][j];</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (i &gt;= k) b[i][j] ^= b[i - k][j];</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (j &gt;= k) b[i][j] ^= b[i][j - k];</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (i &gt;= k &amp;&amp; j &gt;= k) b[i][j] ^= b[i - k][j - k];</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (b[i][j] ^ a[i][j]) <span class="cf">return</span> <span class="kw">false</span>;</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="kw">true</span>;</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    }()) {</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="bu">std::</span>cout &lt;&lt; k &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="dv">0</span>;</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (k &gt; n &amp;&amp; k &gt; m) <span class="ot">assert</span>(<span class="kw">false</span>);</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="d.-lis-on-circle">D. Lis on Circle</h2>
+<blockquote>
+<p><span class="math inline">\(n\)</span> 个人顺时针围成一圈，第 <span class="math inline">\(i\)</span> 个人手上有 <span class="math inline">\(m_i\)</span> 个数 <span class="math inline">\(a_1, a_2, \dots, a_{m_i}\)</span>，从 1 开始顺时针进行游戏，轮到一个人时他可以选择跳过，也可以出一个数，但这个数必须比之前的人出的数大。不能有连续超过 <span class="math inline">\(k\)</span> 个人跳过，求最多能出多少数。</p>
+<p><span class="math inline">\(0 \leq n, \sum m_i \leq 10^5, 0 \leq a_i \leq 10^9\)</span>。</p>
+</blockquote>
+<p>按数从小到大dp，设 <span class="math inline">\(dp[i]\)</span> 表示最后一个数是 <span class="math inline">\(i\)</span> 出的，最多出了多少数，转移是区间取 <span class="math inline">\(\min\)</span> 和单点赋值，线段树维护即可。</p>
+<p>注意没有数的极端情况。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define perr</span>(a...)<span class="pp"> </span>fprintf(stderr,<span class="pp"> </span>a)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span>(a...)<span class="pp"> </span>perr(<span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span>),<span class="pp"> </span>perr(a),<span class="pp"> </span>perr(<span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T, <span class="kw">class</span> U&gt;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smin(T &amp;x, <span class="at">const</span> U &amp;y) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> y &lt; x ? x = y, <span class="dv">1</span> : <span class="dv">0</span>;</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T, <span class="kw">class</span> U&gt;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smax(T &amp;x, <span class="at">const</span> U &amp;y) {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> x &lt; y ? x = y, <span class="dv">1</span> : <span class="dv">0</span>;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> LL = <span class="dt">long</span> <span class="dt">long</span>;</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> PII = <span class="bu">std::</span>pair&lt;<span class="dt">int</span>, <span class="dt">int</span>&gt;;</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> N(<span class="fl">1e5</span> + <span class="dv">5</span>);</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>PII max[N &lt;&lt; <span class="dv">2</span>];</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ls </span>o<span class="pp"> </span>&lt;&lt;<span class="pp"> </span><span class="dv">1</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="pp">#define rs </span>o<span class="pp"> </span>&lt;&lt;<span class="pp"> </span><span class="dv">1</span><span class="pp"> </span>|<span class="pp"> </span><span class="dv">1</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> update(<span class="dt">int</span> o, <span class="dt">int</span> l, <span class="dt">int</span> r, <span class="dt">int</span> x, PII y) {</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  smax(max[o], y);</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (l == r) <span class="cf">return</span>;</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> m = l + r &gt;&gt; <span class="dv">1</span>;</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  x &lt;= m ? update(ls, l, m, x, y) : update(rs, m + <span class="dv">1</span>, r, x, y);</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>PII ask(<span class="dt">int</span> o, <span class="dt">int</span> l, <span class="dt">int</span> r, <span class="dt">int</span> x, <span class="dt">int</span> y) {</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (l &gt; r || r &lt; x || l &gt; y) <span class="cf">return</span> {-<span class="fl">1e9</span>, -<span class="dv">1</span>};</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x &lt;= l &amp;&amp; r &lt;= y) <span class="cf">return</span> max[o];</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> m = l + r &gt;&gt; <span class="dv">1</span>;</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">std::</span>max(ask(ls, l, m, x, y), ask(rs, m + <span class="dv">1</span>, r, x, y));</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>ios<span class="bu">::</span>sync_with_stdio(<span class="kw">false</span>);</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin.tie(<span class="kw">nullptr</span>);</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n, m, k;</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin &gt;&gt; m &gt;&gt; k;</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;PII&gt; a;</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= m; i++) {</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> t, x;</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cin &gt;&gt; t;</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (t--) {</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>      <span class="bu">std::</span>cin &gt;&gt; x;</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>      a.emplace_back(x, i);</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  n = a.size();</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (!n) <span class="cf">return</span> <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;0</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="dv">0</span>;</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>sort(a.begin(), a.end());</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">auto</span> &amp;[x ,y] : max) x = -<span class="fl">1e9</span>, y = -<span class="dv">1</span>;</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;PII&gt; f(n, PII(-<span class="fl">1e9</span>, -<span class="dv">1</span>));</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  update(<span class="dv">1</span>, <span class="dv">0</span>, m, <span class="dv">0</span>, {<span class="dv">0</span>, -<span class="dv">1</span>});</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>, j = <span class="dv">0</span>; i &lt; n; i++) {</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (; j &lt; i &amp;&amp; a[j].first &lt; a[i].first; j++) {</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>      update(<span class="dv">1</span>, <span class="dv">0</span>, m, a[j].second, {f[j].first, j});</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    f[i] = <span class="bu">std::</span>max(ask(<span class="dv">1</span>, <span class="dv">0</span>, m, a[i].second - k - <span class="dv">1</span>, a[i].second - <span class="dv">1</span>), ask(<span class="dv">1</span>, <span class="dv">0</span>, m, a[i].second - k - <span class="dv">1</span> + m, m));</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    f[i].first++;</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="ot">assert</span>(f[i].second &lt; i);</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; ans;</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="bu">std::</span>max_element(f.begin(), f.end()) - f.begin(); i &gt;= <span class="dv">0</span> &amp;&amp; f[i].first &gt;= <span class="dv">1</span>; i = f[i].second) ans.emplace_back(i);</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>reverse(ans.begin(), ans.end());</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cout &lt;&lt; ans.size() &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i : ans) {</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout &lt;&lt; a[i].second &lt;&lt; <span class="st">&quot; &quot;</span> &lt;&lt; a[i].first &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="e.-very-simple-sum">E. Very Simple Sum</h2>
+<blockquote>
+<p>给定数列 <span class="math inline">\(a_1, a_2, \dots, a_n, b_1, b_2, \dots, b_n\)</span>，求 <span class="math display">\[
+\sum_{1\leq x, y, z, w \leq n}(a_x+a_y+a_z+a_w)^{b_x\oplus b_y \oplus b_z \oplus b_w} \bmod 998244353
+\]</span></p>
+<p><span class="math inline">\(1 \leq n \leq 10^5, 1 \leq a_i, b_i \leq 500\)</span>。</p>
+</blockquote>
+<p>设 <span class="math inline">\(cnt[i][j]\)</span> 表示 <span class="math inline">\(i^j\)</span> 项的个数，二维卷积 <span class="math inline">\(C[n][m] = \sum_{x + y = n, z + w = m}A[x][z]timesB[y][w]\)</span>，分别用 <span class="math inline">\(FFT, FWT\)</span> 计算即可。</p>
+<p>复杂度 <span class="math inline">\(O(ab\log(ab)\)</span>。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">void</span> readInt(T &amp;w) {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">char</span> c, p = <span class="dv">0</span>;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (!isdigit(c = getchar())) p = c == <span class="ch">&#39;-&#39;</span>;</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (w = c &amp; <span class="dv">15</span>; isdigit(c = getchar());) w = w * <span class="dv">10</span> + (c &amp; <span class="dv">15</span>);</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (p) w = -w;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> P(<span class="dv">998244353</span>), G(<span class="dv">3</span>);</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">int</span>&amp;inc(<span class="dt">int</span> &amp;x, <span class="dt">int</span> y) { <span class="cf">return</span> (x += y) &gt;= P ? x -= P : x; }</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">int</span> sum(<span class="dt">int</span> x, <span class="dt">int</span> y) { <span class="cf">return</span> x + y &gt;= P ? x + y - P : x + y; }</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">int</span> sub(<span class="dt">int</span> x, <span class="dt">int</span> y) { <span class="cf">return</span> x - y &lt; <span class="dv">0</span> ? x - y + P : x - y; }</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">int</span> fpow(<span class="dt">int</span> x, <span class="dt">int</span> k = P - <span class="dv">2</span>) {</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> r = <span class="dv">1</span>;</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (; k; k &gt;&gt;= <span class="dv">1</span>, x = <span class="dv">1</span><span class="bu">LL</span> * x * x % P)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (k &amp; <span class="dv">1</span>) r = <span class="dv">1</span><span class="bu">LL</span> * r * x % P;</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> r;</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Polynom = <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt;;</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; w;</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> getOmega(<span class="dt">int</span> k) {</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  w.resize(k);</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  w[<span class="dv">0</span>] = <span class="dv">1</span>;</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> base = fpow(G, (P - <span class="dv">1</span>) / (k &lt;&lt; <span class="dv">1</span>));</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; k; i++) w[i] = <span class="dv">1</span><span class="bu">LL</span> * w[i - <span class="dv">1</span>] * base % P;</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dft(<span class="dt">int</span> *a, <span class="dt">int</span> n) {</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="ot">assert</span>((n &amp; n - <span class="dv">1</span>) == <span class="dv">0</span>);</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> k = n &gt;&gt; <span class="dv">1</span>; k; k &gt;&gt;= <span class="dv">1</span>) {</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    getOmega(k);</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i += k &lt;&lt; <span class="dv">1</span>) {</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; k; j++) {</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> y = a[i + j + k];</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        a[i + j + k] = (<span class="dv">1</span><span class="bu">LL</span> * a[i + j] - y + P) * w[j] % P;</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        inc(a[i + j], y);</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dft(Polynom &amp;a) { dft(a.data(), a.size()); }</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> idft(<span class="dt">int</span> *a, <span class="dt">int</span> n) {</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="ot">assert</span>((n &amp; n - <span class="dv">1</span>) == <span class="dv">0</span>);</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> k = <span class="dv">1</span>; k &lt; n; k &lt;&lt;= <span class="dv">1</span>) {</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    getOmega(k);</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i += k &lt;&lt; <span class="dv">1</span>) {</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; k; j++) {</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> x = a[i + j], y = <span class="dv">1</span><span class="bu">LL</span> * a[i + j + k] * w[j] % P;</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        a[i + j] = sum(x, y), a[i + j + k] = sub(x, y);</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>, inv = P - (P - <span class="dv">1</span>) / n; i &lt; n; i++) a[i] = <span class="dv">1</span><span class="bu">LL</span> * a[i] * inv % P;</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>reverse(a + <span class="dv">1</span>, a + n);</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> idft(Polynom &amp;a) { idft(a.data(), a.size()); }</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fwt(Polynom &amp;a) {</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n = a.size();</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  <span class="ot">assert</span>((n &amp; n - <span class="dv">1</span>) == <span class="dv">0</span>);</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> k = <span class="dv">1</span>; k &lt; n; k &lt;&lt;= <span class="dv">1</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i += k &lt;&lt; <span class="dv">1</span>)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>, x, y; j &lt; k; j++) {</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>        x = a[i + j], y = a[i + j + k];</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>        inc(a[i + j], y);</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>        a[i + j + k] = sum(x, P - y);</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ifwt(Polynom &amp;a) {</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n = a.size();</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> shift = [](<span class="dt">int</span> &amp;x) { x = x &amp; <span class="dv">1</span> ? x + P &gt;&gt; <span class="dv">1</span> : x &gt;&gt; <span class="dv">1</span>; };</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> k = n &gt;&gt; <span class="dv">1</span>; k; k &gt;&gt;= <span class="dv">1</span>)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i += k &lt;&lt; <span class="dv">1</span>)</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>, x, y; j &lt; k; j++) {</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>        x = a[i + j], y = a[i + j + k];</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>        shift(inc(a[i + j], y));</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>        shift(a[i + j + k] = sum(x, P - y));</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n;</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>  readInt(n);</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; a(n), b(n);</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> &amp;x : a) readInt(x);</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> &amp;x : b) readInt(x);</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;Polynom&gt; c(<span class="dv">512</span>, Polynom(<span class="dv">2048</span>));</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++) c[b[i]][a[i]]++;</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">auto</span> &amp;v : c) dft(v);</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> cal = [&amp;] {</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; <span class="dv">2048</span>; j++) {</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>      Polynom d(<span class="dv">512</span>);</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">512</span>; i++) d[i] = c[i][j];</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>      fwt(d);</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">512</span>; i++) d[i] = <span class="dv">1</span><span class="bu">LL</span> * d[i] * d[i] % P;</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>      ifwt(d);</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">512</span>; i++) c[i][j] = d[i];</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>  };</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  cal(), cal();</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">auto</span> &amp;v : c) idft(v);</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ans = <span class="dv">0</span>;</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">512</span>; i++)</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; <span class="dv">2048</span>; j++)</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>      ans = (ans + <span class="dv">1</span><span class="bu">LL</span> * c[i][j] * fpow(j, i)) % P;</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cout &lt;&lt; ans &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="f.-random-xor">F. Random XOR</h2>
+<blockquote>
+<p>给定 <span class="math inline">\(a_1, a_2, \dots, a_n\)</span>，随机从中选取一些数的异或和为 <span class="math inline">\(s\)</span>，求 <span class="math inline">\(s^2\)</span> 的期望，对 <span class="math inline">\(10^9+7\)</span> 取模。</p>
+<p><span class="math inline">\(n \leq 10^5\)</span>。</p>
+</blockquote>
+<p>设 <span class="math inline">\(s = \sum_{i\geq 0}b_i2^i\)</span>，则 <span class="math display">\[
+\begin{aligned}
+s^2 &amp;= \sum_{i, j}b_ib_j2^{i+j}\\
+E(s^2) &amp;= \sum_{i, j}P(b_i \And b_j)2^{i+j} 
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(P(b_i \And b_j)\)</span> 表示 <span class="math inline">\(b_i, b_j\)</span> 同时为 <span class="math inline">\(1\)</span> 的概率，可以 <span class="math inline">\(O(n)\)</span> 计算。</p>
+<p>复杂度 <span class="math inline">\(O(n \log^2(P))\)</span>。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> LL = <span class="dt">long</span> <span class="dt">long</span>;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> PII = <span class="bu">std::</span>pair&lt;<span class="dt">int</span>, <span class="dt">int</span>&gt;;</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> P(<span class="fl">1e9</span> + <span class="dv">7</span>);</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> fpow(<span class="dt">int</span> x, <span class="dt">int</span> k = P - <span class="dv">2</span>) {</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> r = <span class="dv">1</span>;</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (; k; k &gt;&gt;= <span class="dv">1</span>, x = <span class="dv">1</span><span class="bu">LL</span> * x * x % P) {</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (k &amp; <span class="dv">1</span>) r = <span class="dv">1</span><span class="bu">LL</span> * r * x % P;</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> r;</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>ios<span class="bu">::</span>sync_with_stdio(<span class="kw">false</span>);</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin.tie(<span class="kw">nullptr</span>);</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n, t, m;</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin &gt;&gt; n &gt;&gt; t &gt;&gt; m;</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  m = <span class="dv">1</span><span class="bu">LL</span> * t * fpow(m) % P;</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; a(n);</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> &amp;x : a) <span class="bu">std::</span>cin &gt;&gt; x;</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ans = <span class="dv">0</span>;</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>, x = <span class="dv">1</span>; i &lt;= <span class="dv">30</span>; i++, x &lt;&lt;= <span class="dv">1</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>, y = <span class="dv">1</span>; j &lt;= <span class="dv">30</span>; j++, y &lt;&lt;= <span class="dv">1</span>) {</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="bu">std::</span>array&lt;<span class="dt">int</span>, <span class="dv">4</span>&gt; p;</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>      p[<span class="dv">0</span>] = <span class="dv">1</span>, p[<span class="dv">1</span>] = <span class="dv">0</span>, p[<span class="dv">2</span>] = <span class="dv">0</span>, p[<span class="dv">3</span>] = <span class="dv">0</span>;</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> &amp;x : a) {</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> v = (x &gt;&gt; i &amp; <span class="dv">1</span>) &lt;&lt; <span class="dv">1</span> | (x &gt;&gt; j &amp; <span class="dv">1</span>);</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        p = {</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>          <span class="kw">static_cast</span>&lt;<span class="dt">int</span>&gt;((<span class="dv">1</span><span class="bu">LL</span> * p[v ^ <span class="dv">0</span>] * m + <span class="dv">1</span><span class="bu">LL</span> * p[<span class="dv">0</span>] * (<span class="dv">1</span> - m)) % P),</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>          <span class="kw">static_cast</span>&lt;<span class="dt">int</span>&gt;((<span class="dv">1</span><span class="bu">LL</span> * p[v ^ <span class="dv">1</span>] * m + <span class="dv">1</span><span class="bu">LL</span> * p[<span class="dv">1</span>] * (<span class="dv">1</span> - m)) % P),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>          <span class="kw">static_cast</span>&lt;<span class="dt">int</span>&gt;((<span class="dv">1</span><span class="bu">LL</span> * p[v ^ <span class="dv">2</span>] * m + <span class="dv">1</span><span class="bu">LL</span> * p[<span class="dv">2</span>] * (<span class="dv">1</span> - m)) % P),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>          <span class="kw">static_cast</span>&lt;<span class="dt">int</span>&gt;((<span class="dv">1</span><span class="bu">LL</span> * p[v ^ <span class="dv">3</span>] * m + <span class="dv">1</span><span class="bu">LL</span> * p[<span class="dv">3</span>] * (<span class="dv">1</span> - m)) % P)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        };</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>      ans = (ans + <span class="dv">1</span><span class="bu">LL</span> * p[<span class="dv">3</span>] * x % P * y) % P;</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cout &lt;&lt; (ans + P) % P &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="g.-sum-of-distances-in-cactus">G. Sum of Distances in Cactus</h2>
+<blockquote>
+<p>给定一棵边权为 1 的点仙人掌，求两点间最短路之和。</p>
+<p><span class="math inline">\(n \leq 10^5\)</span>。</p>
+</blockquote>
+<p>对每条边算贡献，对于每个环计算 <span class="math inline">\(\sum_{i,j} s_is_j\min(|i-j|, len - |i-j|)\)</span>，前缀和优化即可。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define perr</span>(a...)<span class="pp"> </span>fprintf(stderr,<span class="pp"> </span>a)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span>(a...)<span class="pp"> </span>perr(<span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span>),<span class="pp"> </span>perr(a),<span class="pp"> </span>perr(<span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T, <span class="kw">class</span> U&gt;</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smin(T &amp;x, <span class="at">const</span> U &amp;y) {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> y &lt; x ? x = y, <span class="dv">1</span> : <span class="dv">0</span>;</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T, <span class="kw">class</span> U&gt;</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smax(T &amp;x, <span class="at">const</span> U &amp;y) {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> x &lt; y ? x = y, <span class="dv">1</span> : <span class="dv">0</span>;</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> LL = <span class="dt">long</span> <span class="dt">long</span>;</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> PII = <span class="bu">std::</span>pair&lt;<span class="dt">int</span>, <span class="dt">int</span>&gt;;</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> N(<span class="fl">1e5</span> + <span class="dv">5</span>);</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; g[N];</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n, in[N], low[N], cnt, fa[N], siz[N];</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>LL ans;</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dfs(<span class="dt">int</span> x) {</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  in[x] = low[x] = ++cnt;</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  siz[x] = <span class="dv">1</span>;</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> y : g[x]) {</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (y == fa[x]) <span class="cf">continue</span>;</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (!in[y]) {</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>      fa[y] = x;</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>      dfs(y);</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>      siz[x] += siz[y];</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>      smin(low[x], low[y]);</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>      smin(low[x], in[y]);</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (low[y] &gt; in[x]) {</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>      ans += <span class="dv">1</span><span class="bu">LL</span> * (n - siz[y]) * siz[y];</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> y : g[x]) {</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (fa[y] == x || in[y] &lt; in[x]) <span class="cf">continue</span>;</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>vector&lt;LL&gt; a, b;</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> p = <span class="dv">0</span>;</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = y; i != x; i = fa[i]) {</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>      a.push_back(siz[i] - p);</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>      p = siz[i];</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    a.push_back(n - p);</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    b.push_back(<span class="dv">0</span>);</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="ot">assert</span>(*<span class="bu">std::</span>min_element(a.begin(), a.end()) &gt; <span class="dv">0</span>);</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="ot">assert</span>(<span class="bu">std::</span>accumulate(a.begin(), a.end(), <span class="dv">0</span>) == n);</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>, n = a.size(); i &lt; n; i++) {</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>      LL a1 = a[i - <span class="dv">1</span>], a2 = <span class="dv">0</span>, b1 = b[i - <span class="dv">1</span>], b2 = <span class="dv">0</span>;</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (i - n / <span class="dv">2</span> &gt; <span class="dv">0</span>) a1 -= a2 = a[i - n / <span class="dv">2</span> - <span class="dv">1</span>], b1 -= b2 = b[i - n / <span class="dv">2</span> - <span class="dv">1</span>];</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>      ans += (a1 * i - b1 + a2 * (n - i) + b2) * a[i];</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>      b.push_back(b[i - <span class="dv">1</span>] + i * a[i]);</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>      a[i] += a[i - <span class="dv">1</span>];</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>ios<span class="bu">::</span>sync_with_stdio(<span class="kw">false</span>);</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin.tie(<span class="kw">nullptr</span>);</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> m;</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin &gt;&gt; n &gt;&gt; m;</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (m--) {</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x, y;</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cin &gt;&gt; x &gt;&gt; y;</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    g[x].push_back(y), g[y].push_back(x);</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>  dfs(<span class="dv">1</span>);</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cout &lt;&lt; ans &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="h.-not-a-b">H. Not A + B</h2>
+<p>签到题。</p>
+<h2 id="i.-cutting">I. Cutting</h2>
+<blockquote>
+<p>给一个整数，每次操作将这个数从中间切成两半，然后替换为差的绝对值，直到最后，求最终的最小值以及操作过程。</p>
+<p><span class="math inline">\(0 \leq x \leq 10^12\)</span>。</p>
+</blockquote>
+<p>搜索，对于 <span class="math inline">\(10^7\)</span> 内的状态可以记忆化，大的状态数不多。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> LL = <span class="dt">long</span> <span class="dt">long</span>;</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> PR = <span class="bu">std::</span>pair&lt;<span class="dt">int</span>, LL&gt;;</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>PR &amp;get(LL i) {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> PR f[<span class="dv">10000000</span>];</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="bu">std::</span>map&lt;LL, PR&gt; g;</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i &lt; <span class="dv">10000000</span> ? f[i] : g[i];</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt;</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">int</span> smin(T &amp;x, T y) {</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y &lt; x ? x = y, <span class="dv">1</span> : <span class="dv">0</span>;</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>PR dfs(LL i) {</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i &lt; <span class="dv">10</span>) <span class="cf">return</span> PR(i, <span class="dv">0</span>);</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span> &amp;v = get(i);</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (v.first) <span class="cf">return</span> v;</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    v = {<span class="dv">10</span>, <span class="dv">0</span>};</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (LL x = <span class="dv">10</span>; i / x; x *= <span class="dv">10</span>) {</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">auto</span> j = i / x - i % x;</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (j &lt; <span class="dv">0</span>) j = -j;</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (j &amp;&amp; smin(v.first, dfs(j).first)) v.second = j;</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> v;</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> t;</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    scanf(<span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span>, &amp;t);</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (t--) {</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        LL x;</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        scanf(<span class="st">&quot;</span><span class="sc">%lld</span><span class="st">&quot;</span>, &amp;x);</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>vector&lt;LL&gt; v;</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (LL o = x; o; o = dfs(o).second) v.push_back(o);</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;</span><span class="sc">%d</span><span class="st"> &quot;</span>, (<span class="dt">int</span>)v.size());</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (LL x : v) printf(<span class="st">&quot;</span><span class="sc">%lld</span><span class="st"> &quot;</span>, x);</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="j.-paternity-testing">J. Paternity Testing</h2>
+<blockquote>
+<p><span class="math inline">\(n\)</span> 个节点的有根树，<span class="math inline">\(q\)</span> 次询问区间 <span class="math inline">\([l, r]\)</span> 中满足 <span class="math inline">\(l \leq i, j \leq r, i \in subtree_j\)</span> 的数对 <span class="math inline">\((i, j)\)</span> 的个数。</p>
+<p><span class="math inline">\(n, q \leq 50000\)</span>，强制在线。</p>
+</blockquote>
+<p>考虑求不满足条件的个数，容易发现条件为两个子树不交，所以跑一下dfs序转化为 <span class="math inline">\(in[i] &gt; out[j]\)</span>。</p>
+<p>如果只有一次询问，把 <span class="math inline">\(l\dots r\)</span> 分别按 <span class="math inline">\(in,out\)</span> 排序后双指针扫描即可。</p>
+<p>分块，设块长为 <span class="math inline">\(T\)</span>，对于节点 <span class="math inline">\(i\)</span> 分别用双指针扫描预处理出每块中 <span class="math inline">\(in[i] &gt; out[j]\)</span> 和 <span class="math inline">\(out[i] &lt; in[j]\)</span> 的 <span class="math inline">\(j\)</span> 的个数 <span class="math inline">\(g[i][b], h[i][b]\)</span>，复杂度 <span class="math inline">\(O(n\log n + \frac{n^2}{T})\)</span>。</p>
+<p>然后预处理块与块之间的区间答案，<span class="math inline">\(ans[u][v] = \sum_{i = l}^{r} \sum_{j = u}^v g[i][j]\)</span>，用前缀和可以做到 <span class="math inline">\(O(\frac{n^2}{T})\)</span>。</p>
+<p>对于每一次询问，区间分成两个部分：中间连续的块和两边的散点。</p>
+<p>块之间的贡献已经预处理，散点自己的贡献可以双指针求出，散点和块的贡献可以根据 <span class="math inline">\(g, h\)</span> 的前缀和计算，复杂度 <span class="math inline">\(O(T\log T)\)</span>。</p>
+<p>总复杂度 <span class="math inline">\(O(n \log n + \frac{n^2}{T} + qT\log T)\)</span>，取 <span class="math inline">\(T = \frac{n}{\sqrt{q}}\)</span> 可过。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define perr</span>(a...)<span class="pp"> </span>fprintf(stderr,<span class="pp"> </span>a)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span>(a...)<span class="pp"> </span>perr(<span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span>),<span class="pp"> </span>perr(a),<span class="pp"> </span>perr(<span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T, <span class="kw">class</span> U&gt;</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smin(T &amp;x, <span class="at">const</span> U &amp;y) {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> y &lt; x ? x = y, <span class="dv">1</span> : <span class="dv">0</span>;</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T, <span class="kw">class</span> U&gt;</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smax(T &amp;x, <span class="at">const</span> U &amp;y) {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> x &lt; y ? x = y, <span class="dv">1</span> : <span class="dv">0</span>;</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> LL = <span class="dt">long</span> <span class="dt">long</span>;</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> PII = <span class="bu">std::</span>pair&lt;<span class="dt">int</span>, <span class="dt">int</span>&gt;;</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> N(<span class="fl">5e4</span> + <span class="dv">5</span>);</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; g[N], h[N];</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> in[N], out[N];</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dfs(<span class="dt">int</span> x) {</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">static</span> <span class="dt">int</span> cnt;</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  in[x] = ++cnt;</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> y : g[x]) dfs(y);</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  out[x] = cnt;</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>ios<span class="bu">::</span>sync_with_stdio(<span class="kw">false</span>);</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin.tie(<span class="kw">nullptr</span>);</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n, q;</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin &gt;&gt; n;</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">2</span>, x; i &lt;= n; i++) {</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cin &gt;&gt; x;</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    g[x].push_back(i);</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin &gt;&gt; q;</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  dfs(<span class="dv">1</span>);</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> t = n / sqrt(q), m = (n - <span class="dv">1</span>) / t + <span class="dv">1</span>;</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; pin(n), pout;</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>iota(pin.begin(), pin.end(), <span class="dv">1</span>);</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  pout = pin;</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> cmp = [](<span class="dt">int</span> *p) {</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [p](<span class="dt">int</span> i, <span class="dt">int</span> j) {</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> p[i] &lt; p[j];</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    };</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  };</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>sort(pin.begin(), pin.end(), cmp(in));</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>sort(pout.begin(), pout.end(), cmp(out));</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> block = [&amp;](<span class="dt">int</span> i) { <span class="cf">return</span> (i - <span class="dv">1</span>) / t; };</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; cnt(m);</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>, j = <span class="dv">0</span>; i &lt; n; i++) {</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x = pin[i];</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (; out[pout[j]] &lt; in[x]; j++) cnt[block(pout[j])]++;</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    g[x] = cnt;</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">auto</span> &amp;x : cnt) x = <span class="dv">0</span>;</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = n - <span class="dv">1</span>, j = i; i &gt;= <span class="dv">0</span>; i--) {</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x = pout[i];</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (; out[x] &lt; in[pin[j]]; j--) cnt[block(pin[j])]++;</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    h[x] = cnt;</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= n; i++) {</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">1</span>; j &lt; m; j++) g[i][j] += g[i][j - <span class="dv">1</span>];</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= n; i++) {</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">1</span>; j &lt; m; j++) h[i][j] += h[i][j - <span class="dv">1</span>];</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>vector&lt;LL&gt;&gt; sum(m), iBlockAns(m);</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; m; i++) {</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>    sum[i].resize(n + <span class="dv">1</span>);</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">1</span>; j &lt;= n; j++) sum[i][j] = g[j][i] + sum[i][j - <span class="dv">1</span>];</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; m; i++) {</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>    iBlockAns[i].resize(i + <span class="dv">1</span>);</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> r = i == m - <span class="dv">1</span> ? n : i * t + t;</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>    LL now = <span class="dv">0</span>;</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = i, l = i * t + <span class="dv">1</span>; j &gt;= <span class="dv">0</span>; j--, l -= t) {</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> k = l; k &lt; l + t &amp;&amp; k &lt;= r; k++) {</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>        now += g[k][i];</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>      iBlockAns[i][j] = now;</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (j) iBlockAns[i][j] -= sum[j - <span class="dv">1</span>][r] - sum[j - <span class="dv">1</span>][l - <span class="dv">1</span>];</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>  LL ans = <span class="dv">0</span>;</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (q--) {</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> l, r;</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cin &gt;&gt; l &gt;&gt; r;</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>    l = (l ^ ans) % n + <span class="dv">1</span>;</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>    r = (r ^ ans) % n + <span class="dv">1</span>;</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (l &gt; r) <span class="bu">std::</span>swap(l, r);</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>    ans = <span class="dv">1</span><span class="bu">LL</span> * (r - l + <span class="dv">1</span>) * (r - l) / <span class="dv">2</span> + r - l + <span class="dv">1</span>;</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> bl = block(l), br = block(r);</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    pin.clear();</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (bl == br) {</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> i = l; i &lt;= r; i++) pin.push_back(i);</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> i = l, k = <span class="bu">std::</span>min(bl * t + t, n); i &lt;= k; i++) pin.push_back(i);</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> i = br * t + <span class="dv">1</span>; i &lt;= r; i++) pin.push_back(i);</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>    pout = pin;</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>sort(pin.begin(), pin.end(), cmp(in));</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>sort(pout.begin(), pout.end(), cmp(out));</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>, j = <span class="dv">0</span>; i &lt; pin.size(); i++) {</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>      <span class="cf">while</span> (out[pout[j]] &lt; in[pin[i]]) j++;</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>      ans -= j;</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (bl + <span class="dv">1</span> &lt;= br - <span class="dv">1</span>) {</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>      bl++, br--;</span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>      ans -= iBlockAns[br][bl];</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="dt">int</span> i : pin) {</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>        ans -= g[i][br] - g[i][bl - <span class="dv">1</span>];</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>        ans -= h[i][br] - h[i][bl - <span class="dv">1</span>];</span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>    } </span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout &lt;&lt; ans &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="k.-chess-positions">K. Chess Positions</h2>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">最后修改于 2021-04-08</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			下回<br>已经到头啦。
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://blog.asukakyle.top/post/codeforces955dscissors/">
+			上回<br>[Codeforces955D]Scissors
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	MIT
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="https://blog.asukakyle.top/js/journal.js"></script>
+    </body>
+</html>

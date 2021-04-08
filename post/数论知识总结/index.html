@@ -1661,9 +1661,9 @@ a &amp;= kb + r\\
 <p>所以 <span class="math inline">\(a, b\)</span> 的公约数集合和 <span class="math inline">\(b, r\)</span> 的公约数集合相同，于是 <span class="math inline">\(\gcd(a, b) = \gcd(b, r) = \gcd(b, a \bmod b)\)</span></p>
 <p>递归求解，终止状态为 <span class="math inline">\(b = 0\)</span>，此时原 <span class="math inline">\(a, b\)</span> 的公约数集合为 <span class="math inline">\(a\)</span> 的约数集合。</p>
 <p>因为 <span class="math inline">\(a = kb + r &gt; (k + 1)r\)</span> 所以 <span class="math inline">\(r &lt; \frac{a}{k + 1} \leq \frac{a}{2}\)</span>，所以每次 <span class="math inline">\(a\)</span> 最少折半，算法复杂度为 <span class="math inline">\(O(\log a + \log b)\)</span>。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> b <span class="op">?</span> gcd<span class="op">(</span>b<span class="op">,</span> a <span class="op">%</span> b<span class="op">)</span> <span class="op">:</span> a<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd(<span class="dt">int</span> a, <span class="dt">int</span> b) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> b ? gcd(b, a % b) : a;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <h2 id="裴蜀定理">2 裴蜀定理</h2>
 <blockquote>
 <p>设 <span class="math inline">\(a, b\)</span> 是不全为零的整数，则存在整数 <span class="math inline">\(x, y\)</span> 使得 <span class="math inline">\(ax + by = \gcd(a, b)\)</span>。</p>
@@ -1688,12 +1688,12 @@ y &amp;= x&#39; - ky&#39;
 \end{cases}
 \]</span></p>
 <p>可以在欧几里得算法的递归中完成，<span class="math inline">\(a = g, b = 0\)</span> 时显然 <span class="math inline">\(x = 1, y = 0\)</span> 是一组解。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> exgcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">,</span> <span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">,</span> <span class="dt">int</span> <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>b<span class="op">)</span> <span class="cf">return</span> x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> a<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> g <span class="op">=</span> exgcd<span class="op">(</span>b<span class="op">,</span> a <span class="op">%</span> b<span class="op">,</span> y<span class="op">,</span> x<span class="op">);</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  y <span class="op">-=</span> a <span class="op">/</span> b <span class="op">*</span> x<span class="op">;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> g<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> exgcd(<span class="dt">int</span> a, <span class="dt">int</span> b, <span class="dt">int</span> &amp;x, <span class="dt">int</span> &amp;y) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (!b) <span class="cf">return</span> x = <span class="dv">1</span>, y = <span class="dv">0</span>, a;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> g = exgcd(b, a % b, y, x);</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  y -= a / b * x;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> g;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>假设用该算法得出一组解 <span class="math inline">\((x_0, y_0)\)</span>，那么所有解可以表示为 <span class="math inline">\((x_0 + k\dfrac b g, y_0 - k\dfrac a g)\)</span>。</p>
 <blockquote>
 <p><strong>推论：</strong> 方程 <span class="math inline">\(ax + by = c\)</span> 有解的充分必要条件是 <span class="math inline">\(\gcd(a, b) \mid c\)</span>。</p>
@@ -1783,21 +1783,21 @@ x \equiv \sum_{i = 1}^{n} a_iM_iv_i \pmod M
 \forall i \in \{1, 2, \cdots , n\},  x_1 - x_2 \equiv 0 \pmod {m_i}
 \]</span></p>
 <p>因为 <span class="math inline">\(m_1, m_2, \ldots, m_n\)</span> 两两互质，所以 <span class="math inline">\(x_1 - x_2 \equiv 0 \pmod M\)</span>，所以方程组在模 <span class="math inline">\(M\)</span> 意义下有唯一解。<span class="math inline">\(\square\)</span></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> a<span class="op">(</span>n<span class="op">),</span> m<span class="op">(</span>n<span class="op">);</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>LL p <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> m<span class="op">[</span>i<span class="op">]</span> <span class="op">&gt;&gt;</span> a<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  p <span class="op">*=</span> m<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>LL ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> x<span class="op">,</span> y<span class="op">;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  exgcd<span class="op">(</span>p <span class="op">/</span> m<span class="op">[</span>i<span class="op">]</span> <span class="op">%</span> m<span class="op">[</span>i<span class="op">],</span> m<span class="op">[</span>i<span class="op">],</span> x<span class="op">,</span> y<span class="op">);</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  ans <span class="op">=</span> <span class="op">(</span>ans <span class="op">+</span> p <span class="op">/</span> m<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> x<span class="op">)</span> <span class="op">%</span> p<span class="op">;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="op">(</span>ans <span class="op">+</span> p<span class="op">)</span> <span class="op">%</span> p <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cin &gt;&gt; n;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; a(n), m(n);</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>LL p = <span class="dv">1</span>;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++) {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin &gt;&gt; m[i] &gt;&gt; a[i];</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  p *= m[i];</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>LL ans = <span class="dv">0</span>;</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++) {</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> x, y;</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  exgcd(p / m[i] % m[i], m[i], x, y);</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  ans = (ans + p / m[i] * a[i] * x) % p;</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout &lt;&lt; (ans + p) % p &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</span></code></pre></div>
 <h3 id="拓展中国剩余定理">4.1 拓展中国剩余定理</h3>
 <blockquote>
 <p>当 <span class="math inline">\(m_1, m_2, \dots, m_n\)</span> 不满足两两互质时，中国剩余定理失效（因为 <span class="math inline">\(v_i\)</span> 可能不存在），可以通过合并同余方程的方式解决。</p>
