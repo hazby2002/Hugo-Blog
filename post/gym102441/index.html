@@ -941,7 +941,7 @@ A_k[i, j] = \sum_{u, v}A_0[u, v]\binom{i - u + k - 1}{i - u}\binom{j - v + k - 1
 <p><span class="math inline">\(1 \leq n \leq 10^5, 1 \leq a_i, b_i \leq 500\)</span>。</p>
 </blockquote>
 <p>设 <span class="math inline">\(cnt[i][j]\)</span> 表示 <span class="math inline">\(i^j\)</span> 项的个数，二维卷积 <span class="math inline">\(C[n][m] = \sum_{x + y = n, z \oplus w = m}A[x][z]\times B[y][w]\)</span>，分别用 <span class="math inline">\(FFT, FWT\)</span> 计算即可。</p>
-<p>复杂度 <span class="math inline">\(O(ab\log(ab)\)</span>。</p>
+<p>复杂度 <span class="math inline">\(O(ab\log(ab))\)</span>。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt;</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">void</span> readInt(T &amp;w) {</span>
