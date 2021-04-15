@@ -6,9 +6,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Thu, 08 Apr 2021 22:39:55 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 15 Apr 2021 09:03:20 +0800</lastBuildDate>
     
         <atom:link href="https://blog.asukakyle.top/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Hello, World</title>
+        <link>https://blog.asukakyle.top/post/hello-world/</link>
+        <pubDate>Sat, 13 Mar 2021 11:36:40 +0800</pubDate>
+        
+        <guid>https://blog.asukakyle.top/post/hello-world/</guid>
+        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/hello-world/ -&lt;p&gt;新博客开通。&lt;/p&gt;
+&lt;p&gt;原博客 https://www.cnblogs.com/HolyK/&lt;/p&gt;
+- https://blog.asukakyle.top/post/hello-world/ - MIT</description>
+        </item>
     
     
     
