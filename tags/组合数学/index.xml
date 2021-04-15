@@ -14,11 +14,7 @@
       <pubDate>Thu, 15 Apr 2021 09:03:20 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102994/</guid>
-      <description>A. Everyone Loves Playing Games  A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。
-\(N, M \leq 10000, 0 \leq x \leq 10^{18}\)。
- 设每对数为 \((x_i, y_i)\)，先都选上 \(x_i\)，然后变成选或不选 \(x_i \oplus y_i\) 的问题。
-A 和 B 分别建出线性基，然后从高位向低位考虑。
-只需要考虑某一位 A 和 B 都有影响的情况，这位如果为 1 那么 A B 只会选一个，如果为 0 则要么都选，要么都不选，不管哪种情况两种状态都可以通过异或 \(A_i \oplus B_i\) 来相互转换，所以这种情况将 \(A_i \oplus B_i\) 插入 \(A\) 的线性基来提供“反悔”的机会。</description>
+      <description>总览   题号 A B C D E F G H I J K L M    完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0    A. Everyone Loves Playing Games  A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。</description>
     </item>
     
     <item>
@@ -27,11 +23,10 @@ A 和 B 分别建出线性基，然后从高位向低位考虑。
       <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102441/</guid>
-      <description>A. Template for Search  给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
+      <description>总览   题号 A B C D E F G H I J K    完成情况 1 0 1 1 1 1 1 1 1 1 0    A. Template for Search  给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
 \(1 \leq |s| \leq 500\)。
  设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
- \(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段  B. Redistribution of Digits C. Partial Sums  \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]
-给出 \(A_0\)，求 \(\{A_k\}\) 的最小循环节。</description>
+ \(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段  B.</description>
     </item>
     
   </channel>
