@@ -7,7 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 10:28:29 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Jul 2021 11:21:34 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>位运算卷积(FWT) &amp; 集合幂级数</title>
+      <link>https://blog.asukakyle.top/post/fwt/</link>
+      <pubDate>Fri, 09 Jul 2021 11:21:34 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/fwt/</guid>
+      <description>0x01.FWT 概论  位运算卷积 众所周知，多项式乘法是加法卷积, 因为第 \({i}\) 项和第 \({j}\) 项的乘积贡献到第 \({i+j}\) 项。
+类似地定义位运算卷积 : \({}\) 第 \({i}\) 项和第 \({j}\) 项的乘积贡献到第 \({i \oplus j}\) 项。其中 \({\oplus}\) 是某种位运算。
+即 \({S[k]=\sum_{i \oplus j=k} A[i] B[j]}\), 记作卷积式 \({A * B=S}\) 。
+ 构造的尝试 众所周知, \({\mathrm{FFT}}\) 把多项式转换成点值之后, 从卷积变为了直接点积。
+我们自然也期望把位运算卷积转化成点积。
+设 \({F W T(A)}\) 是幕级数 \({A}\) 经过 \({\mathrm{FWT}}\) 变换之后得到的幕级数。
+我们需要令其满足 : \({ A * B=C \Longleftrightarrow F W T(A) \cdot F W T(B)=F W T(C)}\) (点积)。</description>
+    </item>
+    
     <item>
       <title>数论知识总结</title>
       <link>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link>
