@@ -315,28 +315,28 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <p>从 <span class="math inline">\([x, y]\)</span> 移动到 <span class="math inline">\([l, r]\)</span>。</p>
 <ul>
 <li><p><span class="math inline">\(x \to l\)</span></p>
+<p>查询 <span class="math inline">\(a_i\)</span> 在区间 <span class="math inline">\([i+1, y]\)</span> 的贡献，拆成两个前缀 <span class="math inline">\(i, y\)</span>，预处理 <span class="math inline">\(a_{i}\)</span> 对前缀 <span class="math inline">\(i\)</span> 的贡献，设贡献的前缀和为 <span class="math inline">\(pre_1[i]\)</span>。</p>
 <ol type="1">
 <li><p><span class="math inline">\(x&lt;l\)</span></p>
 <p>删除 <span class="math inline">\(a_{x} \dots a_{l-1}\)</span>。</p>
-<p>查询 <span class="math inline">\(a_i\)</span> 在区间 <span class="math inline">\([i, y]\)</span> 的贡献，即减前缀 <span class="math inline">\(y\)</span> 的贡献、加前缀 <span class="math inline">\(i-1\)</span> 的贡献。</p>
-<p>前者离线 <span class="math inline">\(\{y, x, l-1,-1\}\)</span>；</p>
-<p>后者预处理 <span class="math inline">\(a_{i}\)</span> 对前缀 <span class="math inline">\(i-1\)</span> 的贡献，设为 <span class="math inline">\(pre_1[i]\)</span>，<span class="math inline">\(\Delta ans= pre_1[l] - pre_1[x]\)</span>。</p></li>
+<p>减前缀 <span class="math inline">\(y\)</span> 的贡献、加前缀 <span class="math inline">\(i\)</span> 的贡献。</p>
+<p>离线 <span class="math inline">\(\{y, x, l-1,-1\}, \Delta ans= pre_1[l] - pre_1[x]\)</span>。</p></li>
 <li><p><span class="math inline">\(x&gt;l\)</span></p>
 <p>加入 <span class="math inline">\(a_l\dots a_{x-1}\)</span>。</p>
-<p>查询 <span class="math inline">\(a_i\)</span> 在区间 <span class="math inline">\([i+1, y]\)</span> 的贡献，即加前缀 <span class="math inline">\(y\)</span> 的贡献、减前缀 <span class="math inline">\(i\)</span> 的贡献。</p>
-<p>前者离线 <span class="math inline">\(\{y, l, x-1,+1\}\)</span>；</p>
-<p>后者预处理 <span class="math inline">\(a_{i-1}\)</span> 对前缀 <span class="math inline">\(i-1\)</span> 的贡献，设为 <span class="math inline">\(pre_2[i]\)</span>，<span class="math inline">\(\Delta ans= pre_2[l] - pre_2[x]\)</span></p></li>
+<p>加前缀 <span class="math inline">\(y\)</span> 的贡献、减前缀 <span class="math inline">\(i\)</span> 的贡献。</p>
+<p>离线 <span class="math inline">\(\{y, l, x-1,+1\}, \Delta ans= pre_1[l] - pre_1[x]\)</span>。</p></li>
 </ol></li>
 <li><p><span class="math inline">\(y\to r\)</span></p>
-<ol start="3" type="1">
+<p>查询 <span class="math inline">\(a_i\)</span> 在区间 <span class="math inline">\([x, i-1]\)</span> 的贡献，拆成两个前缀 <span class="math inline">\(x, i-1\)</span>，预处理 <span class="math inline">\(a_{i}\)</span> 对前缀 <span class="math inline">\(i-1\)</span> 的贡献，设贡献的前缀和为 <span class="math inline">\(pre_2[i]\)</span>。</p>
+<ol type="1">
 <li><p><span class="math inline">\(y&lt;r\)</span></p>
 <p>加入 <span class="math inline">\(a_{y+1}\dots a_r\)</span>。</p>
-<p>查询 <span class="math inline">\(a_i\)</span> 在区间 <span class="math inline">\([x, i-1]\)</span> 的贡献，即减前缀 <span class="math inline">\(x\)</span> 的贡献、加前缀 <span class="math inline">\(i-1\)</span> 的贡献。</p>
-<p>同 1，离线 <span class="math inline">\(\{x, y+1, r, -1\}, \Delta ans = pre_1[r] - pre_1[y]\)</span>。</p></li>
+<p>减前缀 <span class="math inline">\(x\)</span> 的贡献、加前缀 <span class="math inline">\(i-1\)</span> 的贡献。</p>
+<p>离线 <span class="math inline">\(\{x, y+1, r, -1\}, \Delta ans = pre_2[r] - pre_2[y]\)</span>。</p></li>
 <li><p><span class="math inline">\(y&gt;r\)</span></p>
 <p>删除 <span class="math inline">\(a_{r+1}\dots a_y\)</span></p>
-<p>查询 <span class="math inline">\(a_i\)</span> 在 <span class="math inline">\([x, i]\)</span> 的贡献，即加前缀 <span class="math inline">\(x\)</span> 的贡献、减前缀 <span class="math inline">\(i\)</span> 的贡献。</p>
-<p>同 3，离线 <span class="math inline">\(\{x, r+1, y, +1\}, \Delta ans = pre_2[r] - pre_2[y]\)</span>。</p></li>
+<p>加前缀 <span class="math inline">\(x\)</span> 的贡献、减前缀 <span class="math inline">\(i-1\)</span> 的贡献。</p>
+<p>离线 <span class="math inline">\(\{x, r+1, y, +1\}, \Delta ans = pre_2[r] - pre_2[y]\)</span>。</p></li>
 </ol></li>
 </ul>
 <p>离线形式 <span class="math inline">\(\{i, x, y, z\}\)</span> 表示查询 <span class="math inline">\(a_x\dots a_y\)</span> 对前缀 <span class="math inline">\(i\)</span> 的贡献乘以系数 <span class="math inline">\(z\)</span>。</p>
