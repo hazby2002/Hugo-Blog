@@ -7,7 +7,29 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Thu, 15 Apr 2021 17:26:44 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Jul 2021 15:21:22 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>莫队二次离线小记</title>
+      <link>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/</link>
+      <pubDate>Mon, 12 Jul 2021 15:21:22 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/</guid>
+      <description>莫队二次离线。
+从 \([x, y]\) 移动到 \([l, r]\)。
+ \(x \to l\)
+\(x&amp;lt;l\)
+删除 \(a_{x} \dots a_{l-1}\)。
+查询 \(a_i\) 在区间 \([i, y]\) 的贡献，即减前缀 \(y\) 的贡献、加前缀 \(i-1\) 的贡献。
+前者离线 \(\{y, x, l-1,-1\}\)；
+后者预处理 \(a_{i}\) 对前缀 \(i-1\) 的贡献，设为 \(pre_1[i]\)，\(\Delta ans= pre_1[l] - pre_1[x]\)。
+ \(x&amp;gt;l\)
+加入 \(a_l\dots a_{x-1}\)。
+查询 \(a_i\) 在区间 \([i+1, y]\) 的贡献，即加前缀 \(y\) 的贡献、减前缀 \(i\) 的贡献。
+前者离线 \(\{y, l, x-1,+1\}\)；
+后者预处理 \(a_{i-1}\) 对前缀 \(i-1\) 的贡献，设为 \(pre_2[i]\)，\(\Delta ans= pre_2[l] - pre_2[x]\)
+  \(y\to r\)</description>
+    </item>
+    
     <item>
       <title>[Codeforces938G]Shortest Path Queries</title>
       <link>https://blog.asukakyle.top/post/cf938g/</link>
