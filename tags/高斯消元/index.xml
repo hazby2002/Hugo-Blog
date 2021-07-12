@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>高斯消元 on HolyK&#39;s Blog</title>
+    <link>https://blog.asukakyle.top/tags/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83/</link>
+    <description>Recent content in 高斯消元 on HolyK&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Mon, 12 Jul 2021 08:12:01 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ICPC2014 WF]Pachinko</title>
+      <link>https://blog.asukakyle.top/post/icpc2014-wfpachinko/</link>
+      <pubDate>Mon, 12 Jul 2021 08:12:01 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/icpc2014-wfpachinko/</guid>
+      <description>有一个 \(h×w\) 的方格表，有些格子是墙，有些格子是终点，剩下的格子是空地。
+你现在要在这里进行随机游走，其中，每一轮向上、下、左、右的概率分别为 \(u\%,d\%,l\%,r\%\)，如果移动后超过方格表或到达墙，则这次移动失效，保持原地不动。
+当你到达终点时，游戏就结束了。现在，在方格表第一行的所有空地中均匀随机一个作为起点，求你就进入每个终点的概率。
+\(1≤w≤20, 2≤h≤10000\)。
+ 设其中一个终点为 \(t\)，\(f_{i, j}\) 表示 \((i, j)\) 走到 \(t\) 的概率。 \[ f_{i, j} = uf_{i-1, j}+df_{i+1, j}+lf_{i, j-1}+rf_{i, j+1} \]
+\[ f_{i, j} - uf_{i-1, j} - df_{i+1, j} - lf_{i, j-1} - rf_{i, j+1}=0 \]
+\[ f_t=1 \]
+\[ P\cdot\mathbf{f}=\mathbf{e} \]
+\(P\) 是 \(wh \times wh\) 的方阵，\(\mathbf{f},\mathbf{e}\) 是列向量。其中 \(e_i=[i=t]\)。 \[ \mathbf{f}=P^{-1}\mathbf{f} \] 设 \(1\dots s\) 为起点 ，答案为 \[ ans = \frac1s \sum_{i=1}^sf_i \] 写成矩阵的形式，设行向量 \(\mathbf{v}^T=\begin{pmatrix} 1 &amp;amp; 1 &amp;amp; 1 &amp;amp; \cdots &amp;amp; 0 &amp;amp; 0 &amp;amp; \cdots \end{pmatrix}\)，前面有 \(s\) 个1，其他都是0。 \[ \begin{aligned} ans &amp;amp;= \frac1s \mathbf{v}^T\mathbf{f}\\ &amp;amp;= \frac1s\mathbf{v}^TP^{-1}\mathbf{e}\\ \end{aligned} \] 相当于求行向量 \(\alpha^T = \dfrac1s\mathbf{v}^TP^{-1}\) 第 \(t\) 维的值，所以只要求出这个行向量即可。 \[ \alpha^T P = \frac1s\mathbf{v} \]</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Thu, 15 Apr 2021 17:26:44 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E7%BA%BF%E6%80%A7%E5%9F%BA/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Jul 2021 08:17:49 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E7%BA%BF%E6%80%A7%E5%9F%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[UOJ91]最大异或和</title>
+      <link>https://blog.asukakyle.top/post/uoj91%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C/</link>
+      <pubDate>Mon, 12 Jul 2021 08:17:49 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/uoj91%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C/</guid>
+      <description>有一个数列 \(a_1,a_2,\dots,a_n\)，每个 \(a_i\) 都是小于 \(2^m\) 的非负整数。
+现在需要实现三种操作，格式说明如下：
+ 1 x y w：对于所有 \(x≤i≤y\)，将 \(a_i\) 修改为 \(a_i\oplus w\)。其中 \(w\) 是一个小于 \(2^m\) 的非负整数。 2 x y w：对于所有 \(x≤i≤y\)，将 \(a_i\) 修改为 \(w\)。其中 \(w\) 是一个小于 \(2^m\) 的非负整数。 3：从 \(a_1,a_2,⋯,a_n\) 中选出若干个数，使得选出的数异或和最大。请输出这个最大值。  这里 \(\oplus\) 表示按位异或运算，\(x_1,x_2,⋯,x_l\) 的异或和是指 \(x_1\oplus x_2\oplus \cdots\oplus x_l\)。
+\(n,m,q≤2000\)。
+ 将原序列差分，线性基不变。
+然后每次操作就是单点插入和删除，下面给出两种可删除线性基的写法。
+离线 记录存活时间，贪心。
+using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int&amp;gt;; PBI base[2000]; void ins(PBI x) {  for (int i = 1999; i &amp;gt;= 0; i--) {  if (!</description>
+    </item>
+    
     <item>
       <title>[Codeforces938G]Shortest Path Queries</title>
       <link>https://blog.asukakyle.top/post/cf938g/</link>
