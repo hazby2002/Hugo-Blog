@@ -9,13 +9,12 @@
     <copyright>MIT</copyright>
     <lastBuildDate>Mon, 12 Jul 2021 15:21:22 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>莫队二次离线小记</title>
-      <link>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/</link>
+      <title>莫队小记</title>
+      <link>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F/</link>
       <pubDate>Mon, 12 Jul 2021 15:21:22 +0800</pubDate>
       
-      <guid>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/</guid>
-      <description>莫队二次离线。
-从 \([x, y]\) 移动到 \([l, r]\)。
+      <guid>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F/</guid>
+      <description>莫队二次离线 从 \([x, y]\) 移动到 \([l, r]\)。
  \(x \to l\)
 查询 \(a_i\) 在区间 \([i+1, y]\) 的贡献，拆成两个前缀 \(i, y\)，预处理 \(a_{i-1}\) 对前缀 \(i-1\) 的贡献，设贡献的前缀和为 \(pre_1[i]\)。
 \(x&amp;lt;l\)

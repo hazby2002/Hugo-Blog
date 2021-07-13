@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>莫队二次离线小记</title>
+<title>莫队小记</title>
 
 
 
@@ -177,6 +177,59 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
     <div class="toc animated-visibility">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%8e%ab%e9%98%9f%e4%ba%8c%e6%ac%a1%e7%a6%bb%e7%ba%bf" onclick="onNavClick(`#莫队二次离线-nav`)" id="莫队二次离线-nav">
+									莫队二次离线
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%9b%9e%e6%bb%9a%e8%8e%ab%e9%98%9f" onclick="onNavClick(`#回滚莫队-nav`)" id="回滚莫队-nav">
+									回滚莫队
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
 </div>
     
     <div class="pagination">
@@ -232,6 +285,59 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
             <div class="toc">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%8e%ab%e9%98%9f%e4%ba%8c%e6%ac%a1%e7%a6%bb%e7%ba%bf" onclick="onNavClick(`#莫队二次离线-nav`)" id="莫队二次离线-nav">
+									莫队二次离线
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%9b%9e%e6%bb%9a%e8%8e%ab%e9%98%9f" onclick="onNavClick(`#回滚莫队-nav`)" id="回滚莫队-nav">
+									回滚莫队
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
 </div>
             
         </div>
@@ -277,7 +383,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
             >
                 <div class="post-title">
-                    莫队二次离线小记
+                    莫队小记
                     
                     <div class="post-meta">
                         
@@ -311,7 +417,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    <p>莫队二次离线。</p>
+                    <h2 id="莫队二次离线">莫队二次离线</h2>
 <p>从 <span class="math inline">\([x, y]\)</span> 移动到 <span class="math inline">\([l, r]\)</span>。</p>
 <ul>
 <li><p><span class="math inline">\(x \to l\)</span></p>
@@ -384,6 +490,22 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> m<span class="op">;</span> i<span class="op">++)</span> ans<span class="op">[</span>i<span class="op">]</span> <span class="op">+=</span> ans<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">];</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> m<span class="op">;</span> i<span class="op">++)</span> out<span class="op">[</span>q<span class="op">[</span>i<span class="op">].</span>id<span class="op">]</span> <span class="op">=</span> ans<span class="op">[</span>i<span class="op">];</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> x <span class="op">:</span> out<span class="op">)</span> <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> x <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span></code></pre></div>
+<h2 id="回滚莫队">回滚莫队</h2>
+<p>维护信息支持加入和回滚时使用。</p>
+<p>同块右端点从小到大排序，右端点直接移动，左端点每次从块边界暴力移动，做完后回滚。</p>
+<p>维护块左端点 <span class="math inline">\(now\)</span>，然后循环开头加一句：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>l <span class="op">&gt;</span> now<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 清空 for (int i = now; i &lt;= y; i++) max[a[i]] = -1, min[a[i]] = n; </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  now <span class="op">=</span> l <span class="op">/</span> T <span class="op">*</span> T <span class="op">+</span> T <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> now <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>回滚操作，开个记录修改的栈即可。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">*,</span> <span class="dt">int</span><span class="op">&gt;&gt;</span> p<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> record <span class="op">=</span> <span class="op">[&amp;](</span><span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">)</span> <span class="op">{</span> p<span class="op">.</span>push_back<span class="op">({&amp;</span>x<span class="op">,</span> x<span class="op">});</span> <span class="op">};</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>reverse<span class="op">(</span>p<span class="op">.</span>begin<span class="op">(),</span> p<span class="op">.</span>end<span class="op">());</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">&amp;[</span>u<span class="op">,</span> v<span class="op">]</span> <span class="op">:</span> p<span class="op">)</span> <span class="op">*</span>u <span class="op">=</span> v<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>p<span class="op">.</span>clear<span class="op">();</span></span></code></pre></div>
 
                     
                     <HR width="100%" id="EOF">
