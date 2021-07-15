@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>回文树 on HolyK&#39;s Blog</title>
+    <link>https://blog.asukakyle.top/tags/%E5%9B%9E%E6%96%87%E6%A0%91/</link>
+    <description>Recent content in 回文树 on HolyK&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Wed, 14 Jul 2021 17:02:30 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%9B%9E%E6%96%87%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>回文树小记</title>
+      <link>https://blog.asukakyle.top/post/pam/</link>
+      <pubDate>Wed, 14 Jul 2021 17:02:30 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/pam/</guid>
+      <description>基本元素 节点：原串的一个本质不同的回文子串。
+长度 len[o]：回文子串长度。
+转移边 ch[o][x]：两边同时加字符 \(x\)。
+失配边 fa[o]：最长回文后缀。到根的路径是所有回文后缀。
+有两个根，奇根1 和 偶根0，fa[0] = 1, len[1] = -1。
+代码：
+char s[N], *now = s; std::array&amp;lt;int, 26&amp;gt; ch[N]; int fa[N], len[N], cnt, dep[N]; int jmp(int x) {  for (; now[~len[x]] != *now; x = fa[x]) ;  return x;  } int ins(int x) {  static int p, np;  now++;  if (!ch[p = jmp(p)][x]) {  len[np = ++cnt] = len[p] + 2;  fa[np] = ch[jmp(fa[p])][x];  ch[p][x] = np;  dep[np] = dep[fa[np]] + 1;  }  return p = ch[p][x]; } int main() {  std::ios::sync_with_stdio(false);  std::cin.</description>
+    </item>
+    
+  </channel>
+</rss>
