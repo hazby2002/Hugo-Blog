@@ -2026,7 +2026,7 @@ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32}
 &lt;p&gt;树上的函数显然不太方便研究，所以考虑换一个 &lt;span class=&#34;math inline&#34;&gt;\(\R\)&lt;/span&gt; 上的函数研究。&lt;/p&gt;
 &lt;p&gt;随便选择一条树上路径 &lt;span class=&#34;math inline&#34;&gt;\(u \rightarrow v\)&lt;/span&gt; 作为 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 轴，把 &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; 当作原点，这样 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 就是路径上的点到 &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; 的距离。&lt;/p&gt;
 &lt;figure&gt;
-&lt;img src=&#34;https://images.cnblogs.com/cnblogs_com/HolyK/1882367/o_201207133359image-20201207203647011.png&#34; alt=&#34;image-20201207203647011&#34; /&gt;&lt;figcaption aria-hidden=&#34;true&#34;&gt;image-20201207203647011&lt;/figcaption&gt;
+&lt;img src=&#34;1.png&#34; alt=&#34;image-20201207203647011&#34; /&gt;&lt;figcaption aria-hidden=&#34;true&#34;&gt;image-20201207203647011&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;这里以 &lt;span class=&#34;math inline&#34;&gt;\(0 \rightarrow 5\)&lt;/span&gt; 为例，节点 &lt;span class=&#34;math inline&#34;&gt;\(6 \dots 11\)&lt;/span&gt; 分别代表其父亲的一些子树。&lt;/p&gt;
 &lt;p&gt;记 &lt;span class=&#34;math inline&#34;&gt;\(d_i = dist(i, 0)\)&lt;/span&gt;，路径上的点分别考虑贡献： &lt;span class=&#34;math display&#34;&gt;\[
@@ -2059,7 +2059,7 @@ f_i&amp;#39;&amp;#39;(x) =
 &lt;p&gt;注意到对于树上任意路径这个结论都成立，所以固定起点 &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt;，对于所有终点 &lt;span class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt; 求一次最小值就可以得到答案。&lt;/p&gt;
 &lt;p&gt;下图中 &lt;span class=&#34;math inline&#34;&gt;\(2, 3, 4\)&lt;/span&gt; 都代表子树，假设当前在 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; ，需要考虑 &lt;span class=&#34;math inline&#34;&gt;\(1 \rightarrow 2, 3, 4 \rightarrow \dots\)&lt;/span&gt; 几种路径。&lt;/p&gt;
 &lt;figure&gt;
-&lt;img src=&#34;https://images.cnblogs.com/cnblogs_com/HolyK/1882367/o_201207133406image-20201207211007012.png&#34; alt=&#34;image-20201207212455107&#34; /&gt;&lt;figcaption aria-hidden=&#34;true&#34;&gt;image-20201207212455107&lt;/figcaption&gt;
+&lt;img src=&#34;2.png&#34; alt=&#34;image-20201207212455107&#34; /&gt;&lt;figcaption aria-hidden=&#34;true&#34;&gt;image-20201207212455107&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;对于路径 &lt;span class=&#34;math inline&#34;&gt;\(1 \rightarrow i \rightarrow \dots\)&lt;/span&gt;，有 &lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
