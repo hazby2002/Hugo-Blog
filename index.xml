@@ -5,7 +5,7 @@
     <description>Recent content on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>MIT</copyright>
+    <copyright>CC BY-NC-SA 4.0</copyright>
     <lastBuildDate>Wed, 14 Jul 2021 17:02:30 +0800</lastBuildDate>
     
         <atom:link href="https://blog.asukakyle.top/index.xml" rel="self" type="application/rss+xml" />
@@ -89,7 +89,7 @@
 &lt;li&gt;&lt;p&gt;有一个非均摊复杂度的插入方法是记录 &lt;code&gt;fch[o][x]&lt;/code&gt; 表示要插入 &lt;code&gt;x&lt;/code&gt; 应该跳到哪个祖先，每次要复制 &lt;code&gt;fch[o]&lt;/code&gt; 数组，所以复杂度是 &lt;span class=&#34;math inline&#34;&gt;\(O(n \Sigma)\)&lt;/span&gt;。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;回文树支持双端插入，只要记录前后端的 &lt;code&gt;p&lt;/code&gt; 即可。整个串变成回文串时，要同时更新前后端的 &lt;code&gt;p&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-- https://blog.asukakyle.top/post/pam/ - MIT</description>
+- https://blog.asukakyle.top/post/pam/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -189,7 +189,7 @@
 &lt;span id=&#34;cb3-3&#34;&gt;&lt;a href=&#34;#cb3-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;reverse&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;begin&lt;span class=&#34;op&#34;&gt;(),&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;end&lt;span class=&#34;op&#34;&gt;());&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb3-4&#34;&gt;&lt;a href=&#34;#cb3-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;[&lt;/span&gt;u&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;u &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb3-5&#34;&gt;&lt;a href=&#34;#cb3-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;clear&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F/ - MIT</description>
+- https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -433,7 +433,7 @@ base_m\\
 &lt;span id=&#34;cb3-90&#34;&gt;&lt;a href=&#34;#cb3-90&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb3-91&#34;&gt;&lt;a href=&#34;#cb3-91&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb3-92&#34;&gt;&lt;a href=&#34;#cb3-92&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/uoj91%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C/ - MIT</description>
+- https://blog.asukakyle.top/post/uoj91%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -555,7 +555,7 @@ P^T\alpha=\frac1s\mathbf{v}^T
 &lt;span id=&#34;cb1-73&#34;&gt;&lt;a href=&#34;#cb1-73&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%.9f\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; m &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-74&#34;&gt;&lt;a href=&#34;#cb1-74&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-75&#34;&gt;&lt;a href=&#34;#cb1-75&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/icpc2014-wfpachinko/ - MIT</description>
+- https://blog.asukakyle.top/post/icpc2014-wfpachinko/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -918,7 +918,7 @@ S[s]=C[s] \sum_{t \subsetneq s} S[t] W[s-t]
 &lt;p&gt;由于森林无环的性质，每种电度奇偶性都能通过恰当地选取森林中 的边得到，且方案数恰好为 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;。&lt;/p&gt;
 &lt;p&gt;因此，偶度图个数为 &lt;span class=&#34;math inline&#34;&gt;\(2^{\text{边数}-\text{生成森林边数}}\)&lt;/span&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://loj.ac/s/1032156&#34;&gt;评测记录&lt;/a&gt;&lt;/p&gt;
-- https://blog.asukakyle.top/post/fwt/ - MIT</description>
+- https://blog.asukakyle.top/post/fwt/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -1059,7 +1059,7 @@ S[s]=C[s] \sum_{t \subsetneq s} S[t] W[s-t]
 &lt;span id=&#34;cb1-120&#34;&gt;&lt;a href=&#34;#cb1-120&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  solve&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-121&#34;&gt;&lt;a href=&#34;#cb1-121&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-122&#34;&gt;&lt;a href=&#34;#cb1-122&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/cf938g/ - MIT</description>
+- https://blog.asukakyle.top/post/cf938g/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -1634,7 +1634,7 @@ O\left(q\left[\sqrt{nC_1(n)Q_2(n)} + C_2(n) + Q_1(n)\right]\right)
 &lt;h2 id=&#34;l.-landlord&#34;&gt;L. Landlord&lt;/h2&gt;
 &lt;p&gt;签到题。&lt;/p&gt;
 &lt;h2 id=&#34;m.-travel-dream&#34;&gt;M. Travel Dream&lt;/h2&gt;
-- https://blog.asukakyle.top/post/gym102994/ - MIT</description>
+- https://blog.asukakyle.top/post/gym102994/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -2238,7 +2238,7 @@ E(s^2) &amp;amp;= \sum_{i, j}P(b_i \And b_j)2^{i+j}
 &lt;span id=&#34;cb7-117&#34;&gt;&lt;a href=&#34;#cb7-117&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb7-118&#34;&gt;&lt;a href=&#34;#cb7-118&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;k.-chess-positions&#34;&gt;K. Chess Positions&lt;/h2&gt;
-- https://blog.asukakyle.top/post/gym102441/ - MIT</description>
+- https://blog.asukakyle.top/post/gym102441/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -2356,7 +2356,7 @@ E(s^2) &amp;amp;= \sum_{i, j}P(b_i \And b_j)2^{i+j}
 &lt;span id=&#34;cb1-95&#34;&gt;&lt;a href=&#34;#cb1-95&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cout&lt;span class=&#34;op&#34;&gt; &amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;No&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-96&#34;&gt;&lt;a href=&#34;#cb1-96&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-97&#34;&gt;&lt;a href=&#34;#cb1-97&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/codeforces955dscissors/ - MIT</description>
+- https://blog.asukakyle.top/post/codeforces955dscissors/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -2751,7 +2751,7 @@ m &amp;amp;= \sum_{i \geq 0}b_ip^i
 &lt;p&gt;若数论函数 &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt; 满足对于任意的 &lt;span class=&#34;math inline&#34;&gt;\(a, b \in \mathbf{N}^*, \gcd(a, b) = 1\)&lt;/span&gt; 都有 &lt;span class=&#34;math inline&#34;&gt;\(f(ab) = f(a)f(b)\)&lt;/span&gt;，则称 &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt; 为积性函数。&lt;/p&gt;
 &lt;p&gt;特别地，如果对于任意 &lt;span class=&#34;math inline&#34;&gt;\(a, b \in \mathbf{N}^*\)&lt;/span&gt; 都满足上面的条件，则称 &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt; 为完全积性函数。&lt;/p&gt;
 &lt;/blockquote&gt;
-- https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/ - MIT</description>
+- https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/ - CC BY-NC-SA 4.0</description>
         </item>
     
     

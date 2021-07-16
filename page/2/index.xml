@@ -5,7 +5,7 @@
     <description>Recent content on HolyK&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>MIT</copyright>
+    <copyright>CC BY-NC-SA 4.0</copyright>
     <lastBuildDate>Wed, 14 Jul 2021 17:02:30 +0800</lastBuildDate>
     
         <atom:link href="https://blog.asukakyle.top/index.xml" rel="self" type="application/rss+xml" />
@@ -455,7 +455,7 @@ dp[y][2]\\
 &lt;span id=&#34;cb2-195&#34;&gt;&lt;a href=&#34;#cb2-195&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;其他解法&#34;&gt;其他解法&lt;/h2&gt;
 &lt;p&gt;比如线段树、括号序列，留坑。&lt;/p&gt;
-- https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/ - MIT</description>
+- https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -552,7 +552,7 @@ dp[i] = \min\{a_j \times (i - n - 1) + dp[j]\} + a_i \times (n - i + 1)
 &lt;span id=&#34;cb1-59&#34;&gt;&lt;a href=&#34;#cb1-59&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-60&#34;&gt;&lt;a href=&#34;#cb1-60&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-61&#34;&gt;&lt;a href=&#34;#cb1-61&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/ - MIT</description>
+- https://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -700,7 +700,7 @@ ans
 &lt;span id=&#34;cb1-112&#34;&gt;&lt;a href=&#34;#cb1-112&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%d\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; ans&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-113&#34;&gt;&lt;a href=&#34;#cb1-113&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-114&#34;&gt;&lt;a href=&#34;#cb1-114&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/ - MIT</description>
+- https://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -745,7 +745,7 @@ ans
 &lt;p&gt;还是从几何角度来看，我们实际上需要维护一个下凸壳。&lt;/p&gt;
 &lt;p&gt;如果 &lt;span class=&#34;math inline&#34;&gt;\(g_1(i)\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(f_1(j)\)&lt;/span&gt; 有单调性，那么可以用单调队列/单调栈来维护，相当于传统的斜率优化。&lt;/p&gt;
 &lt;p&gt;不满足单调性时，可以套上CDQ分治，每一层直接排序让他满足单调性。&lt;/p&gt;
-- https://blog.asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/ - MIT</description>
+- https://blog.asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -848,7 +848,7 @@ B_{t+1}(x) \equiv B_t(x) - \frac{B_t^2(x) - A(x)}{2B_t(x)} \pmod{x^{2^{t+1}}}
 &lt;span id=&#34;cb2-36&#34;&gt;&lt;a href=&#34;#cb2-36&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb2-37&#34;&gt;&lt;a href=&#34;#cb2-37&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb2-38&#34;&gt;&lt;a href=&#34;#cb2-38&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/ - MIT</description>
+- https://blog.asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -1259,7 +1259,7 @@ A\left(\omega_n^{2r+1}\right) &amp;amp;= Q(\omega_{n/2}^r)
 &lt;p&gt;上面提到的 FFT 算法虽然限制了 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 为 2 的次幂，但在大多数情况下已经足够解决问题。&lt;/p&gt;
 &lt;p&gt;对于更一般的 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 需要用到 &lt;code&gt;Bluestein’s Algorithm&lt;/code&gt; ，可以参考2016年国家集训队论文《再探快速傅里叶变换——毛啸》。&lt;/p&gt;
 &lt;p&gt;后续可能会填这个坑。&lt;/p&gt;
-- https://blog.asukakyle.top/post/fft/ - MIT</description>
+- https://blog.asukakyle.top/post/fft/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -1272,7 +1272,7 @@ A\left(\omega_n^{2r+1}\right) &amp;amp;= Q(\omega_{n/2}^r)
         <guid>https://blog.asukakyle.top/post/hello-world/</guid>
         <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/hello-world/ -&lt;p&gt;新博客开通。&lt;/p&gt;
 &lt;p&gt;原博客 https://www.cnblogs.com/HolyK/&lt;/p&gt;
-- https://blog.asukakyle.top/post/hello-world/ - MIT</description>
+- https://blog.asukakyle.top/post/hello-world/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -1607,7 +1607,7 @@ A\left(\omega_n^{2r+1}\right) &amp;amp;= Q(\omega_{n/2}^r)
 &lt;span id=&#34;cb2-138&#34;&gt;&lt;a href=&#34;#cb2-138&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;  &lt;/span&gt;
 &lt;span id=&#34;cb2-139&#34;&gt;&lt;a href=&#34;#cb2-139&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb2-140&#34;&gt;&lt;a href=&#34;#cb2-140&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/codeforces1148h-holy-diver/ - MIT</description>
+- https://blog.asukakyle.top/post/codeforces1148h-holy-diver/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
@@ -1753,7 +1753,7 @@ f&amp;#39;(0)_i &amp;amp;= \frac32\left(\sum_{x\in 0} val_xdist(x, 1)^\frac12 - 
 &lt;span id=&#34;cb1-80&#34;&gt;&lt;a href=&#34;#cb1-80&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%.10f&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; pos&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; ans&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-81&#34;&gt;&lt;a href=&#34;#cb1-81&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-82&#34;&gt;&lt;a href=&#34;#cb1-82&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/codeforces566c-logistical-questions/ - MIT</description>
+- https://blog.asukakyle.top/post/codeforces566c-logistical-questions/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
