@@ -6,9 +6,404 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>MIT</copyright>
-    <lastBuildDate>Wed, 14 Jul 2021 17:02:30 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 Jul 2021 14:57:52 +0800</lastBuildDate>
     
         <atom:link href="https://blog.asukakyle.top/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>数论知识总结</title>
+        <link>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link>
+        <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
+        
+        <guid>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
+        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/ -&lt;h2 id=&#34;欧几里得算法&#34;&gt;1 欧几里得算法&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;欧几里得算法可以求两个数的最大公约数 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(a, b)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;不妨设 &lt;span class=&#34;math inline&#34;&gt;\(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;一方面，设 &lt;span class=&#34;math inline&#34;&gt;\(d_1\)&lt;/span&gt; 为 &lt;span class=&#34;math inline&#34;&gt;\(a, b\)&lt;/span&gt; 的一个公约数，则 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+a &amp;amp;= k_ad_1\\
+b &amp;amp;= k_bd_1\\
+r &amp;amp;= a - kb\\
+  &amp;amp;= (k_a - kk_b)d_1
+\end{aligned}
+\]&lt;/span&gt; 即 &lt;span class=&#34;math inline&#34;&gt;\(d_1\)&lt;/span&gt; 也是 &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; 的约数，&lt;span class=&#34;math inline&#34;&gt;\(b, r\)&lt;/span&gt; 的公约数。&lt;/p&gt;
+&lt;p&gt;另一方面，设 &lt;span class=&#34;math inline&#34;&gt;\(d_2\)&lt;/span&gt; 为 &lt;span class=&#34;math inline&#34;&gt;\(b, r\)&lt;/span&gt; 的一个公约数，则 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+b &amp;amp;= k&amp;#39;_bd_2\\
+r &amp;amp;= k_r&amp;#39;d_2\\
+a &amp;amp;= kb + r\\
+  &amp;amp;= (kk&amp;#39;_b + k_r&amp;#39;)d_2
+\end{aligned}
+\]&lt;/span&gt; 即 &lt;span class=&#34;math inline&#34;&gt;\(d_2\)&lt;/span&gt; 也是 &lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; 的约数，&lt;span class=&#34;math inline&#34;&gt;\(a, b\)&lt;/span&gt; 的公约数。&lt;/p&gt;
+&lt;p&gt;所以 &lt;span class=&#34;math inline&#34;&gt;\(a, b\)&lt;/span&gt; 的公约数集合和 &lt;span class=&#34;math inline&#34;&gt;\(b, r\)&lt;/span&gt; 的公约数集合相同，于是 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(a, b) = \gcd(b, r) = \gcd(b, a \bmod b)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;递归求解，终止状态为 &lt;span class=&#34;math inline&#34;&gt;\(b = 0\)&lt;/span&gt;，此时原 &lt;span class=&#34;math inline&#34;&gt;\(a, b\)&lt;/span&gt; 的公约数集合为 &lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; 的约数集合。&lt;/p&gt;
+&lt;p&gt;因为 &lt;span class=&#34;math inline&#34;&gt;\(a = kb + r &amp;gt; (k + 1)r\)&lt;/span&gt; 所以 &lt;span class=&#34;math inline&#34;&gt;\(r &amp;lt; \frac{a}{k + 1} \leq \frac{a}{2}\)&lt;/span&gt;，所以每次 &lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; 最少折半，算法复杂度为 &lt;span class=&#34;math inline&#34;&gt;\(O(\log a + \log b)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; gcd&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; b &lt;span class=&#34;op&#34;&gt;?&lt;/span&gt; gcd&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;裴蜀定理&#34;&gt;2 裴蜀定理&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(a, b\)&lt;/span&gt; 是不全为零的整数，则存在整数 &lt;span class=&#34;math inline&#34;&gt;\(x, y\)&lt;/span&gt; 使得 &lt;span class=&#34;math inline&#34;&gt;\(ax + by = \gcd(a, b)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;拓展欧几里得算法&#34;&gt;2.1 拓展欧几里得算法&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;拓展欧几里得算法可以求方程 &lt;span class=&#34;math inline&#34;&gt;\(ax + by = g\)&lt;/span&gt; 的一组解，其中 &lt;span class=&#34;math inline&#34;&gt;\(g = \gcd(a, b)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;不妨设 &lt;span class=&#34;math inline&#34;&gt;\(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+g &amp;amp;= ax + by \\
+  &amp;amp;= (kb + r)x + by \\
+  &amp;amp;=  b(kx + y) + rx\\
+  &amp;amp;= bx&amp;#39; + ry&amp;#39; \\
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;假设我们已经得出方程 &lt;span class=&#34;math inline&#34;&gt;\(bx + ry = g\)&lt;/span&gt; 的一组解 &lt;span class=&#34;math inline&#34;&gt;\(x&amp;#39;, y&amp;#39;\)&lt;/span&gt;，那么原方程的解可以表示为： &lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+x &amp;amp;= y&amp;#39;\\
+y &amp;amp;= x&amp;#39; - ky&amp;#39;
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;可以在欧几里得算法的递归中完成，&lt;span class=&#34;math inline&#34;&gt;\(a = g, b = 0\)&lt;/span&gt; 时显然 &lt;span class=&#34;math inline&#34;&gt;\(x = 1, y = 0\)&lt;/span&gt; 是一组解。&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb2-1&#34;&gt;&lt;a href=&#34;#cb2-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; exgcd&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb2-2&#34;&gt;&lt;a href=&#34;#cb2-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(!&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb2-3&#34;&gt;&lt;a href=&#34;#cb2-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; g &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; exgcd&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb2-4&#34;&gt;&lt;a href=&#34;#cb2-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  y &lt;span class=&#34;op&#34;&gt;-=&lt;/span&gt; a &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; b &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb2-5&#34;&gt;&lt;a href=&#34;#cb2-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; g&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb2-6&#34;&gt;&lt;a href=&#34;#cb2-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;假设用该算法得出一组特解 &lt;span class=&#34;math inline&#34;&gt;\((x_0, y_0)\)&lt;/span&gt;，那么通解为 &lt;span class=&#34;math inline&#34;&gt;\((x_0 + k\dfrac b g, y_0 - k\dfrac a g)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;推论：&lt;/strong&gt; 方程 &lt;span class=&#34;math inline&#34;&gt;\(ax + by = c\)&lt;/span&gt; 有解的充分必要条件是 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(a, b) \mid c\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; 充分性由裴蜀定理可得证。&lt;/p&gt;
+&lt;p&gt;必要性：设 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(a, b) = g, a = ug, b = vg\)&lt;/span&gt;，则 &lt;span class=&#34;math inline&#34;&gt;\(c = g(ux + vy)\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(g \mid c\)&lt;/span&gt;。&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因此，对于方程 &lt;span class=&#34;math inline&#34;&gt;\(ax + by = c\)&lt;/span&gt;，首先用欧几里得算法求出 &lt;span class=&#34;math inline&#34;&gt;\(ax+by=g\)&lt;/span&gt; 的一组解 &lt;span class=&#34;math inline&#34;&gt;\((x_0, y_0)\)&lt;/span&gt;，则&lt;/p&gt;
+&lt;p&gt;原方程的一组特解为 &lt;span class=&#34;math inline&#34;&gt;\((\dfrac cg x_0, \dfrac cg y_0)\)&lt;/span&gt;，通解为 &lt;span class=&#34;math inline&#34;&gt;\((\dfrac cg x_0 + k\dfrac bg, \dfrac cg y_0 - k \dfrac a g)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;线性同余方程&#34;&gt;2.2 线性同余方程&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;形如 &lt;span class=&#34;math inline&#34;&gt;\(ax \equiv b \pmod c\)&lt;/span&gt; 的方程称为线性同余方程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;求解线性同余方程可以使用拓展欧几里得算法：&lt;/p&gt;
+&lt;p&gt;原方程等价于 &lt;span class=&#34;math inline&#34;&gt;\(ax - b = cy\)&lt;/span&gt;，即 &lt;span class=&#34;math inline&#34;&gt;\(ax - cy = b\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;由 &lt;em&gt;裴蜀定理的推论&lt;/em&gt; 得知方程有解当且仅当 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(a, c) \mid b\)&lt;/span&gt;，此时可以用拓展欧几里得算法求解。&lt;/p&gt;
+&lt;h3 id=&#34;乘法逆元&#34;&gt;2.3 乘法逆元&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若 &lt;span class=&#34;math inline&#34;&gt;\(ax \equiv 1 \pmod b\)&lt;/span&gt;，则 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 称为 &lt;span class=&#34;math inline&#34;&gt;\(a \bmod b\)&lt;/span&gt; 的乘法逆元，简称逆元，记作 &lt;span class=&#34;math inline&#34;&gt;\(a^{-1}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;求解上述线性方程组即可求出单个整数 &lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; 的乘法逆元。&lt;/p&gt;
+&lt;h4 id=&#34;线性递推逆元&#34;&gt;2.3.1 线性递推逆元&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;求 &lt;span class=&#34;math inline&#34;&gt;\(1 \dots n \bmod p\)&lt;/span&gt; 的乘法逆元。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(p = kn + r\)&lt;/span&gt;，则 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+kn + r &amp;amp;\equiv 0 &amp;amp;\pmod p\\
+r^{-1}(kn + r) &amp;amp;\equiv 0 &amp;amp;\pmod p\\
+r^{-1}kn + 1 &amp;amp;\equiv 0 &amp;amp;\pmod p\\
+n^{-1} &amp;amp;\equiv -r^{-1}k &amp;amp;\pmod p
+\end{aligned}
+\]&lt;/span&gt; 得到线性递推式 &lt;span class=&#34;math display&#34;&gt;\[
+n^{-1} \equiv
+\begin{cases}
+1, &amp;amp; n = 1\\
+-\lfloor\frac p n \rfloor (p \bmod n)^{-1}, &amp;amp; n &amp;gt; 1
+\end{cases}
+\pmod p
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;费马小定理&#34;&gt;3 费马小定理&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 是质数，&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; 是任意整数且 &lt;span class=&#34;math inline&#34;&gt;\(a \not\equiv 0 \pmod p\)&lt;/span&gt;，则 &lt;span class=&#34;math display&#34;&gt;\[
+a^{p - 1} \equiv 1 \pmod p
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;引理3.1&lt;/strong&gt; 若 &lt;span class=&#34;math inline&#34;&gt;\(p \mid ab, \gcd(p, a) = 1\)&lt;/span&gt;，则 &lt;span class=&#34;math inline&#34;&gt;\(p \mid b\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; 根据 &lt;em&gt;裴蜀定理&lt;/em&gt; 方程 &lt;span class=&#34;math inline&#34;&gt;\(px + ay = 1\)&lt;/span&gt; 有整数解 &lt;span class=&#34;math inline&#34;&gt;\((x_0, y_0)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;所以，&lt;span class=&#34;math inline&#34;&gt;\(b = pbx_0 + aby_0 = p(bx_0 + \frac{ab}{p})\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;又因为 &lt;span class=&#34;math inline&#34;&gt;\(p \mid ab\)&lt;/span&gt; 所以 &lt;span class=&#34;math inline&#34;&gt;\(p \mid b\)&lt;/span&gt;。 &lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;引理3.2&lt;/strong&gt; 设 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 是质数，&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; 是任意整数且 &lt;span class=&#34;math inline&#34;&gt;\(a \not\equiv 0 \pmod p\)&lt;/span&gt;，则数 &lt;span class=&#34;math inline&#34;&gt;\(a, 2a, 3a, \dots, (p - 1)a \pmod p\)&lt;/span&gt; 是 &lt;span class=&#34;math inline&#34;&gt;\(1 \dots p - 1\)&lt;/span&gt; 的一个排列。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; 因为 &lt;span class=&#34;math inline&#34;&gt;\(p \nmid a\)&lt;/span&gt; 所以 &lt;span class=&#34;math inline&#34;&gt;\(ia\)&lt;/span&gt; 的值只可能在 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(p - 1\)&lt;/span&gt; 间，下面证明他们两两不同。&lt;/p&gt;
+&lt;p&gt;假设 &lt;span class=&#34;math inline&#34;&gt;\(1 \leq j, k \leq p - 1, ja \equiv ka \pmod p\)&lt;/span&gt;，则 &lt;span class=&#34;math inline&#34;&gt;\(p \mid (j - k)a\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;因为假设 &lt;span class=&#34;math inline&#34;&gt;\(p \nmid a\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(p \mid (j - k)\)&lt;/span&gt; (&lt;em&gt;引理3.1&lt;/em&gt;)。&lt;/p&gt;
+&lt;p&gt;又 &lt;span class=&#34;math inline&#34;&gt;\(2 - p \leq j - k\leq p - 2\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(j - k = 0\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;所以数 &lt;span class=&#34;math inline&#34;&gt;\(a, 2a, 3a, \dots, (p - 1)a \pmod p\)&lt;/span&gt; 两两不同。&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; 由 &lt;em&gt;引理3.2&lt;/em&gt; &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\prod_{i = 1}^{p - 1} ia \equiv (p - 1)! \pmod p\\
+a^{p - 1} (p - 1)! \equiv (p - 1)! \pmod p\\
+p \mid \left(a^{p -1} - 1\right)(p - 1)!
+\end{aligned}
+\]&lt;/span&gt; 因为 &lt;span class=&#34;math inline&#34;&gt;\(p \nmid (p-1)!\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(p \mid (a^{p - 1} - 1)\)&lt;/span&gt; (&lt;em&gt;引理3.1&lt;/em&gt;)，即 &lt;span class=&#34;math inline&#34;&gt;\(a^{p - 1} \equiv 1 \pmod p\)&lt;/span&gt;。&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;用费马小定理可以求模质数的逆元： &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+a \cdot a^{p - 2} &amp;amp;\equiv 1 &amp;amp;\pmod p\\
+a^{-1} &amp;amp;\equiv a^{p - 2} &amp;amp;\pmod p
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;中国剩余定理chinese-remainder-theorem&#34;&gt;4 中国剩余定理(Chinese Remainder Theorem)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设整数 &lt;span class=&#34;math inline&#34;&gt;\(m_1, m_2, \dots, m_n\)&lt;/span&gt; 其中 &lt;strong&gt;任两数&lt;/strong&gt; 互质，&lt;span class=&#34;math inline&#34;&gt;\(M = \prod_{i = 1}^nm_i, M_i = \frac{M}{m_i}\)&lt;/span&gt;，则对任意正整数 &lt;span class=&#34;math inline&#34;&gt;\(a_1, a_2, \dots, a_n\)&lt;/span&gt;，线性同余方程组 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+x &amp;amp;\equiv a_1 \pmod {m_1} \\
+x &amp;amp;\equiv a_2 \pmod {m_2} \\
+&amp;amp;\vdots \\
+x &amp;amp;\equiv a_n \pmod {m_n}
+\end{cases}
+\]&lt;/span&gt; 在模 &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt; 意义下有唯一解 &lt;span class=&#34;math display&#34;&gt;\[
+x \equiv \sum_{i = 1}^{n} a_iM_iv_i \pmod M
+\]&lt;/span&gt; 其中 &lt;span class=&#34;math inline&#34;&gt;\(M_iv_i \equiv 1 \pmod {m_i}\)&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; 将 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 代入各同余方程，显然都成立。&lt;/p&gt;
+&lt;p&gt;另外，假设 &lt;span class=&#34;math inline&#34;&gt;\(x_1\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(x_2\)&lt;/span&gt; 都是方程组的解，那么&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\forall i \in \{1, 2, \cdots , n\},  x_1 - x_2 \equiv 0 \pmod {m_i}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;因为 &lt;span class=&#34;math inline&#34;&gt;\(m_1, m_2, \ldots, m_n\)&lt;/span&gt; 两两互质，所以 &lt;span class=&#34;math inline&#34;&gt;\(x_1 - x_2 \equiv 0 \pmod M\)&lt;/span&gt;，所以方程组在模 &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt; 意义下有唯一解。&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb3-1&#34;&gt;&lt;a href=&#34;#cb3-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-2&#34;&gt;&lt;a href=&#34;#cb3-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-3&#34;&gt;&lt;a href=&#34;#cb3-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-4&#34;&gt;&lt;a href=&#34;#cb3-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;LL p &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-5&#34;&gt;&lt;a href=&#34;#cb3-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-6&#34;&gt;&lt;a href=&#34;#cb3-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-7&#34;&gt;&lt;a href=&#34;#cb3-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  p &lt;span class=&#34;op&#34;&gt;*=&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-8&#34;&gt;&lt;a href=&#34;#cb3-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-9&#34;&gt;&lt;a href=&#34;#cb3-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;LL ans &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-10&#34;&gt;&lt;a href=&#34;#cb3-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-11&#34;&gt;&lt;a href=&#34;#cb3-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-12&#34;&gt;&lt;a href=&#34;#cb3-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  exgcd&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-13&#34;&gt;&lt;a href=&#34;#cb3-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  ans &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;ans &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; p &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-14&#34;&gt;&lt;a href=&#34;#cb3-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-15&#34;&gt;&lt;a href=&#34;#cb3-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cout&lt;span class=&#34;op&#34;&gt; &amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;ans &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; p &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;拓展中国剩余定理&#34;&gt;4.1 拓展中国剩余定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当 &lt;span class=&#34;math inline&#34;&gt;\(m_1, m_2, \dots, m_n\)&lt;/span&gt; 不满足两两互质时，中国剩余定理失效（因为 &lt;span class=&#34;math inline&#34;&gt;\(v_i\)&lt;/span&gt; 可能不存在），可以通过合并同余方程的方式解决。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;考虑线性同余方程组 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+x &amp;amp;\equiv a_1 &amp;amp;\pmod{m_1}\\
+x &amp;amp;\equiv a_2 &amp;amp;\pmod{m_2}
+\end{cases}
+\]&lt;/span&gt; 由第一个方程得 &lt;span class=&#34;math inline&#34;&gt;\(x = a_1 + k_1m_1\)&lt;/span&gt;，代入第二个方程，&lt;span class=&#34;math inline&#34;&gt;\(a_1 + k_1m_1 \equiv a_2 \pmod{m_2}\)&lt;/span&gt;，即 &lt;span class=&#34;math inline&#34;&gt;\(k_1m_1 + k_2m_2 = a_2 - a_1\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;由 &lt;em&gt;裴蜀定理的推论&lt;/em&gt; 得知方程有解当且仅当 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(m_1, m_2) \mid (a_2 - a_1)\)&lt;/span&gt;，此时可以用拓展欧几里得算法求解 &lt;span class=&#34;math inline&#34;&gt;\(k_1, k_2\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;假设求出 &lt;span class=&#34;math inline&#34;&gt;\(k_1\)&lt;/span&gt; 的通解为 &lt;span class=&#34;math inline&#34;&gt;\(k_1 = k_0 + t\dfrac{m_2}{\gcd(m_1, m_2)}\)&lt;/span&gt;，则 &lt;span class=&#34;math inline&#34;&gt;\(x = a_1 + k_1m_1 = a_1 + k_0m_1 + t\dfrac{m_1m_2}{\gcd(m_1, m_2)}\)&lt;/span&gt;，即 &lt;span class=&#34;math display&#34;&gt;\[
+x \equiv a_1 + k_0m_1 \pmod{\operatorname{lcm}(m_1, m_2)}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这样我们把两个同余方程合并成了一个，重复上述操作即可求出原方程组的解。&lt;/p&gt;
+&lt;h2 id=&#34;欧拉函数&#34;&gt;5 欧拉函数&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;欧拉函数 &lt;span class=&#34;math inline&#34;&gt;\(\varphi(m)\)&lt;/span&gt; 表示在 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; 到 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; 之间与 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; 互素的数的个数。即 &lt;span class=&#34;math display&#34;&gt;\[
+\varphi(m) = |\{x | \gcd(x, m) = 1, 1 \leq x \leq m\}|
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;欧拉函数公式&#34;&gt;5.1 欧拉函数公式&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;① 如果 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 为素数且 &lt;span class=&#34;math inline&#34;&gt;\(k \geq 1\)&lt;/span&gt; 则 &lt;span class=&#34;math inline&#34;&gt;\(\varphi(p^k) = p^k - p^{k - 1}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;② 如果 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(m, n) = 1\)&lt;/span&gt;，则 &lt;span class=&#34;math inline&#34;&gt;\(\varphi(mn) = \varphi(m)\varphi(n)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;① 只有 &lt;span class=&#34;math inline&#34;&gt;\(p, 2p, 3p, \dots, (p^{k - 1} -1)p, p^k\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(p^k\)&lt;/span&gt; 不互素，所以 &lt;span class=&#34;math inline&#34;&gt;\(\varphi(p^k) = p^k - p^{k - 1}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;② 设 &lt;span class=&#34;math display&#34;&gt;\[
+A = \{a | 1 \leq a \leq mn, \gcd(a, mn) = 1\}
+\]&lt;/span&gt; &lt;span class=&#34;math display&#34;&gt;\[
+B = \left\{(b, c) | 
+\begin{aligned}
+&amp;amp;1 \leq b \leq m,\gcd(b, m) = 1,\\
+&amp;amp;1 \leq c \leq n,\gcd(c, n) = 1
+\end{aligned}
+\right\}
+\]&lt;/span&gt; 则 &lt;span class=&#34;math inline&#34;&gt;\(|A| = \varphi(mn), |B| = \varphi(m)\varphi(n)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;一方面，对于 &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; 中的任意元素 &lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt;，因为 &lt;span class=&#34;math inline&#34;&gt;\(m, n\)&lt;/span&gt; 互质，所以 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(a, m) = \gcd(a, n) = 1\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;所以 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(a \bmod m, m) = \gcd(a \bmod n, n) = 1\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;所以 &lt;span class=&#34;math inline&#34;&gt;\((a \bmod m, a \bmod n)\)&lt;/span&gt; 一定在集合 &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; 中。&lt;/p&gt;
+&lt;p&gt;假设存在 &lt;span class=&#34;math inline&#34;&gt;\(a_1, a_2\)&lt;/span&gt; 使得 &lt;span class=&#34;math inline&#34;&gt;\((a_1 \bmod m, a_1 \bmod n) = (a_2 \bmod m, a_2 \bmod n)\)&lt;/span&gt;，则 &lt;span class=&#34;math inline&#34;&gt;\(m \mid (a_1 - a_2), n \mid (a_1 - a_2)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;又因为 &lt;span class=&#34;math inline&#34;&gt;\(m, n\)&lt;/span&gt; 互质，所以 &lt;span class=&#34;math inline&#34;&gt;\(mn \mid (a_1 - a_2)\)&lt;/span&gt;，而 &lt;span class=&#34;math inline&#34;&gt;\(a_1, a_2 &amp;lt; mn\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(a_1 = a_2\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;另一方面，对于 &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; 中的任意元素 &lt;span class=&#34;math inline&#34;&gt;\((b, c)\)&lt;/span&gt;，根据中国剩余定理，在模 &lt;span class=&#34;math inline&#34;&gt;\(mn\)&lt;/span&gt; 意义下必定存在唯一的 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 满足&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+&amp;amp;x \equiv b \pmod m\\
+&amp;amp;x \equiv c \pmod n
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;因为 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(x, m) = \gcd(b, m) = 1, \gcd(x, n) = \gcd(c, n) = 1\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(x, mn) = 1\)&lt;/span&gt;，即 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 在集合 &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; 中。&lt;/p&gt;
+&lt;p&gt;综上我们建立了集合 &lt;span class=&#34;math inline&#34;&gt;\(A, B\)&lt;/span&gt; 之间的单射，所以 &lt;span class=&#34;math inline&#34;&gt;\(|A| = |B|\)&lt;/span&gt;，即 &lt;span class=&#34;math inline&#34;&gt;\(\varphi(mn) = \varphi(m)\varphi(n)\)&lt;/span&gt;。&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;③ 设整数 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; 可以分解为素数的乘积 &lt;span class=&#34;math inline&#34;&gt;\(m = p_1^{k_1}p_2^{k_2}\dots p_r^{k_r}\)&lt;/span&gt;（由算数基本定理得知这样的分解存在且唯一，这在后文会给出证明），则 &lt;span class=&#34;math display&#34;&gt;\[
+\varphi(m) = m\prod_{i=1}^{r}(1 - \frac{1}{p_i})
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; 由①②得 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\varphi(m) &amp;amp;= \prod_{i=1}^r\varphi(p_i^{k_i})\\
+        &amp;amp;= \prod_{i=1}^rp_i^{k_i}(1 - \frac{1}{p_i})\\
+        &amp;amp;= m\prod_{i=1}^{r}(1 - \frac{1}{p_i})
+\end{aligned}
+\]&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;欧拉定理&#34;&gt;5.2 欧拉定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(a, m) = 1\)&lt;/span&gt;，则 &lt;span class=&#34;math display&#34;&gt;\[
+a^{\varphi(m)} \equiv 1 \pmod m
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;类似费马小定理的证明，取在 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; 到 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; 之间与 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; 互素的数分别与 &lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; 相乘即可。&lt;/p&gt;
+&lt;h3 id=&#34;拓展欧拉定理&#34;&gt;5.3 拓展欧拉定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+a^b\equiv
+\begin{cases}
+a^{b\ \bmod\ \varphi(p)},&amp;amp;\gcd(a,p)=1\\
+a^b,&amp;amp;\gcd(a,p)\ne1,b&amp;lt;\varphi(p)\\
+a^{b\ \bmod\ \varphi(p)\ +\ \varphi(p)},&amp;amp;\gcd(a,p)\ne1,b\ge\varphi(p) 
+\end{cases} \pmod p
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;证明较复杂，这里不给出。&lt;/p&gt;
+&lt;h2 id=&#34;素数&#34;&gt;6 素数&lt;/h2&gt;
+&lt;h3 id=&#34;无穷多素数定理&#34;&gt;6.1 无穷多素数定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;存在无穷多个素数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; 设当前已找到素数 &lt;span class=&#34;math inline&#34;&gt;\(p_1, p_2, \dots, p_r\)&lt;/span&gt;，下面证明总可以找到另外的素数。&lt;/p&gt;
+&lt;p&gt;令 &lt;span class=&#34;math display&#34;&gt;\[
+A = p_1p_2\dots p_r + 1
+\]&lt;/span&gt; 若 &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; 本身是素数，则证明已完成，否则存在一个素数 &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; 整除 &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;如果 &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; 是 &lt;span class=&#34;math inline&#34;&gt;\(p_1p_2\dots p_r\)&lt;/span&gt; 中的一个，那么 &lt;span class=&#34;math inline&#34;&gt;\(A \equiv 1 \pmod q\)&lt;/span&gt;，矛盾，所以 &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; 是一个新素数。 &lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;算术级数的素数狄利克雷定理&#34;&gt;6.2 算术级数的素数狄利克雷定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(\gcd(a, m) = 1\)&lt;/span&gt;，则存在无穷多个素数满足 &lt;span class=&#34;math display&#34;&gt;\[
+p \equiv a \pmod m
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;素数定理&#34;&gt;6.3 素数定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(\pi(x)\)&lt;/span&gt; 表示小于 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 的素数个数，则 &lt;span class=&#34;math display&#34;&gt;\[
+\lim_{x \to \infty}\frac{\pi(x)}{x / \ln(x)} = 1
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;算数基本定理唯一分解定理&#34;&gt;6.4 算数基本定理（唯一分解定理）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设整数 &lt;span class=&#34;math inline&#34;&gt;\(n \geq 2\)&lt;/span&gt;，则 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 可以唯一分解成素数的乘积 &lt;span class=&#34;math display&#34;&gt;\[
+n = p_1p_2\dots p_r(p_1 \leq p_2 \leq \dots \leq p_r)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;分解的唯一性并不是显然的，因此有必要对这个定理给出证明。 证明分为下面两个部分。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;断言1：&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 可以分解成素数的乘积。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; &lt;span class=&#34;math inline&#34;&gt;\((1)\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(n = 2, 3\)&lt;/span&gt; 时显然成立。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\((2)\)&lt;/span&gt; 假设 &lt;span class=&#34;math inline&#34;&gt;\(n \leq N\)&lt;/span&gt; 可分解为素数的乘积。 对于 &lt;span class=&#34;math inline&#34;&gt;\(N + 1\)&lt;/span&gt;，若它已经是素数，则证明完成。&lt;/p&gt;
+&lt;p&gt;否则 &lt;span class=&#34;math inline&#34;&gt;\(N + 1\)&lt;/span&gt; 是合数，这说明它可以分解成 &lt;span class=&#34;math inline&#34;&gt;\(N + 1 = n_1n_2, 2 \leq n_1, n_2 \leq N\)&lt;/span&gt;，由归纳假设，&lt;span class=&#34;math inline&#34;&gt;\(n_1, n_2\)&lt;/span&gt; 都可以表示成素数的乘积，因此 &lt;span class=&#34;math inline&#34;&gt;\(N+1\)&lt;/span&gt; 也可以表示成素数的乘积。&lt;/p&gt;
+&lt;p&gt;由 &lt;span class=&#34;math inline&#34;&gt;\((1)(2)\)&lt;/span&gt; 归纳得知断言1成立。&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;断言2：&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 的素数分解是唯一的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; 假设 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 能分解成两种形式的素数乘积 &lt;span class=&#34;math display&#34;&gt;\[
+n = p_1p_2\dots p_r = q_1q_2\dots q_s
+\]&lt;/span&gt; 根据 &lt;em&gt;引理3.1&lt;/em&gt;，因为 &lt;span class=&#34;math inline&#34;&gt;\(p_1 | q_1q_2\dots q_s\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(p_1\)&lt;/span&gt; 整除 &lt;span class=&#34;math inline&#34;&gt;\(q_1, q_2, \dots, q_s\)&lt;/span&gt; 其中的某一个，设为 &lt;span class=&#34;math inline&#34;&gt;\(q_k\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;因为 &lt;span class=&#34;math inline&#34;&gt;\(p_1, q_k\)&lt;/span&gt; 均为素数，所以 &lt;span class=&#34;math inline&#34;&gt;\(p_1 = q_k\)&lt;/span&gt;，于是可以将它从等式两边除去。重复上述操作 &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; 次，最终只可能剩下等式 &lt;span class=&#34;math inline&#34;&gt;\(1 = 1\)&lt;/span&gt;，于是 &lt;span class=&#34;math inline&#34;&gt;\(r = s, p_i = q_i\)&lt;/span&gt;。&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;梅森素数和完全数&#34;&gt;6.5 梅森素数和完全数&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果对整数 &lt;span class=&#34;math inline&#34;&gt;\(a \geq 2, n \geq 2, a^n-1\)&lt;/span&gt; 是素数，则 &lt;span class=&#34;math inline&#34;&gt;\(a = 2\)&lt;/span&gt; 且 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 为素数。&lt;/p&gt;
+&lt;p&gt;形如 &lt;span class=&#34;math inline&#34;&gt;\(2^p-1\)&lt;/span&gt; 的素数被称为梅森素数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; 当 &lt;span class=&#34;math inline&#34;&gt;\(a &amp;gt; 2\)&lt;/span&gt; 时，因为 &lt;span class=&#34;math display&#34;&gt;\[
+a^n-1 = (a - 1)(a^{n-1}+a^{n-2}+\dots+a^2+a+1)
+\]&lt;/span&gt; 所以 &lt;span class=&#34;math inline&#34;&gt;\(a^n-1\)&lt;/span&gt; 有约数 &lt;span class=&#34;math inline&#34;&gt;\(a - 1\)&lt;/span&gt;，是合数。&lt;/p&gt;
+&lt;p&gt;当 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 是合数时，设 &lt;span class=&#34;math inline&#34;&gt;\(n = mk\)&lt;/span&gt;，则 &lt;span class=&#34;math display&#34;&gt;\[
+2^n - 1 = \left(2^{m}\right)^k - 1 = (2^m - 1)(2^{m(k-1)}+2^{m(k-2)}+\dots+2^{m}+1)
+\]&lt;/span&gt; 所以 &lt;span class=&#34;math inline&#34;&gt;\(2^n-1\)&lt;/span&gt; 有约数 &lt;span class=&#34;math inline&#34;&gt;\(2^m - 1\)&lt;/span&gt;，是合数。&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;真因数之和等于本身的正整数称为完全数。（真因数即除了本身以外的因数）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;梅森素数和完全数有很大的相关性：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;6.4.1 欧几里得完全数公式&lt;/strong&gt; 如果 &lt;span class=&#34;math inline&#34;&gt;\(2^p-1\)&lt;/span&gt; 是素数，则 &lt;span class=&#34;math inline&#34;&gt;\(2^{p-1}(2^p-1)\)&lt;/span&gt; 是完全数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6.4.2 欧拉完全数定理&lt;/strong&gt; 如果 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 是&lt;strong&gt;偶完全数&lt;/strong&gt;，则 &lt;span class=&#34;math inline&#34;&gt;\(n = 2^{p-1}(2^p-1)\)&lt;/span&gt;，其中&lt;span class=&#34;math inline&#34;&gt;\(2^p-1\)&lt;/span&gt; 是梅森素数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;至今没有人发现有奇完全数。&lt;/p&gt;
+&lt;h3 id=&#34;miller-rabin-素性测试&#34;&gt;6.6 Miller-Rabin 素性测试&lt;/h3&gt;
+&lt;h3 id=&#34;pollard-rho-质因数分解&#34;&gt;6.7 Pollard-Rho 质因数分解&lt;/h3&gt;
+&lt;h2 id=&#34;二项式系数&#34;&gt;7 二项式系数&lt;/h2&gt;
+&lt;h3 id=&#34;模-p-二项式定理&#34;&gt;7.1 模 p 二项式定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 为素数，&lt;/p&gt;
+&lt;p&gt;① &lt;span class=&#34;math display&#34;&gt;\[
+\binom{p}{k} \equiv \begin{cases}
+0, &amp;amp; 1 \leq k \leq p - 1\\
+1, &amp;amp; k = 0 \text{ or } k = p
+\end{cases}
+\pmod p
+\]&lt;/span&gt; ② 对任意数 &lt;span class=&#34;math inline&#34;&gt;\(A, B\)&lt;/span&gt;，有 &lt;span class=&#34;math display&#34;&gt;\[
+(A + B)^p \equiv A^p + B^p \pmod p
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; ① &lt;span class=&#34;math inline&#34;&gt;\(\dbinom{p}{k} = \dfrac{p^{\underline{k}}}{k!}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;当 &lt;span class=&#34;math inline&#34;&gt;\(1 \leq k \leq p - 1\)&lt;/span&gt; 时，由于 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 是质数，分子上的 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 不会被约去，所以 &lt;span class=&#34;math inline&#34;&gt;\(\dbinom{p}{k}\equiv 0 \pmod p\)&lt;/span&gt;；&lt;/p&gt;
+&lt;p&gt;当 &lt;span class=&#34;math inline&#34;&gt;\(k = 0\)&lt;/span&gt; 或 &lt;span class=&#34;math inline&#34;&gt;\(k = p\)&lt;/span&gt; 时，&lt;span class=&#34;math inline&#34;&gt;\(\binom{p}{k} = 1\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;② 用二项式定理展开再套用①的公式即得证。&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;lucas-定理&#34;&gt;7.2 Lucas 定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 为素数， &lt;span class=&#34;math display&#34;&gt;\[
+\binom n m \equiv \binom{\lfloor n / p \rfloor}{\lfloor m / p \rfloor} \binom{n \bmod p}{m \bmod p} \pmod p
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;证明：&lt;/strong&gt; &lt;span class=&#34;math display&#34;&gt;\[
+(1 + x)^p = 1 + \binom{p}{1}x + \binom{p}{2}x^2 + \dots + \binom{p}{p}x^p
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;由 &lt;em&gt;模 p 二项式定理&lt;/em&gt; 有 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+(1 + x)^p &amp;amp;\equiv 1 + x^p &amp;amp;\pmod p\\
+(1 + x)^{p^k} &amp;amp;\equiv (1 + x^p)^{p^{k - 1}} \equiv \dots \equiv 1 + x^{p^k} &amp;amp;\pmod p
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;设 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+n &amp;amp;= \sum_{i \geq 0}a_ip^i\\
+m &amp;amp;= \sum_{i \geq 0}b_ip^i
+\end{cases}
+\]&lt;/span&gt; 则 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+(1 + x)^n = \prod_{i \geq 0} (1 + x)^{a_ip^i} 
+&amp;amp;\equiv \prod_{i \geq 0}(1 + x^{p^i})^{a_i} &amp;amp;\pmod p\\
+[x^m](1 + x)^n &amp;amp;\equiv [x^m]\prod_{i \geq 0}(1 + x^{p^i})^{a_i} &amp;amp;\pmod p\\
+\binom{n}{m} &amp;amp;\equiv \prod_{i \geq 0} \binom{a_i}{b_i} &amp;amp;\pmod p
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\square\)&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;拓展-lucas-定理&#34;&gt;7.3 拓展 Lucas 定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对于 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 是合数的情形，Lucas 定理失效，此时可以通过另外的方法求二项式系数对 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 的模。思路如下：&lt;/p&gt;
+&lt;p&gt;将 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 质因数分解为 &lt;span class=&#34;math inline&#34;&gt;\(p = \sum_{i = 1}^{r} q_i^{k_i}\)&lt;/span&gt;，分别求出 &lt;span class=&#34;math inline&#34;&gt;\(\dbinom{n}{m} \bmod q_i^{k_i}\)&lt;/span&gt;，然后用中国剩余定理合并。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;通常二项式系数的计算式为 &lt;span class=&#34;math inline&#34;&gt;\(\dbinom{n}{m} = \dfrac{n!}{m!(n - m)!}\)&lt;/span&gt;，需要求出 &lt;span class=&#34;math inline&#34;&gt;\(m!(n-m)!\)&lt;/span&gt; 的逆元，然而在 &lt;span class=&#34;math inline&#34;&gt;\(q_i \mid m!(n - m)!\)&lt;/span&gt; 的情况下逆元不存在，需要特殊处理。&lt;/p&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(n = q^{r(n)}k(n)\)&lt;/span&gt;，其中 &lt;span class=&#34;math inline&#34;&gt;\(k \nmid q\)&lt;/span&gt;，则 &lt;span class=&#34;math display&#34;&gt;\[
+\binom{n}{m} = \frac{n!}{m!(n - m)!} = \frac{n!}{k(m!)k((n-m)!)}\cdot q^{-r(m) - r(n - m)}
+\]&lt;/span&gt; 这样逆元都是存在的，问题在于求 &lt;span class=&#34;math inline&#34;&gt;\(r(n!)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;太毒瘤了，咕咕咕……&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;kummer-定理&#34;&gt;7.4 Kummer 定理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\dbinom{n + m}{m}\)&lt;/span&gt; 中素因子 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 的个数等于 &lt;span class=&#34;math inline&#34;&gt;\(n, m\)&lt;/span&gt; 在 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; 进制下做加法的进位次数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;例题 &lt;a href=&#34;https://www.luogu.com.cn/problem/CF582D&#34;&gt;CF582D&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;二次剩余&#34;&gt;8 二次剩余&lt;/h2&gt;
+&lt;h2 id=&#34;离散对数&#34;&gt;9 离散对数&lt;/h2&gt;
+&lt;h3 id=&#34;大步小步算法baby-step-giant-step&#34;&gt;9.1 大步小步算法(Baby Step Giant Step)&lt;/h3&gt;
+&lt;h3 id=&#34;exbsgs算法&#34;&gt;9.2 EXBSGS算法&lt;/h3&gt;
+&lt;h2 id=&#34;阶和原根&#34;&gt;10 阶和原根&lt;/h2&gt;
+&lt;h2 id=&#34;数论函数&#34;&gt;11 数论函数&lt;/h2&gt;
+&lt;h3 id=&#34;积性函数&#34;&gt;11.1 积性函数&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若数论函数 &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt; 满足对于任意的 &lt;span class=&#34;math inline&#34;&gt;\(a, b \in \mathbf{N}^*, \gcd(a, b) = 1\)&lt;/span&gt; 都有 &lt;span class=&#34;math inline&#34;&gt;\(f(ab) = f(a)f(b)\)&lt;/span&gt;，则称 &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt; 为积性函数。&lt;/p&gt;
+&lt;p&gt;特别地，如果对于任意 &lt;span class=&#34;math inline&#34;&gt;\(a, b \in \mathbf{N}^*\)&lt;/span&gt; 都满足上面的条件，则称 &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt; 为完全积性函数。&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/ - MIT</description>
+        </item>
     
     
     
