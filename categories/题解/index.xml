@@ -159,9 +159,9 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
  带权重心问题，有点妙。
 设 \[ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} \] 这里函数 \(f\) 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。
 下面研究这个函数的性质。
-树上的函数显然不太方便研究，所以考虑换一个 \(\R\) 上的函数研究。
+树上的函数显然不太方便研究，所以考虑换一个 \(\mathbf R\) 上的函数研究。
 随便选择一条树上路径 \(u \rightarrow v\) 作为 \(x\) 轴，把 \(u\) 当作原点，这样 \(x\) 就是路径上的点到 \(u\) 的距离。
- image-20201207203647011  这里以 \(0 \rightarrow 5\) 为例，节点 \(6 \dots 11\) 分别代表其父亲的一些子树。</description>
+这里以 \(0 \rightarrow 5\) 为例，节点 \(6 \dots 11\) 分别代表其父亲的一些子树。</description>
     </item>
     
   </channel>

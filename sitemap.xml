@@ -2,16 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.asukakyle.top/categories/</loc>
+    <lastmod>2021-07-16T15:21:22+08:00</lastmod>
+  </url><url>
     <loc>https://blog.asukakyle.top/</loc>
     <lastmod>2021-07-16T15:21:22+08:00</lastmod>
   </url><url>
-    <loc>https://blog.asukakyle.top/post/pic-test/</loc>
-    <lastmod>2021-07-16T14:57:52+08:00</lastmod>
-  </url><url>
     <loc>https://blog.asukakyle.top/post/</loc>
-    <lastmod>2021-07-16T15:21:22+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.asukakyle.top/categories/</loc>
     <lastmod>2021-07-16T15:21:22+08:00</lastmod>
   </url><url>
     <loc>https://blog.asukakyle.top/tags/</loc>
