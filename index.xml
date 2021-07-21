@@ -19,8 +19,10 @@
         
         <guid>https://blog.asukakyle.top/post/2021hdu1/</guid>
         <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/2021hdu1/ -&lt;h2 id=&#34;mod-or-and-everything&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6950&#34;&gt;Mod, Or and Everything&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;队友切了。&lt;/p&gt;
 &lt;h2 id=&#34;rocket-land&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6951&#34;&gt;Rocket land&lt;/a&gt;&lt;/h2&gt;
 &lt;h2 id=&#34;puzzle-loop&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6952&#34;&gt;Puzzle loop&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;设每个边有没有为 0/1，列方程组解异或方程，求自由元个数。&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Author:  HolyK&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Created: Tue Jul 20 17:38:11 2021&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
@@ -111,7 +113,9 @@
 &lt;span id=&#34;cb1-88&#34;&gt;&lt;a href=&#34;#cb1-88&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;another-thief-in-a-shop&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6953&#34;&gt;Another thief in a Shop&lt;/a&gt;&lt;/h2&gt;
 &lt;h2 id=&#34;minimum-spanning-tree&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6954&#34;&gt;Minimum spanning tree&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;队友切了。&lt;/p&gt;
 &lt;h2 id=&#34;xor-sum&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6955&#34;&gt;Xor sum&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;前缀和后 Trie 树上跑。&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb2-1&#34;&gt;&lt;a href=&#34;#cb2-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Author:  HolyK&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb2-2&#34;&gt;&lt;a href=&#34;#cb2-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Created: Tue Jul 20 12:34:29 2021&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb2-3&#34;&gt;&lt;a href=&#34;#cb2-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
@@ -211,6 +215,7 @@
 &lt;span id=&#34;cb2-97&#34;&gt;&lt;a href=&#34;#cb2-97&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb2-98&#34;&gt;&lt;a href=&#34;#cb2-98&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;pass&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6956&#34;&gt;Pass!&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;BSGS，考场板子有锅，待修。&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb3-1&#34;&gt;&lt;a href=&#34;#cb3-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Author:  HolyK&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb3-2&#34;&gt;&lt;a href=&#34;#cb3-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Created: Tue Jul 20 14:07:53 2021&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb3-3&#34;&gt;&lt;a href=&#34;#cb3-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
@@ -291,7 +296,9 @@
 &lt;span id=&#34;cb3-78&#34;&gt;&lt;a href=&#34;#cb3-78&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb3-79&#34;&gt;&lt;a href=&#34;#cb3-79&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;maximal-submatrix&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6957&#34;&gt;Maximal submatrix&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;队友切了。&lt;/p&gt;
 &lt;h2 id=&#34;kd-graph&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6958&#34;&gt;KD-Graph&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;最小生成树，不用二分，我傻逼了。&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb4-1&#34;&gt;&lt;a href=&#34;#cb4-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Author:  HolyK&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb4-2&#34;&gt;&lt;a href=&#34;#cb4-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Created: Tue Jul 20 13:19:19 2021&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb4-3&#34;&gt;&lt;a href=&#34;#cb4-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
@@ -411,6 +418,7 @@
 &lt;span id=&#34;cb4-117&#34;&gt;&lt;a href=&#34;#cb4-117&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb4-118&#34;&gt;&lt;a href=&#34;#cb4-118&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;zoto&#34;&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=6959&#34;&gt;zoto&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;傻逼莫队，秒了。&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb5-1&#34;&gt;&lt;a href=&#34;#cb5-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Author:  HolyK&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb5-2&#34;&gt;&lt;a href=&#34;#cb5-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Created: Tue Jul 20 12:11:35 2021&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb5-3&#34;&gt;&lt;a href=&#34;#cb5-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
