@@ -7,7 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Wed, 21 Jul 2021 13:31:31 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Jul 2021 18:50:15 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021杭电多校2</title>
+      <link>https://blog.asukakyle.top/post/2021hdu2/</link>
+      <pubDate>Thu, 22 Jul 2021 18:50:15 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021hdu2/</guid>
+      <description>总览 6961 | I love cube |
+6962 | I love tree |
+6963 | I love playing games |
+6964 | I love counting |
+6965 | I love string |
+6966 | I love sequences |
+6967 | I love data structure |
+6968 | I love exam |
+6969 | I love triples |
+6970 | I love permutation |
+6971 | I love max and multiply | I love cube I love tree // Author: HolyK // Created: Thu Jul 22 16:31:11 2021 #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
     <item>
       <title>2021牛客多校2</title>
       <link>https://blog.asukakyle.top/post/2021nowcoder2/</link>
@@ -96,21 +115,6 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
 \[ f_t=1 \]
 \[ P\cdot\mathbf{f}=\mathbf{e} \]
 \(P\) 是 \(wh \times wh\) 的方阵，\(\mathbf{f},\mathbf{e}\) 是列向量。其中 \(e_i=[i=t]\)。 \[ \mathbf{f}=P^{-1}\mathbf{f} \] 设 \(1\dots s\) 为起点 ，答案为 \[ ans = \frac1s \sum_{i=1}^sf_i \] 写成矩阵的形式，设行向量 \(\mathbf{v}^T=\begin{pmatrix} 1 &amp;amp; 1 &amp;amp; 1 &amp;amp; \cdots &amp;amp; 0 &amp;amp; 0 &amp;amp; \cdots \end{pmatrix}\)，前面有 \(s\) 个1，其他都是0。 \[ \begin{aligned} ans &amp;amp;= \frac1s \mathbf{v}^T\mathbf{f}\\ &amp;amp;= \frac1s\mathbf{v}^TP^{-1}\mathbf{e}\\ \end{aligned} \] 相当于求行向量 \(\alpha^T = \dfrac1s\mathbf{v}^TP^{-1}\) 第 \(t\) 维的值，所以只要求出这个行向量即可。 \[ \alpha^T P = \frac1s\mathbf{v} \]</description>
-    </item>
-    
-    <item>
-      <title>位运算卷积(FWT) &amp; 集合幂级数</title>
-      <link>https://blog.asukakyle.top/post/fwt/</link>
-      <pubDate>Fri, 09 Jul 2021 11:21:34 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/fwt/</guid>
-      <description>0x01.FWT 概论  位运算卷积 众所周知，多项式乘法是加法卷积, 因为第 \({i}\) 项和第 \({j}\) 项的乘积贡献到第 \({i+j}\) 项。
-类似地定义位运算卷积 : \({}\) 第 \({i}\) 项和第 \({j}\) 项的乘积贡献到第 \({i \oplus j}\) 项。其中 \({\oplus}\) 是某种位运算。
-即 \({S[k]=\sum_{i \oplus j=k} A[i] B[j]}\), 记作卷积式 \({A * B=S}\) 。
- 构造的尝试 众所周知, \({\mathrm{FFT}}\) 把多项式转换成点值之后, 从卷积变为了直接点积。
-我们自然也期望把位运算卷积转化成点积。
-设 \({F W T(A)}\) 是幕级数 \({A}\) 经过 \({\mathrm{FWT}}\) 变换之后得到的幕级数。
-我们需要令其满足 : \({ A * B=C \Longleftrightarrow F W T(A) \cdot F W T(B)=F W T(C)}\) (点积)。</description>
     </item>
     
     <item>
@@ -259,16 +263,6 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
  FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
 多项式 形如 \[ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} \] 的式子称为 \(x\) 的 \(n - 1\) 次多项式，其中 \(a_0, a_1, \dots, a_{n - 1}\) 称为多项式系数，\(n-1\) 称为多项式的次数，记为 \(\deg A(x)\) 或 \(\deg A\)。
 点值 \(n - 1\) 次多项式 \(A(x)\) 在 \(x = m\) 处的点值 \[ A(m) = \sum_{k=0}^{n-1} a_km^k \]</description>
-    </item>
-    
-    <item>
-      <title>Hello, World</title>
-      <link>https://blog.asukakyle.top/post/hello-world/</link>
-      <pubDate>Sat, 13 Mar 2021 11:36:40 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/hello-world/</guid>
-      <description>新博客开通。
-原博客 https://www.cnblogs.com/HolyK/</description>
     </item>
     
     <item>
