@@ -224,7 +224,7 @@
 &amp;amp;O\left(\frac{nq}{T}+q\sum_{d=0}^{\lfloor\log_2 n \rfloor}\dfrac{2^d}{T}\right)\\
 =&amp;amp;O\left(\frac{nq}T\right)
 \end{aligned}
-\]&lt;/span&gt; &lt;strong&gt;发现我的莫队居然是复杂度正确的，怪不得跑那么快。&lt;/strong&gt;&lt;/p&gt;
+\]&lt;/span&gt; &lt;del&gt;发现我的莫队居然是复杂度正确的，怪不得跑那么快。&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;这复杂度好像还是不太正确，我也不会分析了，反正跑得很快就是了。&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb2-1&#34;&gt;&lt;a href=&#34;#cb2-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Author:  HolyK&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb2-2&#34;&gt;&lt;a href=&#34;#cb2-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Created: Thu Jul 22 14:23:41 2021&lt;/span&gt;&lt;/span&gt;
