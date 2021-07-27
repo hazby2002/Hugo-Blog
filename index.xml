@@ -95,7 +95,7 @@
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(n, m \leq 10^5, 1 \leq w_i, z \leq 10^9\)&lt;/span&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;考虑每次让 &lt;span class=&#34;math inline&#34;&gt;\(z\)&lt;/span&gt; 减半，这样最多做 &lt;span class=&#34;math inline&#34;&gt;\(\log z\)&lt;/span&gt; 次就会停止。&lt;/p&gt;
-&lt;p&gt;先考虑序列上怎么维护：将权值分为 &lt;span class=&#34;math inline&#34;&gt;\([0, 2^0), [2^0, 2^1), [2^1, 2^2), \dots, [2^29, 2^30)\)&lt;/span&gt; 这些区间。&lt;/p&gt;
+&lt;p&gt;先考虑序列上怎么维护：将权值分为 &lt;span class=&#34;math inline&#34;&gt;\([0, 2^0), [2^0, 2^1), [2^1, 2^2), \dots, [2^{29}, 2^{30})\)&lt;/span&gt; 这些区间。&lt;/p&gt;
 &lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(z \in [2^k, 2^{k+1})\)&lt;/span&gt;，则在这个区间内的值最多计算一次，&lt;span class=&#34;math inline&#34;&gt;\(z\)&lt;/span&gt; 就会被减到小于 &lt;span class=&#34;math inline&#34;&gt;\(2^k\)&lt;/span&gt;。&lt;/p&gt;
 &lt;p&gt;所以按照权值这样分类开 30 棵线段树，每个线段树维护区间小于 &lt;span class=&#34;math inline&#34;&gt;\(2^k\)&lt;/span&gt; 的数的和，以及只计算一个 &lt;span class=&#34;math inline&#34;&gt;\([2^k, 2^{k+1})\)&lt;/span&gt; 的值的前缀和的最小值。&lt;/p&gt;
 &lt;p&gt;询问时在线段树上二分。&lt;/p&gt;

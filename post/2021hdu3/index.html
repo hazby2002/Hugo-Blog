@@ -911,7 +911,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <p><span class="math inline">\(n, m \leq 10^5, 1 \leq w_i, z \leq 10^9\)</span>。</p>
 </blockquote>
 <p>考虑每次让 <span class="math inline">\(z\)</span> 减半，这样最多做 <span class="math inline">\(\log z\)</span> 次就会停止。</p>
-<p>先考虑序列上怎么维护：将权值分为 <span class="math inline">\([0, 2^0), [2^0, 2^1), [2^1, 2^2), \dots, [2^29, 2^30)\)</span> 这些区间。</p>
+<p>先考虑序列上怎么维护：将权值分为 <span class="math inline">\([0, 2^0), [2^0, 2^1), [2^1, 2^2), \dots, [2^{29}, 2^{30})\)</span> 这些区间。</p>
 <p>设 <span class="math inline">\(z \in [2^k, 2^{k+1})\)</span>，则在这个区间内的值最多计算一次，<span class="math inline">\(z\)</span> 就会被减到小于 <span class="math inline">\(2^k\)</span>。</p>
 <p>所以按照权值这样分类开 30 棵线段树，每个线段树维护区间小于 <span class="math inline">\(2^k\)</span> 的数的和，以及只计算一个 <span class="math inline">\([2^k, 2^{k+1})\)</span> 的值的前缀和的最小值。</p>
 <p>询问时在线段树上二分。</p>
