@@ -14,7 +14,7 @@
       <pubDate>Tue, 27 Jul 2021 20:39:53 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu3/</guid>
-      <description>题号 题目 完成情况    6973 Bookshop 通过  6974 Destinations   6975 Forgiving Matching 通过  6976 Game on Plane 通过  6977 Kart Race   6978 New Equipments II   6979 Photoshop Layers 通过  6980 Restore Atlantis II   6981 Rise in Price   6982 Road Discount   6983 Segment Tree with Pruning 通过  6984 Tree Planting     Bookshop  给定一棵树，每个点有个权值 \(w_i\)，\(m\) 次询问，给出 \(x, y, z\)，表示从 \(x\) 走到 \(y\)，每经过一个点 \(i\)，如果 \(z \geq w_i\) 则 \(z -= w_i\)，最终 \(z\) 是多少。</description>
+      <description>题号 题目 完成情况    6973 Bookshop 通过  6974 Destinations 通过  6975 Forgiving Matching 通过  6976 Game on Plane 通过  6977 Kart Race   6978 New Equipments II   6979 Photoshop Layers 通过  6980 Restore Atlantis II   6981 Rise in Price   6982 Road Discount   6983 Segment Tree with Pruning 通过  6984 Tree Planting     Bookshop  给定一棵树，每个点有个权值 \(w_i\)，\(m\) 次询问，给出 \(x, y, z\)，表示从 \(x\) 走到 \(y\)，每经过一个点 \(i\)，如果 \(z \geq w_i\) 则 \(z -= w_i\)，最终 \(z\) 是多少。</description>
     </item>
     
     <item>
