@@ -1295,7 +1295,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <h2 id="forgiving-matching"><a href="https://acm.hdu.edu.cn/showproblem.php?pid=6975">Forgiving Matching</a></h2>
 <blockquote>
 <p>给定两个字符串 <code>S, T</code> 求在允许有 <span class="math inline">\(k\)</span> 个字符不同的情况下，<code>S</code> 有多少子串和 <code>T</code> 匹配。字符集 <span class="math inline">\(\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, *\}\)</span>，其中 <span class="math inline">\(*\)</span> 是通配符，可以和任意字符匹配。</p>
-<p><span class="math inline">\(|S|, |T| \leq 10^9\)</span>。</p>
+<p><span class="math inline">\(|S|, |T| \leq 10^5\)</span>。</p>
 </blockquote>
 <p>求 <code>S</code> 的每个长度为 <span class="math inline">\(|T|\)</span> 的子串有多少个位置和 <code>T</code> 相同（或者通配）。</p>
 <p>考虑如果 <span class="math inline">\(S_i = T_j\)</span>，则会对子串 <span class="math inline">\(S_{i - j \dots i + m - j - 1}\)</span> 有 1 的贡献，这是卷积的形式，可以用 FFT 优化。</p>
