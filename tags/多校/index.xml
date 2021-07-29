@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Tue, 27 Jul 2021 20:39:53 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%A4%9A%E6%A0%A1/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Jul 2021 18:01:33 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%A4%9A%E6%A0%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021杭电多校4</title>
+      <link>https://blog.asukakyle.top/post/2021hdu4/</link>
+      <pubDate>Thu, 29 Jul 2021 18:01:33 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021hdu4/</guid>
+      <description>总览   题号 题目 完成情况    6985 Calculus 通过  6986 Kanade Loves Maze Designing 通过  6987 Cycle Binary   6988 Display Substring   6989 Didn’t I Say to Make My Abilities Average in the Next Life?! 通过  6990 Directed Minimum Spanning Tree   6991 Increasing Subsequence 通过  6992 Lawn of the Dead 通过  6993 License Plate Recognition 通过  6994 Pony Running   6995 Travel on Tree     Calculus 签到题，常数不是 0 的都不收敛。</description>
+    </item>
+    
     <item>
       <title>2021杭电多校3</title>
       <link>https://blog.asukakyle.top/post/2021hdu3/</link>

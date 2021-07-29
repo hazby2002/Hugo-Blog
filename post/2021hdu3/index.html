@@ -1637,6 +1637,12 @@ y_1, y_2, \dots, y_n &amp;\geq 0
 <span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="road-discount"><a href="https://acm.hdu.edu.cn/showproblem.php?pid=6982">Road Discount</a></h2>
+<blockquote>
+<p>给定一个图，每条边有两种边权，满足 <span class="math inline">\(w_1 \geq w_2\)</span>，求恰好包含 <span class="math inline">\(k\)</span> 条 <span class="math inline">\(w_2\)</span> 边权的最小生成树。</p>
+<p>点数 <span class="math inline">\(1000\)</span>，边数 <span class="math inline">\(2 \times 10^5\)</span>，<span class="math inline">\(0 \leq w_1, w_2 \leq 1000\)</span>。</p>
+</blockquote>
+<p>原题 BZOJ2654。</p>
+<p>恰好包含k条黑边的最小生成树，是凸函数，wqs二分即可。</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Created: Wed Jul 28 16:04:29 2021</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
@@ -1800,8 +1806,8 @@ y_1, y_2, \dots, y_n &amp;\geq 0
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts">
-			下回<br>已经到头啦。
+                <a class="newer-posts" href="https://blog.asukakyle.top/post/2021hdu4/">
+			下回<br>2021杭电多校4
                 </a>
                 
                 
