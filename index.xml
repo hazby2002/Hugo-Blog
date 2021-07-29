@@ -373,15 +373,16 @@ x_1, x_2, \dots, x_{3m} &amp;amp;\geq 0
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;考虑它的对偶问题：&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ \min \ z = \sum y_i \]&lt;/span&gt;&lt;/p&gt;
-$$ s.t
-&lt;span class=&#34;math display&#34;&gt;\[\begin{cases}
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+s.t
+\begin{cases}
 \sum_{i \in R_1}y_i &amp;amp;\geq w_1\\
 \sum_{i \in R_2}y_i &amp;amp;\geq w_2\\
 &amp;amp; \vdots \\
 \sum_{i \in R_{3m}}y_i &amp;amp;\geq w_{3m}\\
 y_1, y_2, \dots, y_n &amp;amp;\geq 0
-\end{cases}\]&lt;/span&gt;
-&lt;p&gt;$$&lt;/p&gt;
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;其中 &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt; 表示每个点的权值，中间的不等式表示每个路径覆盖的点权和不小于路径的权值，最小化所有点权和。&lt;/p&gt;
 &lt;p&gt;这个问题可以贪心解决：自底向上遍历整棵树，在lca处查询每个链是否满足条件，如果不满足就在lca处补充权值。&lt;/p&gt;
 &lt;p&gt;用树状数组维护点权和，复杂度 &lt;span class=&#34;math inline&#34;&gt;\(O(n \log n)\)&lt;/span&gt;。&lt;/p&gt;
