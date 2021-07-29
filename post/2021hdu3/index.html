@@ -1169,6 +1169,38 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="destinations"><a href="https://acm.hdu.edu.cn/showproblem.php?pid=6974">Destinations</a></h2>
+<blockquote>
+<p>给定一棵树和 <span class="math inline">\(3m\)</span> 条带权路径，且每 3 个路径共起点。选出 <span class="math inline">\(m\)</span> 条不相交路径，最小化路径权值和。</p>
+<p><span class="math inline">\(n \leq 2\times 10^5, m \leq 10^5, 1 \leq w_i \leq 10^6\)</span>。</p>
+</blockquote>
+<p>设 <span class="math inline">\(w&#39;_i = 10^6m + 10^6 - w_i\)</span>，变成最大化权值和，选出的路径不会超过 <span class="math inline">\(m\)</span> 条，因此在 <span class="math inline">\(10^6m\)</span> 进制下不会发生进位，所以高位的值就是选出路径的条数。</p>
+<p>这是一个线性规划问题：设 <span class="math inline">\(x_i\)</span> 表示第 <span class="math inline">\(i\)</span> 条路径是否被选择，<span class="math inline">\(R_i\)</span> 表示第 <span class="math inline">\(i\)</span> 条路径包含的点集。</p>
+<p>写成如下形式：</p>
+<p><span class="math display">\[ \max \ z = \sum w_ix_i \]</span></p>
+<p><span class="math display">\[
+s.t
+\begin{cases}
+\sum_{1 \in R_i}x_i &amp;\leq 1 \\
+\sum_{2 \in R_i}x_i &amp;\leq 1 \\
+&amp; \vdots \\
+\sum_{n \in R_i}x_i &amp; \leq 1
+x_1, x_2, \dots, x_{3m} &amp;\geq 0
+\end{cases}
+\]</span></p>
+<p>考虑它的对偶问题：</p>
+<p><span class="math display">\[ \min \ z = \sum y_i \]</span></p>
+$$ s.t
+<span class="math display">\[\begin{cases}
+\sum_{i \in R_1}y_i &amp;\geq w_1\\
+\sum_{i \in R_2}y_i &amp;\geq w_2\\
+&amp; \vdots \\
+\sum_{i \in R_{3m}}y_i &amp;\geq w_{3m}\\
+y_1, y_2, \dots, y_n &amp;\geq 0
+\end{cases}\]</span>
+<p>$$</p>
+<p>其中 <span class="math inline">\(y_i\)</span> 表示每个点的权值，中间的不等式表示每个路径覆盖的点权和不小于路径的权值，最小化所有点权和。</p>
+<p>这个问题可以贪心解决：自底向上遍历整棵树，在lca处查询每个链是否满足条件，如果不满足就在lca处补充权值。</p>
+<p>用树状数组维护点权和，复杂度 <span class="math inline">\(O(n \log n)\)</span>。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Created: Wed Jul 28 14:17:12 2021</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
@@ -1225,11 +1257,11 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> f<span class="op">[</span><span class="dv">0</span><span class="op">][</span>x<span class="op">];</span></span>
 <span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Chain <span class="op">{</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> R <span class="op">{</span></span>
 <span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> x<span class="op">,</span> y<span class="op">;</span></span>
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  LL z<span class="op">;</span></span>
 <span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span>Chain<span class="op">&gt;</span> h<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span>R<span class="op">&gt;</span> h<span class="op">[</span>N<span class="op">];</span></span>
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>LL ans<span class="op">;</span></span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dfs2<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> y <span class="op">:</span> g<span class="op">[</span>x<span class="op">])</span> <span class="op">{</span></span>
@@ -1441,6 +1473,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span></code></pre></div>
 <h2 id="game-on-plane"><a href="https://acm.hdu.edu.cn/showproblem.php?pid=6976">Game on Plane</a></h2>
+<p>队友秒了。</p>
 <h2 id="kart-race"><a href="https://acm.hdu.edu.cn/showproblem.php?pid=6977">Kart Race</a></h2>
 <h2 id="new-equipments-ii"><a href="https://acm.hdu.edu.cn/showproblem.php?pid=6978">New Equipments II</a></h2>
 <h2 id="photoshop-layers"><a href="https://acm.hdu.edu.cn/showproblem.php?pid=6979">Photoshop Layers</a></h2>
@@ -1757,7 +1790,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2021-07-28</p>
+		    <p style="color:#777;">最后修改于 2021-07-29</p>
                     
                 </div>
             </div>
