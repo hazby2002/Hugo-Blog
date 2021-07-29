@@ -367,7 +367,7 @@ s.t
 \sum_{1 \in R_i}x_i &amp;amp;\leq 1 \\
 \sum_{2 \in R_i}x_i &amp;amp;\leq 1 \\
 &amp;amp; \vdots \\
-\sum_{n \in R_i}x_i &amp;amp; \leq 1
+\sum_{n \in R_i}x_i &amp;amp; \leq 1\\
 x_1, x_2, \dots, x_{3m} &amp;amp;\geq 0
 \end{cases}
 \]&lt;/span&gt;&lt;/p&gt;
