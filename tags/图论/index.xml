@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图论 on HolyK&#39;s Blog</title>
+    <link>https://blog.asukakyle.top/tags/%E5%9B%BE%E8%AE%BA/</link>
+    <description>Recent content in 图论 on HolyK&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>CC BY-NC-SA 4.0</copyright>
+    <lastBuildDate>Fri, 30 Jul 2021 16:40:08 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%9B%BE%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LGV 引理小记</title>
+      <link>https://blog.asukakyle.top/post/lgv-lemma/</link>
+      <pubDate>Fri, 30 Jul 2021 16:40:08 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/lgv-lemma/</guid>
+      <description>LGV 引理 设 \(G(V, E)\) 是一个 DAG，起点集 \(A = \{a_1, \dots, a_n\} \subseteq V\)，终点集 \(B = \{b_1, \dots, b_n\} \subseteq V\) 。
+记 \(\omega_e\) 表示有向边 \(e\) 的边权，\(\omega_e\) 属于某个交换环。
+对于有向路径 \(P\)，定义 \(\omega(P)\) 表示路径上边权的乘积，即 \[ \omega(P) = \prod\limits_{e \in P} \omega_e \] 对于任意两点 \(a, b\)，记 \(e(a, b)\) 表示从 \(a\) 到 \(b\) 的所有路径的权值之和，即 \[ e(a, b) = \sum\limits_{P:a\to b}\omega(P) \] 特别地，若 \(\omega_e=1\) ，\(e(a, b)\) 表示 从 \(a\) 到 \(b\) 的路径数。
+记矩阵 \[ M = \begin{pmatrix} e(a_1, b_1) &amp;amp; e(a_1, b_2) &amp;amp; \cdots &amp;amp; e(a_1, b_n)\\ e(a_2, b_1) &amp;amp; e(a_2, b_2) &amp;amp; \cdots &amp;amp; e(a_2, b_n)\\ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots\\ e(a_n, b_1) &amp;amp; e(a_n, b_2) &amp;amp; \cdots &amp;amp; e(a_n, b_n)\\ \end{pmatrix} \] 定义从 \(A\) 到 \(B\) 的 \(n\) 元不相交路径组表示 \(G\) 中的 \(n\) 条有向路径 \((P_1, \dots, P_n)\) 满足：</description>
+    </item>
+    
+  </channel>
+</rss>

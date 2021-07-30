@@ -1429,7 +1429,7 @@ a_j &lt; a_i,\\
 <p>分治，考虑 <span class="math inline">\([l, m)\)</span> 对 <span class="math inline">\([m, r)\)</span> 的贡献。</p>
 <p>对于 <span class="math inline">\(i \in [m, r), j \in [l, m)\)</span>，考虑按 <span class="math inline">\(a\)</span> 从小到大插入，<span class="math inline">\(j\)</span> 对 <span class="math inline">\(i\)</span> 有贡献的条件是右边不能有比 <span class="math inline">\(a_j\)</span> 大的数。</p>
 <p>对于区间 <span class="math inline">\([l, m)\)</span>，插入一个数 <span class="math inline">\(a_j\)</span> 后，下标小于 <span class="math inline">\(j\)</span> 的已插入的数都不能产生贡献，因此要把它们删除，用下标递减的单调栈维护这个操作。</p>
-<p>对于区间 <span class="math inline">\([m, i)\)</span>m，设 <span class="math inline">\(k \in [m, i), a_k &lt; a_i\)</span>，则 <span class="math inline">\(j\)</span> 要满足 <span class="math inline">\(a_j &gt; \max a_k\)</span>，<span class="math inline">\(\max a_k\)</span> 同样可以用单调栈维护。</p>
+<p>对于区间 <span class="math inline">\([m, i)\)</span>，设 <span class="math inline">\(k \in [m, i), a_k &lt; a_i\)</span>，则 <span class="math inline">\(j\)</span> 要满足 <span class="math inline">\(a_j &gt; \max a_k\)</span>，<span class="math inline">\(\max a_k\)</span> 同样可以用单调栈维护。</p>
 <p>注意到 <span class="math inline">\([l, m)\)</span> 的单调栈同时也是值递增的，所以可以二分找到对应位置，然后用前缀和求出答案。</p>
 <p>复杂度 <span class="math inline">\(O(n \log^2 n)\)</span>，这里写的是非递归的，实际表现不劣于线段树做法。</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
@@ -1806,8 +1806,8 @@ a_j &lt; a_i,\\
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts">
-			下回<br>已经到头啦。
+                <a class="newer-posts" href="https://blog.asukakyle.top/post/lgv-lemma/">
+			下回<br>LGV 引理小记
                 </a>
                 
                 
