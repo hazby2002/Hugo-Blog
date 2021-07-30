@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Thu, 29 Jul 2021 18:01:33 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jul 2021 20:54:17 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[NOI2021] 密码箱</title>
+      <link>https://blog.asukakyle.top/post/noi2021-%E5%AF%86%E7%A0%81%E7%AE%B1/</link>
+      <pubDate>Fri, 30 Jul 2021 20:54:17 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/noi2021-%E5%AF%86%E7%A0%81%E7%AE%B1/</guid>
+      <description>题面 题解 设向量 \(\begin{pmatrix}x \\ y\end{pmatrix}\) 表示分数 \(\dfrac x y\)。
+那么整数加分数的运算 \(a+\dfrac x y = \dfrac{x + ay}{y}\) 可以表示为 \[ \begin{pmatrix} 1 &amp;amp; a\\ 0 &amp;amp; 1 \end{pmatrix} \begin{pmatrix} x\\y \end{pmatrix} = \begin{pmatrix} x+ay\\ y \end{pmatrix} \] 设 \(a_k = \dfrac{x}{y}\)，则 \(a_{k-1}&amp;#39;=a_{k-1}+\dfrac y x\)，写成矩阵形式为
+\[ \begin{pmatrix} a_{k-1} &amp;amp; 1\\ 1 &amp;amp; 0 \end{pmatrix} \begin{pmatrix} x\\y \end{pmatrix} = \begin{pmatrix} a_{k-1}x+y\\ x \end{pmatrix} \] 记 \[ F = \begin{pmatrix} a_{0} &amp;amp; 1\\ 1 &amp;amp; 0 \end{pmatrix} \begin{pmatrix} a_{1} &amp;amp; 1\\ 1 &amp;amp; 0 \end{pmatrix} \dots \begin{pmatrix} a_{k} &amp;amp; 1\\ 1 &amp;amp; 0 \end{pmatrix} \] 则 \[ f(a_0, a_1, \dots, a_n) = F_{0, 0} \] 考虑维护矩阵 \(F\)。</description>
+    </item>
+    
     <item>
       <title>2021杭电多校4</title>
       <link>https://blog.asukakyle.top/post/2021hdu4/</link>
