@@ -95,6 +95,24 @@
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="/vendor/js/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+  clientID: '340901eac09312b10dec',
+  clientSecret: '0e2c30cf6a4f5df3d5dfdd004d5792654217c248',
+  repo: 'Gitalk',
+  owner: 'hazby2002',
+  admin: ['hazby2002'],
+  id: md5(location.pathname),
+  distractionFreeMode: 'false'
+  });
+  window.onload = function () {
+        gitalk.render('gitalk-container')
+  }
+</script>
+
 
 
 
@@ -882,6 +900,7 @@ l \leq \mathrm{color}_v \leq r
 \]</span> 可以树套树解决。</p>
 <p>对于离散化后的颜色区间建立线段树，将询问和修改都挂在线段树上，去掉第三维。</p>
 <p>然后对线段树的每个节点做一个二维偏序即可。</p>
+<p>复杂度 <span class="math inline">\(O(n \log^3 n)\)</span>。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Created: Sun Jul 25 14:59:29 2021</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
@@ -1089,6 +1108,8 @@ l \leq \mathrm{color}_v \leq r
             <div class="post-comment-wrapper">
                 
 
+
+<div id="gitalk-container"></div>
 
 
 

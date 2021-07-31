@@ -95,6 +95,24 @@
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="/vendor/js/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+  clientID: '340901eac09312b10dec',
+  clientSecret: '0e2c30cf6a4f5df3d5dfdd004d5792654217c248',
+  repo: 'Gitalk',
+  owner: 'hazby2002',
+  admin: ['hazby2002'],
+  id: md5(location.pathname),
+  distractionFreeMode: 'false'
+  });
+  window.onload = function () {
+        gitalk.render('gitalk-container')
+  }
+</script>
+
 
 
 
@@ -680,6 +698,8 @@ B_{t+1}(x) \equiv B_t(x) - \frac{B_t^2(x) - A(x)}{2B_t(x)} \pmod{x^{2^{t+1}}}
             <div class="post-comment-wrapper">
                 
 
+
+<div id="gitalk-container"></div>
 
 
 
