@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HolyK&#39;s Blog</title>
+    <link>https://blog.asukakyle.top/</link>
+    <description>Recent content on HolyK&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>CC BY-NC-SA 4.0</copyright>
+    <lastBuildDate>Sat, 07 Aug 2021 09:53:25 +0800</lastBuildDate>
+    
+        <atom:link href="https://blog.asukakyle.top/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    
+  </channel>
+</rss> 

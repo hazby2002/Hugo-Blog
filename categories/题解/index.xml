@@ -7,14 +7,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Wed, 04 Aug 2021 12:03:49 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Aug 2021 09:53:25 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021牛客多校6</title>
+      <link>https://blog.asukakyle.top/post/2021nowcoder6/</link>
+      <pubDate>Sat, 07 Aug 2021 09:53:25 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021nowcoder6/</guid>
+      <description>题号 标题 团队的状态    A Contracting Convex Hull 未通过  B Defend Ponyville 未通过  C Delete Edges 通过  D Gambling Monster 通过  E Growing Tree 通过  F Hamburger Steak 通过  G Hasse Diagram 通过  H Hopping Rabbit 通过  I Intervals on the Ring 通过  J Defend Your Country 通过  K Starch Cat 通过    Contracting Convex Hull Defend Ponyville Delete Edges Gambling Monster 分治fwt。</description>
+    </item>
+    
+    <item>
+      <title>2021hdu6</title>
+      <link>https://blog.asukakyle.top/post/2021hdu6/</link>
+      <pubDate>Thu, 05 Aug 2021 20:42:30 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021hdu6/</guid>
+      <description>题号 题目 完成情况    7025 Yes, Prime Minister 通过  7026 Might and Magic   7027 0 tree 通过  7028 Decomposition   7029 Median 通过  7030 The Struggle   7031 Power Station of Art   7032 Command and Conquer: Red Alert 2   7033 Typing Contest   7034 Array   7035 Game     Yes, Prime Minister Might and Magic 凸函数的和仍是凸函数。</description>
+    </item>
+    
     <item>
       <title>2021杭电多校5</title>
       <link>https://blog.asukakyle.top/post/2021hdu5/</link>
       <pubDate>Wed, 04 Aug 2021 12:03:49 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu5/</guid>
-      <description>题号 题目 完成情况    7012 Miserable Faith 通过  7013 String Mod   7014 VC Is All You Need 通过  7015 Another String   7016 Random Walk 2 通过  7017 Cute Tree 通过  7018 Banzhuan 通过  7019 Supermarket   7020 Array 通过  7021 Guess Or Not 2   7022 Jsljgame   7023 Yet Another Matrix Problem   7024 Penguin Love Tour 通过    Miserable Faith LCT 裸题。</description>
+      <description>题号 题目 完成情况    7012 Miserable Faith 通过  7013 String Mod 通过  7014 VC Is All You Need 通过  7015 Another String   7016 Random Walk 2 通过  7017 Cute Tree 通过  7018 Banzhuan 通过  7019 Supermarket   7020 Array 通过  7021 Guess Or Not 2   7022 Jsljgame   7023 Yet Another Matrix Problem   7024 Penguin Love Tour 通过    Miserable Faith LCT 裸题。</description>
     </item>
     
     <item>
