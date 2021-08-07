@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sat, 07 Aug 2021 09:53:25 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Aug 2021 19:38:21 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021牛客多校7</title>
+      <link>https://blog.asukakyle.top/post/2021nowcoder7/</link>
+      <pubDate>Sat, 07 Aug 2021 19:38:21 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021nowcoder7/</guid>
+      <description>题号 标题 团队的状态    A xay loves connected graphs 未通过  B xay loves monotonicity 未通过  C xay loves jumping 未通过  D xay loves matrices 未通过  E xay loves nim 未通过  F xay loves trees 通过  G xay loves KDT 未通过  H xay loves count 通过  I xay loves or 通过  J xay loves Floyd 未通过  K xay loves sequence 通过    xay loves connected graphs xay loves monotonicity xay loves jumping xay loves matrices xay loves nim xay loves trees // Author: HolyK // Created: Sat Aug 7 12:43:24 2021 #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
     <item>
       <title>2021牛客多校6</title>
       <link>https://blog.asukakyle.top/post/2021nowcoder6/</link>
