@@ -1070,7 +1070,8 @@ c_n = \sum\limits_{p, q}[p \operatorname{or} q = n][p \operatorname{and} q = 0] 
 <p>将限制条件转化为 <span class="math inline">\([p \operatorname{or} q = n][\operatorname{popcnt}(p) + \operatorname{popcnt}(q) = \operatorname{popcnt}(n)]\)</span>​​​。</p>
 <p>利用占位多项式 <span class="math display">\[
 \begin{aligned}
-A_n(x) &amp;= a_nx^{\operatorname{popcnt}(n)}\\B_n(x) = b_nx^{\operatorname{popcnt}(n)}\\
+A_n(x) &amp;= a_nx^{\operatorname{popcnt}(n)}\\
+B_n(x) &amp;= b_nx^{\operatorname{popcnt}(n)}\\
 C_n(x) &amp;= \sum\limits_{p \operatorname{or} q = n}A_p(x)B_q(x)\\
 c_n &amp;= [x^{\operatorname{popcnt}(n)}]C_n(x)
 \end{aligned}
