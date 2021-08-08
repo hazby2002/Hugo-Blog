@@ -1069,9 +1069,11 @@ c_n = \sum\limits_{p, q}[p \operatorname{or} q = n][p \operatorname{and} q = 0] 
 \]</span></p>
 <p>将限制条件转化为 <span class="math inline">\([p \operatorname{or} q = n][\operatorname{popcnt}(p) + \operatorname{popcnt}(q) = \operatorname{popcnt}(n)]\)</span>​​​。</p>
 <p>利用占位多项式 <span class="math display">\[
-A_n(x) = a_nx^{\operatorname{popcnt}(n)}\\B_n(x) = b_nx^{\operatorname{popcnt}(n)}\\
-C_n(x) = \sum\limits_{p \operatorname{or} q = n}A_p(x)B_q(x)\\
-c_n = [x^{\operatorname{popcnt}(n)}]C_n(x)
+\begin{aligned}
+A_n(x) &amp;= a_nx^{\operatorname{popcnt}(n)}\\B_n(x) = b_nx^{\operatorname{popcnt}(n)}\\
+C_n(x) &amp;= \sum\limits_{p \operatorname{or} q = n}A_p(x)B_q(x)\\
+c_n &amp;= [x^{\operatorname{popcnt}(n)}]C_n(x)
+\end{aligned}
 \]</span> 也可以交换两个维度，定义两个向量的或卷积为 <span class="math display">\[
 (\mathbf A \operatorname {or} \mathbf B)_n = \sum\limits_{p \operatorname{or} q = n} a_pb_q
 \]</span> 则 <span class="math display">\[
