@@ -4140,6 +4140,38 @@ A\left(\omega_n^{2r+1}\right) &amp;amp;= Q(\omega_{n/2}^r)
 &lt;span id=&#34;cb6-84&#34;&gt;&lt;a href=&#34;#cb6-84&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb6-85&#34;&gt;&lt;a href=&#34;#cb6-85&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb6-86&#34;&gt;&lt;a href=&#34;#cb6-86&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;常数优化&#34;&gt;常数优化&lt;/h2&gt;
+&lt;h3 id=&#34;求系数为整数的多项式乘积-axbx&#34;&gt;求系数为整数的多项式乘积 &lt;span class=&#34;math inline&#34;&gt;\(A(x)B(x)\)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+P(x) &amp;amp;= A(x)+ iB(x)\\
+P^2(x) &amp;amp;= A^2(x) -B^2(x) + i2A(x)B(x)\\
+A(x)B(x) &amp;amp;= \frac12\operatorname{Imag}P^2(x) 
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;求系数为整数的多项式-ax-bx-的点值表示&#34;&gt;求系数为整数的多项式 &lt;span class=&#34;math inline&#34;&gt;\(A(x), B(x)\)&lt;/span&gt; 的点值表示&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+P(x) &amp;amp;= A(x)+ iB(x)\\
+\overline{P}(x) &amp;amp;= A(x)-iB(x)\\
+A(x) &amp;amp;= \frac{P(x) + \overline P (x)}{2}\\
+B(x) &amp;amp;= \frac{P(x) - \overline P (x)}{2i}
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;毛爷爷结论： &lt;span class=&#34;math display&#34;&gt;\[
+\overline P(\omega^k) = \overline{P(\omega^{-k})}
+\]&lt;/span&gt; 所以只要一次DFT。&lt;/p&gt;
+&lt;h2 id=&#34;拆系数fft&#34;&gt;拆系数FFT&lt;/h2&gt;
+&lt;h3 id=&#34;求-axbx系数范围-0230&#34;&gt;求 &lt;span class=&#34;math inline&#34;&gt;\(A(x)B(x)\)&lt;/span&gt;，系数范围 &lt;span class=&#34;math inline&#34;&gt;\([0,2^{30})\)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+A(x) &amp;amp;= A_0(x)&amp;amp; + &amp;amp;2^{15}A_1(x) &amp;amp;  \\
+B(x) &amp;amp;= B_0(x)&amp;amp; + &amp;amp;2^{15}B_1(x) &amp;amp;  \\
+A(x)B(x) &amp;amp;= A_0(x)B_0(x)&amp;amp; + &amp;amp;2^{15}(A_0(x)B_1(x) + A_1(x)B_0(x)) + &amp;amp;2^{30}A_1(x)B_1(x)
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;先两次 DFT 求 &lt;span class=&#34;math inline&#34;&gt;\(A_0, A_1, B_0, B_1\)&lt;/span&gt; 的点值表示。&lt;/p&gt;
+&lt;p&gt;然后两次 IDFT(等价于DFT) 求 &lt;span class=&#34;math inline&#34;&gt;\(A_0B_0, A_0B_1, A_1B_0, A_1B_1\)&lt;/span&gt; 的系数。&lt;/p&gt;
 &lt;h2 id=&#34;bluesteins-algorithm&#34;&gt;Bluestein’s Algorithm&lt;/h2&gt;
 &lt;p&gt;上面提到的 FFT 算法虽然限制了 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 为 2 的次幂，但在大多数情况下已经足够解决问题。&lt;/p&gt;
 &lt;p&gt;对于更一般的 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 需要用到 &lt;code&gt;Bluestein’s Algorithm&lt;/code&gt; ，可以参考2016年国家集训队论文《再探快速傅里叶变换——毛啸》。&lt;/p&gt;
