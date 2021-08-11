@@ -34,7 +34,7 @@
 &lt;li&gt;&lt;code&gt;Poly deriv(Poly a);&lt;/code&gt;：多项式求导。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Poly integ(Poly a);&lt;/code&gt;：多项式积分。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Poly ln(Poly a);&lt;/code&gt;：多项式对数函数。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Poly expNewton(Poly a);&lt;/code&gt;：多项式指数函数（牛顿迭代）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Poly expNewton(Poly a);&lt;/code&gt;：多项式指数函数（牛顿迭代，&lt;strong&gt;需要保证长度为 2 的幂&lt;/strong&gt;）。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Poly exp2(Poly a);&lt;/code&gt;：多项式指数函数（半在线卷积）。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Poly exp(Poly a);&lt;/code&gt;：多项式指数函数（优化半在线卷积）。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Poly power(Poly a, int k);&lt;/code&gt;：多项式幂函数。&lt;/li&gt;
@@ -45,7 +45,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;int divAt(Poly p, Poly q, LL n);&lt;/code&gt;：增加 &lt;span class=&#34;math inline&#34;&gt;\([x^n]\dfrac{P(x)}{Q(x)}\)&lt;/span&gt;，并稍微卡了卡常。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;expNewton, exp2, exp&lt;/code&gt;：牛顿迭代exp改名，分别增加 &lt;span class=&#34;math inline&#34;&gt;\(O\left(n \log^2n\right)\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(O\left(\dfrac{n \log^2n}{\log\log n}\right)\)&lt;/span&gt; 半在线卷积求多项式 Exp。（由于懒得写递归的，顺便发明了多叉cdq分治迭代版）&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;invRec, inverse&lt;/code&gt;：原求逆需要长度为 2 的幂，保留为 &lt;code&gt;invRec&lt;/code&gt;，增加新的 &lt;code&gt;inverse&lt;/code&gt;，不需要保证长度。现在所有多项式操作均不要求长度为 2 的幂。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;invRec, inverse&lt;/code&gt;：原求逆需要长度为 2 的幂，保留为 &lt;code&gt;invRec&lt;/code&gt;，增加新的 &lt;code&gt;inverse&lt;/code&gt;，不需要保证长度。现在所有多项式操作（除了 &lt;code&gt;dft, idft, expNewton&lt;/code&gt;）均不要求长度为 2 的幂。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;namespace&lt;/span&gt; Polynomial &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;using&lt;/span&gt; Poly &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;gt;;&lt;/span&gt;&lt;/span&gt;

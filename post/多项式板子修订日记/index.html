@@ -640,7 +640,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <li><code>Poly deriv(Poly a);</code>：多项式求导。</li>
 <li><code>Poly integ(Poly a);</code>：多项式积分。</li>
 <li><code>Poly ln(Poly a);</code>：多项式对数函数。</li>
-<li><code>Poly expNewton(Poly a);</code>：多项式指数函数（牛顿迭代）。</li>
+<li><code>Poly expNewton(Poly a);</code>：多项式指数函数（牛顿迭代，<strong>需要保证长度为 2 的幂</strong>）。</li>
 <li><code>Poly exp2(Poly a);</code>：多项式指数函数（半在线卷积）。</li>
 <li><code>Poly exp(Poly a);</code>：多项式指数函数（优化半在线卷积）。</li>
 <li><code>Poly power(Poly a, int k);</code>：多项式幂函数。</li>
@@ -651,7 +651,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <ul>
 <li><code>int divAt(Poly p, Poly q, LL n);</code>：增加 <span class="math inline">\([x^n]\dfrac{P(x)}{Q(x)}\)</span>，并稍微卡了卡常。</li>
 <li><code>expNewton, exp2, exp</code>：牛顿迭代exp改名，分别增加 <span class="math inline">\(O\left(n \log^2n\right)\)</span> 和 <span class="math inline">\(O\left(\dfrac{n \log^2n}{\log\log n}\right)\)</span> 半在线卷积求多项式 Exp。（由于懒得写递归的，顺便发明了多叉cdq分治迭代版）</li>
-<li><code>invRec, inverse</code>：原求逆需要长度为 2 的幂，保留为 <code>invRec</code>，增加新的 <code>inverse</code>，不需要保证长度。现在所有多项式操作均不要求长度为 2 的幂。</li>
+<li><code>invRec, inverse</code>：原求逆需要长度为 2 的幂，保留为 <code>invRec</code>，增加新的 <code>inverse</code>，不需要保证长度。现在所有多项式操作（除了 <code>dft, idft, expNewton</code>）均不要求长度为 2 的幂。</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Polynomial <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Poly <span class="op">=</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;;</span></span>
