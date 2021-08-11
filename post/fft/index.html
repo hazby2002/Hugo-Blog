@@ -496,7 +496,93 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
+								<a href="#recursive" onclick="onNavClick(`#recursive-nav`)" id="recursive-nav">
+									Recursive
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#dif-1" onclick="onNavClick(`#dif-1-nav`)" id="dif-1-nav">
+									DIF
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
 								<a href="#dit-1" onclick="onNavClick(`#dit-1-nav`)" id="dit-1-nav">
+									DIT
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#non-recursive" onclick="onNavClick(`#non-recursive-nav`)" id="non-recursive-nav">
+									Non-recursive
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#dit-2" onclick="onNavClick(`#dit-2-nav`)" id="dit-2-nav">
 									DIT
 								</a>
 							</li>
@@ -516,7 +602,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#dif-1" onclick="onNavClick(`#dif-1-nav`)" id="dif-1-nav">
+								<a href="#dif-2" onclick="onNavClick(`#dif-2-nav`)" id="dif-2-nav">
 									DIF
 								</a>
 							</li>
@@ -531,6 +617,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 						
+							
+								</ul>
 							
 						
 						
@@ -1054,7 +1142,93 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
+								<a href="#recursive" onclick="onNavClick(`#recursive-nav`)" id="recursive-nav">
+									Recursive
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#dif-1" onclick="onNavClick(`#dif-1-nav`)" id="dif-1-nav">
+									DIF
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+						
+						
+						
+							<li>
 								<a href="#dit-1" onclick="onNavClick(`#dit-1-nav`)" id="dit-1-nav">
+									DIT
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#non-recursive" onclick="onNavClick(`#non-recursive-nav`)" id="non-recursive-nav">
+									Non-recursive
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#dit-2" onclick="onNavClick(`#dit-2-nav`)" id="dit-2-nav">
 									DIT
 								</a>
 							</li>
@@ -1074,7 +1248,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#dif-1" onclick="onNavClick(`#dif-1-nav`)" id="dif-1-nav">
+								<a href="#dif-2" onclick="onNavClick(`#dif-2-nav`)" id="dif-2-nav">
 									DIF
 								</a>
 							</li>
@@ -1089,6 +1263,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 						
+							
+								</ul>
 							
 						
 						
@@ -1442,7 +1618,7 @@ A(x) = A_0(x^2) + xA_1(x^2)
 A(\omega_n^k) &amp;= A_0(\omega_n^{2k}) + \omega_n^kA_1(\omega_n^{2k})\\
 &amp;= A_0(\omega_{n/2}^k) + \omega_n^kA_1(\omega_{n/2}^k)
 \end{aligned}
-\]</span> <strong>将 <span class="math inline">\(A(\omega_n^k)\)</span> 再细分为左右两半</strong>，这里运用了等式 <span class="math inline">\(\omega_{n/2}^k = \omega_{n/2}^{k + n/2}\)</span> 和 <span class="math inline">\(\omega_n^k+\omega_n{k+n/2} = 0\)</span> : <span class="math display">\[
+\]</span> <strong>将 <span class="math inline">\(A(\omega_n^k)\)</span> 再分为左右两半</strong>，这里运用了等式 <span class="math inline">\(\omega_{n/2}^k = \omega_{n/2}^{k + n/2}\)</span> 和 <span class="math inline">\(\omega_n^k+\omega_n^{k+n/2} = 0\)</span> : <span class="math display">\[
 \begin{aligned}
 A(\omega_n^k) &amp;= A_0(\omega_{n/2}^k) + \omega_n^kA_1(\omega_{n/2}^k)\\
 A\left(\omega_n^{k+n/2}\right) &amp;= A_0(\omega_{n/2}^k) - \omega_n^kA_1(\omega_{n/2}^k)
@@ -1455,7 +1631,9 @@ T(n) = 2T(\frac{n}{2}) + O(n)
 T(n) = O(n \log n)
 \]</span></p>
 <h2 id="implementation">Implementation</h2>
-<p>上述两种计算方式均可以使用递归实现，这里直接给出代码，不再赘述。 <strong>DIF</strong></p>
+<h3 id="recursive">Recursive</h3>
+<p>上述两种计算方式均可以使用递归实现，这里直接给出代码，不再赘述。</p>
+<h4 id="dif-1">DIF</h4>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">double</span> PI <span class="op">=</span> acos<span class="op">(-</span><span class="fl">1.0</span><span class="op">);</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dft<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span>Complex<span class="op">&gt;</span> <span class="op">&amp;</span>a<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n <span class="op">=</span> a<span class="op">.</span>size<span class="op">(),</span> m <span class="op">=</span> n <span class="op">&gt;&gt;</span> <span class="dv">1</span><span class="op">;</span></span>
@@ -1474,7 +1652,7 @@ T(n) = O(n \log n)
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">&amp;</span>v<span class="op">:</span> a<span class="op">)</span> v<span class="op">.</span>a <span class="op">/=</span> a<span class="op">.</span>size<span class="op">(),</span> v<span class="op">.</span>b <span class="op">/=</span> a<span class="op">.</span>size<span class="op">();</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>reverse<span class="op">(</span>a<span class="op">.</span>begin<span class="op">()</span> <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> a<span class="op">.</span>end<span class="op">());</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p><strong>DIT</strong></p>
+<h4 id="dit-1">DIT</h4>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">double</span> PI <span class="op">=</span> acos<span class="op">(-</span><span class="fl">1.0</span><span class="op">);</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dft<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span>Complex<span class="op">&gt;</span> <span class="op">&amp;</span>a<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n <span class="op">=</span> a<span class="op">.</span>size<span class="op">(),</span> m <span class="op">=</span> n <span class="op">&gt;&gt;</span> <span class="dv">1</span><span class="op">;</span></span>
@@ -1496,9 +1674,9 @@ T(n) = O(n \log n)
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>reverse<span class="op">(</span>a<span class="op">.</span>begin<span class="op">()</span> <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> a<span class="op">.</span>end<span class="op">());</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>下面探讨以 <strong>非递归方式</strong> 实现 <code>DIF</code> 与 <code>DIT</code>。</p>
-<h3 id="dit-1">DIT</h3>
-<p>由于 <code>DIT</code> <del>更易于理解</del>（其实只是资料多），先讲这个。</p>
-<p>考虑递归的过程： <span class="math display">\[
+<h3 id="non-recursive">Non-recursive</h3>
+<h4 id="dit-2">DIT</h4>
+<p>先讲较常用的DIT。 考虑递归的过程： <span class="math display">\[
 \begin{aligned}
 &amp;0. (a_0, a_1, a_2, a_3, a_4, a_5, a_6, a_7)\\
 &amp;1. (a_0, a_2, a_4, a_6)(a_1, a_3, a_5, a_7)\\
@@ -1519,7 +1697,7 @@ p_{i + 1} = p_{i} - p&#39;_i +
 \dfrac{n}{2^{i+1}}+\dfrac{p&#39;_i-1}{2} &amp; p_i&#39; \equiv 1 \pmod 2\\
 \dfrac{p&#39;_i}{2} &amp; p_i&#39; \equiv 0 \pmod 2
 \end{cases}
-\]</span> 如果将 <span class="math inline">\(p_0\)</span> 写成二进制 <span class="math inline">\(\overline{b_4b_3b_2b_1b_0}\)</span>（这里以 <span class="math inline">\(n = 32\)</span> 为例），那么单次变化的过程相当于把二进制的后几位向右 <code>rotate</code> 一位，总的变化过程可以描述为： <span class="math display">\[
+\]</span> 如果将 <span class="math inline">\(p_0\)</span> 写成二进制 <span class="math inline">\(\overline{b_4b_3b_2b_1b_0}\)</span>（这里以 <span class="math inline">\(n = 32\)</span> 为例），那么单次变化的过程相当于把二进制的后几位 <code>rotate</code> 一位，总的变化过程可以描述为： <span class="math display">\[
 \begin{aligned}
 \overline{|b_4b_3b_2b_1b_0} \rightarrow \overline{|b_0b_4b_3b_2b_1} \\
 \overline{b_0|b_4b_3b_2b_1} \rightarrow \overline{b_0|b_1b_4b_3b_2} \\
@@ -1527,7 +1705,7 @@ p_{i + 1} = p_{i} - p&#39;_i +
 \overline{b_0b_1b_2|b_4b_3} \rightarrow \overline{b_0b_1b_2|b_3b_4} \\
 \overline{b_0b_1b_2b_3|b_4} \rightarrow \overline{b_0b_1b_2b_3|b_4}
 \end{aligned}
-\]</span> 可以发现，整个过程实际上是在做 <code>reverse</code> 操作！</p>
+\]</span> 可以发现，整个过程实际上是在做 <code>bit-reverse</code> 操作！</p>
 <p>至此我们找到了映射关系，成功把前面的步骤都砍掉了，只剩回溯，可以改成循环。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dft<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span>Complex<span class="op">&gt;</span> <span class="op">&amp;</span>a<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n <span class="op">=</span> a<span class="op">.</span>size<span class="op">();</span></span>
@@ -1545,8 +1723,8 @@ p_{i + 1} = p_{i} - p&#39;_i +
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="dif-1">DIF</h3>
-<p>这里先将递归版DIF的过程简单复述：</p>
+<h4 id="dif-2">DIF</h4>
+<p>这里先将DIF的过程简单复述：</p>
 <p><strong>第一步：将序列 <span class="math inline">\(a\)</span> 对半分</strong> <span class="math display">\[
 \begin{aligned}
 &amp;p_k=a_k+a_{k+n/2}, &amp;P(x) = \sum_{k = 0}^{n/2-1}p_kx^k\\
@@ -1557,7 +1735,7 @@ p_{i + 1} = p_{i} - p&#39;_i +
 A\left(\omega_n^{2r}\right) &amp;= P(\omega_{n/2}^r)\\
 A\left(\omega_n^{2r+1}\right) &amp;= Q(\omega_{n/2}^r)
 \end{aligned}
-\]</span> 发现回溯的过程（即第三步）实际上也只是在重新安排数据存储的位置，而且是上面 <span class="math inline">\(DIT\)</span> 第一步的逆过程，所以就是位翻转的逆过程，所以还是位翻转。</p>
+\]</span> 发现回溯的过程（即第三步）实际上也只是在重新安排数据存储的位置，而且是上面 DIT 第一步的逆过程，所以就是位反转的逆过程，所以还是位反转。</p>
 <p>所以最后安排数据位置可以一步搞定，只剩递归压栈的过程，可以改成循环。</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dft<span class="op">(</span>vector<span class="op">&lt;</span>Complex<span class="op">&gt;</span> <span class="op">&amp;</span>a<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n <span class="op">=</span> a<span class="op">.</span>size<span class="op">();</span></span>
@@ -1576,7 +1754,7 @@ A\left(\omega_n^{2r+1}\right) &amp;= Q(\omega_{n/2}^r)
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="combination">Combination</h3>
-<p>发现 <span class="math inline">\(DIF\)</span> 的最后一步和 <span class="math inline">\(DIT\)</span> 的第一步都是位翻转，所以先 <span class="math inline">\(DIF\)</span> 再 <span class="math inline">\(DIT\)</span>，就可以省略位翻转。</p>
+<p>发现 DIF 的最后一步和 DIT 的第一步都是位反转，所以先 DIF 再 DIT，就可以省略位反转。</p>
 <p>完整代码</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2726,7 +2904,7 @@ A(x)B(x) &amp;= A_0(x)B_0(x)&amp; + &amp;2^{15}(A_0(x)B_1(x) + A_1(x)B_0(x)) + &
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2021-08-09</p>
+		    <p style="color:#777;">最后修改于 2021-08-11</p>
                     
                 </div>
             </div>

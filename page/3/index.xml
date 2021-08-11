@@ -6,9 +6,150 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sun, 08 Aug 2021 12:55:13 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Aug 2021 20:59:52 +0800</lastBuildDate>
     
         <atom:link href="https://blog.asukakyle.top/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>[Codeforces938G]Shortest Path Queries</title>
+        <link>https://blog.asukakyle.top/post/cf938g/</link>
+        <pubDate>Thu, 15 Apr 2021 17:26:44 +0800</pubDate>
+        
+        <guid>https://blog.asukakyle.top/post/cf938g/</guid>
+        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/cf938g/ -&lt;blockquote&gt;
+&lt;p&gt;给定一个带权无向图，实现三种操作：加边，删边，询问两点间的异或最短路。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(n, m, q \leq 2\times 10^5\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;类似最大 xor 和路径，用线性基可以求解异或最短路。&lt;/p&gt;
+&lt;p&gt;因为线性基删除很麻烦，所以直接离线用线段树分治。&lt;/p&gt;
+&lt;p&gt;图可能不连通，需要用并查集维护连通性，然后记录每个点到当前根的异或和 &lt;span class=&#34;math inline&#34;&gt;\(d_x\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;加边时设 &lt;span class=&#34;math inline&#34;&gt;\(val = d_x\oplus d_y \oplus w\)&lt;/span&gt;，如果 &lt;span class=&#34;math inline&#34;&gt;\(x, y\)&lt;/span&gt; 已经联通则将 &lt;span class=&#34;math inline&#34;&gt;\(val\)&lt;/span&gt; 加入当前联通块的线性基，如果不在一个并查集，连接两个根，边权为 &lt;span class=&#34;math inline&#34;&gt;\(val\)&lt;/span&gt;。&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#define perr&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;...)&lt;/span&gt;&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;fprintf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;stderr&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#define dbg&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;...)&lt;/span&gt;&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;perr&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\033&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;[32;1m&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;perr&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;perr&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\033&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;[0m&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;template&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; T&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; U&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;bool&lt;/span&gt; smin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;T &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; U &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;?&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;template&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; T&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; U&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;bool&lt;/span&gt; smax&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;T &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; U &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;?&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-12&#34;&gt;&lt;a href=&#34;#cb1-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-13&#34;&gt;&lt;a href=&#34;#cb1-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;using&lt;/span&gt; LL &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;long&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;long&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-14&#34;&gt;&lt;a href=&#34;#cb1-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;using&lt;/span&gt; PII &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;pair&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-15&#34;&gt;&lt;a href=&#34;#cb1-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-16&#34;&gt;&lt;a href=&#34;#cb1-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;constexpr&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; N&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;2e5&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-17&#34;&gt;&lt;a href=&#34;#cb1-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;PII query&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;N&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-18&#34;&gt;&lt;a href=&#34;#cb1-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#define ls &lt;/span&gt;o&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-19&#34;&gt;&lt;a href=&#34;#cb1-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#define rs &lt;/span&gt;o&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;&lt;span class=&#34;op&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;pp&#34;&gt; &lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-20&#34;&gt;&lt;a href=&#34;#cb1-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;array&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; g&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;N &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-21&#34;&gt;&lt;a href=&#34;#cb1-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; update&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; o&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; l&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; r&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; u&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-22&#34;&gt;&lt;a href=&#34;#cb1-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;r &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;||&lt;/span&gt; l &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-23&#34;&gt;&lt;a href=&#34;#cb1-23&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; l &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; r &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-24&#34;&gt;&lt;a href=&#34;#cb1-24&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    g&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;o&lt;span class=&#34;op&#34;&gt;].&lt;/span&gt;push_back&lt;span class=&#34;op&#34;&gt;({&lt;/span&gt;u&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;});&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-25&#34;&gt;&lt;a href=&#34;#cb1-25&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-26&#34;&gt;&lt;a href=&#34;#cb1-26&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-27&#34;&gt;&lt;a href=&#34;#cb1-27&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; m &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; l &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; r &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-28&#34;&gt;&lt;a href=&#34;#cb1-28&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  update&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;ls&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; l&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; u&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; update&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;rs&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; r&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; u&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-29&#34;&gt;&lt;a href=&#34;#cb1-29&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-30&#34;&gt;&lt;a href=&#34;#cb1-30&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;pair&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; changes&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-31&#34;&gt;&lt;a href=&#34;#cb1-31&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; record&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt; changes&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;emplace_back&lt;span class=&#34;op&#34;&gt;(&amp;amp;&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-32&#34;&gt;&lt;a href=&#34;#cb1-32&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; rollBack&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;size_t&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-33&#34;&gt;&lt;a href=&#34;#cb1-33&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;changes&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-34&#34;&gt;&lt;a href=&#34;#cb1-34&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;changes&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;back&lt;span class=&#34;op&#34;&gt;().&lt;/span&gt;first &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; changes&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;back&lt;span class=&#34;op&#34;&gt;().&lt;/span&gt;second&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-35&#34;&gt;&lt;a href=&#34;#cb1-35&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    changes&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;pop_back&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-36&#34;&gt;&lt;a href=&#34;#cb1-36&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-37&#34;&gt;&lt;a href=&#34;#cb1-37&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;/span&gt;
+&lt;span id=&#34;cb1-38&#34;&gt;&lt;a href=&#34;#cb1-38&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-39&#34;&gt;&lt;a href=&#34;#cb1-39&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; fa&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;N&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; siz&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;N&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;N&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-40&#34;&gt;&lt;a href=&#34;#cb1-40&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; find&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-41&#34;&gt;&lt;a href=&#34;#cb1-41&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; r &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-42&#34;&gt;&lt;a href=&#34;#cb1-42&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;op&#34;&gt;!=&lt;/span&gt; fa&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;])&lt;/span&gt; r &lt;span class=&#34;op&#34;&gt;^=&lt;/span&gt; val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; fa&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;]];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-43&#34;&gt;&lt;a href=&#34;#cb1-43&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; r&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-44&#34;&gt;&lt;a href=&#34;#cb1-44&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-45&#34;&gt;&lt;a href=&#34;#cb1-45&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; ins&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-46&#34;&gt;&lt;a href=&#34;#cb1-46&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(!&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-47&#34;&gt;&lt;a href=&#34;#cb1-47&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;29&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;--)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-48&#34;&gt;&lt;a href=&#34;#cb1-48&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;^&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;continue&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-49&#34;&gt;&lt;a href=&#34;#cb1-49&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(!&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-50&#34;&gt;&lt;a href=&#34;#cb1-50&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      record&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-51&#34;&gt;&lt;a href=&#34;#cb1-51&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-52&#34;&gt;&lt;a href=&#34;#cb1-52&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-53&#34;&gt;&lt;a href=&#34;#cb1-53&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-54&#34;&gt;&lt;a href=&#34;#cb1-54&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    x &lt;span class=&#34;op&#34;&gt;^=&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-55&#34;&gt;&lt;a href=&#34;#cb1-55&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-56&#34;&gt;&lt;a href=&#34;#cb1-56&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-57&#34;&gt;&lt;a href=&#34;#cb1-57&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;N&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;30&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-58&#34;&gt;&lt;a href=&#34;#cb1-58&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; solve&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; o&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; l&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; r&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-59&#34;&gt;&lt;a href=&#34;#cb1-59&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;size_t&lt;/span&gt; now &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; changes&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-60&#34;&gt;&lt;a href=&#34;#cb1-60&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; z&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; g&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;o&lt;span class=&#34;op&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-61&#34;&gt;&lt;a href=&#34;#cb1-61&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; r &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; find&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;^&lt;/span&gt; find&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;^&lt;/span&gt; z&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-62&#34;&gt;&lt;a href=&#34;#cb1-62&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-63&#34;&gt;&lt;a href=&#34;#cb1-63&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      ins&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; r&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-64&#34;&gt;&lt;a href=&#34;#cb1-64&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-65&#34;&gt;&lt;a href=&#34;#cb1-65&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;siz&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; siz&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;swap&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-66&#34;&gt;&lt;a href=&#34;#cb1-66&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      record&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;fa&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;]),&lt;/span&gt; record&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;siz&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;]),&lt;/span&gt; record&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-67&#34;&gt;&lt;a href=&#34;#cb1-67&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      fa&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; siz&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; siz&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;^=&lt;/span&gt; r&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-68&#34;&gt;&lt;a href=&#34;#cb1-68&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;30&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; ins&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-69&#34;&gt;&lt;a href=&#34;#cb1-69&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-70&#34;&gt;&lt;a href=&#34;#cb1-70&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-71&#34;&gt;&lt;a href=&#34;#cb1-71&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;l &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; r&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-72&#34;&gt;&lt;a href=&#34;#cb1-72&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; query&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;l&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-73&#34;&gt;&lt;a href=&#34;#cb1-73&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-74&#34;&gt;&lt;a href=&#34;#cb1-74&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; ans &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; find&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;^&lt;/span&gt; find&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-75&#34;&gt;&lt;a href=&#34;#cb1-75&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;ot&#34;&gt;assert&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-76&#34;&gt;&lt;a href=&#34;#cb1-76&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;29&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;--)&lt;/span&gt; smin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;ans&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; ans &lt;span class=&#34;op&#34;&gt;^&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-77&#34;&gt;&lt;a href=&#34;#cb1-77&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cout&lt;span class=&#34;op&#34;&gt; &amp;lt;&amp;lt;&lt;/span&gt; ans &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-78&#34;&gt;&lt;a href=&#34;#cb1-78&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-79&#34;&gt;&lt;a href=&#34;#cb1-79&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    rollBack&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;now&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-80&#34;&gt;&lt;a href=&#34;#cb1-80&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-81&#34;&gt;&lt;a href=&#34;#cb1-81&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-82&#34;&gt;&lt;a href=&#34;#cb1-82&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; m &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; l &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; r &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-83&#34;&gt;&lt;a href=&#34;#cb1-83&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  solve&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;ls&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; l&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; solve&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;rs&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; r&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-84&#34;&gt;&lt;a href=&#34;#cb1-84&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  rollBack&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;now&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-85&#34;&gt;&lt;a href=&#34;#cb1-85&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-86&#34;&gt;&lt;a href=&#34;#cb1-86&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; main&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-87&#34;&gt;&lt;a href=&#34;#cb1-87&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;ios&lt;span class=&#34;bu&#34;&gt;::&lt;/span&gt;sync_with_stdio&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-88&#34;&gt;&lt;a href=&#34;#cb1-88&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;tie&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;nullptr&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-89&#34;&gt;&lt;a href=&#34;#cb1-89&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-90&#34;&gt;&lt;a href=&#34;#cb1-90&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-91&#34;&gt;&lt;a href=&#34;#cb1-91&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;map&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;PII&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; PII&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-92&#34;&gt;&lt;a href=&#34;#cb1-92&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;--)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-93&#34;&gt;&lt;a href=&#34;#cb1-93&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; z&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-94&#34;&gt;&lt;a href=&#34;#cb1-94&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; z&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-95&#34;&gt;&lt;a href=&#34;#cb1-95&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    t&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;PII&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; z&lt;span class=&#34;op&#34;&gt;};&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-96&#34;&gt;&lt;a href=&#34;#cb1-96&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-97&#34;&gt;&lt;a href=&#34;#cb1-97&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-98&#34;&gt;&lt;a href=&#34;#cb1-98&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-99&#34;&gt;&lt;a href=&#34;#cb1-99&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; opt&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-100&#34;&gt;&lt;a href=&#34;#cb1-100&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; opt &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-101&#34;&gt;&lt;a href=&#34;#cb1-101&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;opt &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-102&#34;&gt;&lt;a href=&#34;#cb1-102&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; z&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-103&#34;&gt;&lt;a href=&#34;#cb1-103&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; z&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-104&#34;&gt;&lt;a href=&#34;#cb1-104&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      t&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;PII&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; z&lt;span class=&#34;op&#34;&gt;};&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-105&#34;&gt;&lt;a href=&#34;#cb1-105&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;opt &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-106&#34;&gt;&lt;a href=&#34;#cb1-106&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;l&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;PII&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-107&#34;&gt;&lt;a href=&#34;#cb1-107&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      update&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; l&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-108&#34;&gt;&lt;a href=&#34;#cb1-108&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      t&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;erase&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;PII&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;));&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-109&#34;&gt;&lt;a href=&#34;#cb1-109&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-110&#34;&gt;&lt;a href=&#34;#cb1-110&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      query&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;};&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-111&#34;&gt;&lt;a href=&#34;#cb1-111&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-112&#34;&gt;&lt;a href=&#34;#cb1-112&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-113&#34;&gt;&lt;a href=&#34;#cb1-113&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;[&lt;/span&gt;u&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-114&#34;&gt;&lt;a href=&#34;#cb1-114&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; u&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-115&#34;&gt;&lt;a href=&#34;#cb1-115&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;[&lt;/span&gt;l&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-116&#34;&gt;&lt;a href=&#34;#cb1-116&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    update&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; l&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-117&#34;&gt;&lt;a href=&#34;#cb1-117&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-118&#34;&gt;&lt;a href=&#34;#cb1-118&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;iota&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;fa&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; fa &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-119&#34;&gt;&lt;a href=&#34;#cb1-119&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;fill&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;siz&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; siz &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-120&#34;&gt;&lt;a href=&#34;#cb1-120&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  solve&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-121&#34;&gt;&lt;a href=&#34;#cb1-121&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-122&#34;&gt;&lt;a href=&#34;#cb1-122&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+- https://blog.asukakyle.top/post/cf938g/ - CC BY-NC-SA 4.0</description>
+        </item>
     
     
     
@@ -2779,1404 +2920,6 @@ B_{t+1}(x) \equiv B_t(x) - \frac{B_t^2(x) - A(x)}{2B_t(x)} \pmod{x^{2^{t+1}}}
 &lt;span id=&#34;cb2-37&#34;&gt;&lt;a href=&#34;#cb2-37&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb2-38&#34;&gt;&lt;a href=&#34;#cb2-38&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 - https://blog.asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/ - CC BY-NC-SA 4.0</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Fast Fourier Transform</title>
-        <link>https://blog.asukakyle.top/post/fft/</link>
-        <pubDate>Thu, 18 Mar 2021 15:28:59 +0800</pubDate>
-        
-        <guid>https://blog.asukakyle.top/post/fft/</guid>
-        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/fft/ -&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;快速傅里叶变换(Fast Fourier Transform，FFT)&lt;/code&gt;是一种可在 &lt;span class=&#34;math inline&#34;&gt;\(O(n \log n)\)&lt;/span&gt; 时间内完成的&lt;code&gt;离散傅里叶变换 (Discrete Fourier Transform，DFT)&lt;/code&gt; 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。&lt;/p&gt;
-&lt;h3 id=&#34;多项式&#34;&gt;多项式&lt;/h3&gt;
-&lt;p&gt;形如 &lt;span class=&#34;math display&#34;&gt;\[
-A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1}
-\]&lt;/span&gt; 的式子称为 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 的 &lt;span class=&#34;math inline&#34;&gt;\(n - 1\)&lt;/span&gt; 次多项式，其中 &lt;span class=&#34;math inline&#34;&gt;\(a_0, a_1, \dots, a_{n - 1}\)&lt;/span&gt; 称为多项式系数，&lt;span class=&#34;math inline&#34;&gt;\(n-1\)&lt;/span&gt; 称为多项式的次数，记为 &lt;span class=&#34;math inline&#34;&gt;\(\deg A(x)\)&lt;/span&gt; 或 &lt;span class=&#34;math inline&#34;&gt;\(\deg A\)&lt;/span&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;点值&#34;&gt;点值&lt;/h3&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(n - 1\)&lt;/span&gt; 次多项式 &lt;span class=&#34;math inline&#34;&gt;\(A(x)\)&lt;/span&gt; 在 &lt;span class=&#34;math inline&#34;&gt;\(x = m\)&lt;/span&gt; 处的&lt;strong&gt;点值&lt;/strong&gt; &lt;span class=&#34;math display&#34;&gt;\[
-A(m) = \sum_{k=0}^{n-1} a_km^k
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;多项式乘法&#34;&gt;多项式乘法&lt;/h3&gt;
-&lt;p&gt;记 &lt;span class=&#34;math inline&#34;&gt;\(A(x)\times B(x)\)&lt;/span&gt; 表示多项式 &lt;span class=&#34;math inline&#34;&gt;\(A(x), B(x)\)&lt;/span&gt; 做多项式乘法，可以简写为 &lt;span class=&#34;math inline&#34;&gt;\(A(x)\cdot B(x)\)&lt;/span&gt; 或 &lt;span class=&#34;math inline&#34;&gt;\(A(x)B(x)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;多项式乘法 &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-C(x) = &amp;amp;A(x) \times B(x)\\
-= &amp;amp;\left(a_0 + a_1x + \dots + a_{\deg A}x^{\deg A}\right)\cdot\left(b_0 + b_1x + \dots + b_{\deg B}x^{\deg B}\right)\\
-= &amp;amp;\sum_{r = 0}^{\deg A + \deg B} \sum_{k = 0}^r a_kb_{r - k} x^r
-\end{aligned}
-\]&lt;/span&gt; 用系数关系可以表示为 &lt;span class=&#34;math display&#34;&gt;\[
-c_r = \sum_{k = 0}^ra_kb_{r - k}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;其中 &lt;span class=&#34;math inline&#34;&gt;\(\deg C = \deg A + \deg B\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;易证它们的点值满足如下关系 &lt;span class=&#34;math display&#34;&gt;\[
-C(m) = A(m)B(m)
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;循环卷积&#34;&gt;循环卷积&lt;/h3&gt;
-&lt;p&gt;记 &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{conv}(A, B, n)\)&lt;/span&gt; 表示多项式 &lt;span class=&#34;math inline&#34;&gt;\(A(x), B(x)\)&lt;/span&gt; 做长度为 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 的循环卷积。&lt;/p&gt;
-&lt;p&gt;循环卷积 &lt;span class=&#34;math display&#34;&gt;\[
-C(x) = \operatorname{conv}(A, B, n)
-\]&lt;/span&gt; 系数关系表示为 &lt;span class=&#34;math display&#34;&gt;\[
-c_k = \sum_{p, q}[(p + q) \mod n = k]a_pb_q
-\]&lt;/span&gt; 其中 &lt;span class=&#34;math inline&#34;&gt;\(\deg C = n - 1\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;容易发现，当 &lt;span class=&#34;math inline&#34;&gt;\(n &amp;gt; \deg A + \deg B\)&lt;/span&gt; 时，该运算等价于多项式乘法。&lt;/p&gt;
-&lt;h3 id=&#34;dft&#34;&gt;DFT&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;离散傅里叶变换(Discrete Fourier Transform, DFT)&lt;/code&gt; 将多项式 &lt;span class=&#34;math inline&#34;&gt;\(A(x)=\sum_{k=0}^{n-1}a_kx^k\)&lt;/span&gt; 转换为一些特殊的点值。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;记 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 次单位复根 &lt;span class=&#34;math display&#34;&gt;\[
-\omega_n = e^{\frac{2i\pi}n}=\cos\dfrac{2\pi}{n}+i\sin\dfrac{2\pi}{n}
-\]&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(DFT(A)\)&lt;/span&gt; 就是要计算点值 &lt;span class=&#34;math inline&#34;&gt;\(A(\omega_n^k), k = 0， 1， 2， \dots, n-1\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;单位根自带的循环特性使得循环卷积 &lt;span class=&#34;math inline&#34;&gt;\(C(x) = \operatorname{conv}(A, B, n)\)&lt;/span&gt; 的点值也满足： &lt;span class=&#34;math display&#34;&gt;\[
-C(\omega_n^k) = A(\omega_n^k)B(\omega_n^k)
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;idft&#34;&gt;IDFT&lt;/h3&gt;
-&lt;p&gt;IDFT 是 DFT 的逆变换。&lt;/p&gt;
-&lt;p&gt;首先，用等比数列求和易证： &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-\frac1n\sum_{k = 0}^{n - 1}\omega_n^{vk} &amp;amp;= [v \mod n = 0]
-\end{aligned}
-\]&lt;/span&gt; 考虑循环卷积 &lt;span class=&#34;math inline&#34;&gt;\(C(x) = \operatorname{conv}(A, B, n)\)&lt;/span&gt; 的系数表示 &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-c_r = &amp;amp;\sum_{p, q}[(p + q) \mod n = r]a_pb_q\\
-= &amp;amp;\sum_{p, q}[(p + q - r) \mod n = 0]a_pb_q\\
-= &amp;amp;\sum_{p, q}\frac1n\sum_{k = 0}^{n - 1}\omega_n^{pk+qk-rk}a_pb_q\\
-= &amp;amp;\sum_{p, q}\frac1n\sum_{k = 0}^{n - 1}\omega_n^{-rk}\cdot\omega_n^{pk}a_p\cdot\omega_n^{qk}b_q\\
-= &amp;amp;\frac1n\sum_{k = 0}^{n - 1}\omega_n^{-rk}\left(\sum_{p}\omega_n^{pk}a_p\sum_q\omega_n^{qk}b_q\right)\\
-= &amp;amp;\frac1n\sum_{k = 0}^{n - 1}\left(\omega_n^{-r}\right)^kA(\omega_n^k)B(\omega_n^k)\\
-= &amp;amp;\frac1n\sum_{k = 0}^{n - 1}\left(\omega_n^{n-r}\right)^kC(\omega_n^k)
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;设多项式 &lt;span class=&#34;math display&#34;&gt;\[
-C&amp;#39;(x) = \sum_{k=0}^{n-1}C(\omega_n^k)x^k
-\]&lt;/span&gt; 只要计算 &lt;span class=&#34;math inline&#34;&gt;\(DFT(C&amp;#39;)\)&lt;/span&gt; 即可得到 &lt;span class=&#34;math inline&#34;&gt;\(C(x)\)&lt;/span&gt; 的系数，于是我们用 DFT 完成了逆变换 IDFT。&lt;/p&gt;
-&lt;p&gt;用两次 DFT 和一次 IDFT就可以计算 &lt;span class=&#34;math inline&#34;&gt;\(\operatorname{conv}(A, B, n)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;暴力的复杂度是 &lt;span class=&#34;math inline&#34;&gt;\(O(n^2)\)&lt;/span&gt;，此处不赘述。&lt;/p&gt;
-&lt;h3 id=&#34;fft&#34;&gt;FFT&lt;/h3&gt;
-&lt;p&gt;现在尝试将 DFT 问题分解以优化时间复杂度。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;本部分认为 &lt;span class=&#34;math inline&#34;&gt;\(n = \deg A + 1\)&lt;/span&gt; 为 &lt;span class=&#34;math inline&#34;&gt;\(2\)&lt;/span&gt; 的整数次幂。对于更一般的情况，暂不考虑。&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&#34;dif&#34;&gt;DIF&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;将序列 &lt;span class=&#34;math inline&#34;&gt;\(a_i\)&lt;/span&gt; 分成左右两半&lt;/strong&gt;。 &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-A(\omega_n^{r}) &amp;amp;= \sum_{k = 0}^{n-1}a_k\omega_n^{rk}\\
-&amp;amp;= \sum_{k = 0}^{n / 2 - 1} \left(a_k\cdot\omega_n^{rk} + a_{k+n/2}\cdot\omega_n^{rk+rn/2}\right)\\
-&amp;amp;= \sum_{k = 0}^{n / 2 - 1} \left[a_k\cdot\omega_n^{rk} + (-1)^r\cdot a_{k+n/2}\cdot\omega_n^{rk}\right]\\
-&amp;amp;= \sum_{k = 0}^{n / 2 - 1} \left[a_k+(-1)^ra_{k+n/2}\right]\omega_{n}^{rk}
-\end{aligned}
-\]&lt;/span&gt; &lt;strong&gt;进一步，将 &lt;span class=&#34;math inline&#34;&gt;\(A(\omega_{n}^r)\)&lt;/span&gt; 按奇偶分类&lt;/strong&gt;： &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-A\left(\omega_n^{2r}\right) &amp;amp;= \sum_{k=0}^{n/2-1}\left(a_k+a_{k+n/2}\right)\omega_{n/2}^{rk}\\
-A\left(\omega_n^{2r+1}\right) &amp;amp;= \sum_{k=0}^{n/2-1}\left(\omega_{n}^ka_k-\omega_{n}^ka_{k+n/2}\right)\omega_{n/2}^{rk}
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;设 &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-&amp;amp;p_k=a_k+a_{k+n/2}, &amp;amp;P(x) = \sum_{k = 0}^{n/2-1}p_kx^k\\
-&amp;amp;q_k=\omega_{n}^k(a_k-a_{k+n/2}), &amp;amp;Q(x) = \sum_{k=0}^{n/2-1}q_kx^k
-\end{aligned}
-\]&lt;/span&gt; 我们只需要求出 &lt;span class=&#34;math inline&#34;&gt;\(P(\omega_{n/2}^r)\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(Q(\omega_{n/2}^r)\)&lt;/span&gt; ，即求解规模为原来一半的两个子问题 &lt;span class=&#34;math inline&#34;&gt;\(DFT(P), DFT(Q)\)&lt;/span&gt;，就能在 &lt;span class=&#34;math inline&#34;&gt;\(O(n)\)&lt;/span&gt; 时间内计算出 &lt;span class=&#34;math inline&#34;&gt;\(DFT(A)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;h4 id=&#34;dit&#34;&gt;DIT&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;在算法竞赛中这种方法更常见。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;注意到在 &lt;code&gt;DIF&lt;/code&gt; 中我们最后将 &lt;span class=&#34;math inline&#34;&gt;\(A(\omega_n^r)\)&lt;/span&gt; 奇偶分类求解，那不妨思考&lt;strong&gt;将序列 &lt;span class=&#34;math inline&#34;&gt;\(a_k\)&lt;/span&gt; 按奇偶分类&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;设 &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-A_0(x) = a_0 + a_2x + \dots + a_{n - 2}x^{n / 2}\\
-A_1(x) = a_1 + a_3x+ \dots + a_{n - 1}x^{n / 2}
-\end{aligned}
-\]&lt;/span&gt; 则 &lt;span class=&#34;math display&#34;&gt;\[
-A(x) = A_0(x^2) + xA_1(x^2)
-\]&lt;/span&gt; 所以 &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-A(\omega_n^k) &amp;amp;= A_0(\omega_n^{2k}) + \omega_n^kA_1(\omega_n^{2k})\\
-&amp;amp;= A_0(\omega_{n/2}^k) + \omega_n^kA_1(\omega_{n/2}^k)
-\end{aligned}
-\]&lt;/span&gt; &lt;strong&gt;将 &lt;span class=&#34;math inline&#34;&gt;\(A(\omega_n^k)\)&lt;/span&gt; 再细分为左右两半&lt;/strong&gt;，这里运用了等式 &lt;span class=&#34;math inline&#34;&gt;\(\omega_{n/2}^k = \omega_{n/2}^{k + n/2}\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(\omega_n^k+\omega_n{k+n/2} = 0\)&lt;/span&gt; : &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-A(\omega_n^k) &amp;amp;= A_0(\omega_{n/2}^k) + \omega_n^kA_1(\omega_{n/2}^k)\\
-A\left(\omega_n^{k+n/2}\right) &amp;amp;= A_0(\omega_{n/2}^k) - \omega_n^kA_1(\omega_{n/2}^k)
-\end{aligned}
-\]&lt;/span&gt; 我们只需要求出 &lt;span class=&#34;math inline&#34;&gt;\(A_0(\omega_{n/2}^k)\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(A_1(\omega_{n/2}^k)\)&lt;/span&gt; ，即求解规模为原来一半的两个子问题 &lt;span class=&#34;math inline&#34;&gt;\(DFT(A_0), DFT(A_1)\)&lt;/span&gt;，就能在 &lt;span class=&#34;math inline&#34;&gt;\(O(n)\)&lt;/span&gt; 时间内计算出 &lt;span class=&#34;math inline&#34;&gt;\(DFT(A)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;h4 id=&#34;complexity&#34;&gt;Complexity&lt;/h4&gt;
-&lt;p&gt;设次数为 &lt;span class=&#34;math inline&#34;&gt;\(n - 1\)&lt;/span&gt; 的多项式做 DFT 的时间复杂度为 &lt;span class=&#34;math inline&#34;&gt;\(T(n)\)&lt;/span&gt;，则 &lt;span class=&#34;math display&#34;&gt;\[
-T(n) = 2T(\frac{n}{2}) + O(n)
-\]&lt;/span&gt; 根据主定理 &lt;span class=&#34;math display&#34;&gt;\[
-T(n) = O(n \log n)
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;h2 id=&#34;implementation&#34;&gt;Implementation&lt;/h2&gt;
-&lt;p&gt;上述两种计算方式均可以使用递归实现，这里直接给出代码，不再赘述。 &lt;strong&gt;DIF&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;double&lt;/span&gt; PI &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; acos&lt;span class=&#34;op&#34;&gt;(-&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;1.0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;(),&lt;/span&gt; m &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    q&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;cos&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; sin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;));&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;q&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-12&#34;&gt;&lt;a href=&#34;#cb1-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-13&#34;&gt;&lt;a href=&#34;#cb1-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-14&#34;&gt;&lt;a href=&#34;#cb1-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; idft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-15&#34;&gt;&lt;a href=&#34;#cb1-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-16&#34;&gt;&lt;a href=&#34;#cb1-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;v&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a &lt;span class=&#34;op&#34;&gt;/=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;(),&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b &lt;span class=&#34;op&#34;&gt;/=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-17&#34;&gt;&lt;a href=&#34;#cb1-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;reverse&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;begin&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;end&lt;span class=&#34;op&#34;&gt;());&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-18&#34;&gt;&lt;a href=&#34;#cb1-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;DIT&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb2-1&#34;&gt;&lt;a href=&#34;#cb2-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;double&lt;/span&gt; PI &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; acos&lt;span class=&#34;op&#34;&gt;(-&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;1.0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-2&#34;&gt;&lt;a href=&#34;#cb2-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-3&#34;&gt;&lt;a href=&#34;#cb2-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;(),&lt;/span&gt; m &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-4&#34;&gt;&lt;a href=&#34;#cb2-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-5&#34;&gt;&lt;a href=&#34;#cb2-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-6&#34;&gt;&lt;a href=&#34;#cb2-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-7&#34;&gt;&lt;a href=&#34;#cb2-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-8&#34;&gt;&lt;a href=&#34;#cb2-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    q&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-9&#34;&gt;&lt;a href=&#34;#cb2-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-10&#34;&gt;&lt;a href=&#34;#cb2-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;q&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-11&#34;&gt;&lt;a href=&#34;#cb2-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-12&#34;&gt;&lt;a href=&#34;#cb2-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    Complex &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;u &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; v &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;cos&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; sin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-13&#34;&gt;&lt;a href=&#34;#cb2-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; u &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; u &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-14&#34;&gt;&lt;a href=&#34;#cb2-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-15&#34;&gt;&lt;a href=&#34;#cb2-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-16&#34;&gt;&lt;a href=&#34;#cb2-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; idft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-17&#34;&gt;&lt;a href=&#34;#cb2-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-18&#34;&gt;&lt;a href=&#34;#cb2-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;v&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a &lt;span class=&#34;op&#34;&gt;/=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;(),&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b &lt;span class=&#34;op&#34;&gt;/=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-19&#34;&gt;&lt;a href=&#34;#cb2-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;reverse&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;begin&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;end&lt;span class=&#34;op&#34;&gt;());&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-20&#34;&gt;&lt;a href=&#34;#cb2-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;下面探讨以 &lt;strong&gt;非递归方式&lt;/strong&gt; 实现 &lt;code&gt;DIF&lt;/code&gt; 与 &lt;code&gt;DIT&lt;/code&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;dit-1&#34;&gt;DIT&lt;/h3&gt;
-&lt;p&gt;由于 &lt;code&gt;DIT&lt;/code&gt; &lt;del&gt;更易于理解&lt;/del&gt;（其实只是资料多），先讲这个。&lt;/p&gt;
-&lt;p&gt;考虑递归的过程： &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-&amp;amp;0. (a_0, a_1, a_2, a_3, a_4, a_5, a_6, a_7)\\
-&amp;amp;1. (a_0, a_2, a_4, a_6)(a_1, a_3, a_5, a_7)\\
-&amp;amp;2. (a_0, a_4)(a_2, a_6)(a_1, a_5)(a_3, a_7)\\
-&amp;amp;3. (a_0)(a_4)(a_2)(a_6)(a_1)(a_5)(a_3)(a_7)\\
-&amp;amp;2&amp;#39; (A_{00}, A_{01})(A_{10},A_{11})(A_{00},A_{01})(A_{10}, A_{11})\\
-&amp;amp;1&amp;#39; (A_{00}, A_{01}, A_{02}, A_{03})(A_{10}, A_{11}, A_{12}, A_{13})\\
-&amp;amp;0&amp;#39; (A_0, A_1, A_2, A_3, A_4, A_5, A_6, A_7)
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;发现 &lt;span class=&#34;math inline&#34;&gt;\(0 \rightarrow 3\)&lt;/span&gt; 只是在重新安排数据位置，并没有修改数据，如果我们能把映射关系找到，那就可以一步到位，直接从 &lt;span class=&#34;math inline&#34;&gt;\(3\)&lt;/span&gt; 开始。&lt;/p&gt;
-&lt;p&gt;设一个数在第 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 个阶段 &lt;span class=&#34;math inline&#34;&gt;\((0 \leq i \leq \log_2n)\)&lt;/span&gt; 的位置为 &lt;span class=&#34;math inline&#34;&gt;\(p_i\)&lt;/span&gt;，相对位置为 &lt;span class=&#34;math inline&#34;&gt;\(p_i&amp;#39;\)&lt;/span&gt;（&lt;code&gt;相对位置&lt;/code&gt;指它在括号里的位置，例如上面第 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; 阶段 &lt;span class=&#34;math inline&#34;&gt;\(a_1\)&lt;/span&gt; 的相对位置为 &lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;）。&lt;/p&gt;
-&lt;p&gt;容易发现 &lt;span class=&#34;math display&#34;&gt;\[
-p&amp;#39;_i = p_i \mod \frac{n}{2^i}
-\]&lt;/span&gt; &lt;span class=&#34;math display&#34;&gt;\[
-p_{i + 1} = p_{i} - p&amp;#39;_i + 
-\begin{cases}
-\dfrac{n}{2^{i+1}}+\dfrac{p&amp;#39;_i-1}{2} &amp;amp; p_i&amp;#39; \equiv 1 \pmod 2\\
-\dfrac{p&amp;#39;_i}{2} &amp;amp; p_i&amp;#39; \equiv 0 \pmod 2
-\end{cases}
-\]&lt;/span&gt; 如果将 &lt;span class=&#34;math inline&#34;&gt;\(p_0\)&lt;/span&gt; 写成二进制 &lt;span class=&#34;math inline&#34;&gt;\(\overline{b_4b_3b_2b_1b_0}\)&lt;/span&gt;（这里以 &lt;span class=&#34;math inline&#34;&gt;\(n = 32\)&lt;/span&gt; 为例），那么单次变化的过程相当于把二进制的后几位向右 &lt;code&gt;rotate&lt;/code&gt; 一位，总的变化过程可以描述为： &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-\overline{|b_4b_3b_2b_1b_0} \rightarrow \overline{|b_0b_4b_3b_2b_1} \\
-\overline{b_0|b_4b_3b_2b_1} \rightarrow \overline{b_0|b_1b_4b_3b_2} \\
-\overline{b_0b_1|b_4b_3b_2} \rightarrow \overline{b_0b_1|b_2b_4b_3} \\
-\overline{b_0b_1b_2|b_4b_3} \rightarrow \overline{b_0b_1b_2|b_3b_4} \\
-\overline{b_0b_1b_2b_3|b_4} \rightarrow \overline{b_0b_1b_2b_3|b_4}
-\end{aligned}
-\]&lt;/span&gt; 可以发现，整个过程实际上是在做 &lt;code&gt;reverse&lt;/code&gt; 操作！&lt;/p&gt;
-&lt;p&gt;至此我们找到了映射关系，成功把前面的步骤都砍掉了，只剩回溯，可以改成循环。&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb3-1&#34;&gt;&lt;a href=&#34;#cb3-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-2&#34;&gt;&lt;a href=&#34;#cb3-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-3&#34;&gt;&lt;a href=&#34;#cb3-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-4&#34;&gt;&lt;a href=&#34;#cb3-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;swap&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-5&#34;&gt;&lt;a href=&#34;#cb3-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;j &lt;span class=&#34;op&#34;&gt;^=&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-6&#34;&gt;&lt;a href=&#34;#cb3-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-7&#34;&gt;&lt;a href=&#34;#cb3-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-8&#34;&gt;&lt;a href=&#34;#cb3-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-9&#34;&gt;&lt;a href=&#34;#cb3-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-10&#34;&gt;&lt;a href=&#34;#cb3-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; t &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;cos&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; sin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;));&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-11&#34;&gt;&lt;a href=&#34;#cb3-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-12&#34;&gt;&lt;a href=&#34;#cb3-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-13&#34;&gt;&lt;a href=&#34;#cb3-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-14&#34;&gt;&lt;a href=&#34;#cb3-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-15&#34;&gt;&lt;a href=&#34;#cb3-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb3-16&#34;&gt;&lt;a href=&#34;#cb3-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id=&#34;dif-1&#34;&gt;DIF&lt;/h3&gt;
-&lt;p&gt;这里先将递归版DIF的过程简单复述：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;第一步：将序列 &lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; 对半分&lt;/strong&gt; &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-&amp;amp;p_k=a_k+a_{k+n/2}, &amp;amp;P(x) = \sum_{k = 0}^{n/2-1}p_kx^k\\
-&amp;amp;q_k=\omega_{n}^k(a_k-a_{k+n/2}), &amp;amp;Q(x) = \sum_{k=0}^{n/2-1}q_kx^k
-\end{aligned}
-\]&lt;/span&gt; &lt;strong&gt;第二步：递归计算 &lt;span class=&#34;math inline&#34;&gt;\(DFT(p), DFT(q)\)&lt;/span&gt;&lt;/strong&gt; &lt;strong&gt;第三步：重新安排数据位置&lt;/strong&gt; &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-A\left(\omega_n^{2r}\right) &amp;amp;= P(\omega_{n/2}^r)\\
-A\left(\omega_n^{2r+1}\right) &amp;amp;= Q(\omega_{n/2}^r)
-\end{aligned}
-\]&lt;/span&gt; 发现回溯的过程（即第三步）实际上也只是在重新安排数据存储的位置，而且是上面 &lt;span class=&#34;math inline&#34;&gt;\(DIT\)&lt;/span&gt; 第一步的逆过程，所以就是位翻转的逆过程，所以还是位翻转。&lt;/p&gt;
-&lt;p&gt;所以最后安排数据位置可以一步搞定，只剩递归压栈的过程，可以改成循环。&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb4-1&#34;&gt;&lt;a href=&#34;#cb4-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-2&#34;&gt;&lt;a href=&#34;#cb4-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-3&#34;&gt;&lt;a href=&#34;#cb4-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-4&#34;&gt;&lt;a href=&#34;#cb4-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-5&#34;&gt;&lt;a href=&#34;#cb4-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-6&#34;&gt;&lt;a href=&#34;#cb4-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; t &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-7&#34;&gt;&lt;a href=&#34;#cb4-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;cos&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; sin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;));&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-8&#34;&gt;&lt;a href=&#34;#cb4-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-9&#34;&gt;&lt;a href=&#34;#cb4-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-10&#34;&gt;&lt;a href=&#34;#cb4-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-11&#34;&gt;&lt;a href=&#34;#cb4-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-12&#34;&gt;&lt;a href=&#34;#cb4-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-13&#34;&gt;&lt;a href=&#34;#cb4-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;swap&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-14&#34;&gt;&lt;a href=&#34;#cb4-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;j &lt;span class=&#34;op&#34;&gt;^=&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-15&#34;&gt;&lt;a href=&#34;#cb4-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb4-16&#34;&gt;&lt;a href=&#34;#cb4-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id=&#34;combination&#34;&gt;Combination&lt;/h3&gt;
-&lt;p&gt;发现 &lt;span class=&#34;math inline&#34;&gt;\(DIF\)&lt;/span&gt; 的最后一步和 &lt;span class=&#34;math inline&#34;&gt;\(DIT\)&lt;/span&gt; 的第一步都是位翻转，所以先 &lt;span class=&#34;math inline&#34;&gt;\(DIF\)&lt;/span&gt; 再 &lt;span class=&#34;math inline&#34;&gt;\(DIT\)&lt;/span&gt;，就可以省略位翻转。&lt;/p&gt;
-&lt;p&gt;完整代码&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb5-1&#34;&gt;&lt;a href=&#34;#cb5-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-2&#34;&gt;&lt;a href=&#34;#cb5-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-3&#34;&gt;&lt;a href=&#34;#cb5-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;template&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; T&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-4&#34;&gt;&lt;a href=&#34;#cb5-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;T &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;w&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-5&#34;&gt;&lt;a href=&#34;#cb5-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; c&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; p &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-6&#34;&gt;&lt;a href=&#34;#cb5-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(!&lt;/span&gt;isdigit&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;c &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; getchar&lt;span class=&#34;op&#34;&gt;()))&lt;/span&gt; p &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; c &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;ch&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-7&#34;&gt;&lt;a href=&#34;#cb5-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;w &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; c &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; isdigit&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;c &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; getchar&lt;span class=&#34;op&#34;&gt;());)&lt;/span&gt; w &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; w &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;c &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-8&#34;&gt;&lt;a href=&#34;#cb5-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; w &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;w&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-9&#34;&gt;&lt;a href=&#34;#cb5-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-10&#34;&gt;&lt;a href=&#34;#cb5-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-11&#34;&gt;&lt;a href=&#34;#cb5-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;struct&lt;/span&gt; Complex &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-12&#34;&gt;&lt;a href=&#34;#cb5-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;double&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;// a + bi&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-13&#34;&gt;&lt;a href=&#34;#cb5-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;double&lt;/span&gt; a &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;double&lt;/span&gt; b &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;):&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-14&#34;&gt;&lt;a href=&#34;#cb5-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;};&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-15&#34;&gt;&lt;a href=&#34;#cb5-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; Complex &lt;span class=&#34;kw&#34;&gt;operator&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+(&lt;/span&gt;&lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; Complex &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; Complex &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;q&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-16&#34;&gt;&lt;a href=&#34;#cb5-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-17&#34;&gt;&lt;a href=&#34;#cb5-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-18&#34;&gt;&lt;a href=&#34;#cb5-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; Complex &lt;span class=&#34;kw&#34;&gt;operator&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;-(&lt;/span&gt;&lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; Complex &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; Complex &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;q&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-19&#34;&gt;&lt;a href=&#34;#cb5-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-20&#34;&gt;&lt;a href=&#34;#cb5-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-21&#34;&gt;&lt;a href=&#34;#cb5-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; Complex &lt;span class=&#34;kw&#34;&gt;operator&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*(&lt;/span&gt;&lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; Complex &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; Complex &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;q&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-22&#34;&gt;&lt;a href=&#34;#cb5-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; p&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-23&#34;&gt;&lt;a href=&#34;#cb5-23&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-24&#34;&gt;&lt;a href=&#34;#cb5-24&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-25&#34;&gt;&lt;a href=&#34;#cb5-25&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;double&lt;/span&gt; PI &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; acos&lt;span class=&#34;op&#34;&gt;(-&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;1.0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-26&#34;&gt;&lt;a href=&#34;#cb5-26&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-27&#34;&gt;&lt;a href=&#34;#cb5-27&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-28&#34;&gt;&lt;a href=&#34;#cb5-28&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-29&#34;&gt;&lt;a href=&#34;#cb5-29&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-30&#34;&gt;&lt;a href=&#34;#cb5-30&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-31&#34;&gt;&lt;a href=&#34;#cb5-31&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; t &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-32&#34;&gt;&lt;a href=&#34;#cb5-32&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;cos&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; sin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;));&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-33&#34;&gt;&lt;a href=&#34;#cb5-33&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-34&#34;&gt;&lt;a href=&#34;#cb5-34&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-35&#34;&gt;&lt;a href=&#34;#cb5-35&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-36&#34;&gt;&lt;a href=&#34;#cb5-36&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-37&#34;&gt;&lt;a href=&#34;#cb5-37&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-38&#34;&gt;&lt;a href=&#34;#cb5-38&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; idft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-39&#34;&gt;&lt;a href=&#34;#cb5-39&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-40&#34;&gt;&lt;a href=&#34;#cb5-40&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-41&#34;&gt;&lt;a href=&#34;#cb5-41&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-42&#34;&gt;&lt;a href=&#34;#cb5-42&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-43&#34;&gt;&lt;a href=&#34;#cb5-43&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; t &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; Complex&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;cos&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; sin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;PI &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;));&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-44&#34;&gt;&lt;a href=&#34;#cb5-44&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-45&#34;&gt;&lt;a href=&#34;#cb5-45&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; t&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-46&#34;&gt;&lt;a href=&#34;#cb5-46&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-47&#34;&gt;&lt;a href=&#34;#cb5-47&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-48&#34;&gt;&lt;a href=&#34;#cb5-48&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-49&#34;&gt;&lt;a href=&#34;#cb5-49&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;v&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;a &lt;span class=&#34;op&#34;&gt;/=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;(),&lt;/span&gt; v&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;b &lt;span class=&#34;op&#34;&gt;/=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;size&lt;span class=&#34;op&#34;&gt;();&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-50&#34;&gt;&lt;a href=&#34;#cb5-50&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;reverse&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;begin&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;end&lt;span class=&#34;op&#34;&gt;());&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-51&#34;&gt;&lt;a href=&#34;#cb5-51&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-52&#34;&gt;&lt;a href=&#34;#cb5-52&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; main&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-53&#34;&gt;&lt;a href=&#34;#cb5-53&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-54&#34;&gt;&lt;a href=&#34;#cb5-54&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-55&#34;&gt;&lt;a href=&#34;#cb5-55&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;__lg&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-56&#34;&gt;&lt;a href=&#34;#cb5-56&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;Complex&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; c&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-57&#34;&gt;&lt;a href=&#34;#cb5-57&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;].&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-58&#34;&gt;&lt;a href=&#34;#cb5-58&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;].&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-59&#34;&gt;&lt;a href=&#34;#cb5-59&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-60&#34;&gt;&lt;a href=&#34;#cb5-60&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; c&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-61&#34;&gt;&lt;a href=&#34;#cb5-61&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  idft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;c&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-62&#34;&gt;&lt;a href=&#34;#cb5-62&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)(&lt;/span&gt;c&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;].&lt;/span&gt;a &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;fl&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;));&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-63&#34;&gt;&lt;a href=&#34;#cb5-63&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb5-64&#34;&gt;&lt;a href=&#34;#cb5-64&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id=&#34;number-theory-transform&#34;&gt;Number Theory Transform&lt;/h2&gt;
-&lt;p&gt;如果一个质数存在 &lt;span class=&#34;math inline&#34;&gt;\(2^n\)&lt;/span&gt; 次单位根（其中 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 最大时的单位根称为原根），那么在这个质数的剩余系下上面的结论依旧成立，可以使用FFT，多称这种FFT为&lt;code&gt;快速数论变换(Number Theory Transform, NTT)&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;常用的质数是 &lt;span class=&#34;math inline&#34;&gt;\(P = 998244353\)&lt;/span&gt;，它的原根 &lt;span class=&#34;math inline&#34;&gt;\(g = 3\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;下面是常用 NTT 模数的质数和原根表：&lt;/p&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;
-周期 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;
-&lt;/td&gt;
-&lt;td&gt;
-素数 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;
-&lt;/td&gt;
-&lt;td&gt;
-(原始根)
-&lt;/td&gt;
-&lt;td&gt;
-&lt;span class=&#34;math inline&#34;&gt;\(z\)&lt;/span&gt; (&lt;span class=&#34;math inline&#34;&gt;\(z^n = 1\)&lt;/span&gt;)
-&lt;/td&gt;
-&lt;td&gt;
-&lt;span class=&#34;math inline&#34;&gt;\(p-1\)&lt;/span&gt; の素因数分解
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;26&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-469762049
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-2187
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;26&lt;/sup&gt; * 7
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;25&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-167772161
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-243
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;25&lt;/sup&gt; * 5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;24&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-754974721
-&lt;/td&gt;
-&lt;td&gt;
-11
-&lt;/td&gt;
-&lt;td&gt;
-739831874
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;24&lt;/sup&gt; * 3&lt;sup&gt;2&lt;/sup&gt; * 5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-377487361
-&lt;/td&gt;
-&lt;td&gt;
-7
-&lt;/td&gt;
-&lt;td&gt;
-48510621
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt; * 3&lt;sup&gt;2&lt;/sup&gt; * 5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-595591169
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-361399025
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt; * 71
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-645922817
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-224270701
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt; * 7 * 11
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-880803841
-&lt;/td&gt;
-&lt;td&gt;
-26
-&lt;/td&gt;
-&lt;td&gt;
-273508579
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt; * 3 * 5 * 7
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-897581057
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-872686320
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt; * 107
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-998244353
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-15311432
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;23&lt;/sup&gt; * 7 * 17
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-104857601
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-39193363
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 5&lt;sup&gt;2&lt;/sup&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-113246209
-&lt;/td&gt;
-&lt;td&gt;
-7
-&lt;/td&gt;
-&lt;td&gt;
-58671006
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 3&lt;sup&gt;3&lt;/sup&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-138412033
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-99040867
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 3 * 11
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-155189249
-&lt;/td&gt;
-&lt;td&gt;
-6
-&lt;/td&gt;
-&lt;td&gt;
-14921912
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 37
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-163577857
-&lt;/td&gt;
-&lt;td&gt;
-23
-&lt;/td&gt;
-&lt;td&gt;
-121532577
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 3 * 13
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-230686721
-&lt;/td&gt;
-&lt;td&gt;
-6
-&lt;/td&gt;
-&lt;td&gt;
-71750113
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 5 * 11
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-415236097
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-73362476
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 3&lt;sup&gt;2&lt;/sup&gt; * 11
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-666894337
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-147340140
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 3 * 53
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-683671553
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-236932120
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 163
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-918552577
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-86995699
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 3 * 73
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-935329793
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-86363943
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 223
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-943718401
-&lt;/td&gt;
-&lt;td&gt;
-7
-&lt;/td&gt;
-&lt;td&gt;
-754500478
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 3&lt;sup&gt;2&lt;/sup&gt; * 5&lt;sup&gt;2&lt;/sup&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-985661441
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-79986183
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;22&lt;/sup&gt; * 5 * 47
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-111149057
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-60767546
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 53
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-132120577
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-102376994
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3&lt;sup&gt;2&lt;/sup&gt; * 7
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-136314881
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-2981173
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 5 * 13
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-169869313
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-143354861
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3&lt;sup&gt;4&lt;/sup&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-186646529
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-88383805
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 89
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-199229441
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-174670364
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 5 * 19
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-211812353
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-113852926
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 101
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-249561089
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-61724276
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 7 * 17
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-257949697
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-186470816
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 41
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-270532609
-&lt;/td&gt;
-&lt;td&gt;
-22
-&lt;/td&gt;
-&lt;td&gt;
-74891632
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 43
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-274726913
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-255478716
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 131
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-383778817
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-324881819
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 61
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-387973121
-&lt;/td&gt;
-&lt;td&gt;
-6
-&lt;/td&gt;
-&lt;td&gt;
-124477810
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 5 * 37
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-459276289
-&lt;/td&gt;
-&lt;td&gt;
-11
-&lt;/td&gt;
-&lt;td&gt;
-238723101
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 73
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-463470593
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-428228038
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 13 * 17
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-576716801
-&lt;/td&gt;
-&lt;td&gt;
-6
-&lt;/td&gt;
-&lt;td&gt;
-153098993
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 5&lt;sup&gt;2&lt;/sup&gt; * 11
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-597688321
-&lt;/td&gt;
-&lt;td&gt;
-11
-&lt;/td&gt;
-&lt;td&gt;
-395834143
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 5 * 19
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-635437057
-&lt;/td&gt;
-&lt;td&gt;
-11
-&lt;/td&gt;
-&lt;td&gt;
-171402456
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 101
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-639631361
-&lt;/td&gt;
-&lt;td&gt;
-6
-&lt;/td&gt;
-&lt;td&gt;
-432237000
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 5 * 61
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-648019969
-&lt;/td&gt;
-&lt;td&gt;
-17
-&lt;/td&gt;
-&lt;td&gt;
-592437138
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 103
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-710934529
-&lt;/td&gt;
-&lt;td&gt;
-17
-&lt;/td&gt;
-&lt;td&gt;
-69533131
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 113
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-715128833
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-355872337
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 11 * 31
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-740294657
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-237508734
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 353
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-786432001
-&lt;/td&gt;
-&lt;td&gt;
-7
-&lt;/td&gt;
-&lt;td&gt;
-228383098
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 5&lt;sup&gt;3&lt;/sup&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-799014913
-&lt;/td&gt;
-&lt;td&gt;
-13
-&lt;/td&gt;
-&lt;td&gt;
-374051146
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 127
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-824180737
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-133412682
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 131
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-899678209
-&lt;/td&gt;
-&lt;td&gt;
-7
-&lt;/td&gt;
-&lt;td&gt;
-118485495
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 11 * 13
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-924844033
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-44009197
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3&lt;sup&gt;2&lt;/sup&gt; * 7&lt;sup&gt;2&lt;/sup&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-950009857
-&lt;/td&gt;
-&lt;td&gt;
-7
-&lt;/td&gt;
-&lt;td&gt;
-741494216
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 151
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-962592769
-&lt;/td&gt;
-&lt;td&gt;
-7
-&lt;/td&gt;
-&lt;td&gt;
-695637473
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3&lt;sup&gt;3&lt;/sup&gt; * 17
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-975175681
-&lt;/td&gt;
-&lt;td&gt;
-17
-&lt;/td&gt;
-&lt;td&gt;
-518451017
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 5 * 31
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-1004535809
-&lt;/td&gt;
-&lt;td&gt;
-3
-&lt;/td&gt;
-&lt;td&gt;
-702606812
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 479
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt;
-&lt;/td&gt;
-&lt;td&gt;
-1012924417
-&lt;/td&gt;
-&lt;td&gt;
-5
-&lt;/td&gt;
-&lt;td&gt;
-673144645
-&lt;/td&gt;
-&lt;td&gt;
-2&lt;sup&gt;21&lt;/sup&gt; * 3 * 7 * 23
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;p&gt;代码（预处理单位根，较好地平衡了代码复杂度和常数且有一定的封装度）：&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb6&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb6-1&#34;&gt;&lt;a href=&#34;#cb6-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-2&#34;&gt;&lt;a href=&#34;#cb6-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;template&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; T&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-3&#34;&gt;&lt;a href=&#34;#cb6-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;T &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;w&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-4&#34;&gt;&lt;a href=&#34;#cb6-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; c&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; p &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-5&#34;&gt;&lt;a href=&#34;#cb6-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(!&lt;/span&gt;isdigit&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;c &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; getchar&lt;span class=&#34;op&#34;&gt;()))&lt;/span&gt; p &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; c &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;ch&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-6&#34;&gt;&lt;a href=&#34;#cb6-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;w &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; c &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; isdigit&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;c &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; getchar&lt;span class=&#34;op&#34;&gt;());)&lt;/span&gt; w &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; w &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;c &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-7&#34;&gt;&lt;a href=&#34;#cb6-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; w &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;w&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-8&#34;&gt;&lt;a href=&#34;#cb6-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-9&#34;&gt;&lt;a href=&#34;#cb6-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;template&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; T&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;...&lt;/span&gt; U&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-10&#34;&gt;&lt;a href=&#34;#cb6-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;T &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;w&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; U &lt;span class=&#34;op&#34;&gt;&amp;amp;...&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;w&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;...);&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-11&#34;&gt;&lt;a href=&#34;#cb6-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-12&#34;&gt;&lt;a href=&#34;#cb6-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;constexpr&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;998244353&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; G&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-13&#34;&gt;&lt;a href=&#34;#cb6-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; inc&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt; P &lt;span class=&#34;op&#34;&gt;?&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;-=&lt;/span&gt; P &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-14&#34;&gt;&lt;a href=&#34;#cb6-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; sum&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt; P &lt;span class=&#34;op&#34;&gt;?&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; P &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-15&#34;&gt;&lt;a href=&#34;#cb6-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; sub&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;?&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; P &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-16&#34;&gt;&lt;a href=&#34;#cb6-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; fpow&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; P &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-17&#34;&gt;&lt;a href=&#34;#cb6-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; r &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-18&#34;&gt;&lt;a href=&#34;#cb6-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-19&#34;&gt;&lt;a href=&#34;#cb6-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; r &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; r &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-20&#34;&gt;&lt;a href=&#34;#cb6-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; r&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-21&#34;&gt;&lt;a href=&#34;#cb6-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-22&#34;&gt;&lt;a href=&#34;#cb6-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-23&#34;&gt;&lt;a href=&#34;#cb6-23&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-24&#34;&gt;&lt;a href=&#34;#cb6-24&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;namespace&lt;/span&gt; Polynomial &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-25&#34;&gt;&lt;a href=&#34;#cb6-25&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;using&lt;/span&gt; Polynom &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-26&#34;&gt;&lt;a href=&#34;#cb6-26&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-27&#34;&gt;&lt;a href=&#34;#cb6-27&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-28&#34;&gt;&lt;a href=&#34;#cb6-28&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; getOmega&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-29&#34;&gt;&lt;a href=&#34;#cb6-29&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  w&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;resize&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-30&#34;&gt;&lt;a href=&#34;#cb6-30&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  w&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-31&#34;&gt;&lt;a href=&#34;#cb6-31&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; base &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; fpow&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;G&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;P &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;));&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-32&#34;&gt;&lt;a href=&#34;#cb6-32&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; base &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-33&#34;&gt;&lt;a href=&#34;#cb6-33&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-34&#34;&gt;&lt;a href=&#34;#cb6-34&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;Polynom &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-35&#34;&gt;&lt;a href=&#34;#cb6-35&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-36&#34;&gt;&lt;a href=&#34;#cb6-36&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    getOmega&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-37&#34;&gt;&lt;a href=&#34;#cb6-37&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-38&#34;&gt;&lt;a href=&#34;#cb6-38&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-39&#34;&gt;&lt;a href=&#34;#cb6-39&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-40&#34;&gt;&lt;a href=&#34;#cb6-40&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-41&#34;&gt;&lt;a href=&#34;#cb6-41&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        inc&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-42&#34;&gt;&lt;a href=&#34;#cb6-42&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-43&#34;&gt;&lt;a href=&#34;#cb6-43&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-44&#34;&gt;&lt;a href=&#34;#cb6-44&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-45&#34;&gt;&lt;a href=&#34;#cb6-45&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-46&#34;&gt;&lt;a href=&#34;#cb6-46&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; idft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;Polynom &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-47&#34;&gt;&lt;a href=&#34;#cb6-47&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-48&#34;&gt;&lt;a href=&#34;#cb6-48&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    getOmega&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-49&#34;&gt;&lt;a href=&#34;#cb6-49&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-50&#34;&gt;&lt;a href=&#34;#cb6-50&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-51&#34;&gt;&lt;a href=&#34;#cb6-51&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; w&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-52&#34;&gt;&lt;a href=&#34;#cb6-52&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; sum&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-53&#34;&gt;&lt;a href=&#34;#cb6-53&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; sub&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-54&#34;&gt;&lt;a href=&#34;#cb6-54&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-55&#34;&gt;&lt;a href=&#34;#cb6-55&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-56&#34;&gt;&lt;a href=&#34;#cb6-56&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-57&#34;&gt;&lt;a href=&#34;#cb6-57&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; inv &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; fpow&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-58&#34;&gt;&lt;a href=&#34;#cb6-58&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; inv &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-59&#34;&gt;&lt;a href=&#34;#cb6-59&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;reverse&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;begin&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;end&lt;span class=&#34;op&#34;&gt;());&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-60&#34;&gt;&lt;a href=&#34;#cb6-60&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-61&#34;&gt;&lt;a href=&#34;#cb6-61&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;// namespace Polynom&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-62&#34;&gt;&lt;a href=&#34;#cb6-62&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;using&lt;/span&gt; Polynomial&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;dft&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-63&#34;&gt;&lt;a href=&#34;#cb6-63&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;using&lt;/span&gt; Polynomial&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;idft&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-64&#34;&gt;&lt;a href=&#34;#cb6-64&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; poly_multiply&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;A&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;B&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;C&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-65&#34;&gt;&lt;a href=&#34;#cb6-65&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; Polynomial&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;__lg&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-66&#34;&gt;&lt;a href=&#34;#cb6-66&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-67&#34;&gt;&lt;a href=&#34;#cb6-67&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; A&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-68&#34;&gt;&lt;a href=&#34;#cb6-68&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; B&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-69&#34;&gt;&lt;a href=&#34;#cb6-69&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-70&#34;&gt;&lt;a href=&#34;#cb6-70&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-71&#34;&gt;&lt;a href=&#34;#cb6-71&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  idft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-72&#34;&gt;&lt;a href=&#34;#cb6-72&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; C&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-73&#34;&gt;&lt;a href=&#34;#cb6-73&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-74&#34;&gt;&lt;a href=&#34;#cb6-74&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; main&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-75&#34;&gt;&lt;a href=&#34;#cb6-75&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-76&#34;&gt;&lt;a href=&#34;#cb6-76&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-77&#34;&gt;&lt;a href=&#34;#cb6-77&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  Polynomial&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;__lg&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-78&#34;&gt;&lt;a href=&#34;#cb6-78&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-79&#34;&gt;&lt;a href=&#34;#cb6-79&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-80&#34;&gt;&lt;a href=&#34;#cb6-80&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; readInt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-81&#34;&gt;&lt;a href=&#34;#cb6-81&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;),&lt;/span&gt; dft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;b&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-82&#34;&gt;&lt;a href=&#34;#cb6-82&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-83&#34;&gt;&lt;a href=&#34;#cb6-83&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  idft&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-84&#34;&gt;&lt;a href=&#34;#cb6-84&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-85&#34;&gt;&lt;a href=&#34;#cb6-85&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb6-86&#34;&gt;&lt;a href=&#34;#cb6-86&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id=&#34;常数优化&#34;&gt;常数优化&lt;/h2&gt;
-&lt;h3 id=&#34;求系数为整数的多项式乘积-axbx&#34;&gt;求系数为整数的多项式乘积 &lt;span class=&#34;math inline&#34;&gt;\(A(x)B(x)\)&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-P(x) &amp;amp;= A(x)+ iB(x)\\
-P^2(x) &amp;amp;= A^2(x) -B^2(x) + i2A(x)B(x)\\
-A(x)B(x) &amp;amp;= \frac12\operatorname{Imag}P^2(x) 
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;求系数为整数的多项式-ax-bx-的点值表示&#34;&gt;求系数为整数的多项式 &lt;span class=&#34;math inline&#34;&gt;\(A(x), B(x)\)&lt;/span&gt; 的点值表示&lt;/h3&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-P(x) &amp;amp;= A(x)+ iB(x)\\
-\overline{P}(x) &amp;amp;= A(x)-iB(x)\\
-A(x) &amp;amp;= \frac{P(x) + \overline P (x)}{2}\\
-B(x) &amp;amp;= \frac{P(x) - \overline P (x)}{2i}
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;毛爷爷结论： &lt;span class=&#34;math display&#34;&gt;\[
-\overline P(\omega^k) = \overline{P(\omega^{-k})}
-\]&lt;/span&gt; 所以只要一次DFT。&lt;/p&gt;
-&lt;h2 id=&#34;拆系数fft&#34;&gt;拆系数FFT&lt;/h2&gt;
-&lt;h3 id=&#34;求-axbx系数范围-0230&#34;&gt;求 &lt;span class=&#34;math inline&#34;&gt;\(A(x)B(x)\)&lt;/span&gt;，系数范围 &lt;span class=&#34;math inline&#34;&gt;\([0,2^{30})\)&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-A(x) &amp;amp;= A_0(x)&amp;amp; + &amp;amp;2^{15}A_1(x) &amp;amp;  \\
-B(x) &amp;amp;= B_0(x)&amp;amp; + &amp;amp;2^{15}B_1(x) &amp;amp;  \\
-A(x)B(x) &amp;amp;= A_0(x)B_0(x)&amp;amp; + &amp;amp;2^{15}(A_0(x)B_1(x) + A_1(x)B_0(x)) + &amp;amp;2^{30}A_1(x)B_1(x)
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;先两次 DFT 求 &lt;span class=&#34;math inline&#34;&gt;\(A_0, A_1, B_0, B_1\)&lt;/span&gt; 的点值表示。&lt;/p&gt;
-&lt;p&gt;然后两次 IDFT(等价于DFT) 求 &lt;span class=&#34;math inline&#34;&gt;\(A_0B_0, A_0B_1, A_1B_0, A_1B_1\)&lt;/span&gt; 的系数。&lt;/p&gt;
-&lt;h2 id=&#34;bluesteins-algorithm&#34;&gt;Bluestein’s Algorithm&lt;/h2&gt;
-&lt;p&gt;上面提到的 FFT 算法虽然限制了 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 为 2 的次幂，但在大多数情况下已经足够解决问题。&lt;/p&gt;
-&lt;p&gt;对于更一般的 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 需要用到 &lt;code&gt;Bluestein’s Algorithm&lt;/code&gt; ，可以参考2016年国家集训队论文《再探快速傅里叶变换——毛啸》。&lt;/p&gt;
-&lt;p&gt;后续可能会填这个坑。&lt;/p&gt;
-- https://blog.asukakyle.top/post/fft/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
