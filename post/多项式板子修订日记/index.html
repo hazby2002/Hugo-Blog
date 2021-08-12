@@ -1035,7 +1035,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a> <span class="kw">public</span><span class="op">:</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  SegTree<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> a<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    raw_n <span class="op">=</span> a<span class="op">.</span>size<span class="op">();</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> raw_n <span class="op">&gt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>__lg<span class="op">(</span>raw_n <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>__lg<span class="op">(</span><span class="dv">2</span> <span class="op">*</span> raw_n <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    p<span class="op">.</span>resize<span class="op">(</span>n <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">);</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      p<span class="op">[</span>i <span class="op">+</span> n<span class="op">]</span> <span class="op">=</span> Poly<span class="op">({</span><span class="dv">1</span><span class="op">,</span> i <span class="op">&lt;</span> raw_n <span class="op">?</span> P <span class="op">-</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">:</span> <span class="dv">0</span><span class="op">});</span></span>
@@ -1106,7 +1106,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2021-08-11</p>
+		    <p style="color:#777;">最后修改于 2021-08-12</p>
                     
                 </div>
             </div>
@@ -1121,8 +1121,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 
                 
-                <a class="older-posts" href="https://blog.asukakyle.top/post/fwt/">
-			上回<br>Fast Walsh–Hadamard Transform
+                <a class="older-posts" href="https://blog.asukakyle.top/post/2021hdu8/">
+			上回<br>2021杭电多校8
                 </a>
                 
             </nav>

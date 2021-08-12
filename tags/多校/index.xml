@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sat, 07 Aug 2021 19:38:21 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%A4%9A%E6%A0%A1/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Aug 2021 19:45:56 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%A4%9A%E6%A0%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021杭电多校8</title>
+      <link>https://blog.asukakyle.top/post/2021hdu8/</link>
+      <pubDate>Thu, 12 Aug 2021 19:45:56 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021hdu8/</guid>
+      <description>题号 题目 完成情况    7056 X-liked Counting   7057 Buying Snacks 通过  7058 Ink on paper 通过  7059 Counting Stars 通过  7060 Separated Number 通过  7061 GCD Game 通过  7062 A Simple Problem   7063 Square Card 通过  7064 Singing Superstar 通过  7065 Yinyang     X-liked Counting Buying Snacks $$ A = 1 + x + x^2, B = x + 2x^2 + x^3\ F_n = AF_{n-1} + BF_{n-2}\ ^2-A- B = 0\ = \ = 1 + 3x + x^2\ _1 = 1+2x+x^2, _2=-x \ F_n = P(1+2x+x2)n+Q(-x)^n\ \[\begin{cases} F_0 &amp;amp;= 1\\ F_1 &amp;amp;= 1 + x + x ^2\\ \end{cases}\] \ F_n = $$ 复杂度 \(O(m)\)</description>
+    </item>
+    
     <item>
       <title>2021牛客多校7</title>
       <link>https://blog.asukakyle.top/post/2021nowcoder7/</link>
