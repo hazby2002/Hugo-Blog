@@ -875,15 +875,13 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 </table>
 <h2 id="x-liked-counting"><a href="https://acm.hdu.edu.cn/showproblem.php?pid=7056">X-liked Counting</a></h2>
 <h2 id="buying-snacks"><a href="https://acm.hdu.edu.cn/showproblem.php?pid=7057">Buying Snacks</a></h2>
-$$
 <span class="math display">\[\begin{aligned}
 A &amp;= 1 + x + x^2\\
 B &amp;= x + 2x^2 + x^3\\
 F_n &amp;= AF_{n-1} + BF_{n-2}\\
 \lambda^2-A\lambda - B = 0 &amp;\Rightarrow \lambda = \frac{A \pm \sqrt{A^2+4B}}{2}\\
 \sqrt{A^2+4B} &amp;= 1 + 3x + x^2\\
-\lambda_1 = 1+2x+x^2,&amp; \lambda_2=-x
-\\
+\lambda_1 = 1+2x+x^2,&amp; \lambda_2=-x\\
 F_n &amp;= P(1+2x+x^2)^n+Q(-x)^n\\
 \begin{cases}
 F_0 &amp;= 1\\
@@ -898,7 +896,6 @@ Q &amp;= \frac{x}{1 + 3x + x^2}\\
 \end{cases}\\
 F_n &amp;= \frac{(1+x)^{2n+2}+(-1)^nx^{n+1}}{1 + 3x + x^2}
 \end{aligned}\]</span>
-<p>$$</p>
 <p>复杂度 <span class="math inline">\(O(m)\)</span></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Created: Thu Aug 12 18:52:53 2021</span></span>
