@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Thu, 12 Aug 2021 19:45:56 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Aug 2021 18:36:09 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021牛客多校9</title>
+      <link>https://blog.asukakyle.top/post/2021nowcoder9/</link>
+      <pubDate>Sat, 14 Aug 2021 18:36:09 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021nowcoder9/</guid>
+      <description>题号 标题 团队的状态    A A Math Challenge 未通过  B Best Subgraph 未通过  C Cells 通过  D Divide-and-conquer on Tree 未通过  E Eyjafjalla 通过  F Financial Order Execution 未通过  G Glass Balls 通过  H Happy Number 通过  I Incentive Model 通过  J Jam 未通过    A Math Challenge Best Subgraph Cells Divide-and-conquer on Tree Eyjafjalla Financial Order Execution Glass Balls Solution 1 很难直接计算 \(f(i)\)​ 。</description>
+    </item>
+    
     <item>
       <title>2021杭电多校8</title>
       <link>https://blog.asukakyle.top/post/2021hdu8/</link>
