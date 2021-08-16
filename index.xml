@@ -503,12 +503,12 @@
     
     
         <item>
-        <title>「万能」 Euclidean 算法小记</title>
+        <title>「万能」Euclidean 算法小记</title>
         <link>https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/</link>
         <pubDate>Sun, 15 Aug 2021 21:24:32 +0800</pubDate>
         
         <guid>https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/</guid>
-        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/ -&lt;h2 id=&#34;万能-euclidean-算法&#34;&gt;「万能」 Euclidean 算法&lt;/h2&gt;
+        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/ -&lt;h2 id=&#34;万能euclidean-算法&#34;&gt;「万能」Euclidean 算法&lt;/h2&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 F(P, R, Q, N, X, Y) = \prod_{i = 0}^N Y^{f(i) - f(i-1)}X
 \]&lt;/span&gt;&lt;/p&gt;
