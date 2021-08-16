@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sat, 14 Aug 2021 18:36:09 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Aug 2021 21:24:32 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数学</title>
+      <link>https://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Sun, 15 Aug 2021 21:24:32 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>类 Euclidean 算法</title>
+      <link>https://blog.asukakyle.top/tags/%E7%B1%BB-euclidean-%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 15 Aug 2021 21:24:32 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/tags/%E7%B1%BB-euclidean-%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>多校</title>
       <link>https://blog.asukakyle.top/tags/%E5%A4%9A%E6%A0%A1/</link>
@@ -113,15 +131,6 @@
       <pubDate>Mon, 12 Jul 2021 08:17:49 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/tags/%E7%BA%BF%E6%80%A7%E5%9F%BA/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>数学</title>
-      <link>https://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</link>
-      <pubDate>Mon, 12 Jul 2021 08:12:01 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/tags/%E6%95%B0%E5%AD%A6/</guid>
       <description></description>
     </item>
     

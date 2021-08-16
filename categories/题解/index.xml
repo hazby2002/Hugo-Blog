@@ -14,7 +14,8 @@
       <pubDate>Sat, 14 Aug 2021 18:36:09 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder9/</guid>
-      <description>题号 标题 团队的状态    A A Math Challenge 未通过  B Best Subgraph 未通过  C Cells 通过  D Divide-and-conquer on Tree 未通过  E Eyjafjalla 通过  F Financial Order Execution 未通过  G Glass Balls 通过  H Happy Number 通过  I Incentive Model 通过  J Jam 未通过    A Math Challenge Best Subgraph Cells Divide-and-conquer on Tree Eyjafjalla Financial Order Execution Glass Balls Solution 1 很难直接计算 \(f(i)\)​ 。</description>
+      <description>题号 标题 团队的状态    A A Math Challenge 通过  B Best Subgraph 未通过  C Cells 通过  D Divide-and-conquer on Tree 未通过  E Eyjafjalla 通过  F Financial Order Execution 未通过  G Glass Balls 通过  H Happy Number 通过  I Incentive Model 通过  J Jam 未通过    A Math Challenge LOJ138 + 自然数幂和。
+// Author: HolyK // Created: Sun Aug 15 21:59:21 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>

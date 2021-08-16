@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sat, 14 Aug 2021 18:36:09 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Aug 2021 21:24:32 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【置顶】多项式板子修订日记</title>
       <link>https://blog.asukakyle.top/post/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%9D%BF%E5%AD%90%E4%BF%AE%E8%AE%A2%E6%97%A5%E8%AE%B0/</link>
@@ -18,12 +18,25 @@
     </item>
     
     <item>
+      <title>「万能」 Euclidean 算法小记</title>
+      <link>https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Sun, 15 Aug 2021 21:24:32 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/</guid>
+      <description>「万能」 Euclidean 算法 \[ F(P, R, Q, N, X, Y) = \prod_{i = 0}^N Y^{f(i) - f(i-1)}X \]
+其中 \(f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0\)​。\(X, Y\) 为操作序列，有乘法结合律，类比矩阵。
+若 \(R \geq Q\)​，则 \(f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor + \lfloor\dfrac{R}{Q}\rfloor\)​，所以 \[ F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q, N, X, Y) \]
+若 \(P \geq Q\)​，则 \(f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor + \lfloor\dfrac{P}{Q}\rfloor i\)​，记 \(f&amp;#39;(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor\)​ \[ \begin{aligned} F(P, R, Q, N, X, Y) &amp;amp;= X\prod_{i = 1}^N Y^{f&amp;#39;(i) - f&amp;#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= X\prod_{i = 0}^{N - 1} Y^{f&amp;#39;(i+1) - f&amp;#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1, Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y) \end{aligned} \] 若 \(P &amp;lt; Q\)，考虑交换 \(X, Y\)。</description>
+    </item>
+    
+    <item>
       <title>2021牛客多校9</title>
       <link>https://blog.asukakyle.top/post/2021nowcoder9/</link>
       <pubDate>Sat, 14 Aug 2021 18:36:09 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder9/</guid>
-      <description>题号 标题 团队的状态    A A Math Challenge 未通过  B Best Subgraph 未通过  C Cells 通过  D Divide-and-conquer on Tree 未通过  E Eyjafjalla 通过  F Financial Order Execution 未通过  G Glass Balls 通过  H Happy Number 通过  I Incentive Model 通过  J Jam 未通过    A Math Challenge Best Subgraph Cells Divide-and-conquer on Tree Eyjafjalla Financial Order Execution Glass Balls Solution 1 很难直接计算 \(f(i)\)​ 。</description>
+      <description>题号 标题 团队的状态    A A Math Challenge 通过  B Best Subgraph 未通过  C Cells 通过  D Divide-and-conquer on Tree 未通过  E Eyjafjalla 通过  F Financial Order Execution 未通过  G Glass Balls 通过  H Happy Number 通过  I Incentive Model 通过  J Jam 未通过    A Math Challenge LOJ138 + 自然数幂和。
+// Author: HolyK // Created: Sun Aug 15 21:59:21 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
