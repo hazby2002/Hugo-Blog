@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sat, 14 Aug 2021 18:36:09 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Aug 2021 17:31:45 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021杭电多校9</title>
+      <link>https://blog.asukakyle.top/post/2021hdu9/</link>
+      <pubDate>Tue, 17 Aug 2021 17:31:45 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021hdu9/</guid>
+      <description>题号 题目 完成情况    7066 NJU emulator 通过  7067 Just another board game 通过  7068 Dota2 Pro Circuit 通过  7069 Into the woods   7070 Did I miss the lethal?   7071 Guess the weight 通过  7072 Boring data structure problem 通过  7073 Integers Have Friends 2.0 通过  7074 Little prince and the garden of roses   7075 Unfair contest 通过  7076 ZYB’s kingdom     NJU emulator // Author: HolyK // Created: Tue Aug 17 16:06:20 2021 #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
     <item>
       <title>2021牛客多校9</title>
       <link>https://blog.asukakyle.top/post/2021nowcoder9/</link>
