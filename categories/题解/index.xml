@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Tue, 17 Aug 2021 17:31:45 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Aug 2021 22:13:07 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021牛客多校10</title>
+      <link>https://blog.asukakyle.top/post/2021nowcoder10/</link>
+      <pubDate>Wed, 18 Aug 2021 22:13:07 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021nowcoder10/</guid>
+      <description>题号 标题 团队的状态    A Browser Games 通过  B Child’s play 未通过  C Dance Party 未通过  D Diameter Counting 未通过  E More Fantastic Chess Problem 未通过  F Train Wreck 通过  G Game of Death 通过  H War of Inazuma (Easy Version) 通过  I War of Inazuma (Hard Version) 未通过  J Illuminations 通过  K Walking 通过    Browser Games Child’s play Dance Party Diameter Counting More Fantastic Chess Problem Train Wreck Game of Death War of Inazuma (Easy Version) War of Inazuma (Hard Version) Illuminations Walking  在一个 \(n \times m\) 的网格图上，你在 \((a, b)\)，每次移动可以向上下左右移动一格，不能移动出边界，求走 \(t\) 步的方案数。</description>
+    </item>
+    
     <item>
       <title>2021杭电多校9</title>
       <link>https://blog.asukakyle.top/post/2021hdu9/</link>
