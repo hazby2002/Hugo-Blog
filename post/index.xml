@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Wed, 18 Aug 2021 22:13:07 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 19 Aug 2021 20:20:26 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【置顶】多项式板子修订日记</title>
       <link>https://blog.asukakyle.top/post/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%9D%BF%E5%AD%90%E4%BF%AE%E8%AE%A2%E6%97%A5%E8%AE%B0/</link>
@@ -18,12 +18,30 @@
     </item>
     
     <item>
+      <title>2021多校总结</title>
+      <link>https://blog.asukakyle.top/post/2021%E5%A4%9A%E6%A0%A1%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 19 Aug 2021 20:20:26 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021%E5%A4%9A%E6%A0%A1%E6%80%BB%E7%BB%93/</guid>
+      <description>一事无成。</description>
+    </item>
+    
+    <item>
+      <title>2021杭电多校10</title>
+      <link>https://blog.asukakyle.top/post/2021hdu10/</link>
+      <pubDate>Thu, 19 Aug 2021 17:31:49 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2021hdu10/</guid>
+      <description>题号 题目 完成情况    7077 Pty loves sequence   7078 Pty with card   7079 Pty loves lines 通过  7080 Pty hates prime numbers   7081 Pty loves book   7082 Pty loves lcm   7083 Pty loves graph   7084 Pty loves string 通过  7085 Pty loves SegmentTree   7086 Pty plays game     Pty loves sequence Pty with card Pty loves lines #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
+    <item>
       <title>2021牛客多校10</title>
       <link>https://blog.asukakyle.top/post/2021nowcoder10/</link>
       <pubDate>Wed, 18 Aug 2021 22:13:07 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder10/</guid>
-      <description>题号 标题 团队的状态    A Browser Games 通过  B Child’s play 未通过  C Dance Party 未通过  D Diameter Counting 未通过  E More Fantastic Chess Problem 未通过  F Train Wreck 通过  G Game of Death 通过  H War of Inazuma (Easy Version) 通过  I War of Inazuma (Hard Version) 未通过  J Illuminations 通过  K Walking 通过    Browser Games Child’s play Dance Party Diameter Counting More Fantastic Chess Problem Train Wreck Game of Death War of Inazuma (Easy Version) War of Inazuma (Hard Version) Illuminations Walking  在一个 \(n \times m\) 的网格图上，你在 \((a, b)\)，每次移动可以向上下左右移动一格，不能移动出边界，求走 \(t\) 步的方案数。</description>
+      <description>题号 标题 团队的状态    A Browser Games 通过  B Child’s play 未通过  C Dance Party 未通过  D Diameter Counting 未通过  E More Fantastic Chess Problem 未通过  F Train Wreck 通过  G Game of Death 通过  H War of Inazuma (Easy Version) 通过  I War of Inazuma (Hard Version) 未通过  J Illuminations 通过  K Walking 通过    Browser Games Child’s play Dance Party Diameter Counting More Fantastic Chess Problem Train Wreck Game of Death  \(n\) 个人，每个人等概率的选择其余的人开枪，有 \(p\) 的概率击中，所有人同时开枪，分别求存活人数为 \(0, 1, \dots, n\) 的概率。</description>
     </item>
     
     <item>
