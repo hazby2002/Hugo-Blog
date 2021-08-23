@@ -247,8 +247,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e5%af%bc%e5%bc%95" onclick="onNavClick(`#导引-nav`)" id="导引-nav">
-									导引
+								<a href="#%e5%8d%b7%e7%a7%af" onclick="onNavClick(`#卷积-nav`)" id="卷积-nav">
+									卷积
 								</a>
 							</li>
 						
@@ -262,6 +262,50 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 						
+							
+						
+						
+						
+							<li>
+								<a href="#kronecker-product" onclick="onNavClick(`#kronecker-product-nav`)" id="kronecker-product-nav">
+									Kronecker product
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%80%a7%e8%b4%a8" onclick="onNavClick(`#性质-nav`)" id="性质-nav">
+									性质
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
 							
 						
 						
@@ -571,8 +615,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e5%af%bc%e5%bc%95" onclick="onNavClick(`#导引-nav`)" id="导引-nav">
-									导引
+								<a href="#%e5%8d%b7%e7%a7%af" onclick="onNavClick(`#卷积-nav`)" id="卷积-nav">
+									卷积
 								</a>
 							</li>
 						
@@ -586,6 +630,50 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 						
+							
+						
+						
+						
+							<li>
+								<a href="#kronecker-product" onclick="onNavClick(`#kronecker-product-nav`)" id="kronecker-product-nav">
+									Kronecker product
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%80%a7%e8%b4%a8" onclick="onNavClick(`#性质-nav`)" id="性质-nav">
+									性质
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
 							
 						
 						
@@ -869,58 +957,54 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    <h2 id="导引">导引</h2>
-<p><strong>满足交换律</strong>的运算 <span class="math inline">\(\otimes\)</span>，序列 <span class="math inline">\(a, b, c\)</span> 和<strong>可逆矩阵</strong> <span class="math inline">\(H\)</span> 满足 <span class="math display">\[
+                    <h2 id="卷积">卷积</h2>
+<p>运算 <span class="math inline">\(\odot\)</span>，序列 <span class="math inline">\(a, b, c\)</span>，方阵 <span class="math inline">\(P, Q, R\)</span> 满足 <span class="math inline">\(R\)</span> 可逆，且 <span class="math display">\[
 \begin{cases}
-c_n &amp;= \sum_{p \otimes q = n}a_pb_q\\
-\sum_j H_{i, j}c_j &amp;= \sum_pH_{i,p}a_p\sum_q H_{i, q}b_q
+c_n &amp;= \sum_{p \odot q = n}a_pb_q\\
+\sum_j R_{i, j}c_j &amp;= \sum_pP_{i,p}a_p\sum_q Q_{i, q}b_q
 \end{cases}
 \]</span> 所以 <span class="math display">\[
 \begin{aligned}
-\sum_{j}H_{i, j}\sum_{p, q}[p\otimes q = j]a_pb_q
-&amp;= \sum_{p, q}H_{i, p}H_{i, q}a_pb_q\\
-\sum_{p, q}H_{i, p \otimes q}a_pb_q &amp;= \sum_{p, q}H_{i, p}H_{i, q}a_pb_q\\
-H_{i, p\otimes q} &amp;= H_{i, p}H_{i, q}
+\sum_{j}R_{i, j}\sum_{p, q}[p\odot q = j]a_pb_q
+&amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\
+\sum_{p, q}R_{i, p \odot q}a_pb_q &amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\
+R_{i, p\odot q} &amp;= P_{i, p}Q_{i, q}
 \end{aligned}
-\]</span> 对于 <span class="math inline">\(\otimes\)</span> 运算为模意义下加法的情形，可以构造 <span class="math inline">\(H\)</span> 为范德蒙矩阵： <span class="math display">\[
-H=
-\begin{bmatrix}1&amp; 1 &amp; 1&amp; \cdots &amp; 1\\
-1&amp; \omega_n^1&amp; \omega_n^2&amp; \cdots &amp; \omega_n^{n - 1}\\
-1&amp; \omega_n^2 &amp; \omega_n^4&amp; \cdots &amp; \omega_n^{2(n - 1)}\\
-\vdots &amp; \vdots&amp; \vdots&amp; \ddots&amp; \vdots\\
-1&amp; \omega_n^{n - 1}&amp;\omega_n^{2(n - 1)} &amp; \cdots &amp; \omega_n^{(n - 1)(n - 1)}
-\end{bmatrix}
-\]</span> 它的逆为： <span class="math display">\[
-H^{-1}=\dfrac{1}{n}\begin{bmatrix}1&amp; 1 &amp; 1&amp; \cdots &amp; 1\\ 1&amp; \omega_n^{-1}&amp; \omega_n^{-2}&amp; \cdots &amp;
-\omega_n^{-(n - 1)}\\ 1&amp; \omega_n^{-2} &amp; \omega_n^{-4}&amp; \cdots &amp; \omega_n^{-2(n - 1)}\\ \vdots&amp; \vdots&amp; \vdots&amp;\ddots&amp; \vdots\\ 1&amp; \omega_n^{-(n - 1)}&amp; \omega_n^{-2(n - 1)} &amp; \cdots &amp; \omega_n^{-(n - 1)(n -
-1)}\end{bmatrix}
-\]</span> 此时为傅里叶变换。</p>
+\]</span></p>
+<p>对序列 <span class="math inline">\(a\)</span> 施加线性变换 <span class="math inline">\(P\)</span>，序列 <span class="math inline">\(b\)</span> 施加线性变换 <span class="math inline">\(Q\)</span>，点乘之后再施加逆变换 <span class="math inline">\(R^{-1}\)</span>，就可以实现 <span class="math inline">\(\odot\)</span> 卷积。</p>
+<p>对于满足交换律的运算 <span class="math inline">\(\odot\)</span>，<span class="math inline">\(P = Q\)</span>。</p>
+<h2 id="kronecker-product"><a href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a></h2>
+<p>设 <span class="math inline">\(\mathbf {A}\)</span> 是 <span class="math inline">\(m \times n\)</span> 矩阵，<span class="math inline">\(\mathbf {B}\)</span> 是 <span class="math inline">\(p \times q\)</span>，定义 <span class="math inline">\(\mathbf {A}\)</span> 和 <span class="math inline">\(\mathbf {B}\)</span> 的 <code>Kronecker product</code> 为 <span class="math display">\[
+{\displaystyle \mathbf {A} \otimes \mathbf {B} ={\begin{bmatrix}a_{11}\mathbf {B} &amp;\cdots &amp;a_{1n}\mathbf {B} \\\vdots &amp;\ddots &amp;\vdots \\a_{m1}\mathbf {B} &amp;\cdots &amp;a_{mn}\mathbf {B} \end{bmatrix}}}
+\]</span> 更明确地 <span class="math display">\[
+{\mathbf{A}\otimes\mathbf{B}} = \begin{bmatrix}    a_{11} b_{11} &amp; a_{11} b_{12} &amp; \cdots &amp; a_{11} b_{1q} &amp;                    \cdots &amp; \cdots &amp; a_{1n} b_{11} &amp; a_{1n} b_{12} &amp; \cdots &amp; a_{1n} b_{1q} \\    a_{11} b_{21} &amp; a_{11} b_{22} &amp; \cdots &amp; a_{11} b_{2q} &amp;                    \cdots &amp; \cdots &amp; a_{1n} b_{21} &amp; a_{1n} b_{22} &amp; \cdots &amp; a_{1n} b_{2q} \\    \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; &amp; &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\    a_{11} b_{p1} &amp; a_{11} b_{p2} &amp; \cdots &amp; a_{11} b_{pq} &amp;                    \cdots &amp; \cdots &amp; a_{1n} b_{p1} &amp; a_{1n} b_{p2} &amp; \cdots &amp; a_{1n} b_{pq} \\    \vdots &amp; \vdots &amp; &amp; \vdots &amp; \ddots &amp; &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\    \vdots &amp; \vdots &amp; &amp; \vdots &amp; &amp; \ddots &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\    a_{m1} b_{11} &amp; a_{m1} b_{12} &amp; \cdots &amp; a_{m1} b_{1q} &amp;                    \cdots &amp; \cdots &amp; a_{mn} b_{11} &amp; a_{mn} b_{12} &amp; \cdots &amp; a_{mn} b_{1q} \\    a_{m1} b_{21} &amp; a_{m1} b_{22} &amp; \cdots &amp; a_{m1} b_{2q} &amp;                    \cdots &amp; \cdots &amp; a_{mn} b_{21} &amp; a_{mn} b_{22} &amp; \cdots &amp; a_{mn} b_{2q} \\    \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; &amp; &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\    a_{m1} b_{p1} &amp; a_{m1} b_{p2} &amp; \cdots &amp; a_{m1} b_{pq} &amp;                    \cdots &amp; \cdots &amp; a_{mn} b_{p1} &amp; a_{mn} b_{p2} &amp; \cdots &amp; a_{mn} b_{pq} \end{bmatrix}
+\]</span></p>
+<h3 id="性质">性质</h3>
+<ol type="1">
+<li><p><span class="math inline">\((\mathbf{A} \otimes \mathbf{B})(\mathbf{C} \otimes \mathbf{D}) = (\mathbf{AC}) \otimes (\mathbf{BD})\)</span></p></li>
+<li><p><span class="math inline">\((\mathbf{A} \otimes \mathbf{B})^{-1} = \mathbf{A}^{-1} \otimes \mathbf{B}^{-1}\)</span></p></li>
+</ol>
 <h2 id="位运算卷积">位运算卷积</h2>
-<p>假设存在可逆矩阵 <span class="math inline">\(H_2 = \begin{bmatrix}H_{0, 0} &amp; H_{0, 1}\\H_{1, 0} &amp; H_{1, 1}\end{bmatrix}\)</span>​​ 满足 <span class="math display">\[
-H_{i, p\otimes q} = H_{i, p}H_{i, q}
+<p>位运算的每一位都是独立的，考虑按位构造变换矩阵。</p>
+<p>假设存在 2 阶方阵 <span class="math inline">\(P_2, Q_2, R_2\)</span>，其中 <span class="math inline">\(R_2\)</span> 可逆，满足 <span class="math inline">\(R_{i, p\odot q} = P_{i, p}Q_{i, q}\)</span>。</p>
+<p>令 <span class="math inline">\(2^k\)</span> 阶方阵 <span class="math display">\[
+\begin{aligned}
+P_{2^k} &amp;= P_2 \otimes P_2 \otimes \dots \otimes P_2 = P_2^{\otimes k}\\
+Q_{2^k} &amp;= Q_2 \otimes Q_2 \otimes \dots \otimes Q_2 = Q_2^{\otimes k}\\
+R_{2^k} &amp;= R_2 \otimes R_2 \otimes \dots \otimes R_2 = R_2^{\otimes k}
+\end{aligned}
 \]</span></p>
-<p>按位考虑，设 <span class="math inline">\(i, j\)</span>​ 的二进制表示为 <span class="math display">\[
-i_{k-1}\dots i_1i_0, j_{k-1}\dots j_1j_0
-\]</span> 对于矩阵 <span class="math inline">\(H_{2^k}\)</span>​​​ ，令 <span class="math display">\[
-H_{i, j} = \prod_{l=0}^{k-1}H_{i_l, j_l}
-\]</span> 此时 <span class="math display">\[
-H_{i, p}H_{i, q} = \prod_{l=0}^{k-1}H_{i_l, p_l}H_{i_l, q_l} = \prod_{l=0}^{k-1}H_{il, p_l\otimes q_l} = H_{i, p \otimes q}
-\]</span> 容易发现 <span class="math display">\[
-H_{2n} = \begin{bmatrix}
-H_{0, 0}H_{n} &amp; H_{0, 1}H_{n}\\
-H_{1, 0}H_{n} &amp; H_{1, 1}H_{n}
-\end{bmatrix}
-\]</span> 令 <span class="math inline">\(V = H_2^{-1}\)</span> 则 <span class="math inline">\(H_{2n}\)</span>​ 的逆为 <span class="math display">\[
-H_{2n}^{-1} =
-\begin{bmatrix}
-V_{0, 0}H_{n}^{-1} &amp; V_{0, 1}H_{n}^{-1}\\
-V_{1, 0}H_{n}^{-1} &amp; V_{1, 1}H_{n}^{-1}
-\end{bmatrix}
-\]</span></p>
-<p>归纳得知如果可以构造出可逆矩阵 <span class="math inline">\(H_2\)</span>​​，那么按照上述方法得到的 <span class="math inline">\(H_{2^k}\)</span>​​ 也是可逆的。</p>
+<p>设 <span class="math inline">\(i, j\)</span>​ 的二进制表示为 <span class="math inline">\(i_{k-1}\dots i_1i_0\)</span> 和 <span class="math inline">\(j_{k-1}\dots j_1j_0\)</span>。</p>
+<p>上面式子的含义为 <span class="math display">\[
+P_{i, j} = \prod_{l=0}^{k-1}P_{i_l, j_l}\quad
+Q_{i, j} = \prod_{l=0}^{k-1}Q_{i_l, j_l}\quad
+R_{i, j} = \prod_{l=0}^{k-1}R_{i_l, j_l}
+\]</span> 容易验证此时 <span class="math inline">\(P_{2^k}, Q_{2^k}, R_{2^k}\)</span> 仍然满足<span class="math inline">\(R_{2^k}\)</span> 可逆且 <span class="math inline">\(R_{i, p\odot q} = P_{i, p}Q_{i, q}\)</span>。</p>
 <h3 id="快速计算-h_2kmathbf-alpha">快速计算 <span class="math inline">\(H_{2^k}\mathbf \alpha\)</span>​</h3>
 <p>根据分块矩阵相乘 <span class="math display">\[
 H_{2n}\mathbf{\alpha}_{2n} =
+(H_{2}\otimes H_n)\mathbf{\alpha}_{2n}
+=
 \begin{bmatrix}
 H_{0, 0}H_{n} &amp; H_{0, 1}H_{n}\\
 H_{1, 0}H_{n} &amp; H_{1, 1}H_{n}
@@ -937,24 +1021,16 @@ H_{1, 0}H_{n}\mathbf{\alpha}_n + H_{1, 1}H_{n}\mathbf{\alpha}&#39;_n
 \]</span></p>
 <p>分治计算 <span class="math inline">\(H_n\mathbf{\alpha}_n\)</span> 和 <span class="math inline">\(H_n\mathbf{\alpha}&#39;_n\)</span> ，复杂度 <span class="math inline">\(O(k2^k)\)</span>。</p>
 <h3 id="or">Or</h3>
-<p><span class="math display">\[
-H_{i, p\operatorname{or} q} = H_{i, p}H_{i, q}
-\]</span></p>
-<p>容易构造出 <span class="math inline">\(\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}\)</span>​ 或 <span class="math inline">\(\begin{bmatrix}1&amp;0\\1&amp;1\end{bmatrix}\)</span>​。</p>
-<p>其中 <span class="math inline">\(\begin{bmatrix}1&amp;0\\1&amp;1\end{bmatrix}\)</span>​​​ 有特殊含义 <span class="math inline">\(H_{i, j} = [i \operatorname{and} j = j]\)</span>​​​​，使用该矩阵，<span class="math inline">\(H^{-1} = \begin{bmatrix}1 &amp; 0\\-1 &amp; 1\end{bmatrix}\)</span>。​</p>
+<p>容易构造出 <span class="math inline">\(P = Q = R = \begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}\)</span>​ 或 <span class="math inline">\(\begin{bmatrix}1&amp;0\\1&amp;1\end{bmatrix}\)</span>​。</p>
+<p>其中 <span class="math inline">\(\begin{bmatrix}1&amp;0\\1&amp;1\end{bmatrix}\)</span>​​​ 有特殊含义 <span class="math inline">\(R_{i, j} = [i \operatorname{and} j = j]\)</span>​​​​，使用该矩阵，<span class="math inline">\(R^{-1} = \begin{bmatrix}1 &amp; 0\\-1 &amp; 1\end{bmatrix}\)</span>。​</p>
 <h3 id="and">And</h3>
-<p><span class="math display">\[
-H_{i, p\operatorname{and} q} = H_{i, p}H_{i, q}
-\]</span></p>
-<p>容易构造出 <span class="math inline">\(\begin{bmatrix}0&amp;1\\1&amp;1\end{bmatrix}\)</span>​​ 或 <span class="math inline">\(\begin{bmatrix}1&amp;1\\0&amp;1\end{bmatrix}\)</span>​​。</p>
-<p>其中 <span class="math inline">\(\begin{bmatrix}1&amp;1\\0&amp;1\end{bmatrix}\)</span>​ 有特殊含义 <span class="math inline">\(H_{i, j} = [i \operatorname{and} j = i]\)</span>​，使用该矩阵，<span class="math inline">\(H^{-1} = \begin{bmatrix}1 &amp; -1\\0 &amp; 1\end{bmatrix}\)</span>​。</p>
+<p>容易构造出 <span class="math inline">\(P = Q = R = \begin{bmatrix}0&amp;1\\1&amp;1\end{bmatrix}\)</span>​​ 或 <span class="math inline">\(\begin{bmatrix}1&amp;1\\0&amp;1\end{bmatrix}\)</span>​​。</p>
+<p>其中 <span class="math inline">\(\begin{bmatrix}1&amp;1\\0&amp;1\end{bmatrix}\)</span>​ 有特殊含义 <span class="math inline">\(R_{i, j} = [i \operatorname{and} j = i]\)</span>​，使用该矩阵，<span class="math inline">\(R^{-1} = \begin{bmatrix}1 &amp; -1\\0 &amp; 1\end{bmatrix}\)</span>​。</p>
 <h3 id="xor">Xor</h3>
-<p><span class="math display">\[
-H_{i, p\operatorname{xor} q} = H_{i, p}H_{i, q}
-\]</span></p>
-<p>容易构造出 <span class="math inline">\(\begin{bmatrix}1&amp;-1\\1&amp;1\end{bmatrix}\)</span>​​ 或 <span class="math inline">\(\begin{bmatrix}1&amp;1\\1&amp;-1\end{bmatrix}\)</span>​​。</p>
-<p>其中 <span class="math inline">\(\begin{bmatrix}1&amp;1\\1&amp;-1\end{bmatrix}\)</span> 有特殊含义 <span class="math inline">\(H_{i, j} = (-1)^{\operatorname{popcnt}(i \operatorname{and} j)}\)</span>，使用该矩阵，<span class="math inline">\(H^{-1} = \begin{bmatrix}\frac12 &amp; \frac12\\\frac12 &amp; -\frac12\end{bmatrix}\)</span>​。</p>
-<p>注意到 <span class="math inline">\(H^{-1} = \frac12 H\)</span>，那么 <span class="math inline">\(H_{2^k}^{-1} = \dfrac{1}{2^k}H_{2^k}\)</span>，所以对于异或卷积，逆变换相当于正变换后每一项除以 <span class="math inline">\(n\)</span>，与傅里叶变换类似。</p>
+<p>容易构造出 <span class="math inline">\(P = Q = R = \begin{bmatrix}1&amp;-1\\1&amp;1\end{bmatrix}\)</span>​​ 或 <span class="math inline">\(\begin{bmatrix}1&amp;1\\1&amp;-1\end{bmatrix}\)</span>​​。</p>
+<p>其中 <span class="math inline">\(\begin{bmatrix}1&amp;1\\1&amp;-1\end{bmatrix}\)</span> 有特殊含义 <span class="math inline">\(R_{i, j} = (-1)^{\operatorname{popcnt}(i \operatorname{and} j)}\)</span>，使用该矩阵，<span class="math inline">\(R^{-1} = \begin{bmatrix}\frac12 &amp; \frac12\\\frac12 &amp; -\frac12\end{bmatrix}\)</span>​。</p>
+<p>三个变换矩阵相同，因此记为 <span class="math inline">\(H\)</span>。</p>
+<p>注意到对于异或卷积 <span class="math inline">\(H^{-1} = \frac12 H\)</span>，那么 <span class="math inline">\(H_{2^k}^{-1} = \dfrac{1}{2^k}H_{2^k}\)</span>，所以逆变换相当于正变换后每一项除以 <span class="math inline">\(n\)</span>，与离散傅里叶变换类似。</p>
 <h2 id="子集卷积">子集卷积</h2>
 <p><span class="math display">\[
 c_n = \sum\limits_{p, q}[p \operatorname{or} q = n][p \operatorname{and} q = 0] a_pb_q
@@ -978,24 +1054,20 @@ c_n &amp;= [x^{\operatorname{popcnt}(n)}]C_n(x)
 \]</span></p>
 <h2 id="广义位运算卷积">广义位运算卷积</h2>
 <p>将位运算从二进制推广到 <span class="math inline">\(m\)</span> 进制。</p>
-<p>类似二进制的情形，假设存在可逆矩阵 <span class="math inline">\(H_m\)</span>​​ 满足 <span class="math display">\[
-H_{i, p\otimes q} = H_{i, p}H_{i, q}
+<p>类似二进制的情形，假设存在 m 阶方阵 <span class="math inline">\(P_m, Q_m, R_m\)</span>，其中 <span class="math inline">\(R_m\)</span> 可逆，满足 <span class="math inline">\(R_{i, p\odot q} = P_{i, p}Q_{i, q}\)</span>。</p>
+<p>令 <span class="math inline">\(m^k\)</span> 阶方阵， <span class="math display">\[
+\begin{aligned}
+P_{m^k} &amp;= P_m \otimes P_m \otimes \dots \otimes P_m = P_m^{\otimes k}\\
+Q_{m^k} &amp;= Q_m \otimes Q_m \otimes \dots \otimes Q_m = Q_m^{\otimes k}\\
+R_{m^k} &amp;= R_m \otimes R_m \otimes \dots \otimes R_m = R_m^{\otimes k}
+\end{aligned}
 \]</span></p>
-<p>按位考虑，设 <span class="math inline">\(i, j\)</span>​​​ 的 <span class="math inline">\(m\)</span>​ 进制表示为 <span class="math display">\[
-i_{k-1}\dots i_1i_0, j_{k-1}\dots j_1j_0
-\]</span> 对于矩阵 <span class="math inline">\(H_{m^k}\)</span>​​​​ ，令 <span class="math display">\[
-H_{i, j} = \prod_{l=0}^{k-1}H_{i_l, j_l}
+<p>设 <span class="math inline">\(i, j\)</span>​ 的 <span class="math inline">\(m\)</span>​ 进制表示为 <span class="math inline">\(i_{k-1}\dots i_1i_0\)</span> 和 <span class="math inline">\(j_{k-1}\dots j_1j_0\)</span>。</p>
+<p>上面式子的含义为 <span class="math display">\[
+P_{i, j} = \prod_{l=0}^{k-1}P_{i_l, j_l}\quad
+Q_{i, j} = \prod_{l=0}^{k-1}Q_{i_l, j_l}\quad
+R_{i, j} = \prod_{l=0}^{k-1}R_{i_l, j_l}
 \]</span></p>
-<p>即 <span class="math display">\[
-H_{kn} = H_k \otimes H_n
-\]</span> 其中 <span class="math inline">\(\otimes\)</span>​​​​​​ 表示 <a href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a>，其定义为 <span class="math display">\[
-{\displaystyle \mathbf {A} \otimes \mathbf {B} ={\begin{bmatrix}a_{11}\mathbf {B} &amp;\cdots &amp;a_{1n}\mathbf {B} \\\vdots &amp;\ddots &amp;\vdots \\a_{m1}\mathbf {B} &amp;\cdots &amp;a_{mn}\mathbf {B} \end{bmatrix}}}
-\]</span> 更明确地 <span class="math display">\[
-{\mathbf{A}\otimes\mathbf{B}} = \begin{bmatrix}    a_{11} b_{11} &amp; a_{11} b_{12} &amp; \cdots &amp; a_{11} b_{1q} &amp;                    \cdots &amp; \cdots &amp; a_{1n} b_{11} &amp; a_{1n} b_{12} &amp; \cdots &amp; a_{1n} b_{1q} \\    a_{11} b_{21} &amp; a_{11} b_{22} &amp; \cdots &amp; a_{11} b_{2q} &amp;                    \cdots &amp; \cdots &amp; a_{1n} b_{21} &amp; a_{1n} b_{22} &amp; \cdots &amp; a_{1n} b_{2q} \\    \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; &amp; &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\    a_{11} b_{p1} &amp; a_{11} b_{p2} &amp; \cdots &amp; a_{11} b_{pq} &amp;                    \cdots &amp; \cdots &amp; a_{1n} b_{p1} &amp; a_{1n} b_{p2} &amp; \cdots &amp; a_{1n} b_{pq} \\    \vdots &amp; \vdots &amp; &amp; \vdots &amp; \ddots &amp; &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\    \vdots &amp; \vdots &amp; &amp; \vdots &amp; &amp; \ddots &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\    a_{m1} b_{11} &amp; a_{m1} b_{12} &amp; \cdots &amp; a_{m1} b_{1q} &amp;                    \cdots &amp; \cdots &amp; a_{mn} b_{11} &amp; a_{mn} b_{12} &amp; \cdots &amp; a_{mn} b_{1q} \\    a_{m1} b_{21} &amp; a_{m1} b_{22} &amp; \cdots &amp; a_{m1} b_{2q} &amp;                    \cdots &amp; \cdots &amp; a_{mn} b_{21} &amp; a_{mn} b_{22} &amp; \cdots &amp; a_{mn} b_{2q} \\    \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; &amp; &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\    a_{m1} b_{p1} &amp; a_{m1} b_{p2} &amp; \cdots &amp; a_{m1} b_{pq} &amp;                    \cdots &amp; \cdots &amp; a_{mn} b_{p1} &amp; a_{mn} b_{p2} &amp; \cdots &amp; a_{mn} b_{pq} \end{bmatrix}
-\]</span></p>
-<p>易证 <span class="math display">\[
-(\mathbf{A} \otimes \mathbf{B})^{-1} = \mathbf{A}^{-1} \otimes \mathbf{B}^{-1}
-\]</span> 归纳得知如果可以构造出可逆矩阵 <span class="math inline">\(H_m\)</span>​​，那么按照上述方法得到的 <span class="math inline">\(H_{m^k}\)</span>​​ 也是可逆的。</p>
 <h3 id="or-1">Or</h3>
 <p>设 <span class="math inline">\(i = i_{k-1}\dots i_1i_0, j = j_{k-1}\dots j_1j_0\)</span>​​ 其中 <span class="math inline">\(i_l, j_l \in [0, m)\)</span>​​，定义 <span class="math inline">\(m\)</span>​​ 进制下 <span class="math inline">\(\mathrm{or}\)</span>​​​​ 运算为 <span class="math display">\[
 (i \operatorname{or} j)_l = \max(i_l, j_l)

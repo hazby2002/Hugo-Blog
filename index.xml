@@ -3999,58 +3999,54 @@ F_n &amp;amp;= \frac{(1+x)^{2n+2}+(-1)^nx^{n+1}}{1 + 3x + x^2}
         <pubDate>Sun, 08 Aug 2021 12:55:13 +0800</pubDate>
         
         <guid>https://blog.asukakyle.top/post/fwt/</guid>
-        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/fwt/ -&lt;h2 id=&#34;导引&#34;&gt;导引&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;满足交换律&lt;/strong&gt;的运算 &lt;span class=&#34;math inline&#34;&gt;\(\otimes\)&lt;/span&gt;，序列 &lt;span class=&#34;math inline&#34;&gt;\(a, b, c\)&lt;/span&gt; 和&lt;strong&gt;可逆矩阵&lt;/strong&gt; &lt;span class=&#34;math inline&#34;&gt;\(H\)&lt;/span&gt; 满足 &lt;span class=&#34;math display&#34;&gt;\[
+        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/fwt/ -&lt;h2 id=&#34;卷积&#34;&gt;卷积&lt;/h2&gt;
+&lt;p&gt;运算 &lt;span class=&#34;math inline&#34;&gt;\(\odot\)&lt;/span&gt;，序列 &lt;span class=&#34;math inline&#34;&gt;\(a, b, c\)&lt;/span&gt;，方阵 &lt;span class=&#34;math inline&#34;&gt;\(P, Q, R\)&lt;/span&gt; 满足 &lt;span class=&#34;math inline&#34;&gt;\(R\)&lt;/span&gt; 可逆，且 &lt;span class=&#34;math display&#34;&gt;\[
 \begin{cases}
-c_n &amp;amp;= \sum_{p \otimes q = n}a_pb_q\\
-\sum_j H_{i, j}c_j &amp;amp;= \sum_pH_{i,p}a_p\sum_q H_{i, q}b_q
+c_n &amp;amp;= \sum_{p \odot q = n}a_pb_q\\
+\sum_j R_{i, j}c_j &amp;amp;= \sum_pP_{i,p}a_p\sum_q Q_{i, q}b_q
 \end{cases}
 \]&lt;/span&gt; 所以 &lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
-\sum_{j}H_{i, j}\sum_{p, q}[p\otimes q = j]a_pb_q
-&amp;amp;= \sum_{p, q}H_{i, p}H_{i, q}a_pb_q\\
-\sum_{p, q}H_{i, p \otimes q}a_pb_q &amp;amp;= \sum_{p, q}H_{i, p}H_{i, q}a_pb_q\\
-H_{i, p\otimes q} &amp;amp;= H_{i, p}H_{i, q}
+\sum_{j}R_{i, j}\sum_{p, q}[p\odot q = j]a_pb_q
+&amp;amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\
+\sum_{p, q}R_{i, p \odot q}a_pb_q &amp;amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\
+R_{i, p\odot q} &amp;amp;= P_{i, p}Q_{i, q}
 \end{aligned}
-\]&lt;/span&gt; 对于 &lt;span class=&#34;math inline&#34;&gt;\(\otimes\)&lt;/span&gt; 运算为模意义下加法的情形，可以构造 &lt;span class=&#34;math inline&#34;&gt;\(H\)&lt;/span&gt; 为范德蒙矩阵： &lt;span class=&#34;math display&#34;&gt;\[
-H=
-\begin{bmatrix}1&amp;amp; 1 &amp;amp; 1&amp;amp; \cdots &amp;amp; 1\\
-1&amp;amp; \omega_n^1&amp;amp; \omega_n^2&amp;amp; \cdots &amp;amp; \omega_n^{n - 1}\\
-1&amp;amp; \omega_n^2 &amp;amp; \omega_n^4&amp;amp; \cdots &amp;amp; \omega_n^{2(n - 1)}\\
-\vdots &amp;amp; \vdots&amp;amp; \vdots&amp;amp; \ddots&amp;amp; \vdots\\
-1&amp;amp; \omega_n^{n - 1}&amp;amp;\omega_n^{2(n - 1)} &amp;amp; \cdots &amp;amp; \omega_n^{(n - 1)(n - 1)}
-\end{bmatrix}
-\]&lt;/span&gt; 它的逆为： &lt;span class=&#34;math display&#34;&gt;\[
-H^{-1}=\dfrac{1}{n}\begin{bmatrix}1&amp;amp; 1 &amp;amp; 1&amp;amp; \cdots &amp;amp; 1\\ 1&amp;amp; \omega_n^{-1}&amp;amp; \omega_n^{-2}&amp;amp; \cdots &amp;amp;
-\omega_n^{-(n - 1)}\\ 1&amp;amp; \omega_n^{-2} &amp;amp; \omega_n^{-4}&amp;amp; \cdots &amp;amp; \omega_n^{-2(n - 1)}\\ \vdots&amp;amp; \vdots&amp;amp; \vdots&amp;amp;\ddots&amp;amp; \vdots\\ 1&amp;amp; \omega_n^{-(n - 1)}&amp;amp; \omega_n^{-2(n - 1)} &amp;amp; \cdots &amp;amp; \omega_n^{-(n - 1)(n -
-1)}\end{bmatrix}
-\]&lt;/span&gt; 此时为傅里叶变换。&lt;/p&gt;
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;对序列 &lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; 施加线性变换 &lt;span class=&#34;math inline&#34;&gt;\(P\)&lt;/span&gt;，序列 &lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt; 施加线性变换 &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt;，点乘之后再施加逆变换 &lt;span class=&#34;math inline&#34;&gt;\(R^{-1}\)&lt;/span&gt;，就可以实现 &lt;span class=&#34;math inline&#34;&gt;\(\odot\)&lt;/span&gt; 卷积。&lt;/p&gt;
+&lt;p&gt;对于满足交换律的运算 &lt;span class=&#34;math inline&#34;&gt;\(\odot\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(P = Q\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;kronecker-product&#34;&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Kronecker_product&#34;&gt;Kronecker product&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(\mathbf {A}\)&lt;/span&gt; 是 &lt;span class=&#34;math inline&#34;&gt;\(m \times n\)&lt;/span&gt; 矩阵，&lt;span class=&#34;math inline&#34;&gt;\(\mathbf {B}\)&lt;/span&gt; 是 &lt;span class=&#34;math inline&#34;&gt;\(p \times q\)&lt;/span&gt;，定义 &lt;span class=&#34;math inline&#34;&gt;\(\mathbf {A}\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(\mathbf {B}\)&lt;/span&gt; 的 &lt;code&gt;Kronecker product&lt;/code&gt; 为 &lt;span class=&#34;math display&#34;&gt;\[
+{\displaystyle \mathbf {A} \otimes \mathbf {B} ={\begin{bmatrix}a_{11}\mathbf {B} &amp;amp;\cdots &amp;amp;a_{1n}\mathbf {B} \\\vdots &amp;amp;\ddots &amp;amp;\vdots \\a_{m1}\mathbf {B} &amp;amp;\cdots &amp;amp;a_{mn}\mathbf {B} \end{bmatrix}}}
+\]&lt;/span&gt; 更明确地 &lt;span class=&#34;math display&#34;&gt;\[
+{\mathbf{A}\otimes\mathbf{B}} = \begin{bmatrix}    a_{11} b_{11} &amp;amp; a_{11} b_{12} &amp;amp; \cdots &amp;amp; a_{11} b_{1q} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{1n} b_{11} &amp;amp; a_{1n} b_{12} &amp;amp; \cdots &amp;amp; a_{1n} b_{1q} \\    a_{11} b_{21} &amp;amp; a_{11} b_{22} &amp;amp; \cdots &amp;amp; a_{11} b_{2q} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{1n} b_{21} &amp;amp; a_{1n} b_{22} &amp;amp; \cdots &amp;amp; a_{1n} b_{2q} \\    \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots &amp;amp; &amp;amp; &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\    a_{11} b_{p1} &amp;amp; a_{11} b_{p2} &amp;amp; \cdots &amp;amp; a_{11} b_{pq} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{1n} b_{p1} &amp;amp; a_{1n} b_{p2} &amp;amp; \cdots &amp;amp; a_{1n} b_{pq} \\    \vdots &amp;amp; \vdots &amp;amp; &amp;amp; \vdots &amp;amp; \ddots &amp;amp; &amp;amp; \vdots &amp;amp; \vdots &amp;amp; &amp;amp; \vdots \\    \vdots &amp;amp; \vdots &amp;amp; &amp;amp; \vdots &amp;amp; &amp;amp; \ddots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; &amp;amp; \vdots \\    a_{m1} b_{11} &amp;amp; a_{m1} b_{12} &amp;amp; \cdots &amp;amp; a_{m1} b_{1q} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{mn} b_{11} &amp;amp; a_{mn} b_{12} &amp;amp; \cdots &amp;amp; a_{mn} b_{1q} \\    a_{m1} b_{21} &amp;amp; a_{m1} b_{22} &amp;amp; \cdots &amp;amp; a_{m1} b_{2q} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{mn} b_{21} &amp;amp; a_{mn} b_{22} &amp;amp; \cdots &amp;amp; a_{mn} b_{2q} \\    \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots &amp;amp; &amp;amp; &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\    a_{m1} b_{p1} &amp;amp; a_{m1} b_{p2} &amp;amp; \cdots &amp;amp; a_{m1} b_{pq} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{mn} b_{p1} &amp;amp; a_{mn} b_{p2} &amp;amp; \cdots &amp;amp; a_{mn} b_{pq} \end{bmatrix}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;性质&#34;&gt;性质&lt;/h3&gt;
+&lt;ol type=&#34;1&#34;&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\((\mathbf{A} \otimes \mathbf{B})(\mathbf{C} \otimes \mathbf{D}) = (\mathbf{AC}) \otimes (\mathbf{BD})\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\((\mathbf{A} \otimes \mathbf{B})^{-1} = \mathbf{A}^{-1} \otimes \mathbf{B}^{-1}\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id=&#34;位运算卷积&#34;&gt;位运算卷积&lt;/h2&gt;
-&lt;p&gt;假设存在可逆矩阵 &lt;span class=&#34;math inline&#34;&gt;\(H_2 = \begin{bmatrix}H_{0, 0} &amp;amp; H_{0, 1}\\H_{1, 0} &amp;amp; H_{1, 1}\end{bmatrix}\)&lt;/span&gt;​​ 满足 &lt;span class=&#34;math display&#34;&gt;\[
-H_{i, p\otimes q} = H_{i, p}H_{i, q}
+&lt;p&gt;位运算的每一位都是独立的，考虑按位构造变换矩阵。&lt;/p&gt;
+&lt;p&gt;假设存在 2 阶方阵 &lt;span class=&#34;math inline&#34;&gt;\(P_2, Q_2, R_2\)&lt;/span&gt;，其中 &lt;span class=&#34;math inline&#34;&gt;\(R_2\)&lt;/span&gt; 可逆，满足 &lt;span class=&#34;math inline&#34;&gt;\(R_{i, p\odot q} = P_{i, p}Q_{i, q}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;令 &lt;span class=&#34;math inline&#34;&gt;\(2^k\)&lt;/span&gt; 阶方阵 &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+P_{2^k} &amp;amp;= P_2 \otimes P_2 \otimes \dots \otimes P_2 = P_2^{\otimes k}\\
+Q_{2^k} &amp;amp;= Q_2 \otimes Q_2 \otimes \dots \otimes Q_2 = Q_2^{\otimes k}\\
+R_{2^k} &amp;amp;= R_2 \otimes R_2 \otimes \dots \otimes R_2 = R_2^{\otimes k}
+\end{aligned}
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;按位考虑，设 &lt;span class=&#34;math inline&#34;&gt;\(i, j\)&lt;/span&gt;​ 的二进制表示为 &lt;span class=&#34;math display&#34;&gt;\[
-i_{k-1}\dots i_1i_0, j_{k-1}\dots j_1j_0
-\]&lt;/span&gt; 对于矩阵 &lt;span class=&#34;math inline&#34;&gt;\(H_{2^k}\)&lt;/span&gt;​​​ ，令 &lt;span class=&#34;math display&#34;&gt;\[
-H_{i, j} = \prod_{l=0}^{k-1}H_{i_l, j_l}
-\]&lt;/span&gt; 此时 &lt;span class=&#34;math display&#34;&gt;\[
-H_{i, p}H_{i, q} = \prod_{l=0}^{k-1}H_{i_l, p_l}H_{i_l, q_l} = \prod_{l=0}^{k-1}H_{il, p_l\otimes q_l} = H_{i, p \otimes q}
-\]&lt;/span&gt; 容易发现 &lt;span class=&#34;math display&#34;&gt;\[
-H_{2n} = \begin{bmatrix}
-H_{0, 0}H_{n} &amp;amp; H_{0, 1}H_{n}\\
-H_{1, 0}H_{n} &amp;amp; H_{1, 1}H_{n}
-\end{bmatrix}
-\]&lt;/span&gt; 令 &lt;span class=&#34;math inline&#34;&gt;\(V = H_2^{-1}\)&lt;/span&gt; 则 &lt;span class=&#34;math inline&#34;&gt;\(H_{2n}\)&lt;/span&gt;​ 的逆为 &lt;span class=&#34;math display&#34;&gt;\[
-H_{2n}^{-1} =
-\begin{bmatrix}
-V_{0, 0}H_{n}^{-1} &amp;amp; V_{0, 1}H_{n}^{-1}\\
-V_{1, 0}H_{n}^{-1} &amp;amp; V_{1, 1}H_{n}^{-1}
-\end{bmatrix}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;归纳得知如果可以构造出可逆矩阵 &lt;span class=&#34;math inline&#34;&gt;\(H_2\)&lt;/span&gt;​​，那么按照上述方法得到的 &lt;span class=&#34;math inline&#34;&gt;\(H_{2^k}\)&lt;/span&gt;​​ 也是可逆的。&lt;/p&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(i, j\)&lt;/span&gt;​ 的二进制表示为 &lt;span class=&#34;math inline&#34;&gt;\(i_{k-1}\dots i_1i_0\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(j_{k-1}\dots j_1j_0\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;上面式子的含义为 &lt;span class=&#34;math display&#34;&gt;\[
+P_{i, j} = \prod_{l=0}^{k-1}P_{i_l, j_l}\quad
+Q_{i, j} = \prod_{l=0}^{k-1}Q_{i_l, j_l}\quad
+R_{i, j} = \prod_{l=0}^{k-1}R_{i_l, j_l}
+\]&lt;/span&gt; 容易验证此时 &lt;span class=&#34;math inline&#34;&gt;\(P_{2^k}, Q_{2^k}, R_{2^k}\)&lt;/span&gt; 仍然满足&lt;span class=&#34;math inline&#34;&gt;\(R_{2^k}\)&lt;/span&gt; 可逆且 &lt;span class=&#34;math inline&#34;&gt;\(R_{i, p\odot q} = P_{i, p}Q_{i, q}\)&lt;/span&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;快速计算-h_2kmathbf-alpha&#34;&gt;快速计算 &lt;span class=&#34;math inline&#34;&gt;\(H_{2^k}\mathbf \alpha\)&lt;/span&gt;​&lt;/h3&gt;
 &lt;p&gt;根据分块矩阵相乘 &lt;span class=&#34;math display&#34;&gt;\[
 H_{2n}\mathbf{\alpha}_{2n} =
+(H_{2}\otimes H_n)\mathbf{\alpha}_{2n}
+=
 \begin{bmatrix}
 H_{0, 0}H_{n} &amp;amp; H_{0, 1}H_{n}\\
 H_{1, 0}H_{n} &amp;amp; H_{1, 1}H_{n}
@@ -4067,24 +4063,16 @@ H_{1, 0}H_{n}\mathbf{\alpha}_n + H_{1, 1}H_{n}\mathbf{\alpha}&amp;#39;_n
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;分治计算 &lt;span class=&#34;math inline&#34;&gt;\(H_n\mathbf{\alpha}_n\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(H_n\mathbf{\alpha}&amp;#39;_n\)&lt;/span&gt; ，复杂度 &lt;span class=&#34;math inline&#34;&gt;\(O(k2^k)\)&lt;/span&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;or&#34;&gt;Or&lt;/h3&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-H_{i, p\operatorname{or} q} = H_{i, p}H_{i, q}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;容易构造出 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;1\\1&amp;amp;0\end{bmatrix}\)&lt;/span&gt;​ 或 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;0\\1&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​。&lt;/p&gt;
-&lt;p&gt;其中 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;0\\1&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​​​ 有特殊含义 &lt;span class=&#34;math inline&#34;&gt;\(H_{i, j} = [i \operatorname{and} j = j]\)&lt;/span&gt;​​​​，使用该矩阵，&lt;span class=&#34;math inline&#34;&gt;\(H^{-1} = \begin{bmatrix}1 &amp;amp; 0\\-1 &amp;amp; 1\end{bmatrix}\)&lt;/span&gt;。​&lt;/p&gt;
+&lt;p&gt;容易构造出 &lt;span class=&#34;math inline&#34;&gt;\(P = Q = R = \begin{bmatrix}1&amp;amp;1\\1&amp;amp;0\end{bmatrix}\)&lt;/span&gt;​ 或 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;0\\1&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​。&lt;/p&gt;
+&lt;p&gt;其中 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;0\\1&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​​​ 有特殊含义 &lt;span class=&#34;math inline&#34;&gt;\(R_{i, j} = [i \operatorname{and} j = j]\)&lt;/span&gt;​​​​，使用该矩阵，&lt;span class=&#34;math inline&#34;&gt;\(R^{-1} = \begin{bmatrix}1 &amp;amp; 0\\-1 &amp;amp; 1\end{bmatrix}\)&lt;/span&gt;。​&lt;/p&gt;
 &lt;h3 id=&#34;and&#34;&gt;And&lt;/h3&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-H_{i, p\operatorname{and} q} = H_{i, p}H_{i, q}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;容易构造出 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}0&amp;amp;1\\1&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​​ 或 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;1\\0&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​​。&lt;/p&gt;
-&lt;p&gt;其中 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;1\\0&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​ 有特殊含义 &lt;span class=&#34;math inline&#34;&gt;\(H_{i, j} = [i \operatorname{and} j = i]\)&lt;/span&gt;​，使用该矩阵，&lt;span class=&#34;math inline&#34;&gt;\(H^{-1} = \begin{bmatrix}1 &amp;amp; -1\\0 &amp;amp; 1\end{bmatrix}\)&lt;/span&gt;​。&lt;/p&gt;
+&lt;p&gt;容易构造出 &lt;span class=&#34;math inline&#34;&gt;\(P = Q = R = \begin{bmatrix}0&amp;amp;1\\1&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​​ 或 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;1\\0&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​​。&lt;/p&gt;
+&lt;p&gt;其中 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;1\\0&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​ 有特殊含义 &lt;span class=&#34;math inline&#34;&gt;\(R_{i, j} = [i \operatorname{and} j = i]\)&lt;/span&gt;​，使用该矩阵，&lt;span class=&#34;math inline&#34;&gt;\(R^{-1} = \begin{bmatrix}1 &amp;amp; -1\\0 &amp;amp; 1\end{bmatrix}\)&lt;/span&gt;​。&lt;/p&gt;
 &lt;h3 id=&#34;xor&#34;&gt;Xor&lt;/h3&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-H_{i, p\operatorname{xor} q} = H_{i, p}H_{i, q}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;容易构造出 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;-1\\1&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​​ 或 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;1\\1&amp;amp;-1\end{bmatrix}\)&lt;/span&gt;​​。&lt;/p&gt;
-&lt;p&gt;其中 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;1\\1&amp;amp;-1\end{bmatrix}\)&lt;/span&gt; 有特殊含义 &lt;span class=&#34;math inline&#34;&gt;\(H_{i, j} = (-1)^{\operatorname{popcnt}(i \operatorname{and} j)}\)&lt;/span&gt;，使用该矩阵，&lt;span class=&#34;math inline&#34;&gt;\(H^{-1} = \begin{bmatrix}\frac12 &amp;amp; \frac12\\\frac12 &amp;amp; -\frac12\end{bmatrix}\)&lt;/span&gt;​。&lt;/p&gt;
-&lt;p&gt;注意到 &lt;span class=&#34;math inline&#34;&gt;\(H^{-1} = \frac12 H\)&lt;/span&gt;，那么 &lt;span class=&#34;math inline&#34;&gt;\(H_{2^k}^{-1} = \dfrac{1}{2^k}H_{2^k}\)&lt;/span&gt;，所以对于异或卷积，逆变换相当于正变换后每一项除以 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;，与傅里叶变换类似。&lt;/p&gt;
+&lt;p&gt;容易构造出 &lt;span class=&#34;math inline&#34;&gt;\(P = Q = R = \begin{bmatrix}1&amp;amp;-1\\1&amp;amp;1\end{bmatrix}\)&lt;/span&gt;​​ 或 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;1\\1&amp;amp;-1\end{bmatrix}\)&lt;/span&gt;​​。&lt;/p&gt;
+&lt;p&gt;其中 &lt;span class=&#34;math inline&#34;&gt;\(\begin{bmatrix}1&amp;amp;1\\1&amp;amp;-1\end{bmatrix}\)&lt;/span&gt; 有特殊含义 &lt;span class=&#34;math inline&#34;&gt;\(R_{i, j} = (-1)^{\operatorname{popcnt}(i \operatorname{and} j)}\)&lt;/span&gt;，使用该矩阵，&lt;span class=&#34;math inline&#34;&gt;\(R^{-1} = \begin{bmatrix}\frac12 &amp;amp; \frac12\\\frac12 &amp;amp; -\frac12\end{bmatrix}\)&lt;/span&gt;​。&lt;/p&gt;
+&lt;p&gt;三个变换矩阵相同，因此记为 &lt;span class=&#34;math inline&#34;&gt;\(H\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;注意到对于异或卷积 &lt;span class=&#34;math inline&#34;&gt;\(H^{-1} = \frac12 H\)&lt;/span&gt;，那么 &lt;span class=&#34;math inline&#34;&gt;\(H_{2^k}^{-1} = \dfrac{1}{2^k}H_{2^k}\)&lt;/span&gt;，所以逆变换相当于正变换后每一项除以 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;，与离散傅里叶变换类似。&lt;/p&gt;
 &lt;h2 id=&#34;子集卷积&#34;&gt;子集卷积&lt;/h2&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 c_n = \sum\limits_{p, q}[p \operatorname{or} q = n][p \operatorname{and} q = 0] a_pb_q
@@ -4108,24 +4096,20 @@ c_n &amp;amp;= [x^{\operatorname{popcnt}(n)}]C_n(x)
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;h2 id=&#34;广义位运算卷积&#34;&gt;广义位运算卷积&lt;/h2&gt;
 &lt;p&gt;将位运算从二进制推广到 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; 进制。&lt;/p&gt;
-&lt;p&gt;类似二进制的情形，假设存在可逆矩阵 &lt;span class=&#34;math inline&#34;&gt;\(H_m\)&lt;/span&gt;​​ 满足 &lt;span class=&#34;math display&#34;&gt;\[
-H_{i, p\otimes q} = H_{i, p}H_{i, q}
+&lt;p&gt;类似二进制的情形，假设存在 m 阶方阵 &lt;span class=&#34;math inline&#34;&gt;\(P_m, Q_m, R_m\)&lt;/span&gt;，其中 &lt;span class=&#34;math inline&#34;&gt;\(R_m\)&lt;/span&gt; 可逆，满足 &lt;span class=&#34;math inline&#34;&gt;\(R_{i, p\odot q} = P_{i, p}Q_{i, q}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;令 &lt;span class=&#34;math inline&#34;&gt;\(m^k\)&lt;/span&gt; 阶方阵， &lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+P_{m^k} &amp;amp;= P_m \otimes P_m \otimes \dots \otimes P_m = P_m^{\otimes k}\\
+Q_{m^k} &amp;amp;= Q_m \otimes Q_m \otimes \dots \otimes Q_m = Q_m^{\otimes k}\\
+R_{m^k} &amp;amp;= R_m \otimes R_m \otimes \dots \otimes R_m = R_m^{\otimes k}
+\end{aligned}
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;按位考虑，设 &lt;span class=&#34;math inline&#34;&gt;\(i, j\)&lt;/span&gt;​​​ 的 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;​ 进制表示为 &lt;span class=&#34;math display&#34;&gt;\[
-i_{k-1}\dots i_1i_0, j_{k-1}\dots j_1j_0
-\]&lt;/span&gt; 对于矩阵 &lt;span class=&#34;math inline&#34;&gt;\(H_{m^k}\)&lt;/span&gt;​​​​ ，令 &lt;span class=&#34;math display&#34;&gt;\[
-H_{i, j} = \prod_{l=0}^{k-1}H_{i_l, j_l}
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(i, j\)&lt;/span&gt;​ 的 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;​ 进制表示为 &lt;span class=&#34;math inline&#34;&gt;\(i_{k-1}\dots i_1i_0\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(j_{k-1}\dots j_1j_0\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;上面式子的含义为 &lt;span class=&#34;math display&#34;&gt;\[
+P_{i, j} = \prod_{l=0}^{k-1}P_{i_l, j_l}\quad
+Q_{i, j} = \prod_{l=0}^{k-1}Q_{i_l, j_l}\quad
+R_{i, j} = \prod_{l=0}^{k-1}R_{i_l, j_l}
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;即 &lt;span class=&#34;math display&#34;&gt;\[
-H_{kn} = H_k \otimes H_n
-\]&lt;/span&gt; 其中 &lt;span class=&#34;math inline&#34;&gt;\(\otimes\)&lt;/span&gt;​​​​​​ 表示 &lt;a href=&#34;https://en.wikipedia.org/wiki/Kronecker_product&#34;&gt;Kronecker product&lt;/a&gt;，其定义为 &lt;span class=&#34;math display&#34;&gt;\[
-{\displaystyle \mathbf {A} \otimes \mathbf {B} ={\begin{bmatrix}a_{11}\mathbf {B} &amp;amp;\cdots &amp;amp;a_{1n}\mathbf {B} \\\vdots &amp;amp;\ddots &amp;amp;\vdots \\a_{m1}\mathbf {B} &amp;amp;\cdots &amp;amp;a_{mn}\mathbf {B} \end{bmatrix}}}
-\]&lt;/span&gt; 更明确地 &lt;span class=&#34;math display&#34;&gt;\[
-{\mathbf{A}\otimes\mathbf{B}} = \begin{bmatrix}    a_{11} b_{11} &amp;amp; a_{11} b_{12} &amp;amp; \cdots &amp;amp; a_{11} b_{1q} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{1n} b_{11} &amp;amp; a_{1n} b_{12} &amp;amp; \cdots &amp;amp; a_{1n} b_{1q} \\    a_{11} b_{21} &amp;amp; a_{11} b_{22} &amp;amp; \cdots &amp;amp; a_{11} b_{2q} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{1n} b_{21} &amp;amp; a_{1n} b_{22} &amp;amp; \cdots &amp;amp; a_{1n} b_{2q} \\    \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots &amp;amp; &amp;amp; &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\    a_{11} b_{p1} &amp;amp; a_{11} b_{p2} &amp;amp; \cdots &amp;amp; a_{11} b_{pq} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{1n} b_{p1} &amp;amp; a_{1n} b_{p2} &amp;amp; \cdots &amp;amp; a_{1n} b_{pq} \\    \vdots &amp;amp; \vdots &amp;amp; &amp;amp; \vdots &amp;amp; \ddots &amp;amp; &amp;amp; \vdots &amp;amp; \vdots &amp;amp; &amp;amp; \vdots \\    \vdots &amp;amp; \vdots &amp;amp; &amp;amp; \vdots &amp;amp; &amp;amp; \ddots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; &amp;amp; \vdots \\    a_{m1} b_{11} &amp;amp; a_{m1} b_{12} &amp;amp; \cdots &amp;amp; a_{m1} b_{1q} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{mn} b_{11} &amp;amp; a_{mn} b_{12} &amp;amp; \cdots &amp;amp; a_{mn} b_{1q} \\    a_{m1} b_{21} &amp;amp; a_{m1} b_{22} &amp;amp; \cdots &amp;amp; a_{m1} b_{2q} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{mn} b_{21} &amp;amp; a_{mn} b_{22} &amp;amp; \cdots &amp;amp; a_{mn} b_{2q} \\    \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots &amp;amp; &amp;amp; &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\    a_{m1} b_{p1} &amp;amp; a_{m1} b_{p2} &amp;amp; \cdots &amp;amp; a_{m1} b_{pq} &amp;amp;                    \cdots &amp;amp; \cdots &amp;amp; a_{mn} b_{p1} &amp;amp; a_{mn} b_{p2} &amp;amp; \cdots &amp;amp; a_{mn} b_{pq} \end{bmatrix}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;易证 &lt;span class=&#34;math display&#34;&gt;\[
-(\mathbf{A} \otimes \mathbf{B})^{-1} = \mathbf{A}^{-1} \otimes \mathbf{B}^{-1}
-\]&lt;/span&gt; 归纳得知如果可以构造出可逆矩阵 &lt;span class=&#34;math inline&#34;&gt;\(H_m\)&lt;/span&gt;​​，那么按照上述方法得到的 &lt;span class=&#34;math inline&#34;&gt;\(H_{m^k}\)&lt;/span&gt;​​ 也是可逆的。&lt;/p&gt;
 &lt;h3 id=&#34;or-1&#34;&gt;Or&lt;/h3&gt;
 &lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(i = i_{k-1}\dots i_1i_0, j = j_{k-1}\dots j_1j_0\)&lt;/span&gt;​​ 其中 &lt;span class=&#34;math inline&#34;&gt;\(i_l, j_l \in [0, m)\)&lt;/span&gt;​​，定义 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;​​ 进制下 &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{or}\)&lt;/span&gt;​​​​ 运算为 &lt;span class=&#34;math display&#34;&gt;\[
 (i \operatorname{or} j)_l = \max(i_l, j_l)
