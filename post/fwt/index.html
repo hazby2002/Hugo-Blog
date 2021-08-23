@@ -870,7 +870,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <h2 id="导引">导引</h2>
-<p>序列 <span class="math inline">\(a, b, c\)</span> 和<strong>可逆矩阵</strong> <span class="math inline">\(H\)</span> 满足 <span class="math display">\[
+<p><strong>满足交换律</strong>的运算 <span class="math inline">\(\otimes\)</span>，序列 <span class="math inline">\(a, b, c\)</span> 和<strong>可逆矩阵</strong> <span class="math inline">\(H\)</span> 满足 <span class="math display">\[
 \begin{cases}
 c_n &amp;= \sum_{p \otimes q = n}a_pb_q\\
 \sum_j H_{i, j}c_j &amp;= \sum_pH_{i,p}a_p\sum_q H_{i, q}b_q
@@ -910,11 +910,11 @@ H_{2n} = \begin{bmatrix}
 H_{0, 0}H_{n} &amp; H_{0, 1}H_{n}\\
 H_{1, 0}H_{n} &amp; H_{1, 1}H_{n}
 \end{bmatrix}
-\]</span> 令 <span class="math inline">\(I = H_2^{-1}\)</span>，那么 <span class="math inline">\(H_{2n}\)</span>​ 的逆为 <span class="math display">\[
+\]</span> 令 <span class="math inline">\(V = H_2^{-1}\)</span> 则 <span class="math inline">\(H_{2n}\)</span>​ 的逆为 <span class="math display">\[
 H_{2n}^{-1} =
 \begin{bmatrix}
-I_{0, 0}H_{n}^{-1} &amp; I_{0, 1}H_{n}^{-1}\\
-I_{1, 0}H_{n}^{-1} &amp; I_{1, 1}H_{n}^{-1}
+V_{0, 0}H_{n}^{-1} &amp; V_{0, 1}H_{n}^{-1}\\
+V_{1, 0}H_{n}^{-1} &amp; V_{1, 1}H_{n}^{-1}
 \end{bmatrix}
 \]</span></p>
 <p>归纳得知如果可以构造出可逆矩阵 <span class="math inline">\(H_2\)</span>​​，那么按照上述方法得到的 <span class="math inline">\(H_{2^k}\)</span>​​ 也是可逆的。</p>
@@ -1005,7 +1005,7 @@ H_{kn} = H_k \otimes H_n
 <p>设 <span class="math inline">\(i = i_{k-1}\dots i_1i_0, j = j_{k-1}\dots j_1j_0\)</span>​​​ 其中 <span class="math inline">\(i_l, j_l \in [0, m)\)</span>​​​，定义 <span class="math inline">\(m\)</span>​​​ 进制下 <span class="math inline">\(\mathrm{and}\)</span>​​​​​ 运算为 <span class="math display">\[
 (i \operatorname{and} j)_l = \min(i_l, j_l)
 \]</span></p>
-<p>一种构造是形如 <span class="math inline">\(\begin{bmatrix}1&amp;1&amp;1&amp;1\\0&amp;1&amp;1&amp;1\\0&amp;0&amp;1&amp;1\\0&amp;0&amp;0&amp;1\end{bmatrix}\)</span>​​ 的上三角矩阵，含义是 <span class="math inline">\(H_{i, j} = [i \leq j]\)</span>​​，<span class="math inline">\(I=\begin{bmatrix}1&amp;-1&amp;0&amp;0\\0&amp;1&amp;-1&amp;0\\0&amp;0&amp;1&amp;-1\\0&amp;0&amp;0&amp;1\end{bmatrix}\)</span>​​。</p>
+<p>一种构造是形如 <span class="math inline">\(\begin{bmatrix}1&amp;1&amp;1&amp;1\\0&amp;1&amp;1&amp;1\\0&amp;0&amp;1&amp;1\\0&amp;0&amp;0&amp;1\end{bmatrix}\)</span>​​ 的上三角矩阵，含义是 <span class="math inline">\(H_{i, j} = [i \leq j]\)</span>​​，<span class="math inline">\(H^{-1}=\begin{bmatrix}1&amp;-1&amp;0&amp;0\\0&amp;1&amp;-1&amp;0\\0&amp;0&amp;1&amp;-1\\0&amp;0&amp;0&amp;1\end{bmatrix}\)</span>​​。</p>
 <h3 id="xor-1">Xor</h3>
 <p>设 <span class="math inline">\(i = i_{k-1}\dots i_1i_0, j = j_{k-1}\dots j_1j_0\)</span>​​ 其中 <span class="math inline">\(i_l, j_l \in [0, m)\)</span>​​，定义 <span class="math inline">\(m\)</span>​​ 进制下 <span class="math inline">\(\mathrm{xor}\)</span>​​​​ 运算为 <span class="math display">\[
 (i \operatorname{xor} j)_l = (i_l + j_l) \bmod m
@@ -1149,7 +1149,7 @@ H^{-1}=\dfrac{1}{m}\begin{bmatrix}1&amp; 1 &amp; 1&amp; \cdots &amp; 1\\ 1&amp; 
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2021-08-13</p>
+		    <p style="color:#777;">最后修改于 2021-08-23</p>
                     
                 </div>
             </div>

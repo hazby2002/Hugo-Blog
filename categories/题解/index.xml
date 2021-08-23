@@ -14,7 +14,7 @@
       <pubDate>Thu, 19 Aug 2021 17:31:49 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu10/</guid>
-      <description>题号 题目 完成情况    7077 Pty loves sequence   7078 Pty with card   7079 Pty loves lines 通过  7080 Pty hates prime numbers   7081 Pty loves book   7082 Pty loves lcm   7083 Pty loves graph   7084 Pty loves string 通过  7085 Pty loves SegmentTree   7086 Pty plays game     Pty loves sequence Pty with card Pty loves lines #include &amp;lt;bits/stdc++.</description>
+      <description>题号 题目 完成情况    7077 Pty loves sequence   7078 Pty with card   7079 Pty loves lines 通过  7080 Pty hates prime numbers 通过  7081 Pty loves book   7082 Pty loves lcm   7083 Pty loves graph   7084 Pty loves string 通过  7085 Pty loves SegmentTree   7086 Pty plays game     Pty loves sequence Pty with card Pty loves lines #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -61,7 +61,7 @@
       <pubDate>Sat, 07 Aug 2021 19:38:21 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder7/</guid>
-      <description>题号 标题 团队的状态    A xay loves connected graphs 通过  B xay loves monotonicity 通过  C xay loves jumping 未通过  D xay loves matrices 未通过  E xay loves nim 通过  F xay loves trees 通过  G xay loves KDT 未通过  H xay loves count 通过  I xay loves or 通过  J xay loves Floyd 通过  K xay loves sequence 通过    xay loves connected graphs // Author: HolyK // Created: Sun Aug 8 18:17:17 2021 #include &amp;lt;bits/stdc++.</description>
+      <description>题号 标题 团队的状态    A xay loves connected graphs 通过  B xay loves monotonicity 通过  C xay loves jumping 未通过  D xay loves matrices 通过  E xay loves nim 通过  F xay loves trees 通过  G xay loves KDT 未通过  H xay loves count 通过  I xay loves or 通过  J xay loves Floyd 通过  K xay loves sequence 通过    xay loves connected graphs // Author: HolyK // Created: Sun Aug 8 18:17:17 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -70,7 +70,7 @@
       <pubDate>Sat, 07 Aug 2021 09:53:25 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder6/</guid>
-      <description>题号 标题 团队的状态    A Contracting Convex Hull 未通过  B Defend Ponyville 未通过  C Delete Edges 通过  D Gambling Monster 通过  E Growing Tree 通过  F Hamburger Steak 通过  G Hasse Diagram 通过  H Hopping Rabbit 通过  I Intervals on the Ring 通过  J Defend Your Country 通过  K Starch Cat 通过    Contracting Convex Hull Defend Ponyville Delete Edges Gambling Monster 分治fwt。</description>
+      <description>题号 标题 团队的状态    A Contracting Convex Hull 未通过  B Defend Ponyville 通过  C Delete Edges 通过  D Gambling Monster 通过  E Growing Tree 通过  F Hamburger Steak 通过  G Hasse Diagram 通过  H Hopping Rabbit 通过  I Intervals on the Ring 通过  J Defend Your Country 通过  K Starch Cat 通过    Contracting Convex Hull Defend Ponyville // Author: HolyK // Created: Fri Aug 13 20:54:58 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
