@@ -20,6 +20,7 @@
         <guid>https://blog.asukakyle.top/post/errors/</guid>
         <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/errors/ -&lt;ul&gt;
 &lt;li&gt;慎用无符号整数。注意 &lt;code&gt;0-- = ~0&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 &lt;code&gt;Null&lt;/code&gt; 节点的方式写。&lt;/li&gt;
 &lt;/ul&gt;
 - https://blog.asukakyle.top/post/errors/ - CC BY-NC-SA 4.0</description>
         </item>

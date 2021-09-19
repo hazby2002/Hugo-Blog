@@ -14,7 +14,7 @@
       <pubDate>Sun, 29 Aug 2021 14:20:06 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/errors/</guid>
-      <description> 慎用无符号整数。注意 0-- = ~0。  </description>
+      <description> 慎用无符号整数。注意 0-- = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。  </description>
     </item>
     
     <item>
