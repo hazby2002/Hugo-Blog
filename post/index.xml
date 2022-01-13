@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Wed, 12 Jan 2022 19:24:43 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jan 2022 20:31:35 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【置顶】寒假训练日志</title>
       <link>https://blog.asukakyle.top/post/%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/</link>
@@ -15,7 +15,8 @@
       
       <guid>https://blog.asukakyle.top/post/%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/</guid>
       <description>2022/01/10  计算几何板子 搞了 60% 打了 Codeforces Round #764 (Div. 3)，赛时没AK，经典DP当贪心wa了几发还反应不过来  2022/01/11  做了 xgc 挂的两道 DP 题，CF573D 和 CF1097G。 剩下的时间在肝实验报告  2022/01/12 最近好摸啊！
- 计算几何板子 搞了 100% 打了 Codeforces Round #765 (Div. 2)  </description>
+ 计算几何板子 搞了 100% 打了 Codeforces Round #765 (Div. 2)  2022/01/13 最近好摸啊！
+ 补了昨天 CF 的 E 题 写了 CF708E, AGC036D  </description>
     </item>
     
     <item>
@@ -36,6 +37,21 @@
       <description>日志 2021/12/3 进行了结构性调整，且增加了一些不常用内容，修改了一些细节上的写法，因此不在原文修改，旧版附在最后。
 2021/12/19 弃用原模板，保留一部分在不常用里面，其他删除。
 TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(998244353), G(3), L(1 &amp;lt;&amp;lt; 18); inline void inc(int &amp;amp;x, int y) {  x += y;  if (x &amp;gt;= P) x -= P; } inline void dec(int &amp;amp;x, int y) {  x -= y;  if (x &amp;lt; 0) x += P; } inline int mod(LL x) { return x % P; } int fpow(int x, int k = P - 2) {  int r = 1;  for (; k; k &amp;gt;&amp;gt;= 1, x = 1LL * x * x % P) {  if (k &amp;amp; 1) r = 1LL * r * x % P;  }  return r; } int w[L], fac[L], ifac[L], inv[L], _ = [] {  w[L / 2] = 1;  for (int i = L / 2 + 1, x = fpow(G, (P - 1) / L); i &amp;lt; L; i++) w[i] = 1LL * w[i - 1] * x % P;  for (int i = L / 2 - 1; i &amp;gt;= 0; i--) w[i] = w[i &amp;lt;&amp;lt; 1];    fac[0] = 1;  for (int i = 1; i &amp;lt; L; i++) fac[i] = 1LL * fac[i - 1] * i % P;  ifac[L - 1] = fpow(fac[L - 1]);  for (int i = L - 1; i; i--) {  ifac[i - 1] = 1LL * ifac[i] * i % P;  inv[i] = 1LL * ifac[i] * fac[i - 1] % P;  }  return 0; }(); void dft(int *a, int n) {  assert((n &amp;amp; n - 1) == 0);  for (int k = n &amp;gt;&amp;gt; 1; k; k &amp;gt;&amp;gt;= 1) {  for (int i = 0; i &amp;lt; n; i += k &amp;lt;&amp;lt; 1) {  for (int j = 0; j &amp;lt; k; j++) {  int &amp;amp;x = a[i + j], y = a[i + j + k];  a[i + j + k] = 1LL * (x - y + P) * w[k + j] % P;  inc(x, y);  }  }  } } void idft(int *a, int n) {  assert((n &amp;amp; n - 1) == 0);  for (int k = 1; k &amp;lt; n; k &amp;lt;&amp;lt;= 1) {  for (int i = 0; i &amp;lt; n; i += k &amp;lt;&amp;lt; 1) {  for (int j = 0; j &amp;lt; k; j++) {  int x = a[i + j], y = 1LL * a[i + j + k] * w[k + j] % P;  a[i + j + k] = x - y &amp;lt; 0 ?</description>
+    </item>
+    
+    <item>
+      <title>[AGC036D] Negative Cycle</title>
+      <link>https://blog.asukakyle.top/post/agc036d-negative-cycle/</link>
+      <pubDate>Thu, 13 Jan 2022 20:31:35 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/agc036d-negative-cycle/</guid>
+      <description>题意：\(n\) 个点的有向图，初始有边 \(i \to i + 1\)，边权为 0，不可删除。有边 \(i \to j(i \neq j)\)，边权为 \(\begin{cases}1, &amp;amp;i &amp;gt; j\\-1, &amp;amp;i&amp;lt;j\end{cases}\)，可删除，删除代价为 \(a_{i, j}\)，你需要删除一些边，使得这张图上没有负环，求最小代价。
+\(1 \leq n \leq 500\)
+ 有向图上没有负环，则存在最短路，则差分约束有解。
+每个点设变量 \(x_i\)，那么一条 \(i \to j\) 边权为 \(w\) 的边就代表 \(x_j - x_i \leq w\)。
+所以初始 \(i \to i + 1\) 的边表示 \(x_i \geq x_{i+1}\)。
+设 \(d_i = x_{i-1} - x_i \geq 0\)。
+对于边 \(i \to j\)，\(i &amp;lt; j\) 时为第一类边，表示 \(\sum\limits_{k = i + 1}^jd_k \geq 1\)，则对于一串 \(d_k = 0\)上的此类边都需要删除；</description>
     </item>
     
     <item>

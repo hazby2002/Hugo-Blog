@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Thu, 19 Aug 2021 20:20:26 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jan 2022 20:31:35 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DP</title>
+      <link>https://blog.asukakyle.top/tags/dp/</link>
+      <pubDate>Thu, 13 Jan 2022 20:31:35 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/tags/dp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>差分约束</title>
+      <link>https://blog.asukakyle.top/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/</link>
+      <pubDate>Thu, 13 Jan 2022 20:31:35 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>多校</title>
       <link>https://blog.asukakyle.top/tags/%E5%A4%9A%E6%A0%A1/</link>
@@ -158,15 +176,6 @@
       <pubDate>Thu, 15 Apr 2021 17:26:44 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DP</title>
-      <link>https://blog.asukakyle.top/tags/dp/</link>
-      <pubDate>Thu, 15 Apr 2021 09:03:20 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/tags/dp/</guid>
       <description></description>
     </item>
     
