@@ -9,24 +9,12 @@
     <copyright>CC BY-NC-SA 4.0</copyright>
     <lastBuildDate>Thu, 13 Jan 2022 20:31:35 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【置顶】寒假训练日志</title>
-      <link>https://blog.asukakyle.top/post/%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/</link>
-      <pubDate>Wed, 12 Jan 2022 19:24:43 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/</guid>
-      <description>2022/01/10  计算几何板子 搞了 60% 打了 Codeforces Round #764 (Div. 3)，赛时没AK，经典DP当贪心wa了几发还反应不过来  2022/01/11  做了 xgc 挂的两道 DP 题，CF573D 和 CF1097G。 剩下的时间在肝实验报告  2022/01/12 最近好摸啊！
- 计算几何板子 搞了 100% 打了 Codeforces Round #765 (Div. 2)  2022/01/13 最近好摸啊！
- 补了昨天 CF 的 E 题 写了 CF708E, AGC036D  2022/01/14 最近好摸啊！
- 做了一堆凸包题  </description>
-    </item>
-    
-    <item>
       <title>【置顶】Notes</title>
       <link>https://blog.asukakyle.top/post/notes/</link>
       <pubDate>Sun, 29 Aug 2021 14:20:06 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/notes/</guid>
-      <description> 慎用无符号整数。注意 0 - 1 = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。 关于模板的整理：  需要在保证正确性的同时，做好代码长度和效率的平衡。 不能为短而短，刻意压行。 一些常用的操作都尽量封装。   </description>
+      <description> 慎用无符号整数。注意 0 - 1 = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。 关于模板的整理：  需要在保证正确性的同时，做好代码长度和效率的平衡。 不能为短而短，刻意压行。 一些常用的操作都尽量封装。  对于 \(INF\)（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 \(X + INF = INF\) 之类的情况。在进行 \(INF\) 之间的比较时，如果前面图方便，计算时会出现 \(X + INF\) 这样的数，这里就要注意 \(INF \leq INF, INF \leq INF\) 的比较。（问题出现于决策单调性优化）  </description>
     </item>
     
     <item>
