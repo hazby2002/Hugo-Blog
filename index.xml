@@ -27,7 +27,8 @@
 &lt;li&gt;不能为短而短，刻意压行。&lt;/li&gt;
 &lt;li&gt;一些常用的操作都尽量封装。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;对于 &lt;span class=&#34;math inline&#34;&gt;\(INF\)&lt;/span&gt;（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 &lt;span class=&#34;math inline&#34;&gt;\(X + INF = INF\)&lt;/span&gt; 之类的情况。在进行 &lt;span class=&#34;math inline&#34;&gt;\(INF\)&lt;/span&gt; 之间的比较时，如果前面图方便，计算时会出现 &lt;span class=&#34;math inline&#34;&gt;\(X + INF\)&lt;/span&gt; 这样的数，这里就要注意 &lt;span class=&#34;math inline&#34;&gt;\(INF \leq INF, INF \leq INF\)&lt;/span&gt; 的比较。（问题出现于决策单调性优化）&lt;/li&gt;
+&lt;li&gt;对于 &lt;span class=&#34;math inline&#34;&gt;\(INF\)&lt;/span&gt;（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 &lt;span class=&#34;math inline&#34;&gt;\(X + INF = INF\)&lt;/span&gt; 之类的情况。在进行 &lt;span class=&#34;math inline&#34;&gt;\(INF\)&lt;/span&gt; 之间的比较时，如果前面图方便，计算时会出现 &lt;span class=&#34;math inline&#34;&gt;\(X + INF\)&lt;/span&gt; 这样的数，这里就要注意诸如 &lt;span class=&#34;math inline&#34;&gt;\(X + INF \leq INF\)&lt;/span&gt; 的比较。（问题出现于决策单调性优化）&lt;/li&gt;
+&lt;li&gt;计算几何随机旋转可以避免很多小错误。&lt;/li&gt;
 &lt;/ul&gt;
 - https://blog.asukakyle.top/post/notes/ - CC BY-NC-SA 4.0</description>
         </item>
