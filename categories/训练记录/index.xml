@@ -7,19 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Wed, 12 Jan 2022 19:24:43 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Feb 2022 19:25:10 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【置顶】寒假训练日志</title>
-      <link>https://blog.asukakyle.top/post/%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/</link>
-      <pubDate>Wed, 12 Jan 2022 19:24:43 +0800</pubDate>
+      <title>2022 Ptz winter camp</title>
+      <link>https://blog.asukakyle.top/post/2022ptzwinter/</link>
+      <pubDate>Sun, 13 Feb 2022 19:25:10 +0800</pubDate>
       
-      <guid>https://blog.asukakyle.top/post/%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/</guid>
-      <description>2022/01/10  计算几何板子 搞了 60% 打了 Codeforces Round #764 (Div. 3)，赛时没AK，经典DP当贪心wa了几发还反应不过来  2022/01/11  做了 xgc 挂的两道 DP 题，CF573D 和 CF1097G。 剩下的时间在肝实验报告  2022/01/12 最近好摸啊！
- 计算几何板子 搞了 100% 打了 Codeforces Round #765 (Div. 2)  2022/01/13 最近好摸啊！
- 补了昨天 CF 的 E 题 写了 CF708E, AGC036D  2022/01/14 最近好摸啊！
- 做了一堆凸包题  2022/01/15 摸了。
- 打了 Codeforces Round #766 (Div. 2)，阿克了。  2022/01/16 摸了。
- 打了 Educational Codeforces Round 121 (Rated for Div.</description>
+      <guid>https://blog.asukakyle.top/post/2022ptzwinter/</guid>
+      <description>E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \((n, m)\) 的最大路径和不超过 \(k\)。答案对 \(10^9 + 7\) 取模。
+\(1 \leq n, m, k \leq 100\)
+ 最大路径和，有个经典DP。
+\[ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \} \]
+由 \(a_{i, j} \geq 0\)，得到 \(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}\)。
+然后还有 \(dp_{n, m} \leq k\)。</description>
     </item>
     
   </channel>

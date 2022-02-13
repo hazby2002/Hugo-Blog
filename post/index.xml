@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Thu, 13 Jan 2022 20:31:35 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Feb 2022 19:25:10 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【置顶】Notes</title>
       <link>https://blog.asukakyle.top/post/notes/</link>
@@ -26,6 +26,20 @@
       <description>日志 2021/12/3 进行了结构性调整，且增加了一些不常用内容，修改了一些细节上的写法，因此不在原文修改，旧版附在最后。
 2021/12/19 弃用原模板，保留一部分在不常用里面，其他删除。
 TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(998244353), G(3), L(1 &amp;lt;&amp;lt; 18); inline void inc(int &amp;amp;x, int y) {  x += y;  if (x &amp;gt;= P) x -= P; } inline void dec(int &amp;amp;x, int y) {  x -= y;  if (x &amp;lt; 0) x += P; } inline int mod(LL x) { return x % P; } int fpow(int x, int k = P - 2) {  int r = 1;  for (; k; k &amp;gt;&amp;gt;= 1, x = 1LL * x * x % P) {  if (k &amp;amp; 1) r = 1LL * r * x % P;  }  return r; } int w[L], fac[L], ifac[L], inv[L], _ = [] {  w[L / 2] = 1;  for (int i = L / 2 + 1, x = fpow(G, (P - 1) / L); i &amp;lt; L; i++) w[i] = 1LL * w[i - 1] * x % P;  for (int i = L / 2 - 1; i &amp;gt;= 0; i--) w[i] = w[i &amp;lt;&amp;lt; 1];    fac[0] = 1;  for (int i = 1; i &amp;lt; L; i++) fac[i] = 1LL * fac[i - 1] * i % P;  ifac[L - 1] = fpow(fac[L - 1]);  for (int i = L - 1; i; i--) {  ifac[i - 1] = 1LL * ifac[i] * i % P;  inv[i] = 1LL * ifac[i] * fac[i - 1] % P;  }  return 0; }(); void dft(int *a, int n) {  assert((n &amp;amp; n - 1) == 0);  for (int k = n &amp;gt;&amp;gt; 1; k; k &amp;gt;&amp;gt;= 1) {  for (int i = 0; i &amp;lt; n; i += k &amp;lt;&amp;lt; 1) {  for (int j = 0; j &amp;lt; k; j++) {  int &amp;amp;x = a[i + j], y = a[i + j + k];  a[i + j + k] = 1LL * (x - y + P) * w[k + j] % P;  inc(x, y);  }  }  } } void idft(int *a, int n) {  assert((n &amp;amp; n - 1) == 0);  for (int k = 1; k &amp;lt; n; k &amp;lt;&amp;lt;= 1) {  for (int i = 0; i &amp;lt; n; i += k &amp;lt;&amp;lt; 1) {  for (int j = 0; j &amp;lt; k; j++) {  int x = a[i + j], y = 1LL * a[i + j + k] * w[k + j] % P;  a[i + j + k] = x - y &amp;lt; 0 ?</description>
+    </item>
+    
+    <item>
+      <title>2022 Ptz winter camp</title>
+      <link>https://blog.asukakyle.top/post/2022ptzwinter/</link>
+      <pubDate>Sun, 13 Feb 2022 19:25:10 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/2022ptzwinter/</guid>
+      <description>E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \((n, m)\) 的最大路径和不超过 \(k\)。答案对 \(10^9 + 7\) 取模。
+\(1 \leq n, m, k \leq 100\)
+ 最大路径和，有个经典DP。
+\[ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \} \]
+由 \(a_{i, j} \geq 0\)，得到 \(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}\)。
+然后还有 \(dp_{n, m} \leq k\)。</description>
     </item>
     
     <item>
