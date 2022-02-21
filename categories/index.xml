@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sun, 13 Feb 2022 19:25:10 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Feb 2022 23:11:13 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>算法笔记</title>
+      <link>https://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 21 Feb 2022 23:11:13 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>训练记录</title>
       <link>https://blog.asukakyle.top/categories/%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/</link>
@@ -23,15 +32,6 @@
       <pubDate>Thu, 13 Jan 2022 20:31:35 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>算法笔记</title>
-      <link>https://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Sun, 15 Aug 2021 21:24:32 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     

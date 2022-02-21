@@ -7,14 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sun, 13 Feb 2022 19:25:10 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Feb 2022 23:11:13 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【置顶】Notes</title>
       <link>https://blog.asukakyle.top/post/notes/</link>
       <pubDate>Sun, 29 Aug 2021 14:20:06 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/notes/</guid>
-      <description> 慎用无符号整数。注意 0 - 1 = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。 关于模板的整理：  需要在保证正确性的同时，做好代码长度和效率的平衡。 不能为短而短，刻意压行。 一些常用的操作都尽量封装。  对于 \(INF\)（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 \(X + INF = INF\) 之类的情况。在进行 \(INF\) 之间的比较时，如果前面图方便，计算时会出现 \(X + INF\) 这样的数，这里就要注意诸如 \(X + INF \leq INF\) 的比较。（问题出现于决策单调性优化） 计算几何随机旋转可以避免很多小错误。  </description>
+      <description> 慎用无符号整数。注意 0 - 1 = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。 关于模板的整理：  需要在保证正确性的同时，做好代码长度和效率的平衡。 不能为短而短，刻意压行。 一些常用的操作都尽量封装。  对于 \(INF\)（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 \(X + INF = INF\) 之类的情况。在进行 \(INF\) 之间的比较时，如果前面图方便，计算时会出现 \(X + INF\) 这样的数，这里就要注意诸如 \(X + INF \leq INF\) 的比较。（问题出现于决策单调性优化） 计算几何随机旋转可以避免很多小错误。 (CF1638E) 维护连续段的分裂合并，可以直接用线段树，也可以用 std::map&amp;lt;int, Info&amp;gt;，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写，学习自jiangly。  </description>
     </item>
     
     <item>
@@ -29,17 +29,35 @@ TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(9982
     </item>
     
     <item>
+      <title>常系数齐次线性递推小记</title>
+      <link>https://blog.asukakyle.top/post/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Mon, 21 Feb 2022 23:11:13 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8%E5%B0%8F%E8%AE%B0/</guid>
+      <description>常系数齐次线性递推 对于 \(n \geq k\)，\(\sum_{i=0}^kq_ia_{n-i}=0\)，其中 \(q_0 \neq 0\)。
+数列 \(a_n\) 的生成函数为 \(A(x)\)。
+上式左边看作卷积，右边看作生成函数 \(P(x)\) 的 \(n \geq k\) 时的系数。
+\[ Q(x)A(x) = P(x)\\ A(x) = \frac{P(x)}{Q(x)} \]
+\(P(x)\) 为 \(k-1\) 次多项式，\(Q(x)\) 为 \(k\) 次多项式。
+然后就是解决 \([x^n]\dfrac{P(x)}{Q(x)}\) 的问题。
+使用 EI 提到的方法，考虑 \[ \frac{P(x)}{Q(x)} = \frac{P(x)Q(-x)}{Q(x)Q(-x)} \] 由于 \(Q(x)Q(-x) = Q(-x)Q(x)\)，所以它只有偶次项有值，设 \(U(x^2) = Q(x)Q(-x)\)， \[ \frac{P(x)}{Q(x)} = \frac{E(x^2)}{U(x^2)}+x\frac{O(x^2)}{U(x^2)} \] 只需要递归到一侧即可。
+朴素实现只需要写多项式乘法，优化的实现已经在多项式板子里。
+int divAt(Poly p, Poly q, LL n) {  for (; n; n &amp;gt;&amp;gt;= 1) {  Poly r(q);  for (int i = 1; i &amp;lt; r.</description>
+    </item>
+    
+    <item>
       <title>2022 Ptz winter camp</title>
       <link>https://blog.asukakyle.top/post/2022ptzwinter/</link>
       <pubDate>Sun, 13 Feb 2022 19:25:10 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2022ptzwinter/</guid>
-      <description>E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \((n, m)\) 的最大路径和不超过 \(k\)。答案对 \(10^9 + 7\) 取模。
+      <description>Ptz camp 的部分题。
+题目是乱序的。
+E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \((n, m)\) 的最大路径和不超过 \(k\)。答案对 \(10^9 + 7\) 取模。
 \(1 \leq n, m, k \leq 100\)
  最大路径和，有个经典DP。
 \[ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \} \]
-由 \(a_{i, j} \geq 0\)，得到 \(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}\)。
-然后还有 \(dp_{n, m} \leq k\)。</description>
+由 \(a_{i, j} \geq 0\)，得到 \(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}\)。</description>
     </item>
     
     <item>
