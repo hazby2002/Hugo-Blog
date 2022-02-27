@@ -1373,7 +1373,7 @@
 &lt;li&gt;&lt;code&gt;C-v&lt;/code&gt;：粘贴&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;C-z&lt;/code&gt;：撤销(undo)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;想要撤销(redo)上次撤销(undo)操作，可以在上次 &lt;code&gt;C-/&lt;/code&gt;(&lt;code&gt;C-x&lt;/code&gt;) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 &lt;code&gt;C-/&lt;/code&gt;(&lt;code&gt;C-x&lt;/code&gt;)。&lt;/p&gt;
+&lt;p&gt;想要撤销(redo)上次撤销(undo)操作，可以在上次 &lt;code&gt;C-/&lt;/code&gt;(&lt;code&gt;C-z&lt;/code&gt;) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 &lt;code&gt;C-/&lt;/code&gt;(&lt;code&gt;C-z&lt;/code&gt;)。&lt;/p&gt;
 - https://blog.asukakyle.top/post/emacs/ - CC BY-NC-SA 4.0</description>
         </item>
     

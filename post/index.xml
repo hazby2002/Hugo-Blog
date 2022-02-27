@@ -37,7 +37,7 @@ TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(9982
       <description>以下 C 代表 Ctrl，M 代表 Alt，S 代表 Shift。
 例如 C-x C-f 表示 Ctrl+x Ctrl+f，visit new file，访问文件，如果文件不存在则创建新的。
  C-x C-f：访问文件 C-x C-s：保存 C-x C-c：关闭emacs C-x C-z：最小化emacs C-x h：全选 C-x C-p：全选 C-x 1：关闭其他window C-x 2：向下分裂window C-x 3：向右分裂window C-x 0：关闭当前window M-x shell：打开shell M-! 即 M-S-1 或 ESC !：shell-command M-%：替换 C-s：向下查找 C-r：向上查找 C-a：移动到行首 C-e：移动到行尾 C-k：剪切当前行光标后的内容 C-S-Backspace：删除当前行 C-w：剪切 M-w：复制 C-y：粘贴 C-/：撤销(undo)  CUA-Keys（在options菜单里）开启的情况下：
- C-x：剪切 C-c：复制 C-v：粘贴 C-z：撤销(undo)  想要撤销(redo)上次撤销(undo)操作，可以在上次 C-/(C-x) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 C-/(C-x)。</description>
+ C-x：剪切 C-c：复制 C-v：粘贴 C-z：撤销(undo)  想要撤销(redo)上次撤销(undo)操作，可以在上次 C-/(C-z) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 C-/(C-z)。</description>
     </item>
     
     <item>
