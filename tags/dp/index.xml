@@ -70,21 +70,5 @@
 每次都随便拿一个敲开，最多要 \(a_n + a_{n - 1}+ \dots + a_{n - k + 1}\) 次。 选 \(k\) 个椰子 \(a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &amp;lt; b_{i + 1})\)，有目的性地敲开它们。发现最优策略下最多要敲 \(\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)\) 次，其中 \(a_{b_0} = 0\)，所有情况下取最小值。  第二种情况也包含了第一种。</description>
     </item>
     
-    <item>
-      <title>一类DP优化</title>
-      <link>https://blog.asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</link>
-      <pubDate>Thu, 18 Mar 2021 21:30:30 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/%E4%B8%80%E7%B1%BBdp%E4%BC%98%E5%8C%96/</guid>
-      <description>对于一切形如 \(dp[i]=\max\{f_1(j)\times g_1(i)+f_2(j)\}+g_2(i)\) 的状态转移方程，
-设 \(L_j(x)=f_1(j)x+f_2(j)\) 那么就有 \(dp[i]=max\{L_j(g_1(i))\}+g_2(i)\)。
-从几何角度来看，只需要求出一些直线和 \(x=g_1(i)\) 交点的纵坐标的最大值。
-李超线段树 利用李超线段树可以很好地维护上述信息。
-李超线段树就是支持 \(O(\log N)\) 插入直线和查询 \(\max{L_i(x)}\) 的数据结构。
-线段树的每个节点保存 \(L(mid)\) 最大的那条直线。
-插入一条直线时，比较 \(L_{old}(mid)\) 和 \(L_{new}(mid)\)，较大者保留，较小者继续递归。
-#define ls o&amp;lt;&amp;lt;1 #define rs o&amp;lt;&amp;lt;1|1 struct Line {  int k, b;  inline int func(int x) {  return k * x + b;  } } t[N &amp;lt;&amp;lt; 2]; void ins(int o, int l, int r, Line x) {  int mid = l + r &amp;gt;&amp;gt; 1;  bool lf = t[o].</description>
-    </item>
-    
   </channel>
 </rss>

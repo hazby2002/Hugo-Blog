@@ -1352,6 +1352,8 @@
 &lt;li&gt;&lt;code&gt;C-x 2&lt;/code&gt;：向下分裂window&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;C-x 3&lt;/code&gt;：向右分裂window&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;C-x 0&lt;/code&gt;：关闭当前window&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;C-x o&lt;/code&gt;：切换window&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;C-x k&lt;/code&gt;：关闭buffer&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;M-x shell&lt;/code&gt;：打开shell&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;M-!&lt;/code&gt; 即 &lt;code&gt;M-S-1&lt;/code&gt; 或 &lt;code&gt;ESC !&lt;/code&gt;：shell-command&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;M-%&lt;/code&gt;：替换&lt;/li&gt;
