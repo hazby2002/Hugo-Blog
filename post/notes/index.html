@@ -392,12 +392,15 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 </ul></li>
 <li>对于 <span class="math inline">\(INF\)</span>（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 <span class="math inline">\(X + INF = INF\)</span> 之类的情况。在进行 <span class="math inline">\(INF\)</span> 之间的比较时，如果前面图方便，计算时会出现 <span class="math inline">\(X + INF\)</span> 这样的数，这里就要注意诸如 <span class="math inline">\(X + INF \leq INF\)</span> 的比较。（问题出现于决策单调性优化）</li>
 <li>计算几何随机旋转可以避免很多小错误。</li>
-<li>(CF1638E) 维护连续段的分裂合并，可以直接用线段树，也可以用 <code>std::map&lt;int, Info&gt;</code>，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写，学习自jiangly。</li>
+<li>(CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用 <code>std::map&lt;int, Info&gt;</code>，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写。每次进行区间染色 <span class="math inline">\([l, r)\)</span> 的时候，先把 <span class="math inline">\(l, r\)</span> 两点加入map，然后就可以直接循环删除中间的，然后处理修改。</li>
+<li>思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。</li>
+<li>非旋转 Treap 的 <code>merge(int, int)</code> 是有返回值的，内部实现时的 <code>x-&gt;rs = merge(x-&gt;rs, y)</code> 不要把前面的 <code>x-&gt;rs =</code> 漏掉。</li>
+<li>有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。</li>
 </ul>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2022-02-15</p>
+		    <p style="color:#777;">最后修改于 2022-03-22</p>
                     
                 </div>
             </div>

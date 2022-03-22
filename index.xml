@@ -29,7 +29,10 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;对于 &lt;span class=&#34;math inline&#34;&gt;\(INF\)&lt;/span&gt;（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 &lt;span class=&#34;math inline&#34;&gt;\(X + INF = INF\)&lt;/span&gt; 之类的情况。在进行 &lt;span class=&#34;math inline&#34;&gt;\(INF\)&lt;/span&gt; 之间的比较时，如果前面图方便，计算时会出现 &lt;span class=&#34;math inline&#34;&gt;\(X + INF\)&lt;/span&gt; 这样的数，这里就要注意诸如 &lt;span class=&#34;math inline&#34;&gt;\(X + INF \leq INF\)&lt;/span&gt; 的比较。（问题出现于决策单调性优化）&lt;/li&gt;
 &lt;li&gt;计算几何随机旋转可以避免很多小错误。&lt;/li&gt;
-&lt;li&gt;(CF1638E) 维护连续段的分裂合并，可以直接用线段树，也可以用 &lt;code&gt;std::map&amp;lt;int, Info&amp;gt;&lt;/code&gt;，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写，学习自jiangly。&lt;/li&gt;
+&lt;li&gt;(CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用 &lt;code&gt;std::map&amp;lt;int, Info&amp;gt;&lt;/code&gt;，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写。每次进行区间染色 &lt;span class=&#34;math inline&#34;&gt;\([l, r)\)&lt;/span&gt; 的时候，先把 &lt;span class=&#34;math inline&#34;&gt;\(l, r\)&lt;/span&gt; 两点加入map，然后就可以直接循环删除中间的，然后处理修改。&lt;/li&gt;
+&lt;li&gt;思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。&lt;/li&gt;
+&lt;li&gt;非旋转 Treap 的 &lt;code&gt;merge(int, int)&lt;/code&gt; 是有返回值的，内部实现时的 &lt;code&gt;x-&amp;gt;rs = merge(x-&amp;gt;rs, y)&lt;/code&gt; 不要把前面的 &lt;code&gt;x-&amp;gt;rs =&lt;/code&gt; 漏掉。&lt;/li&gt;
+&lt;li&gt;有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。&lt;/li&gt;
 &lt;/ul&gt;
 - https://blog.asukakyle.top/post/notes/ - CC BY-NC-SA 4.0</description>
         </item>
