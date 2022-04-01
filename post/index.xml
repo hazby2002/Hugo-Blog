@@ -7,14 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sun, 27 Feb 2022 22:57:21 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Apr 2022 12:59:27 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【置顶】Notes</title>
       <link>https://blog.asukakyle.top/post/notes/</link>
       <pubDate>Sun, 29 Aug 2021 14:20:06 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/notes/</guid>
-      <description> 慎用无符号整数。注意 0 - 1 = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。 关于模板的整理：  需要在保证正确性的同时，做好代码长度和效率的平衡。 不能为短而短，刻意压行。 一些常用的操作都尽量封装。  对于 \(INF\)（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 \(X + INF = INF\) 之类的情况。在进行 \(INF\) 之间的比较时，如果前面图方便，计算时会出现 \(X + INF\) 这样的数，这里就要注意诸如 \(X + INF \leq INF\) 的比较。（问题出现于决策单调性优化） 计算几何随机旋转可以避免很多小错误。 (CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用 std::map&amp;lt;int, Info&amp;gt;，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写。每次进行区间染色 \([l, r)\) 的时候，先把 \(l, r\) 两点加入map，然后就可以直接循环删除中间的，然后处理修改。 思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。 非旋转 Treap 的 merge(int, int) 是有返回值的，内部实现时的 x-&amp;gt;rs = merge(x-&amp;gt;rs, y) 不要把前面的 x-&amp;gt;rs = 漏掉。 有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。  </description>
+      <description> 慎用无符号整数。注意 0 - 1 = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。 关于模板的整理：  需要在保证正确性的同时，做好代码长度和效率的平衡。 不能为短而短，刻意压行。 一些常用的操作都尽量封装。  对于 \(INF\)（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 \(X + INF = INF\) 之类的情况。在进行 \(INF\) 之间的比较时，如果前面图方便，计算时会出现 \(X + INF\) 这样的数，这里就要注意诸如 \(X + INF \leq INF\) 的比较。（问题出现于决策单调性优化） 计算几何随机旋转可以避免很多小错误。 (CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用 std::map&amp;lt;int, Info&amp;gt;，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写。每次进行区间染色 \([l, r)\) 的时候，先把 \(l, r\) 两点加入map，然后就可以直接循环删除中间的，然后处理修改。 思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。 非旋转 Treap 的 merge 是有返回值的，内部实现时的 x-&amp;gt;rs = merge(x-&amp;gt;rs, y) 不要把前面的 x-&amp;gt;rs = 漏掉。 有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。 让new变得cache友好，直接把全局的 operator new 重载：  void *operator new(size_t n) {  static char *l, *r   if (r &amp;lt; l + n) {  static constexpr int L = 1 &amp;lt;&amp;lt; 24;  l = (char *)malloc(L), r = l + L;  }  return r -= n; }  next  </description>
     </item>
     
     <item>
@@ -38,6 +38,20 @@ TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(9982
 例如 C-x C-f 表示 Ctrl+x Ctrl+f，visit new file，访问文件，如果文件不存在则创建新的。
  C-x C-f：访问文件 C-x C-s：保存 C-x C-c：关闭emacs C-x C-z：最小化emacs C-x h：全选 C-x C-p：全选 C-x 1：关闭其他window C-x 2：向下分裂window C-x 3：向右分裂window C-x 0：关闭当前window C-x o：切换window C-x k：关闭buffer M-x shell：打开shell M-! 即 M-S-1 或 ESC !：shell-command M-%：替换 C-s：向下查找 C-r：向上查找 C-a：移动到行首 C-e：移动到行尾 C-k：剪切当前行光标后的内容 C-S-Backspace：删除当前行 C-w：剪切 M-w：复制 C-y：粘贴 C-/：撤销(undo)  CUA-Keys（在options菜单里）开启的情况下：
  C-x：剪切 C-c：复制 C-v：粘贴 C-z：撤销(undo)  想要撤销(redo)上次撤销(undo)操作，可以在上次 C-/(C-z) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 C-/(C-z)。</description>
+    </item>
+    
+    <item>
+      <title>Ynoi 做题记录</title>
+      <link>https://blog.asukakyle.top/post/ynoi/</link>
+      <pubDate>Fri, 01 Apr 2022 12:59:27 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/ynoi/</guid>
+      <description>前言 题目是乱序的。因为太菜了不会卡常，所以很多题是九十几分。
+P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), \(m\) 次询问区间逆序对。
+\(1 \leq n, m \leq 10^5, 1 \leq a_i \leq 10^9\)。
+ 莫队二次离线。
+求前缀比它小/大的数的个数，用 \(O(\sqrt n)\) 修改，\(O(1)\) 查询的搞一下就行。
+#include &amp;lt;bits/stdc++.h&amp;gt;  constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry {  int l, r, id;  bool operator&amp;lt;(const Qry &amp;amp;rhs) const {  return l / T == rhs.l / T ?</description>
     </item>
     
     <item>

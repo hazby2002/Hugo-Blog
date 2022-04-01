@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Thu, 13 Jan 2022 20:31:35 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Apr 2022 12:59:27 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ynoi 做题记录</title>
+      <link>https://blog.asukakyle.top/post/ynoi/</link>
+      <pubDate>Fri, 01 Apr 2022 12:59:27 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/ynoi/</guid>
+      <description>前言 题目是乱序的。因为太菜了不会卡常，所以很多题是九十几分。
+P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), \(m\) 次询问区间逆序对。
+\(1 \leq n, m \leq 10^5, 1 \leq a_i \leq 10^9\)。
+ 莫队二次离线。
+求前缀比它小/大的数的个数，用 \(O(\sqrt n)\) 修改，\(O(1)\) 查询的搞一下就行。
+#include &amp;lt;bits/stdc++.h&amp;gt;  constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry {  int l, r, id;  bool operator&amp;lt;(const Qry &amp;amp;rhs) const {  return l / T == rhs.l / T ?</description>
+    </item>
+    
     <item>
       <title>[AGC036D] Negative Cycle</title>
       <link>https://blog.asukakyle.top/post/agc036d-negative-cycle/</link>
