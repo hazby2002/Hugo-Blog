@@ -392,7 +392,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <p>“全局平衡二叉树”实际上是静态 Top Tree(实际上，更接近静态 LCT)。</p>
-<p>考虑一条重链，它在平衡树上pushup，维护的信息的方式实际上就是 Compress。</p>
+<p>考虑一条重链，它在树上pushup，维护的信息的方式实际上就是 Compress。</p>
 <p>而跳轻边，它实际上就是在 Rake。</p>
 <p>对于动态DP的模板，它是树上带权独立集，虚儿子信息（rake信息）是可减的 <code>f[0] -= max(g[0], g[1]), f[1] -= g[0]</code>。</p>
 <p>如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。</p>
