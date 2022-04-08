@@ -3657,7 +3657,8 @@
 &lt;p&gt;数列 &lt;span class=&#34;math inline&#34;&gt;\(a_n\)&lt;/span&gt; 的生成函数为 &lt;span class=&#34;math inline&#34;&gt;\(A(x)\)&lt;/span&gt;。&lt;/p&gt;
 &lt;p&gt;上式左边看作卷积，右边看作生成函数 &lt;span class=&#34;math inline&#34;&gt;\(P(x)\)&lt;/span&gt; 的 &lt;span class=&#34;math inline&#34;&gt;\(n \geq k\)&lt;/span&gt; 时的系数。&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-Q(x)A(x) = P(x)\\
+Q(x)A(x) = P(x)
+\]&lt;/span&gt; &lt;span class=&#34;math display&#34;&gt;\[
 A(x) = \frac{P(x)}{Q(x)}
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(P(x)\)&lt;/span&gt; 为 &lt;span class=&#34;math inline&#34;&gt;\(k-1\)&lt;/span&gt; 次多项式，&lt;span class=&#34;math inline&#34;&gt;\(Q(x)\)&lt;/span&gt; 为 &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; 次多项式。&lt;/p&gt;

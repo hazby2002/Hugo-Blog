@@ -44,7 +44,7 @@ Node *build(int l, int r) {  if (l &amp;gt; r) return nullptr;  int m = l - 1, s
       <description>常系数齐次线性递推 对于 \(n \geq k\)，\(\sum_{i=0}^kq_ia_{n-i}=0\)，其中 \(q_0 \neq 0\)。
 数列 \(a_n\) 的生成函数为 \(A(x)\)。
 上式左边看作卷积，右边看作生成函数 \(P(x)\) 的 \(n \geq k\) 时的系数。
-\[ Q(x)A(x) = P(x)\\ A(x) = \frac{P(x)}{Q(x)} \]
+\[ Q(x)A(x) = P(x) \] \[ A(x) = \frac{P(x)}{Q(x)} \]
 \(P(x)\) 为 \(k-1\) 次多项式，\(Q(x)\) 为 \(k\) 次多项式。
 然后就是解决 \([x^n]\dfrac{P(x)}{Q(x)}\) 的问题。
 使用 EI 提到的方法，考虑 \[ \frac{P(x)}{Q(x)} = \frac{P(x)Q(-x)}{Q(x)Q(-x)} \] 由于 \(Q(x)Q(-x) = Q(-x)Q(x)\)，所以它只有偶次项有值，设 \(U(x^2) = Q(x)Q(-x)\)， \[ \frac{P(x)}{Q(x)} = \frac{E(x^2)}{U(x^2)}+x\frac{O(x^2)}{U(x^2)} \] 只需要递归到一侧即可。
