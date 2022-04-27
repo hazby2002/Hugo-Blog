@@ -9,11 +9,11 @@
     <copyright>CC BY-NC-SA 4.0</copyright>
     <lastBuildDate>Tue, 05 Apr 2022 23:56:15 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>理解全局平衡二叉树</title>
-      <link>https://blog.asukakyle.top/post/%E7%90%86%E8%A7%A3%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</link>
+      <title>全局平衡二叉树小记</title>
+      <link>https://blog.asukakyle.top/post/%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Tue, 05 Apr 2022 23:56:15 +0800</pubDate>
       
-      <guid>https://blog.asukakyle.top/post/%E7%90%86%E8%A7%A3%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</guid>
+      <guid>https://blog.asukakyle.top/post/%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B0%8F%E8%AE%B0/</guid>
       <description>“全局平衡二叉树”实际上是静态 Top Tree(实际上，更接近静态 LCT)。
 考虑一条重链，它在树上pushup，维护的信息的方式实际上就是 Compress。
 而跳轻边，它实际上就是在 Rake。
@@ -31,11 +31,15 @@ Node *build(int l, int r) {  if (l &amp;gt; r) return nullptr;  int m = l - 1, s
       
       <guid>https://blog.asukakyle.top/post/ynoi/</guid>
       <description>前言 题目是乱序的。因为太菜了不会卡常，所以很多题是九十几分。
+UPD. 2022.04.27
+发现很多以前写的懒得写题解，感觉又都不太会了，后面还是做一题写一题比较好。
+发现刷 Ynoi 收益很小，大部分时间只是在卡常。
+不过数据结构题写起来有意思，自己写起来乐在其中，可能刷 Ynoi 对于算法竞赛并没有什么用，更多只是自我满足罢了。
 P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), \(m\) 次询问区间逆序对。
 \(1 \leq n, m \leq 10^5, 1 \leq a_i \leq 10^9\)。
  莫队二次离线。
 求前缀比它小/大的数的个数，用 \(O(\sqrt n)\) 修改，\(O(1)\) 查询的搞一下就行。
-#include &amp;lt;bits/stdc++.h&amp;gt;  constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry {  int l, r, id;  bool operator&amp;lt;(const Qry &amp;amp;rhs) const {  return l / T == rhs.l / T ?</description>
+#include &amp;lt;bits/stdc++.h&amp;gt;  constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry {  int l, r, id;  bool operator&amp;lt;(const Qry &amp;amp;rhs) const {  return l / T == rhs.</description>
     </item>
     
     <item>
