@@ -6,9 +6,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Tue, 05 Apr 2022 23:56:15 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 04 May 2022 01:19:59 +0800</lastBuildDate>
     
         <atom:link href="https://blog.asukakyle.top/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>2021多校总结</title>
+        <link>https://blog.asukakyle.top/post/2021%E5%A4%9A%E6%A0%A1%E6%80%BB%E7%BB%93/</link>
+        <pubDate>Thu, 19 Aug 2021 20:20:26 +0800</pubDate>
+        
+        <guid>https://blog.asukakyle.top/post/2021%E5%A4%9A%E6%A0%A1%E6%80%BB%E7%BB%93/</guid>
+        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/2021%E5%A4%9A%E6%A0%A1%E6%80%BB%E7%BB%93/ -&lt;p&gt;一事无成。&lt;/p&gt;
+- https://blog.asukakyle.top/post/2021%E5%A4%9A%E6%A0%A1%E6%80%BB%E7%BB%93/ - CC BY-NC-SA 4.0</description>
+        </item>
     
     
     
@@ -5093,100 +5105,6 @@ H^{-1}=\dfrac{1}{m}\begin{bmatrix}1&amp;amp; 1 &amp;amp; 1&amp;amp; \cdots &amp;
 &lt;span id=&#34;cb7-158&#34;&gt;&lt;a href=&#34;#cb7-158&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb7-159&#34;&gt;&lt;a href=&#34;#cb7-159&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 - https://blog.asukakyle.top/post/2021nowcoder7/ - CC BY-NC-SA 4.0</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Min_25筛小记</title>
-        <link>https://blog.asukakyle.top/post/min_25/</link>
-        <pubDate>Sat, 07 Aug 2021 10:38:55 +0800</pubDate>
-        
-        <guid>https://blog.asukakyle.top/post/min_25/</guid>
-        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/min_25/ -&lt;h2 id=&#34;min_25-筛&#34;&gt;min_25 筛&lt;/h2&gt;
-&lt;p&gt;约定&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathbf{P}\)&lt;/span&gt; 表示全体质数集合&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(p_i\)&lt;/span&gt; 表示第 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 个质数，特别地，&lt;span class=&#34;math inline&#34;&gt;\(p_0 =1\)&lt;/span&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathrm{lpf}_i\)&lt;/span&gt; 表示 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;​ 的最小质因子。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;计算数论函数 &lt;span class=&#34;math inline&#34;&gt;\(f(n)\)&lt;/span&gt;​​​​ 的前缀和，要求 &lt;span class=&#34;math inline&#34;&gt;\(f(p_i)\)&lt;/span&gt;​​​​ 是低阶多项式，且对于合数 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;​​​​，&lt;span class=&#34;math inline&#34;&gt;\(f(n)\)&lt;/span&gt;​ 可以写成形如 &lt;span class=&#34;math inline&#34;&gt;\(f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)\)&lt;/span&gt;​​​​的式子，其中 &lt;span class=&#34;math inline&#34;&gt;\(A(p^e)\)&lt;/span&gt;​​​​ 可以快速求值或预处理。&lt;/p&gt;
-&lt;p&gt;当 &lt;span class=&#34;math inline&#34;&gt;\(f(n)\)&lt;/span&gt;​ 是积性函数时，&lt;span class=&#34;math inline&#34;&gt;\(A(p^e) = f(p^e), B(n) = f(n)\)&lt;/span&gt;​。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;part.-1&#34;&gt;Part. 1&lt;/h3&gt;
-&lt;p&gt;令 &lt;span class=&#34;math display&#34;&gt;\[
-g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\  \mathrm{lpf}_j &amp;gt; p_i]
-\]&lt;/span&gt; 直观地，&lt;span class=&#34;math inline&#34;&gt;\(g_k(n, i)\)&lt;/span&gt; 表示埃式筛第 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 轮后剩余 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 以内的数的 &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; 次方之和。 &lt;span class=&#34;math display&#34;&gt;\[
-g_k(n, i) = \begin{cases}
-g_k(n, i - 1), &amp;amp; p_i^2 &amp;gt; n\\
-g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp;amp; p_i^2 \leq n
-\end{cases}
-\]&lt;/span&gt; 直观地，考虑埃式筛第 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 轮：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;如果 &lt;span class=&#34;math inline&#34;&gt;\(p_i^2&amp;gt;n\)&lt;/span&gt;，那么这一轮不会筛去任何数，于是 &lt;span class=&#34;math inline&#34;&gt;\(g_k(n, i) = g_k(n, i - 1)\)&lt;/span&gt; 。&lt;/li&gt;
-&lt;li&gt;如果 &lt;span class=&#34;math inline&#34;&gt;\(p_i^2\leq n\)&lt;/span&gt;，那么这一轮会筛去最小质因子等于 &lt;span class=&#34;math inline&#34;&gt;\(p_i\)&lt;/span&gt; 的数，所以要减去计算这些数的 &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; 次方之和，提出公因子 &lt;span class=&#34;math inline&#34;&gt;\(p_i^k\)&lt;/span&gt; 后可得上式。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;递推求出 &lt;span class=&#34;math inline&#34;&gt;\(g_k(x, \infty)\)&lt;/span&gt;​​​​ 在所有 &lt;span class=&#34;math inline&#34;&gt;\(x = \lfloor \dfrac{n}{i}\rfloor\)&lt;/span&gt;​​​​​​ 处的取值，复杂度是 &lt;span class=&#34;math inline&#34;&gt;\(O\left(\dfrac{n^{\frac34}}{\log n}\right)\)&lt;/span&gt;​​。&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Calculate g(x, 0) on [n / i]&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; m &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;LL i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  val&lt;span class=&#34;op&#34;&gt;[++&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  g0&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;// x - 1&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  g1&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; g0&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;P &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;// 2 + 3 + ... + x&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; sq&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    id1&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;m&lt;span class=&#34;op&#34;&gt;]]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    id2&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; m&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-12&#34;&gt;&lt;a href=&#34;#cb1-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-13&#34;&gt;&lt;a href=&#34;#cb1-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-14&#34;&gt;&lt;a href=&#34;#cb1-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;/span&gt;
-&lt;span id=&#34;cb1-15&#34;&gt;&lt;a href=&#34;#cb1-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// Calculate g(x, i)&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-16&#34;&gt;&lt;a href=&#34;#cb1-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; cnt&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-17&#34;&gt;&lt;a href=&#34;#cb1-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  LL limit &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; primes&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; primes&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-18&#34;&gt;&lt;a href=&#34;#cb1-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt; limit&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-19&#34;&gt;&lt;a href=&#34;#cb1-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    LL x &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; val&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; primes&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-20&#34;&gt;&lt;a href=&#34;#cb1-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; sq &lt;span class=&#34;op&#34;&gt;?&lt;/span&gt; id1&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; id2&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;/&lt;/span&gt; x&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-21&#34;&gt;&lt;a href=&#34;#cb1-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    g0&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;g0&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; g0&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-22&#34;&gt;&lt;a href=&#34;#cb1-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    g1&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;g1&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;LL&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; primes&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;g1&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; primeSum&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;]))&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; P&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-23&#34;&gt;&lt;a href=&#34;#cb1-23&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-24&#34;&gt;&lt;a href=&#34;#cb1-24&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id=&#34;part.-2&#34;&gt;Part. 2&lt;/h3&gt;
-&lt;p&gt;令 &lt;span class=&#34;math display&#34;&gt;\[
-s(n, i) = \sum_{j=1}^nf(j)[\mathrm{lpf}_j &amp;gt; p_i]
-\]&lt;/span&gt; 即 &lt;span class=&#34;math inline&#34;&gt;\(s(n, i)\)&lt;/span&gt; 表示 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 以内最小质因子大于等于 &lt;span class=&#34;math inline&#34;&gt;\(p_i\)&lt;/span&gt; 的函数值之和。&lt;/p&gt;
-&lt;p&gt;则 &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; 的前缀和为 &lt;span class=&#34;math display&#34;&gt;\[
-\sum_{i=1}^nf(i) = s(n, 1) + f(1)
-\]&lt;/span&gt; 考虑计算 &lt;span class=&#34;math inline&#34;&gt;\(s(n, i)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;由 Part. 1 可以快速计算质数的贡献 &lt;span class=&#34;math inline&#34;&gt;\(\sum_{j=p_i}^nf(j)[j \in \mathbf{P}] = \sum_{k}\mathrm{coef_k}\times g_k(n, \infty)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;考虑合数的贡献，以 &lt;span class=&#34;math inline&#34;&gt;\(f(n)\)&lt;/span&gt; 是积性函数为例，枚举最小质因子得到 &lt;span class=&#34;math display&#34;&gt;\[
-\sum_{j=i}^{p_j^2\leq n}\sum_{c=1}^{p_j^{c+1} \leq n}\left[
-f\left(p^{k+1}\right)+
-f\left(p_j^k\right)s\left(
-\left\lfloor
-\frac{n}{p_j^c}
-\right\rfloor,
-j+1
-\right)
-\right]
-\]&lt;/span&gt; 所以 &lt;span class=&#34;math display&#34;&gt;\[
-s(n, i) = \begin{cases}
-\sum\limits_{j=i}^{p_j \leq n} f(p_j)
-+
-\sum\limits_{j=i}^{p_j^2\leq n}\sum\limits_{c=1}^{p_j^{c+1} \leq n}\left[
-f\left(p^{k+1}\right)+
-f\left(p_j^k\right)s\left(
-\left\lfloor
-\frac{n}{p_j^c}
-\right\rfloor,
-j+1
-\right)
-\right], &amp;amp; p_i \leq n\\
-0,  &amp;amp; p_i &amp;gt; n
-\end{cases}
-\]&lt;/span&gt; 递归求解。&lt;/p&gt;
-- https://blog.asukakyle.top/post/min_25/ - CC BY-NC-SA 4.0</description>
         </item>
     
     

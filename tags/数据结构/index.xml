@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Tue, 05 Apr 2022 23:56:15 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 May 2022 01:19:59 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>平衡树性能测试</title>
+      <link>https://blog.asukakyle.top/post/%E5%B9%B3%E8%A1%A1%E6%A0%91%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Wed, 04 May 2022 01:19:59 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/%E5%B9%B3%E8%A1%A1%E6%A0%91%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
+      <description>支持两个操作：插入，查询 rank。
+结果 本机，Intel CPU，Windows，gcc version 10.2.0 (winlibs)
+全随机 Treap 1.866 7479 Treap2::Treap2 1.884 7479 Treap3::Treap3 1.542 7479 SCT::SCT 0.986 7479 SegTree 1.214 7479 SegTree2 1.024 7479 Tree&amp;lt;int&amp;gt; 1.638 7479 部分有序 Treap 0.747 15767 Treap2::Treap2 0.895 15767 Treap3::Treap3 0.661 15767 SCT::SCT 0.817 15767 SegTree 0.626 15767 SegTree2 0.574 15767 Tree&amp;lt;int&amp;gt; 0.903 15767 20000棵树 Treap 0.793 11 Treap2::Treap2 0.656 11 Treap3::Treap3 0.636 11 SCT::SCT 0.664 11 SegTree 1.056 11 SegTree2 0.979 11 Tree&amp;lt;int&amp;gt; 1.</description>
+    </item>
+    
     <item>
       <title>全局平衡二叉树小记</title>
       <link>https://blog.asukakyle.top/post/%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B0%8F%E8%AE%B0/</link>
