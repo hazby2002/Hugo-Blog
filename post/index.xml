@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Wed, 04 May 2022 01:19:59 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 May 2022 00:35:08 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【置顶】Notes</title>
       <link>https://blog.asukakyle.top/post/notes/</link>
@@ -38,6 +38,23 @@ TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(9982
 例如 C-x C-f 表示 Ctrl+x Ctrl+f，visit new file，访问文件，如果文件不存在则创建新的。
  C-x C-f：访问文件 C-x C-s：保存 C-x C-c：关闭emacs C-x C-z：最小化emacs C-x h：全选 C-x C-p：全选 C-x 1：关闭其他window C-x 2：向下分裂window C-x 3：向右分裂window C-x 0：关闭当前window C-x o：切换window C-x k：关闭buffer M-x shell：打开shell M-! 即 M-S-1 或 ESC !：shell-command M-%：替换 C-s：向下查找 C-r：向上查找 C-a：移动到行首 C-e：移动到行尾 C-k：剪切当前行光标后的内容 C-S-Backspace：删除当前行 C-w：剪切 M-w：复制 C-y：粘贴 C-/：撤销(undo)  CUA-Keys（在options菜单里）开启的情况下：
  C-x：剪切 C-c：复制 C-v：粘贴 C-z：撤销(undo)  想要撤销(redo)上次撤销(undo)操作，可以在上次 C-/(C-z) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 C-/(C-z)。</description>
+    </item>
+    
+    <item>
+      <title>[Codeforces1677F]Tokitsukaze and Gems</title>
+      <link>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</link>
+      <pubDate>Thu, 12 May 2022 00:35:08 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</guid>
+      <description>传送门
+ 给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
+答案对 \(998244353\) 取模。
+\(1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351\)。
+ 考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
+这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。
+这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。
+求单个的四元组，可以发现就是要求 \(\sum_{i=0}^{a_j} p^ii^k\)。
+对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。</description>
     </item>
     
     <item>

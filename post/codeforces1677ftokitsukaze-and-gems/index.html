@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>【置顶】Emacs 常用快捷键</title>
+<title>[Codeforces1677F]Tokitsukaze and Gems</title>
 
 
 
@@ -360,17 +360,33 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
             
             
                 <div class="post-title">
-                    【置顶】Emacs 常用快捷键
+                    [Codeforces1677F]Tokitsukaze and Gems
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2022-02-27 22:57
+                            2022-05-12 00:35
                         </time>
                         
 
                         
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/%E9%A2%98%E8%A7%A3">题解</a>
+                                &nbsp;
+                        
 
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E6%95%B0%E5%AD%A6">数学</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E8%AE%A1%E6%95%B0">计数</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0">生成函数</a>
+                                &nbsp;
+                            
                         
                         
                     </div>
@@ -381,47 +397,81 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    <p>以下 <code>C</code> 代表 <code>Ctrl</code>，<code>M</code> 代表 <code>Alt</code>，<code>S</code> 代表 <code>Shift</code>。</p>
-<p>例如 <code>C-x C-f</code> 表示 <code>Ctrl+x Ctrl+f</code>，visit new file，访问文件，如果文件不存在则创建新的。</p>
-<ul>
-<li><code>C-x C-f</code>：访问文件</li>
-<li><code>C-x C-s</code>：保存</li>
-<li><code>C-x C-c</code>：关闭emacs</li>
-<li><code>C-x C-z</code>：最小化emacs</li>
-<li><code>C-x h</code>：全选</li>
-<li><code>C-x C-p</code>：全选</li>
-<li><code>C-x 1</code>：关闭其他window</li>
-<li><code>C-x 2</code>：向下分裂window</li>
-<li><code>C-x 3</code>：向右分裂window</li>
-<li><code>C-x 0</code>：关闭当前window</li>
-<li><code>C-x o</code>：切换window</li>
-<li><code>C-x k</code>：关闭buffer</li>
-<li><code>M-x shell</code>：打开shell</li>
-<li><code>M-!</code> 即 <code>M-S-1</code> 或 <code>ESC !</code>：shell-command</li>
-<li><code>M-%</code>：替换</li>
-<li><code>C-s</code>：向下查找</li>
-<li><code>C-r</code>：向上查找</li>
-<li><code>C-a</code>：移动到行首</li>
-<li><code>C-e</code>：移动到行尾</li>
-<li><code>C-k</code>：剪切当前行光标后的内容</li>
-<li><code>C-S-Backspace</code>：删除当前行</li>
-<li><code>C-w</code>：剪切</li>
-<li><code>M-w</code>：复制</li>
-<li><code>C-y</code>：粘贴</li>
-<li><code>C-/</code>：撤销(undo)</li>
-</ul>
-<p>CUA-Keys（在options菜单里）开启的情况下：</p>
-<ul>
-<li><code>C-x</code>：剪切</li>
-<li><code>C-c</code>：复制</li>
-<li><code>C-v</code>：粘贴</li>
-<li><code>C-z</code>：撤销(undo)</li>
-</ul>
-<p>想要撤销(redo)上次撤销(undo)操作，可以在上次 <code>C-/</code>(<code>C-z</code>) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 <code>C-/</code>(<code>C-z</code>)。</p>
+                    <p><a href="https://codeforces.com/contest/1677/problem/F">传送门</a></p>
+<blockquote>
+<p>给定 <span class="math inline">\(n, k, p, a_1, a_2, \dots, a_n\)</span>，求 <span class="math display">\[
+\sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&gt;0]\right)\right)
+\]</span></p>
+<p>答案对 <span class="math inline">\(998244353\)</span> 取模。</p>
+<p><span class="math inline">\(1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351\)</span>。</p>
+</blockquote>
+<p>考虑对固定的 <span class="math inline">\([l, r]\)</span> 计算答案，它是两个数乘积之和的形式。可以通过维护 <span class="math inline">\((\sum xy, \sum x, \sum y, \sum 1)\)</span> 四元组来计算答案。</p>
+<p>这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。</p>
+<p>这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。</p>
+<p>求单个的四元组，可以发现就是要求 <span class="math inline">\(\sum_{i=0}^{a_j} p^ii^k\)</span>。</p>
+<p>对于这个问题，板子 OJ 有一个 <a href="https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial">单次询问的版本</a>，本题解没有参考上面的做法。</p>
+<p>本文主要参考 <a href="https://codeforces.com/blog/entry/102631?#comment-910383">EI 的评论</a> 以及下面 ecnerwala 的解读。</p>
+<p>考虑</p>
+<p><span class="math display">\[
+\begin{aligned}
+e^{nx} &amp;= \sum_{i \geq 0}\frac{n^ix^i}{i!}\\
+n^k &amp;= [x^k]e^{nx}k!\\
+\sum_{i=0}^{n-1}p^ii^k &amp;= [x^k]\sum_{i=0}^{n-1}p^ie^{ix}k!\\
+&amp;= [x^k]k!\frac{p^ne^{nx}-1}{pe^x-1}\\
+&amp;= [x^k]k!(p^n\frac{e^{nx}-1}{pe^x-1}-\frac{e^{0x}-1}{pe^x-1})
+\end{aligned}
+\]</span></p>
+<p>设 <span class="math inline">\(S(n)=[x^k]k!\dfrac{e^{nx}-1}{pe^x-1}\)</span>，有 <span class="math display">\[
+\begin{aligned}
+p^nS(n) - p^0S(0) &amp;= \sum_{i=0}^{n-1}p^ii^k\\
+p^{n+1}S(n+1)-p^nS(n) &amp;= p^nn^k\\
+pS(x+1)-S(x) &amp;= x^k
+\end{aligned}
+\]</span></p>
+<p>考虑用 <span class="math inline">\(S(x)\)</span> 来表示 <span class="math inline">\(S(x+1)\)</span>，即将 <span class="math inline">\(S(x + 1)\)</span> 在 <span class="math inline">\(x\)</span> 处展开，得 <span class="math display">\[ 
+S(x+1) = \sum_{k \geq 0} \frac{1^k}{k!}{\mathrm D}^kS(x) = e^{\mathrm D}S(x)
+\]</span> 其中 <span class="math inline">\(\mathrm D\)</span> 表示微分算子。 则 <span class="math display">\[
+S(x) = \frac{x^k}{pe^{\mathrm D}-1}
+\]</span> 这也证明了 <span class="math inline">\(S(x)\)</span> 是一个 <span class="math inline">\(k\)</span> 次多项式（考虑生成函数 <span class="math inline">\(F({\mathrm D}) = \frac{1}{pe^{\mathrm D}-1}\)</span>，高于 <span class="math inline">\(k\)</span> 次微分 <span class="math inline">\(x^k\)</span> 就变成 <span class="math inline">\(0\)</span> 了）。</p>
+<p>用求逆算出 <span class="math inline">\(S(x)\)</span> 后，多点求值即可。</p>
+<p><span class="math inline">\(O(k\log k + n\log n \log k)\)</span></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n<span class="op">,</span> k<span class="op">,</span> p<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n <span class="op">&gt;&gt;</span> k <span class="op">&gt;&gt;</span> p<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  Poly f<span class="op">(</span>k <span class="op">+</span> <span class="dv">1</span><span class="op">),</span> g<span class="op">(</span>k <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> k<span class="op">;</span> i<span class="op">++)</span> f<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> ifac<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> p <span class="op">%</span> P<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  f<span class="op">[</span><span class="dv">0</span><span class="op">]--;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  f <span class="op">=</span> f<span class="op">.</span>inv<span class="op">(</span>k <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> k<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    g<span class="op">[</span>k <span class="op">-</span> i<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> fac<span class="op">[</span>k<span class="op">]</span> <span class="op">*</span> ifac<span class="op">[</span>k <span class="op">-</span> i<span class="op">]</span> <span class="op">%</span> P <span class="op">*</span> f<span class="op">[</span>i<span class="op">]</span> <span class="op">%</span> P<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  Poly pt<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> <span class="op">&amp;</span>x <span class="op">:</span> pt<span class="op">)</span> <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> x<span class="op">,</span> x<span class="op">++;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  f <span class="op">=</span> SegTree<span class="op">(</span>pt<span class="op">).</span>eval<span class="op">(</span>g<span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    f<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="op">(</span><span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> fpow<span class="op">(</span>p<span class="op">,</span> pt<span class="op">[</span>i<span class="op">])</span> <span class="op">*</span> f<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> P <span class="op">-</span> g<span class="op">[</span><span class="dv">0</span><span class="op">])</span> <span class="op">%</span> P<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dv">4</span><span class="op">&gt;</span> dp <span class="op">=</span> <span class="op">{};</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    inc<span class="op">(</span>dp<span class="op">[</span><span class="dv">0</span><span class="op">],</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span> ndp <span class="op">=</span> dp<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">&amp;</span>x <span class="op">:</span> ndp<span class="op">)</span> x <span class="op">=</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> x <span class="op">*</span> pt<span class="op">[</span>i<span class="op">]</span> <span class="op">%</span> P<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    ndp<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="op">(</span>ndp<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> dp<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">*</span> <span class="op">(</span>pt<span class="op">[</span>i<span class="op">]</span> <span class="op">-</span> <span class="dv">1</span><span class="op">))</span> <span class="op">%</span> P<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    ndp<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="op">(</span>ndp<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> dp<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">*</span> f<span class="op">[</span>i<span class="op">])</span> <span class="op">%</span> P<span class="op">;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ndp<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="op">(</span>ndp<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> <span class="op">(</span>dp<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">+</span> dp<span class="op">[</span><span class="dv">1</span><span class="op">])</span> <span class="op">*</span> f<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> dp<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">*</span> <span class="op">(</span>pt<span class="op">[</span>i<span class="op">]</span> <span class="op">-</span> <span class="dv">1</span><span class="op">))</span> <span class="op">%</span> P<span class="op">;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    dp <span class="op">=</span> ndp<span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    inc<span class="op">(</span>ans<span class="op">,</span> dp<span class="op">[</span><span class="dv">3</span><span class="op">]);</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> ans <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2022-03-08</p>
+		    <p style="color:#777;">最后修改于 2022-05-12</p>
                     
                 </div>
             </div>
@@ -430,14 +480,14 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="https://blog.asukakyle.top/post/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%9D%BF%E5%AD%90%E4%BF%AE%E8%AE%A2%E8%AE%B0%E5%BD%95/">
-			下回<br>【置顶】多项式板子修订记录
+                <a class="newer-posts" href="https://blog.asukakyle.top/post/emacs/">
+			下回<br>【置顶】Emacs 常用快捷键
                 </a>
                 
                 
                 
-                <a class="older-posts" href="https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/">
-			上回<br>[Codeforces1677F]Tokitsukaze and Gems
+                <a class="older-posts" href="https://blog.asukakyle.top/post/%E5%B9%B3%E8%A1%A1%E6%A0%91%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+			上回<br>平衡树性能测试
                 </a>
                 
             </nav>
