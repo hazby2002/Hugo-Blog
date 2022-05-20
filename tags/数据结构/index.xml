@@ -36,7 +36,7 @@ Node *build(int l, int r) {  if (l &amp;gt; r) return nullptr;  int m = l - 1, s
     </item>
     
     <item>
-      <title>Ynoi 做题记录</title>
+      <title>Ynoi 等 lxl 题做题记录</title>
       <link>https://blog.asukakyle.top/post/ynoi/</link>
       <pubDate>Fri, 01 Apr 2022 12:59:27 +0800</pubDate>
       

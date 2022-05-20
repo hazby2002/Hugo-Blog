@@ -6,7 +6,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Thu, 12 May 2022 00:35:08 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 20 May 2022 12:26:31 +0800</lastBuildDate>
     
         <atom:link href="https://blog.asukakyle.top/index.xml" rel="self" type="application/rss+xml" />
     
@@ -1397,6 +1397,50 @@
     
     
         <item>
+        <title>（半）在线卷积小记</title>
+        <link>https://blog.asukakyle.top/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/</link>
+        <pubDate>Fri, 20 May 2022 12:26:31 +0800</pubDate>
+        
+        <guid>https://blog.asukakyle.top/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/</guid>
+        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/ -&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;本文写于 2021-12-02 14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。&lt;/p&gt;
+&lt;p&gt;今天想起，需要重新整理好二叉（半）在线卷积的模板，这个东西在考场上还是很有用的。&lt;/p&gt;
+&lt;p&gt;相关题目：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://atcoder.jp/contests/abc230/submissions/27677271&#34;&gt;ABC230H&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;半在线卷积&#34;&gt;半在线卷积&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(H = FG\)&lt;/span&gt;。其中 &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; 的系数事先给出，&lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; 的系数从低次到高次在线地给出，每次给出 &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; 的 &lt;span class=&#34;math inline&#34;&gt;\(x^i\)&lt;/span&gt; 系数后，你需要在线地计算 &lt;span class=&#34;math inline&#34;&gt;\(H\)&lt;/span&gt; 的 &lt;span class=&#34;math inline&#34;&gt;\(x^i\)&lt;/span&gt; 系数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;考虑分治，将区间 &lt;span class=&#34;math inline&#34;&gt;\([l, r)\)&lt;/span&gt; 分为 &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; 段，每段长度为 &lt;span class=&#34;math inline&#34;&gt;\(B = 2^k\)&lt;/span&gt;。 &lt;span class=&#34;math display&#34;&gt;\[
+[l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r)
+\]&lt;/span&gt; 要分别计算对于 &lt;span class=&#34;math inline&#34;&gt;\(0 \leq i &amp;lt; j &amp;lt; T\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(F[m_i, m_{i+1})\)&lt;/span&gt; 对于 &lt;span class=&#34;math inline&#34;&gt;\(H[m_j, m_{j+1})\)&lt;/span&gt; 的贡献，其中 &lt;span class=&#34;math inline&#34;&gt;\(A[l,r)\)&lt;/span&gt; 表示多项式 &lt;span class=&#34;math inline&#34;&gt;\(A(x)\)&lt;/span&gt; 在 &lt;span class=&#34;math inline&#34;&gt;\(x^l, x^{l+1}, \dots, x^{r-1}\)&lt;/span&gt; 处的系数。&lt;/p&gt;
+&lt;p&gt;显然 &lt;span class=&#34;math inline&#34;&gt;\(F[m_i, m_{i+1})\)&lt;/span&gt; 要乘上 &lt;span class=&#34;math inline&#34;&gt;\(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;结果有 &lt;span class=&#34;math inline&#34;&gt;\(3B - 1\)&lt;/span&gt; 项，从 0 开始标号，取第 &lt;span class=&#34;math inline&#34;&gt;\(B-1\)&lt;/span&gt; 到 &lt;span class=&#34;math inline&#34;&gt;\(2B-2\)&lt;/span&gt; 项，做长度为 &lt;span class=&#34;math inline&#34;&gt;\(2B\)&lt;/span&gt; 的循环卷积即可。&lt;/p&gt;
+&lt;p&gt;存储 &lt;span class=&#34;math inline&#34;&gt;\(F[m_i, m_{i+1})\)&lt;/span&gt; 和 &lt;span class=&#34;math inline&#34;&gt;\(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)&lt;/span&gt; 的点值，需要做 &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; 次长度为 &lt;span class=&#34;math inline&#34;&gt;\(2B\)&lt;/span&gt; 的 DFT，两两作点乘，最后再 IDFT，单层复杂度为&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+O(BT\log B+T^2B+B\log B) = O(n \log \frac{n}{T} + nT)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;设总时间复杂度为 &lt;span class=&#34;math inline&#34;&gt;\(S(n)\)&lt;/span&gt;，则 &lt;span class=&#34;math display&#34;&gt;\[
+S(n) = T\cdot S(\frac{n}{T}) + O(n\log \frac nT + nT)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这里复杂度不会算，但是大家都取 &lt;span class=&#34;math inline&#34;&gt;\(T = \log n\)&lt;/span&gt;，然后得到 &lt;span class=&#34;math inline&#34;&gt;\(O\bigg(\dfrac{n \log^2 n}{\log\log n}\bigg)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;在线卷积&#34;&gt;在线卷积&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(H = FG\)&lt;/span&gt;。&lt;span class=&#34;math inline&#34;&gt;\(F, G\)&lt;/span&gt; 的系数从低次到高次在线地给出，每次给出 &lt;span class=&#34;math inline&#34;&gt;\(F, G\)&lt;/span&gt; 的 &lt;span class=&#34;math inline&#34;&gt;\(x^i\)&lt;/span&gt; 系数后，你需要在线地计算 &lt;span class=&#34;math inline&#34;&gt;\(H\)&lt;/span&gt; 的 &lt;span class=&#34;math inline&#34;&gt;\(x^i\)&lt;/span&gt; 系数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;类似刚刚思路，但是进行到 &amp;gt; &lt;span class=&#34;math inline&#34;&gt;\(F[m_i, m_{i+1})\)&lt;/span&gt; 要乘上 &lt;span class=&#34;math inline&#34;&gt;\(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这一步时，发现了问题：如果 &lt;span class=&#34;math inline&#34;&gt;\(m_i=0\)&lt;/span&gt;，那么 &lt;span class=&#34;math inline&#34;&gt;\(G[m_{j}, m_{j+1})\)&lt;/span&gt; 还没给出，无法计算。&lt;/p&gt;
+&lt;p&gt;于是这里先避开 &lt;span class=&#34;math inline&#34;&gt;\(F[m_i, m_{i+1}) \times G[m_{j}, m_{j+1})\)&lt;/span&gt; 这部分贡献不算，递归到 &lt;span class=&#34;math inline&#34;&gt;\([m_{j}, m_{j+1})\)&lt;/span&gt; 这个区间时，再把这个补上。&lt;/p&gt;
+&lt;p&gt;综上所述，对于当前区间 &lt;span class=&#34;math inline&#34;&gt;\([l, r)\)&lt;/span&gt;，如果 &lt;span class=&#34;math inline&#34;&gt;\(l = 0\)&lt;/span&gt;，那么需要计算 &lt;span class=&#34;math inline&#34;&gt;\(F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)&lt;/span&gt;；如果 &lt;span class=&#34;math inline&#34;&gt;\(l &amp;gt; 0\)&lt;/span&gt;，那么除了 &lt;span class=&#34;math inline&#34;&gt;\(F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)&lt;/span&gt; 之外，还要计算 &lt;span class=&#34;math inline&#34;&gt;\(G[m_i, m_{i+1}) \times F[m_j-m_{i+1}+1, m_{j+1} - m_i)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;其余部分前面的半在线卷积完全相同。&lt;/p&gt;
+- https://blog.asukakyle.top/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/ - CC BY-NC-SA 4.0</description>
+        </item>
+    
+    
+    
+        <item>
         <title>[Codeforces1677F] Tokitsukaze and Gems</title>
         <link>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</link>
         <pubDate>Thu, 12 May 2022 00:35:08 +0800</pubDate>
@@ -1993,7 +2037,7 @@ Tree&amp;lt;int&amp;gt; 0.645 11&lt;/code&gt;&lt;/pre&gt;
     
     
         <item>
-        <title>Ynoi 做题记录</title>
+        <title>Ynoi 等 lxl 题做题记录</title>
         <link>https://blog.asukakyle.top/post/ynoi/</link>
         <pubDate>Fri, 01 Apr 2022 12:59:27 +0800</pubDate>
         
@@ -6531,61 +6575,6 @@ F(x) &amp;amp;= B(x) + 2B(x)xC(x) + B(x) x^2C(x)\\
 &lt;span id=&#34;cb8-6&#34;&gt;&lt;a href=&#34;#cb8-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cout&lt;span class=&#34;op&#34;&gt; &amp;lt;&amp;lt;&lt;/span&gt; divAt&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;p&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; q&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb8-7&#34;&gt;&lt;a href=&#34;#cb8-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 - https://blog.asukakyle.top/post/2022ptzwinter/ - CC BY-NC-SA 4.0</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>[AGC036D] Negative Cycle</title>
-        <link>https://blog.asukakyle.top/post/agc036d-negative-cycle/</link>
-        <pubDate>Thu, 13 Jan 2022 20:31:35 +0800</pubDate>
-        
-        <guid>https://blog.asukakyle.top/post/agc036d-negative-cycle/</guid>
-        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/agc036d-negative-cycle/ -&lt;blockquote&gt;
-&lt;p&gt;题意：&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 个点的有向图，初始有边 &lt;span class=&#34;math inline&#34;&gt;\(i \to i + 1\)&lt;/span&gt;，边权为 0，不可删除。有边 &lt;span class=&#34;math inline&#34;&gt;\(i \to j(i \neq j)\)&lt;/span&gt;，边权为 &lt;span class=&#34;math inline&#34;&gt;\(\begin{cases}1, &amp;amp;i &amp;gt; j\\-1, &amp;amp;i&amp;lt;j\end{cases}\)&lt;/span&gt;，可删除，删除代价为 &lt;span class=&#34;math inline&#34;&gt;\(a_{i, j}\)&lt;/span&gt;，你需要删除一些边，使得这张图上没有负环，求最小代价。&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1 \leq n \leq 500\)&lt;/span&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;有向图上没有负环，则存在最短路，则差分约束有解。&lt;/p&gt;
-&lt;p&gt;每个点设变量 &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt;，那么一条 &lt;span class=&#34;math inline&#34;&gt;\(i \to j\)&lt;/span&gt; 边权为 &lt;span class=&#34;math inline&#34;&gt;\(w\)&lt;/span&gt; 的边就代表 &lt;span class=&#34;math inline&#34;&gt;\(x_j - x_i \leq w\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;所以初始 &lt;span class=&#34;math inline&#34;&gt;\(i \to i + 1\)&lt;/span&gt; 的边表示 &lt;span class=&#34;math inline&#34;&gt;\(x_i \geq x_{i+1}\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(d_i = x_{i-1} - x_i \geq 0\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;对于边 &lt;span class=&#34;math inline&#34;&gt;\(i \to j\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(i &amp;lt; j\)&lt;/span&gt; 时为第一类边，表示 &lt;span class=&#34;math inline&#34;&gt;\(\sum\limits_{k = i + 1}^jd_k \geq 1\)&lt;/span&gt;，则对于一串 &lt;span class=&#34;math inline&#34;&gt;\(d_k = 0\)&lt;/span&gt;上的此类边都需要删除；&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(i &amp;gt; j\)&lt;/span&gt; 时为第二类边，表示 &lt;span class=&#34;math inline&#34;&gt;\(\sum\limits_{k=i+1}^jd_k \leq 1\)&lt;/span&gt;，跨过多于一个1的边需要删除。&lt;/p&gt;
-&lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(dp(i, j)\)&lt;/span&gt; 表示考虑了前 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 个变量，最后两个 1 分别在 &lt;span class=&#34;math inline&#34;&gt;\(i, j\)&lt;/span&gt; 的最小代价，用二维前缀和计算区间删边的代价，时间复杂度 &lt;span class=&#34;math inline&#34;&gt;\(O(n^3)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; solve&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt; &lt;/span&gt;a&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;LL&lt;span class=&#34;op&#34;&gt;&amp;gt;(&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)),&lt;/span&gt; b &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cin&lt;span class=&#34;op&#34;&gt; &amp;gt;&amp;gt;&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-12&#34;&gt;&lt;a href=&#34;#cb1-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-13&#34;&gt;&lt;a href=&#34;#cb1-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-14&#34;&gt;&lt;a href=&#34;#cb1-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-15&#34;&gt;&lt;a href=&#34;#cb1-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-16&#34;&gt;&lt;a href=&#34;#cb1-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-17&#34;&gt;&lt;a href=&#34;#cb1-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt; &lt;/span&gt;dp&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;vector&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;LL&lt;span class=&#34;op&#34;&gt;&amp;gt;(&lt;/span&gt;n &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;fl&#34;&gt;1e18&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;));&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-18&#34;&gt;&lt;a href=&#34;#cb1-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-19&#34;&gt;&lt;a href=&#34;#cb1-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    dp&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-20&#34;&gt;&lt;a href=&#34;#cb1-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-21&#34;&gt;&lt;a href=&#34;#cb1-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; j&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; k&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-22&#34;&gt;&lt;a href=&#34;#cb1-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        smin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;dp&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;],&lt;/span&gt; dp&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; b&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;k&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-23&#34;&gt;&lt;a href=&#34;#cb1-23&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-24&#34;&gt;&lt;a href=&#34;#cb1-24&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      dp&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; a&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;j&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-25&#34;&gt;&lt;a href=&#34;#cb1-25&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-26&#34;&gt;&lt;a href=&#34;#cb1-26&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-27&#34;&gt;&lt;a href=&#34;#cb1-27&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;/span&gt;
-&lt;span id=&#34;cb1-28&#34;&gt;&lt;a href=&#34;#cb1-28&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  LL ans &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;fl&#34;&gt;1e18&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-29&#34;&gt;&lt;a href=&#34;#cb1-29&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; n&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-30&#34;&gt;&lt;a href=&#34;#cb1-30&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    smin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;ans&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; dp&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;n&lt;span class=&#34;op&#34;&gt;][&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-31&#34;&gt;&lt;a href=&#34;#cb1-31&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-32&#34;&gt;&lt;a href=&#34;#cb1-32&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;bu&#34;&gt;std::&lt;/span&gt;cout&lt;span class=&#34;op&#34;&gt; &amp;lt;&amp;lt;&lt;/span&gt; ans &lt;span class=&#34;op&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-33&#34;&gt;&lt;a href=&#34;#cb1-33&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-- https://blog.asukakyle.top/post/agc036d-negative-cycle/ - CC BY-NC-SA 4.0</description>
         </item>
     
     
