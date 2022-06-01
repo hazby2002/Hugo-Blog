@@ -59,10 +59,39 @@
     svg: {
       fontCache: "global",
     },
+    options: {
+    enableMenu: true,          
+    menuOptions: {
+      settings: {
+        texHints: true,        
+        semantics: false,      
+        zoom: 'NoZoom',        
+        zscale: '200%',        
+        renderer: 'CHTML',     
+        alt: false,            
+        cmd: false,            
+        ctrl: false,           
+        shift: false,          
+        scale: 1,              
+        inTabOrder: true,      
+
+        assistiveMml: true,    
+        collapsible: false,    
+        explorer: false,       
+      },
+      annotationTypes: {
+        TeX: ['TeX', 'LaTeX', 'application/x-tex'],
+        StarMath: ['StarMath 5.0'],
+        Maple: ['Maple'],
+        ContentMathML: ['MathML-Content', 'application/mathml-content+xml'],
+        OpenMath: ['OpenMath']
+      }
+    }
+  }
   };
 </script>
 <script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
     MathJax.Hub.Queue(function () {
       
       
@@ -84,9 +113,9 @@
   }
 </style>
 
-<link href="https://cdn.bootcss.com/highlight.js/10.6.0/styles/atom-one-dark.min.css" rel="stylesheet">
-<script src="https://cdn.bootcss.com/highlight.js/10.6.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css" rel="stylesheet">
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
 <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
 
 
@@ -1099,19 +1128,18 @@ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \}
 <p><span class="math inline">\(1 \leq n \leq 10^{18}, 1 \leq k \leq 1000\)</span>。</p>
 </blockquote>
 <p>设 <span class="math inline">\(g(n, k)\)</span> 表示答案。</p>
-[
-<span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 g(n+1, k) &amp;= \sum_{i = 0}^n \sum_p (i + \operatorname{inv}(p))^k\\
 &amp;= \sum_{i=0}^n\sum_{j=0}^k \sum_p \operatorname{inv}(p)^j i^{k-j} \frac{k!}{j!(k-j)!}\\
 \frac{g(n+1, k)}{k!} &amp;= \sum_{j = 0}^k \frac{g(n, j)}{j!}\sum_{i=0}^n \frac{i^{k-j}}{(k - j)!}\\
 G_{n + 1}(x) &amp;= G_n(x) A_n(x)\\
 A_n(x) &amp;= \sum_{k\geq 0} \frac{x^k}{k!} \sum_{i = 0}^n i^k\\
 &amp;= \sum_{i = 0}^n e^{ix}\\
-&amp;= \frac{1 - e^{(n + 1)x}}{1 - e^x}
-\\
+&amp;= \frac{1 - e^{(n + 1)x}}{1 - e^x}\\
 G_n(x) &amp;= \prod_{k = 1}^n\frac{1 - e^{kx}}{1 - e^x}
-\end{aligned}\]</span>
-<p>]</p>
+\end{aligned}
+\]</span></p>
 <p>结论是 <span class="math inline">\(\dfrac{g(n, k)}{n!}\)</span> 是关于 <span class="math inline">\(n\)</span> 的 <span class="math inline">\(2k\)</span> 次多项式，插值出这个多项式就行了。</p>
 <p>需要算大数阶乘 <span class="math inline">\(n!\)</span>，可以分段打表。</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span> </span>
@@ -1356,7 +1384,7 @@ F(x) &amp;= B(x) + 2B(x)xC(x) + B(x) x^2C(x)\\
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2022-05-12</p>
+		    <p style="color:#777;">最后修改于 2022-06-01</p>
                     
                 </div>
             </div>

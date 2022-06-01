@@ -6320,19 +6320,18 @@ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \}
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1 \leq n \leq 10^{18}, 1 \leq k \leq 1000\)&lt;/span&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;设 &lt;span class=&#34;math inline&#34;&gt;\(g(n, k)\)&lt;/span&gt; 表示答案。&lt;/p&gt;
-[
-&lt;span class=&#34;math display&#34;&gt;\[\begin{aligned}
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
 g(n+1, k) &amp;amp;= \sum_{i = 0}^n \sum_p (i + \operatorname{inv}(p))^k\\
 &amp;amp;= \sum_{i=0}^n\sum_{j=0}^k \sum_p \operatorname{inv}(p)^j i^{k-j} \frac{k!}{j!(k-j)!}\\
 \frac{g(n+1, k)}{k!} &amp;amp;= \sum_{j = 0}^k \frac{g(n, j)}{j!}\sum_{i=0}^n \frac{i^{k-j}}{(k - j)!}\\
 G_{n + 1}(x) &amp;amp;= G_n(x) A_n(x)\\
 A_n(x) &amp;amp;= \sum_{k\geq 0} \frac{x^k}{k!} \sum_{i = 0}^n i^k\\
 &amp;amp;= \sum_{i = 0}^n e^{ix}\\
-&amp;amp;= \frac{1 - e^{(n + 1)x}}{1 - e^x}
-\\
+&amp;amp;= \frac{1 - e^{(n + 1)x}}{1 - e^x}\\
 G_n(x) &amp;amp;= \prod_{k = 1}^n\frac{1 - e^{kx}}{1 - e^x}
-\end{aligned}\]&lt;/span&gt;
-&lt;p&gt;]&lt;/p&gt;
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;结论是 &lt;span class=&#34;math inline&#34;&gt;\(\dfrac{g(n, k)}{n!}\)&lt;/span&gt; 是关于 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 的 &lt;span class=&#34;math inline&#34;&gt;\(2k\)&lt;/span&gt; 次多项式，插值出这个多项式就行了。&lt;/p&gt;
 &lt;p&gt;需要算大数阶乘 &lt;span class=&#34;math inline&#34;&gt;\(n!\)&lt;/span&gt;，可以分段打表。&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb5-1&#34;&gt;&lt;a href=&#34;#cb5-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; solve&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt; &lt;/span&gt;

@@ -59,10 +59,39 @@
     svg: {
       fontCache: "global",
     },
+    options: {
+    enableMenu: true,          
+    menuOptions: {
+      settings: {
+        texHints: true,        
+        semantics: false,      
+        zoom: 'NoZoom',        
+        zscale: '200%',        
+        renderer: 'CHTML',     
+        alt: false,            
+        cmd: false,            
+        ctrl: false,           
+        shift: false,          
+        scale: 1,              
+        inTabOrder: true,      
+
+        assistiveMml: true,    
+        collapsible: false,    
+        explorer: false,       
+      },
+      annotationTypes: {
+        TeX: ['TeX', 'LaTeX', 'application/x-tex'],
+        StarMath: ['StarMath 5.0'],
+        Maple: ['Maple'],
+        ContentMathML: ['MathML-Content', 'application/mathml-content+xml'],
+        OpenMath: ['OpenMath']
+      }
+    }
+  }
   };
 </script>
 <script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
     MathJax.Hub.Queue(function () {
       
       
@@ -84,9 +113,9 @@
   }
 </style>
 
-<link href="https://cdn.bootcss.com/highlight.js/10.6.0/styles/atom-one-dark.min.css" rel="stylesheet">
-<script src="https://cdn.bootcss.com/highlight.js/10.6.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css" rel="stylesheet">
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
 <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
 
 
