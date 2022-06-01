@@ -214,8 +214,8 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Sun, 15 Aug 2021 21:24:32 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/</guid>
-      <description>「万能」Euclidean 算法 \[ F(P, R, Q, N, X, Y) = \prod_{i = 0}^N Y^{f(i) - f(i-1)}X \]
-其中 \(f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0\)​。\(X, Y\) 为操作序列，有乘法结合律，类比矩阵。
+      <description>「万能」Euclidean 算法 \[ F(P, R, Q, N, X, Y) = \prod_{i = 0}^N \left(Y^{f(i) - f(i-1)}X\right) \]
+其中 \(f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0\)​。\(X, Y\) 为操作序列，有乘法结合律，类比矩阵 \(\in\) 半群 \((S, \times)\)。
 若 \(R \geq Q\)​，则 \(f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor + \lfloor\dfrac{R}{Q}\rfloor\)​，所以 \[ F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q, N, X, Y) \]
 若 \(P \geq Q\)​，则 \(f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor + \lfloor\dfrac{P}{Q}\rfloor i\)​，记 \(f&amp;#39;(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor\)​ \[ \begin{aligned} F(P, R, Q, N, X, Y) &amp;amp;= X\prod_{i = 1}^N Y^{f&amp;#39;(i) - f&amp;#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= X\prod_{i = 0}^{N - 1} Y^{f&amp;#39;(i+1) - f&amp;#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1, Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y) \end{aligned} \] 若 \(P &amp;lt; Q\)，考虑交换 \(X, Y\)。</description>
     </item>
@@ -579,22 +579,6 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
 线段树的每个节点保存 \(L(mid)\) 最大的那条直线。
 插入一条直线时，比较 \(L_{old}(mid)\) 和 \(L_{new}(mid)\)，较大者保留，较小者继续递归。
 constexpr int N(1e5 + 5); struct Line {  LL k, b;  LL f(int x) {  return k * x + b;  } } t[N &amp;lt;&amp;lt; 2]; #define ls o&amp;lt;&amp;lt;1 #define rs o&amp;lt;&amp;lt;1|1 void ins(int o, int l, int r, Line x) {  int m = l + r &amp;gt;&amp;gt; 1;  bool lv = x.</description>
-    </item>
-    
-    <item>
-      <title>循环卷积优化</title>
-      <link>https://blog.asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</link>
-      <pubDate>Thu, 18 Mar 2021 21:11:58 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96/</guid>
-      <description>前置知识  Fast Fourier Transform - HolyK 多项式系列操作  循环卷积优化  简介：目前网上关于多项式操作的文章和模板大多仍然是朴素的实现，常数巨大，这个技巧利用循环卷积优化多项式操作的常数。
-（这个trick在N年前就有了，「循环卷积优化」这个名字是我瞎起的，如果有人知道这个trick的名字请联系我。）
- 多项式求逆  求 \(B(x)\) 满足 \(A(x)B(x) \equiv 1 \pmod n\)。
- 牛顿迭代得 \[ B_{t+1}(x) \equiv B_t(x)\left(2-A(x)B_t(x)\right)\pmod{x^{2^{t+1}}} \] 朴素的实现需要做3次长度为 \(2^{t+2}\) 的FFT，把多余的部分舍去，常数较大。
-发现 \(B_{t+1}(x)\) 的前 \(2^t\) 项和 \(B_t(x)\) 一样，所以只需要求后 \(2^t\) 项，即求 \(A(x)B_t^2(x)\) 的 \(x^{2^t}\dots x^{2^{t+1}-1}\) 项系数。
-设 \[ A(x)B_t(x) \equiv 1 + b_0x^{2^t}+b_1x^{2^t+1}+\dots+b_{2^t-1}x^{2^{t+1}-1} \pmod{x^{2^{t+1}}} \] 这个结果的前 \(2^t\) 项确定是1了，所以只有后半部分是有用的。
-由于 \(\deg B_t = 2^t\)，如果做长度为 \(2^{t+1}\) 的卷积，多余的部分会循环到前半部分，不会影响后半部分的结果。
-同样的， \(A(x)B_t^2(x) = A(x)B_t(x) \times B_t(x)\) ，卷积多余的部分会循环到前 \(2^t\) 项，后半部分不会受到影响。</description>
     </item>
     
     <item>
