@@ -512,37 +512,62 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <h2 id="莫队二次离线">莫队二次离线</h2>
-<p>从 <span class="math inline">\([x, y]\)</span> 移动到 <span class="math inline">\([l, r]\)</span>。</p>
+<p>从 <span class="math inline">\([x, y]\)</span> 移动到 <span
+class="math inline">\([l, r]\)</span>。</p>
 <ul>
 <li><p><span class="math inline">\(x \to l\)</span></p>
-<p>查询 <span class="math inline">\(a_i\)</span> 在区间 <span class="math inline">\([i+1, y]\)</span> 的贡献，拆成两个前缀 <span class="math inline">\(i, y\)</span>，预处理 <span class="math inline">\(a_{i-1}\)</span> 对前缀 <span class="math inline">\(i-1\)</span> 的贡献，设贡献的前缀和为 <span class="math inline">\(pre_1[i]\)</span>。</p>
+<p>查询 <span class="math inline">\(a_i\)</span> 在区间 <span
+class="math inline">\([i+1, y]\)</span> 的贡献，拆成两个前缀 <span
+class="math inline">\(i, y\)</span>，预处理 <span
+class="math inline">\(a_{i-1}\)</span> 对前缀 <span
+class="math inline">\(i-1\)</span> 的贡献，设贡献的前缀和为 <span
+class="math inline">\(pre_1[i]\)</span>。</p>
 <ol type="1">
 <li><p><span class="math inline">\(x&lt;l\)</span></p>
 <p>删除 <span class="math inline">\(a_{x} \dots a_{l-1}\)</span>。</p>
-<p>减前缀 <span class="math inline">\(y\)</span> 的贡献、加前缀 <span class="math inline">\(i\)</span> 的贡献。</p>
-<p>离线 <span class="math inline">\(\{y, x, l-1,-1\}, \Delta ans= pre_1[l] - pre_1[x]\)</span>。</p></li>
+<p>减前缀 <span class="math inline">\(y\)</span> 的贡献、加前缀 <span
+class="math inline">\(i\)</span> 的贡献。</p>
+<p>离线 <span class="math inline">\(\{y, x, l-1,-1\}, \Delta ans=
+pre_1[l] - pre_1[x]\)</span>。</p></li>
 <li><p><span class="math inline">\(x&gt;l\)</span></p>
 <p>加入 <span class="math inline">\(a_l\dots a_{x-1}\)</span>。</p>
-<p>加前缀 <span class="math inline">\(y\)</span> 的贡献、减前缀 <span class="math inline">\(i\)</span> 的贡献。</p>
-<p>离线 <span class="math inline">\(\{y, l, x-1,+1\}, \Delta ans= pre_1[l] - pre_1[x]\)</span>。</p></li>
+<p>加前缀 <span class="math inline">\(y\)</span> 的贡献、减前缀 <span
+class="math inline">\(i\)</span> 的贡献。</p>
+<p>离线 <span class="math inline">\(\{y, l, x-1,+1\}, \Delta ans=
+pre_1[l] - pre_1[x]\)</span>。</p></li>
 </ol></li>
 <li><p><span class="math inline">\(y\to r\)</span></p>
-<p>查询 <span class="math inline">\(a_i\)</span> 在区间 <span class="math inline">\([x, i-1]\)</span> 的贡献，拆成两个前缀 <span class="math inline">\(x-1, i-1\)</span>，预处理 <span class="math inline">\(a_{i}\)</span> 对前缀 <span class="math inline">\(i-1\)</span> 的贡献，设贡献的前缀和为 <span class="math inline">\(pre_2[i]\)</span>。</p>
+<p>查询 <span class="math inline">\(a_i\)</span> 在区间 <span
+class="math inline">\([x, i-1]\)</span> 的贡献，拆成两个前缀 <span
+class="math inline">\(x-1, i-1\)</span>，预处理 <span
+class="math inline">\(a_{i}\)</span> 对前缀 <span
+class="math inline">\(i-1\)</span> 的贡献，设贡献的前缀和为 <span
+class="math inline">\(pre_2[i]\)</span>。</p>
 <ol type="1">
 <li><p><span class="math inline">\(y&lt;r\)</span></p>
 <p>加入 <span class="math inline">\(a_{y+1}\dots a_r\)</span>。</p>
-<p>减前缀 <span class="math inline">\(x-1\)</span> 的贡献、加前缀 <span class="math inline">\(i-1\)</span> 的贡献。</p>
-<p>离线 <span class="math inline">\(\{x-1, y+1, r, -1\}, \Delta ans = pre_2[r] - pre_2[y]\)</span>。</p></li>
+<p>减前缀 <span class="math inline">\(x-1\)</span> 的贡献、加前缀 <span
+class="math inline">\(i-1\)</span> 的贡献。</p>
+<p>离线 <span class="math inline">\(\{x-1, y+1, r, -1\}, \Delta ans =
+pre_2[r] - pre_2[y]\)</span>。</p></li>
 <li><p><span class="math inline">\(y&gt;r\)</span></p>
 <p>删除 <span class="math inline">\(a_{r+1}\dots a_y\)</span></p>
-<p>加前缀 <span class="math inline">\(x-1\)</span> 的贡献、减前缀 <span class="math inline">\(i-1\)</span> 的贡献。</p>
-<p>离线 <span class="math inline">\(\{x-1, r+1, y, +1\}, \Delta ans = pre_2[r] - pre_2[y]\)</span>。</p></li>
+<p>加前缀 <span class="math inline">\(x-1\)</span> 的贡献、减前缀 <span
+class="math inline">\(i-1\)</span> 的贡献。</p>
+<p>离线 <span class="math inline">\(\{x-1, r+1, y, +1\}, \Delta ans =
+pre_2[r] - pre_2[y]\)</span>。</p></li>
 </ol></li>
 </ul>
-<p>离线形式 <span class="math inline">\(\{i, x, y, z\}\)</span> 表示查询 <span class="math inline">\(a_x\dots a_y\)</span> 对前缀 <span class="math inline">\(i\)</span> 的贡献乘以系数 <span class="math inline">\(z\)</span>。</p>
-<p>计算方法和预处理方法一般是相同的，注意平衡复杂度，一般是 <span class="math inline">\(O(\sqrt n)\)</span> 修改，<span class="math inline">\(O(1)\)</span> 查询。</p>
+<p>离线形式 <span class="math inline">\(\{i, x, y, z\}\)</span> 表示查询
+<span class="math inline">\(a_x\dots a_y\)</span> 对前缀 <span
+class="math inline">\(i\)</span> 的贡献乘以系数 <span
+class="math inline">\(z\)</span>。</p>
+<p>计算方法和预处理方法一般是相同的，注意平衡复杂度，一般是 <span
+class="math inline">\(O(\sqrt n)\)</span> 修改，<span
+class="math inline">\(O(1)\)</span> 查询。</p>
 <p>关键部分代码：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span>LL<span class="op">&gt;</span> pre1<span class="op">(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">),</span> pre2<span class="op">(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span>LL<span class="op">&gt;</span> pre1<span class="op">(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">),</span> pre2<span class="op">(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  update<span class="op">(</span>a<span class="op">[</span>i<span class="op">]);</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  pre1<span class="op">[</span>i <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">=</span> pre1<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> ask<span class="op">(</span>a<span class="op">[</span>i<span class="op">]);</span></span>
@@ -587,15 +612,18 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <h2 id="回滚莫队">回滚莫队</h2>
 <p>维护信息支持加入和回滚时使用。</p>
 <p>同块右端点从小到大排序，右端点直接移动，左端点每次从块边界暴力移动，做完后回滚。</p>
-<p>维护块左端点 <span class="math inline">\(now\)</span>，然后循环开头加一句：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>l <span class="op">&gt;</span> now<span class="op">)</span> <span class="op">{</span></span>
+<p>维护块左端点 <span
+class="math inline">\(now\)</span>，然后循环开头加一句：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>l <span class="op">&gt;</span> now<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 清空 for (int i = now; i &lt;= y; i++) max[a[i]] = -1, min[a[i]] = n; </span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  now <span class="op">=</span> l <span class="op">/</span> T <span class="op">*</span> T <span class="op">+</span> T <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> now <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>回滚操作，开个记录修改的栈即可。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">*,</span> <span class="dt">int</span><span class="op">&gt;&gt;</span> p<span class="op">;</span></span>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">*,</span> <span class="dt">int</span><span class="op">&gt;&gt;</span> p<span class="op">;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> record <span class="op">=</span> <span class="op">[&amp;](</span><span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">)</span> <span class="op">{</span> p<span class="op">.</span>push_back<span class="op">({&amp;</span>x<span class="op">,</span> x<span class="op">});</span> <span class="op">};</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>reverse<span class="op">(</span>p<span class="op">.</span>begin<span class="op">(),</span> p<span class="op">.</span>end<span class="op">());</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">&amp;[</span>u<span class="op">,</span> v<span class="op">]</span> <span class="op">:</span> p<span class="op">)</span> <span class="op">*</span>u <span class="op">=</span> v<span class="op">;</span></span>

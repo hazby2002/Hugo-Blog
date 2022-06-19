@@ -637,21 +637,39 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <blockquote>
-<p>有一个数列 <span class="math inline">\(a_1,a_2,\dots,a_n\)</span>，每个 <span class="math inline">\(a_i\)</span> 都是小于 <span class="math inline">\(2^m\)</span> 的非负整数。</p>
+<p>有一个数列 <span
+class="math inline">\(a_1,a_2,\dots,a_n\)</span>，每个 <span
+class="math inline">\(a_i\)</span> 都是小于 <span
+class="math inline">\(2^m\)</span> 的非负整数。</p>
 <p>现在需要实现三种操作，格式说明如下：</p>
 <ul>
-<li>1 <em>x</em> <em>y</em> <em>w</em>：对于所有 <span class="math inline">\(x≤i≤y\)</span>，将 <span class="math inline">\(a_i\)</span> 修改为 <span class="math inline">\(a_i\oplus w\)</span>。其中 <span class="math inline">\(w\)</span> 是一个小于 <span class="math inline">\(2^m\)</span> 的非负整数。</li>
-<li>2 <em>x</em> <em>y</em> <em>w</em>：对于所有 <span class="math inline">\(x≤i≤y\)</span>，将 <span class="math inline">\(a_i\)</span> 修改为 <span class="math inline">\(w\)</span>。其中 <span class="math inline">\(w\)</span> 是一个小于 <span class="math inline">\(2^m\)</span> 的非负整数。</li>
-<li>3：从 <span class="math inline">\(a_1,a_2,⋯,a_n\)</span> 中选出若干个数，使得选出的数异或和最大。请输出这个最大值。</li>
+<li>1 <em>x</em> <em>y</em> <em>w</em>：对于所有 <span
+class="math inline">\(x≤i≤y\)</span>，将 <span
+class="math inline">\(a_i\)</span> 修改为 <span
+class="math inline">\(a_i\oplus w\)</span>。其中 <span
+class="math inline">\(w\)</span> 是一个小于 <span
+class="math inline">\(2^m\)</span> 的非负整数。</li>
+<li>2 <em>x</em> <em>y</em> <em>w</em>：对于所有 <span
+class="math inline">\(x≤i≤y\)</span>，将 <span
+class="math inline">\(a_i\)</span> 修改为 <span
+class="math inline">\(w\)</span>。其中 <span
+class="math inline">\(w\)</span> 是一个小于 <span
+class="math inline">\(2^m\)</span> 的非负整数。</li>
+<li>3：从 <span class="math inline">\(a_1,a_2,⋯,a_n\)</span>
+中选出若干个数，使得选出的数异或和最大。请输出这个最大值。</li>
 </ul>
-<p>这里 <span class="math inline">\(\oplus\)</span> 表示按位异或运算，<span class="math inline">\(x_1,x_2,⋯,x_l\)</span> 的异或和是指 <span class="math inline">\(x_1\oplus x_2\oplus \cdots\oplus x_l\)</span>。</p>
+<p>这里 <span class="math inline">\(\oplus\)</span>
+表示按位异或运算，<span class="math inline">\(x_1,x_2,⋯,x_l\)</span>
+的异或和是指 <span class="math inline">\(x_1\oplus x_2\oplus
+\cdots\oplus x_l\)</span>。</p>
 <p><span class="math inline">\(n,m,q≤2000\)</span>。</p>
 </blockquote>
 <p>将原序列差分，线性基不变。</p>
 <p>然后每次操作就是单点插入和删除，下面给出两种可删除线性基的写法。</p>
 <h2 id="离线">离线</h2>
 <p>记录存活时间，贪心。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> BS <span class="op">=</span> <span class="bu">std::</span>bitset<span class="op">&lt;</span><span class="dv">2000</span><span class="op">&gt;;</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> BS <span class="op">=</span> <span class="bu">std::</span>bitset<span class="op">&lt;</span><span class="dv">2000</span><span class="op">&gt;;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> PBI <span class="op">=</span> <span class="bu">std::</span>pair<span class="op">&lt;</span>BS<span class="op">,</span> <span class="dt">int</span><span class="op">&gt;;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>PBI base<span class="op">[</span><span class="dv">2000</span><span class="op">];</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ins<span class="op">(</span>PBI x<span class="op">)</span> <span class="op">{</span></span>
@@ -670,7 +688,7 @@ PV=B
 \]</span></p>
 <p><span class="math display">\[
 \det(P)\neq 0,
-V = 
+V =
 \begin{pmatrix}
 v_1\\
 v_2\\
@@ -689,13 +707,27 @@ base_m\\
 \vdots
 \end{pmatrix}
 \]</span></p>
-<p>记录可逆矩阵 <span class="math inline">\(P\)</span>，修改 <span class="math inline">\(v_i\)</span> 时，要将 <span class="math inline">\(P\)</span> 的第 <span class="math inline">\(i\)</span> 列全部变成0。</p>
-<p>为了尽量在不影响 <span class="math inline">\(B\)</span> 的情况下消元，首先找 <span class="math inline">\(j\)</span> 满足 <span class="math inline">\(P_{i,j}=1,i\neq j, base_j=0\)</span>。</p>
-<p>如果找到这样的 <span class="math inline">\(j\)</span> 那么直接消元，<span class="math inline">\(B\)</span> 不会有任何变化。</p>
-<p>如果没有找到，那么需要找最小的 <span class="math inline">\(base_k\)</span> 使得 <span class="math inline">\(base_k\)</span> 包含 <span class="math inline">\(v_i\)</span>，然后用 <span class="math inline">\(base_k\)</span> 消去其他包含 <span class="math inline">\(v_i\)</span> 的 <span class="math inline">\(base\)</span>。</p>
+<p>记录可逆矩阵 <span class="math inline">\(P\)</span>，修改 <span
+class="math inline">\(v_i\)</span> 时，要将 <span
+class="math inline">\(P\)</span> 的第 <span
+class="math inline">\(i\)</span> 列全部变成0。</p>
+<p>为了尽量在不影响 <span class="math inline">\(B\)</span>
+的情况下消元，首先找 <span class="math inline">\(j\)</span> 满足 <span
+class="math inline">\(P_{i,j}=1,i\neq j, base_j=0\)</span>。</p>
+<p>如果找到这样的 <span class="math inline">\(j\)</span>
+那么直接消元，<span class="math inline">\(B\)</span>
+不会有任何变化。</p>
+<p>如果没有找到，那么需要找最小的 <span
+class="math inline">\(base_k\)</span> 使得 <span
+class="math inline">\(base_k\)</span> 包含 <span
+class="math inline">\(v_i\)</span>，然后用 <span
+class="math inline">\(base_k\)</span> 消去其他包含 <span
+class="math inline">\(v_i\)</span> 的 <span
+class="math inline">\(base\)</span>。</p>
 <h2 id="code">Code</h2>
 <h3 id="离线-1">离线</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Created: Mon Jul  5 14:24:21 2021</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>fprintf<span class="op">(</span>stderr<span class="op">,</span><span class="pp"> </span>a<span class="op">)</span></span>
@@ -777,7 +809,8 @@ base_m\\
 <span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="在线-1">在线</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Created: Mon Jul  5 15:29:33 2021</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>fprintf<span class="op">(</span>stderr<span class="op">,</span><span class="pp"> </span>a<span class="op">)</span></span>

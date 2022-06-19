@@ -15,14 +15,15 @@
       
       <guid>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</guid>
       <description>传送门
- 给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
+给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
 答案对 \(998244353\) 取模。
 \(1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351\)。
- 考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
+考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
 这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。
 这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。
 求单个的四元组，可以发现就是要求 \(\sum_{i=0}^{a_j} p^ii^k\)。
-对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。</description>
+对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。
+本文主要参考 EI 的评论 以及下面 ecnerwala 的解读。</description>
     </item>
     
     <item>
@@ -33,7 +34,7 @@
       <guid>https://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</guid>
       <description>\(n\) 个人，每个人有个权值 \(a_i\)。进行 \(n\) 轮操作，每轮开枪杀死一个人，\(i\) 被杀死的概率 \(p_i=\dfrac{a_i}{\sum_{x\ is\ alive}a_x}\) ，求最后死的那个人是 \(1\) 的概率。答案对 \(998244353\) 取模。
 \(a_i &amp;gt; 0, 1 \le \sum a_i \le 10^5\)。
- 设 \(s = \sum_{i=1}^na_i,w=\sum_{x\ is\ alive}a_x\)，那么有 \[ \begin{aligned} p_i &amp;amp;= \frac{a_i}{w}\\ \frac wsp_i &amp;amp;= \frac {a_i}{s}\\ p_i &amp;amp;= \frac {a_i}{s} + \frac{s - w}s p_i \end{aligned} \] 最后的这个式子可以理解为，每次开枪的目标是所有活人和死人，如果打到活人就会杀死他，如果打到死人不算，重打。
+设 \(s = \sum_{i=1}^na_i,w=\sum_{x\ is\ alive}a_x\)，那么有 \[ \begin{aligned} p_i &amp;amp;= \frac{a_i}{w}\\ \frac wsp_i &amp;amp;= \frac {a_i}{s}\\ p_i &amp;amp;= \frac {a_i}{s} + \frac{s - w}s p_i \end{aligned} \] 最后的这个式子可以理解为，每次开枪的目标是所有活人和死人，如果打到活人就会杀死他，如果打到死人不算，重打。
 这样变成进行无限轮，每轮的目标都是所有人，打到某个人的概率更容易表示。
 然后考虑容斥，设 \(A = \{ a_2, a_3, \dots, a_n \}\)， \(1\) 在第 \(r\) 轮被打死，且至少有 \(k\) 个人在 \(1\) 之后被打死。 \[ \begin{aligned} ans &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \sum_{r = 1}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r - 1} \cdot \frac{a_1}{s}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \sum_{r = 0}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \frac{1}{1 - \dfrac{s - a_1 - \sum_{i \in S} a_i}{s}}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{a_1 + \sum_{i \in S} a_i}\\ &amp;amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times \sum_{S \subseteq A, \sum_{i \in S} a_i = k} (-1)^{|S|}\\ &amp;amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times [x^k] \prod_{i=2}^n(1 - x^{a_i}) \end{aligned} \] 分治求 \(\prod_{i=2}^n(1 - x^{a_i})\) 即可，复杂度 \(O(n \log n \log s)\) 。</description>
     </item>

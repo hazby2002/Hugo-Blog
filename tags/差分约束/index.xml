@@ -16,7 +16,7 @@
       <guid>https://blog.asukakyle.top/post/agc036d-negative-cycle/</guid>
       <description>题意：\(n\) 个点的有向图，初始有边 \(i \to i + 1\)，边权为 0，不可删除。有边 \(i \to j(i \neq j)\)，边权为 \(\begin{cases}1, &amp;amp;i &amp;gt; j\\-1, &amp;amp;i&amp;lt;j\end{cases}\)，可删除，删除代价为 \(a_{i, j}\)，你需要删除一些边，使得这张图上没有负环，求最小代价。
 \(1 \leq n \leq 500\)
- 有向图上没有负环，则存在最短路，则差分约束有解。
+有向图上没有负环，则存在最短路，则差分约束有解。
 每个点设变量 \(x_i\)，那么一条 \(i \to j\) 边权为 \(w\) 的边就代表 \(x_j - x_i \leq w\)。
 所以初始 \(i \to i + 1\) 的边表示 \(x_i \geq x_{i+1}\)。
 设 \(d_i = x_{i-1} - x_i \geq 0\)。

@@ -32,7 +32,7 @@
 如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。
 所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link, cut, evert 之类的动态树操作罢了。
 考虑到 Top Tree 的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。
-Node *build(int l, int r) {  if (l &amp;gt; r) return nullptr;  int m = l - 1, sum = 0, now = 0;  for (int i = l; i &amp;lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]];  while (now * 2 &amp;lt; sum &amp;amp;&amp;amp; m &amp;lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]];  Node *o = t + s[m];  o-&amp;gt;ls = build(l, m - 1), o-&amp;gt;rs = build(m + 1, r);  if (o-&amp;gt;ls) o-&amp;gt;ls-&amp;gt;fa = o;  if (o-&amp;gt;rs) o-&amp;gt;rs-&amp;gt;fa = o;  pushup(o);  return o; } </description>
+Node *build(int l, int r) { if (l &amp;gt; r) return nullptr; int m = l - 1, sum = 0, now = 0; for (int i = l; i &amp;lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]]; while (now * 2 &amp;lt; sum &amp;amp;&amp;amp; m &amp;lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]]; Node *o = t + s[m]; o-&amp;gt;ls = build(l, m - 1), o-&amp;gt;rs = build(m + 1, r); if (o-&amp;gt;ls) o-&amp;gt;ls-&amp;gt;fa = o; if (o-&amp;gt;rs) o-&amp;gt;rs-&amp;gt;fa = o; pushup(o); return o; } </description>
     </item>
     
     <item>
@@ -46,11 +46,11 @@ UPD. 2022.04.27
 发现很多以前写的懒得写题解，感觉又都不太会了，后面还是做一题写一题比较好。
 发现刷 Ynoi 收益很小，大部分时间只是在卡常。
 不过数据结构题写起来有意思，自己写起来乐在其中，可能刷 Ynoi 对于算法竞赛并没有什么用，更多只是自我满足罢了。
-P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), \(m\) 次询问区间逆序对。
+P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II 给定序列 \(a_n\), \(m\) 次询问区间逆序对。
 \(1 \leq n, m \leq 10^5, 1 \leq a_i \leq 10^9\)。
- 莫队二次离线。
+莫队二次离线。
 求前缀比它小/大的数的个数，用 \(O(\sqrt n)\) 修改，\(O(1)\) 查询的搞一下就行。
-#include &amp;lt;bits/stdc++.h&amp;gt;  constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry {  int l, r, id;  bool operator&amp;lt;(const Qry &amp;amp;rhs) const {  return l / T == rhs.</description>
+#include &amp;lt;bits/stdc++.h&amp;gt; constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry { int l, r, id; bool operator&amp;lt;(const Qry &amp;amp;rhs) const { return l / T == rhs.</description>
     </item>
     
     <item>
@@ -71,17 +71,17 @@ P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), 
       
       <guid>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F/</guid>
       <description>莫队二次离线 从 \([x, y]\) 移动到 \([l, r]\)。
- \(x \to l\)
+\(x \to l\)
 查询 \(a_i\) 在区间 \([i+1, y]\) 的贡献，拆成两个前缀 \(i, y\)，预处理 \(a_{i-1}\) 对前缀 \(i-1\) 的贡献，设贡献的前缀和为 \(pre_1[i]\)。
 \(x&amp;lt;l\)
 删除 \(a_{x} \dots a_{l-1}\)。
 减前缀 \(y\) 的贡献、加前缀 \(i\) 的贡献。
 离线 \(\{y, x, l-1,-1\}, \Delta ans= pre_1[l] - pre_1[x]\)。
- \(x&amp;gt;l\)
+\(x&amp;gt;l\)
 加入 \(a_l\dots a_{x-1}\)。
 加前缀 \(y\) 的贡献、减前缀 \(i\) 的贡献。
 离线 \(\{y, l, x-1,+1\}, \Delta ans= pre_1[l] - pre_1[x]\)。
-  \(y\to r\)
+\(y\to r\)
 查询 \(a_i\) 在区间 \([x, i-1]\) 的贡献，拆成两个前缀 \(x-1, i-1\)，预处理 \(a_{i}\) 对前缀 \(i-1\) 的贡献，设贡献的前缀和为 \(pre_2[i]\)。</description>
     </item>
     
@@ -93,11 +93,11 @@ P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), 
       <guid>https://blog.asukakyle.top/post/cf938g/</guid>
       <description>给定一个带权无向图，实现三种操作：加边，删边，询问两点间的异或最短路。
 \(n, m, q \leq 2\times 10^5\)。
- 类似最大 xor 和路径，用线性基可以求解异或最短路。
+类似最大 xor 和路径，用线性基可以求解异或最短路。
 因为线性基删除很麻烦，所以直接离线用线段树分治。
 图可能不连通，需要用并查集维护连通性，然后记录每个点到当前根的异或和 \(d_x\)。
 加边时设 \(val = d_x\oplus d_y \oplus w\)，如果 \(x, y\) 已经联通则将 \(val\) 加入当前联通块的线性基，如果不在一个并查集，连接两个根，边权为 \(val\)。
-#include &amp;lt;bits/stdc++.h&amp;gt; #define perr(a...)fprintf(stderr,a) #define dbg(a...)perr(&amp;quot;\033[32;1m&amp;quot;),perr(a),perr(&amp;quot;\033[0m&amp;quot;) template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) {  return y &amp;lt; x ? x = y, 1 : 0; } template &amp;lt;class T, class U&amp;gt; inline bool smax(T &amp;amp;x, const U &amp;amp;y) {  return x &amp;lt; y ?</description>
+#include &amp;lt;bits/stdc++.h&amp;gt; #define perr(a...) fprintf(stderr, a) #define dbg(a...) perr(&amp;quot;\033[32;1m&amp;quot;), perr(a), perr(&amp;quot;\033[0m&amp;quot;) template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ? x = y, 1 : 0; } template &amp;lt;class T, class U&amp;gt; inline bool smax(T &amp;amp;x, const U &amp;amp;y) { return x &amp;lt; y ?</description>
     </item>
     
     <item>
@@ -106,7 +106,8 @@ P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), 
       <pubDate>Thu, 15 Apr 2021 09:03:20 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102994/</guid>
-      <description>总览   题号 A B C D E F G H I J K L M    完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0    A. Everyone Loves Playing Games  A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。</description>
+      <description>总览 题号 A B C D E F G H I J K L M 完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0 A. Everyone Loves Playing Games A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。
+\(N, M \leq 10000, 0 \leq x \leq 10^{18}\)。</description>
     </item>
     
     <item>
@@ -115,10 +116,10 @@ P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), 
       <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102441/</guid>
-      <description>总览   题号 A B C D E F G H I J K    完成情况 1 0 1 1 1 1 1 1 1 1 0    A. Template for Search  给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
+      <description>总览 题号 A B C D E F G H I J K 完成情况 1 0 1 1 1 1 1 1 1 1 0 A. Template for Search 给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
 \(1 \leq |s| \leq 500\)。
- 设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
- \(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段  B.</description>
+设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
+\(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段 B. Redistribution of Digits C. Partial Sums \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]</description>
     </item>
     
     <item>
@@ -130,12 +131,12 @@ P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), 
       <description>给定两个串 \(s,t\) 整数 \(k\) ,你可以在 \(s\) 中取出任意的两个不相交的长度为 \(k\) 串，将它们按顺序拼在一起形成一个新串。
 求一种取串的方案使得 \(t\) 是新串的子串。
 \(|s|,|t| \leq 5 \times 10^5\)。
- kmp 算出正串和反串的能匹配 \(t\) 的前/后缀最大长度。
+kmp 算出正串和反串的能匹配 \(t\) 的前/后缀最大长度。
 设 \(s\) 串的前缀 \([pre_1 \dots pre_i]\) 能匹配 \(t\) 的前缀集合为 \(P\)，后缀 \([suf_{i+1},suf_n]\) 能匹配 \(t\) 的后缀集合为 \(Q\)，只要判断是否存在 \(x\in P,y\in Q,x, y\leq k,x+y=|s|\) 即可。
 类似 AC 自动机那样建出 fail 树，那么一个点能匹配的前缀长度集合就是在 fail 树上到根的路径，在正串 fail 树上维护集合 \(P\)，每次添加一个数 \(x\) 时，标记 \(k-x\) 对应在反串 fail 树上的点，每次查询反串 fail 树上一个点的祖先是否被标记。
 具体实现时，标记一个点可以用子树加一，查询的时候单点查询即可。
 复杂度 \(O(n \log n)\)。
-#include &amp;lt;bits/stdc++.h&amp;gt; #define dbg(.</description>
+#include &amp;lt;bits/stdc++.h&amp;gt; #define dbg(...) std::cerr &amp;lt;&amp;lt; &amp;quot;\033[32;1m&amp;quot;, fprintf(stderr, __VA_ARGS__), std::cerr &amp;lt;&amp;lt; &amp;quot;\033[0m&amp;quot; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -146,7 +147,7 @@ P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), 
       <guid>https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
       <description>给定一棵 \(n\) 个点的无根树，每条边都有标记0或1。现在有 \(m\) 次操作，每次操作将第 \(id\) 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。
 \(n,m \leq 5 \times 10^5\)。
- 动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
+动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
 容易写出转移（\(val_y\) 表示 \(y\) 的父边的权值）： \[ \begin{aligned} dp&amp;#39;[x][0] &amp;amp;= \max\{dp[x][0], dp[y][val_y] + 1\}\\ dp&amp;#39;[x][1] &amp;amp;= \max\{dp[x][1], dp[y][val_y \oplus 1] + 1\}\\ dp&amp;#39;[x][2] &amp;amp;= \max\{dp[x][0] + dp[y][val_y] + 1, dp[x][1] + dp[y][val_y \oplus 1] + 1, dp[x][2],dp[y][2]\} \end{aligned} \] 改写成 \(x\) 从重儿子 \(y\) 转移的矩阵（这里以 \(val_y = 0\) 为例）： \[ \begin{bmatrix} dp&amp;#39;[x][0]\\ dp&amp;#39;[x][1]\\ dp&amp;#39;[x][2]\\ 0 \end{bmatrix} = \begin{bmatrix} 1 &amp;amp; -\infty &amp;amp; -\infty &amp;amp; dp[x][0]\\ -\infty &amp;amp; 1 &amp;amp; -\infty &amp;amp; dp[x][1]\\ dp[x][0] + 1 &amp;amp; dp[x][1] + 1 &amp;amp; 0 &amp;amp; dp[x][2]\\ -\infty &amp;amp; -\infty &amp;amp; -\infty &amp;amp; 0 \end{bmatrix} \begin{bmatrix} dp[y][0]\\ dp[y][1]\\ dp[y][2]\\ 0 \end{bmatrix} \] 上面的 \(dp[x]\) 是指排除掉 \(x\) 重儿子的答案，\(dp&amp;#39;[x]\) 是指完整的 \(x\) 的答案。</description>
     </item>
     
@@ -161,7 +162,7 @@ P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), 
 李超线段树就是支持 \(O(\log N)\) 插入直线和查询 \(\max{L_i(x)}\) 的数据结构。
 线段树的每个节点保存 \(L(mid)\) 最大的那条直线。
 插入一条直线时，比较 \(L_{old}(mid)\) 和 \(L_{new}(mid)\)，较大者保留，较小者继续递归。
-constexpr int N(1e5 + 5); struct Line {  LL k, b;  LL f(int x) {  return k * x + b;  } } t[N &amp;lt;&amp;lt; 2]; #define ls o&amp;lt;&amp;lt;1 #define rs o&amp;lt;&amp;lt;1|1 void ins(int o, int l, int r, Line x) {  int m = l + r &amp;gt;&amp;gt; 1;  bool lv = x.</description>
+constexpr int N(1e5 + 5); struct Line { LL k, b; LL f(int x) { return k * x + b; } } t[N &amp;lt;&amp;lt; 2]; #define ls o &amp;lt;&amp;lt; 1 #define rs o &amp;lt;&amp;lt; 1 | 1 void ins(int o, int l, int r, Line x) { int m = l + r &amp;gt;&amp;gt; 1; bool lv = x.</description>
     </item>
     
     <item>
@@ -173,7 +174,7 @@ constexpr int N(1e5 + 5); struct Line {  LL k, b;  LL f(int x) {  return k * x +
       <description>给定一个最初为空的数组，然后进行 \(n\) 次操作，每次操作给定 \(x,l,r,k\)，在数组末尾插入 \(x\) ，然后查询满足 \(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\) 的数对 \((i,j)\) 的个数，强制在线。
 \(mex(S)\) 表示集合 \(S\) 中最小的未出现的 自然数。
 \(n \leq 2 \times 10^5\)。
- 为表示方便，下面记 \(mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})\)。
+为表示方便，下面记 \(mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})\)。
 容易发现，如果向集合 \(S\) 中添加数，\(mex(S)\) 不会减小。
 所以如果固定右端点 \(j\)，\(mex(i, j)\) 是非严格单调减的；固定左端点 \(i\)，\(mex(i, j)\) 是非严格单调增的。
 维护一个 \(n \times n\) 矩阵，\(A[i][j] = mex(j, i)\)，则矩阵 \(A\) 的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。

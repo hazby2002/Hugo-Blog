@@ -19,27 +19,44 @@
         
         <guid>https://blog.asukakyle.top/post/codeforces566c-logistical-questions/</guid>
         <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/codeforces566c-logistical-questions/ -&lt;blockquote&gt;
-&lt;p&gt;一棵 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 个节点的树，点有点权，边有边权。求这棵树的一个点 &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; 使下面的式子最小： &lt;span class=&#34;math display&#34;&gt;\[
+&lt;p&gt;一棵 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;
+个节点的树，点有点权，边有边权。求这棵树的一个点 &lt;span
+class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; 使下面的式子最小： &lt;span
+class=&#34;math display&#34;&gt;\[
 \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32}
-\]&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(n \le 2 \times 10^5, val_i, dist(u, v) \ge 0\)&lt;/span&gt;。&lt;/p&gt;
+\]&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(n \le 2 \times 10^5, val_i,
+dist(u, v) \ge 0\)&lt;/span&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;带权重心问题，有点妙。&lt;/p&gt;
 &lt;p&gt;设 &lt;span class=&#34;math display&#34;&gt;\[
 f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32}
-\]&lt;/span&gt; 这里函数 &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt; 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。&lt;/p&gt;
+\]&lt;/span&gt; 这里函数 &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;
+的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。&lt;/p&gt;
 &lt;p&gt;下面研究这个函数的性质。&lt;/p&gt;
-&lt;p&gt;树上的函数显然不太方便研究，所以考虑换一个 &lt;span class=&#34;math inline&#34;&gt;\(\mathbf R\)&lt;/span&gt; 上的函数研究。&lt;/p&gt;
-&lt;p&gt;随便选择一条树上路径 &lt;span class=&#34;math inline&#34;&gt;\(u \rightarrow v\)&lt;/span&gt; 作为 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 轴，把 &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; 当作原点，这样 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 就是路径上的点到 &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; 的距离。&lt;/p&gt;
+&lt;p&gt;树上的函数显然不太方便研究，所以考虑换一个 &lt;span
+class=&#34;math inline&#34;&gt;\(\mathbf R\)&lt;/span&gt; 上的函数研究。&lt;/p&gt;
+&lt;p&gt;随便选择一条树上路径 &lt;span class=&#34;math inline&#34;&gt;\(u \rightarrow
+v\)&lt;/span&gt; 作为 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 轴，把 &lt;span
+class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; 当作原点，这样 &lt;span
+class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 就是路径上的点到 &lt;span
+class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; 的距离。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;1.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;这里以 &lt;span class=&#34;math inline&#34;&gt;\(0 \rightarrow 5\)&lt;/span&gt; 为例，节点 &lt;span class=&#34;math inline&#34;&gt;\(6 \dots 11\)&lt;/span&gt; 分别代表其父亲的一些子树。&lt;/p&gt;
-&lt;p&gt;记 &lt;span class=&#34;math inline&#34;&gt;\(d_i = dist(i, 0)\)&lt;/span&gt;，路径上的点分别考虑贡献： &lt;span class=&#34;math display&#34;&gt;\[
+&lt;p&gt;这里以 &lt;span class=&#34;math inline&#34;&gt;\(0 \rightarrow 5\)&lt;/span&gt;
+为例，节点 &lt;span class=&#34;math inline&#34;&gt;\(6 \dots 11\)&lt;/span&gt;
+分别代表其父亲的一些子树。&lt;/p&gt;
+&lt;p&gt;记 &lt;span class=&#34;math inline&#34;&gt;\(d_i = dist(i,
+0)\)&lt;/span&gt;，路径上的点分别考虑贡献： &lt;span class=&#34;math display&#34;&gt;\[
 f_i(x) =
 \begin{cases}
-\sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32 &amp;amp; x \le d_i\\
-\sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32 &amp;amp; x &amp;gt; d_i
+\sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32
+&amp;amp; x \le d_i\\
+\sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32
+&amp;amp; x &amp;gt; d_i
 \end{cases}\\
 f(x) = f_0(x) + f_1(x) + f_2(x) + f_3(x) + f_4(x) + f_5(x)
-\]&lt;/span&gt; 发现 &lt;span class=&#34;math inline&#34;&gt;\(f_i(x)\)&lt;/span&gt; 可以写成下面这种形式（其中 &lt;span class=&#34;math inline&#34;&gt;\(c_1-x \ge 0, c_2 + x \ge 0\)&lt;/span&gt;） &lt;span class=&#34;math display&#34;&gt;\[
+\]&lt;/span&gt; 发现 &lt;span class=&#34;math inline&#34;&gt;\(f_i(x)\)&lt;/span&gt;
+可以写成下面这种形式（其中 &lt;span class=&#34;math inline&#34;&gt;\(c_1-x \ge 0, c_2
++ x \ge 0\)&lt;/span&gt;） &lt;span class=&#34;math display&#34;&gt;\[
 f_i(x) =
 \begin{cases}
 \sum v(c_1 - x)^\frac32 &amp;amp; x \le d_i\\
@@ -58,20 +75,40 @@ f_i&amp;#39;&amp;#39;(x) =
 \frac34\sum v(c_1 - x)^{-\frac12} &amp;amp; x \le d_i\\
 \frac34\sum v(c_2 + x)^{-\frac12} &amp;amp; x &amp;gt; d_i
 \end{cases}
-\]&lt;/span&gt; 发现 &lt;span class=&#34;math inline&#34;&gt;\(f&amp;#39;&amp;#39;_i(x) \ge 0\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(f&amp;#39;&amp;#39;(x) = \sum_if&amp;#39;&amp;#39;_i(x) \ge 0\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; 是个凸函数，至多一个最小值。&lt;/p&gt;
-&lt;p&gt;注意到对于树上任意路径这个结论都成立，所以固定起点 &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt;，对于所有终点 &lt;span class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt; 求一次最小值就可以得到答案。&lt;/p&gt;
-&lt;p&gt;下图中 &lt;span class=&#34;math inline&#34;&gt;\(2, 3, 4\)&lt;/span&gt; 都代表子树，假设当前在 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; ，需要考虑 &lt;span class=&#34;math inline&#34;&gt;\(1 \rightarrow 2, 3, 4 \rightarrow \dots\)&lt;/span&gt; 几种路径。&lt;/p&gt;
+\]&lt;/span&gt; 发现 &lt;span class=&#34;math inline&#34;&gt;\(f&amp;#39;&amp;#39;_i(x) \ge
+0\)&lt;/span&gt;，所以 &lt;span class=&#34;math inline&#34;&gt;\(f&amp;#39;&amp;#39;(x) =
+\sum_if&amp;#39;&amp;#39;_i(x) \ge 0\)&lt;/span&gt;，所以 &lt;span
+class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; 是个凸函数，至多一个最小值。&lt;/p&gt;
+&lt;p&gt;注意到对于树上任意路径这个结论都成立，所以固定起点 &lt;span
+class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt;，对于所有终点 &lt;span
+class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt; 求一次最小值就可以得到答案。&lt;/p&gt;
+&lt;p&gt;下图中 &lt;span class=&#34;math inline&#34;&gt;\(2, 3, 4\)&lt;/span&gt;
+都代表子树，假设当前在 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; ，需要考虑
+&lt;span class=&#34;math inline&#34;&gt;\(1 \rightarrow 2, 3, 4 \rightarrow
+\dots\)&lt;/span&gt; 几种路径。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;2.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;对于路径 &lt;span class=&#34;math inline&#34;&gt;\(1 \rightarrow i \rightarrow \dots\)&lt;/span&gt;，有 &lt;span class=&#34;math display&#34;&gt;\[
+&lt;p&gt;对于路径 &lt;span class=&#34;math inline&#34;&gt;\(1 \rightarrow i \rightarrow
+\dots\)&lt;/span&gt;，有 &lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
-f&amp;#39;(0)_i &amp;amp;= \frac32\left(\sum_{x\in 0} val_xdist(x, 1)^\frac12 - \sum_{x\in i}val_xdist(x, 1)^\frac12\right)\\
-&amp;amp;= \frac32\left(\sum_{x}val_xdist(x, 1)^\frac12 - 2\sum_{x\in i}val_xdist(x, 1)^\frac12\right)
+f&amp;#39;(0)_i &amp;amp;= \frac32\left(\sum_{x\in 0} val_xdist(x, 1)^\frac12 -
+\sum_{x\in i}val_xdist(x, 1)^\frac12\right)\\
+&amp;amp;= \frac32\left(\sum_{x}val_xdist(x, 1)^\frac12 - 2\sum_{x\in
+i}val_xdist(x, 1)^\frac12\right)
 \end{aligned}
-\]&lt;/span&gt; 观察这个式子，发现最多只有一个 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 会使导数小于零，就是使 &lt;span class=&#34;math inline&#34;&gt;\(\sum_{x \in i}val_xdist(x, i)^{\frac12}\)&lt;/span&gt; 最大的那个。&lt;/p&gt;
+\]&lt;/span&gt; 观察这个式子，发现最多只有一个 &lt;span
+class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 会使导数小于零，就是使 &lt;span
+class=&#34;math inline&#34;&gt;\(\sum_{x \in i}val_xdist(x, i)^{\frac12}\)&lt;/span&gt;
+最大的那个。&lt;/p&gt;
 &lt;p&gt;所以我们只需要向导数小于零的那个方向走就可以了。&lt;/p&gt;
-&lt;p&gt;假如从根出发向叶子的方向走，最多走 &lt;span class=&#34;math inline&#34;&gt;\(maxdep\)&lt;/span&gt; 次，每次需要花 &lt;span class=&#34;math inline&#34;&gt;\(O(n)\)&lt;/span&gt; 时间计算答案和导数， 最坏是 &lt;span class=&#34;math inline&#34;&gt;\(O(n^2)\)&lt;/span&gt; 的，考虑优化。&lt;/p&gt;
-&lt;p&gt;每次走到一个节点时，需要考虑的节点范围会缩小到当前节点的子树内，如果每次找到当前子树的重心，每次规模会减半，这样最多走 &lt;span class=&#34;math inline&#34;&gt;\(\log n\)&lt;/span&gt; 次，最终复杂度 &lt;span class=&#34;math inline&#34;&gt;\(O(n \log n)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;p&gt;假如从根出发向叶子的方向走，最多走 &lt;span
+class=&#34;math inline&#34;&gt;\(maxdep\)&lt;/span&gt; 次，每次需要花 &lt;span
+class=&#34;math inline&#34;&gt;\(O(n)\)&lt;/span&gt; 时间计算答案和导数， 最坏是 &lt;span
+class=&#34;math inline&#34;&gt;\(O(n^2)\)&lt;/span&gt; 的，考虑优化。&lt;/p&gt;
+&lt;p&gt;每次走到一个节点时，需要考虑的节点范围会缩小到当前节点的子树内，如果每次找到当前子树的重心，每次规模会减半，这样最多走
+&lt;span class=&#34;math inline&#34;&gt;\(\log n\)&lt;/span&gt; 次，最终复杂度 &lt;span
+class=&#34;math inline&#34;&gt;\(O(n \log n)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre
+class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;template&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; T&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; U&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;inline&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;bool&lt;/span&gt; smin&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;T &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;x&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;const&lt;/span&gt; U &lt;span class=&#34;op&#34;&gt;&amp;amp;&lt;/span&gt;y&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; y &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;?&lt;/span&gt; x &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; y&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;

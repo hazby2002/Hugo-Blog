@@ -398,26 +398,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#g.-sum-of-distances-in-cactus" onclick="onNavClick(`#g.-sum-of-distances-in-cactus-nav`)" id="g.-sum-of-distances-in-cactus-nav">
-									G. Sum of Distances in Cactus
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-						
-						
-						
-							<li>
 								<a href="#h.-not-a-b" onclick="onNavClick(`#h.-not-a-b-nav`)" id="h.-not-a-b-nav">
 									H. Not A &#43; B
 								</a>
@@ -736,26 +716,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#g.-sum-of-distances-in-cactus" onclick="onNavClick(`#g.-sum-of-distances-in-cactus-nav`)" id="g.-sum-of-distances-in-cactus-nav">
-									G. Sum of Distances in Cactus
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-						
-						
-						
-							<li>
 								<a href="#h.-not-a-b" onclick="onNavClick(`#h.-not-a-b-nav`)" id="h.-not-a-b-nav">
 									H. Not A &#43; B
 								</a>
@@ -963,34 +923,62 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 </table>
 <h2 id="a.-template-for-search">A. Template for Search</h2>
 <blockquote>
-<p>给定由小写字母、字符<code>*</code> 和 <code>?</code> 组成的字符串 <span class="math inline">\(s\)</span>，其中 <code>*</code> 可以被替换成任意串（包括空串），<code>?</code> 可以被替换成任意字符，求 <span class="math inline">\(s\)</span> 可以表示成的最短回文串。</p>
+<p>给定由小写字母、字符<code>*</code> 和 <code>?</code> 组成的字符串
+<span class="math inline">\(s\)</span>，其中 <code>*</code>
+可以被替换成任意串（包括空串），<code>?</code> 可以被替换成任意字符，求
+<span class="math inline">\(s\)</span> 可以表示成的最短回文串。</p>
 <p><span class="math inline">\(1 \leq |s| \leq 500\)</span>。</p>
 </blockquote>
-<p>设 <span class="math inline">\(dp[l][r]\)</span> 表示 <span class="math inline">\(l \dots r\)</span> 能组成的最短回文串，有三种转移：</p>
+<p>设 <span class="math inline">\(dp[l][r]\)</span> 表示 <span
+class="math inline">\(l \dots r\)</span>
+能组成的最短回文串，有三种转移：</p>
 <ul>
-<li><span class="math inline">\(s_l\)</span> 匹配 <span class="math inline">\(s_r\)</span></li>
+<li><span class="math inline">\(s_l\)</span> 匹配 <span
+class="math inline">\(s_r\)</span></li>
 <li><span class="math inline">\(s_l = *\)</span> 匹配右边一段</li>
 <li><span class="math inline">\(s_r = *\)</span> 匹配左边一段</li>
 </ul>
 <h2 id="b.-redistribution-of-digits">B. Redistribution of Digits</h2>
 <h2 id="c.-partial-sums">C. Partial Sums</h2>
 <blockquote>
-<p><span class="math inline">\(n \times m\)</span> 矩阵列 <span class="math inline">\(\{A_k\}\)</span> 满足递推关系 <span class="math display">\[
+<p><span class="math inline">\(n \times m\)</span> 矩阵列 <span
+class="math inline">\(\{A_k\}\)</span> 满足递推关系 <span
+class="math display">\[
 A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2
 \]</span></p>
-<p>给出 <span class="math inline">\(A_0\)</span>，求 <span class="math inline">\(\{A_k\}\)</span> 的最小循环节。</p>
+<p>给出 <span class="math inline">\(A_0\)</span>，求 <span
+class="math inline">\(\{A_k\}\)</span> 的最小循环节。</p>
 <p><span class="math inline">\(1 \leq n \times m \leq 10^6\)</span></p>
 </blockquote>
-<p>递推关系是二维前缀和。数列 <span class="math inline">\(a_n\)</span> 做 <span class="math inline">\(k\)</span> 次前缀和的结果是 <span class="math display">\[
+<p>递推关系是二维前缀和。数列 <span class="math inline">\(a_n\)</span>
+做 <span class="math inline">\(k\)</span> 次前缀和的结果是 <span
+class="math display">\[
 a&#39;_n = \sum_{i = 1}^na_i\binom{n - i + k - 1}{n - i}
-\]</span> 这个式子可以这样推导，初始为 <span class="math inline">\(i\)</span> 每步可以加一个非负值，走 <span class="math inline">\(k\)</span> 步，求 <span class="math inline">\(i\)</span> 到 <span class="math inline">\(n\)</span> 的路径数，等价于 <span class="math inline">\(x_i+x_{i+1}+\dots+x_{n}=k, x_i, x_{i+1}, \dots, x_{n-1} \geq 0, x_n \geq 1\)</span>，用隔板法可得答案为 <span class="math inline">\(\dbinom{n - i + k - 1}{n - i}\)</span>。</p>
+\]</span> 这个式子可以这样推导，初始为 <span
+class="math inline">\(i\)</span> 每步可以加一个非负值，走 <span
+class="math inline">\(k\)</span> 步，求 <span
+class="math inline">\(i\)</span> 到 <span
+class="math inline">\(n\)</span> 的路径数，等价于 <span
+class="math inline">\(x_i+x_{i+1}+\dots+x_{n}=k, x_i, x_{i+1}, \dots,
+x_{n-1} \geq 0, x_n \geq 1\)</span>，用隔板法可得答案为 <span
+class="math inline">\(\dbinom{n - i + k - 1}{n - i}\)</span>。</p>
 <p>二维相互独立，所以 <span class="math display">\[
-A_k[i, j] = \sum_{u, v}A_0[u, v]\binom{i - u + k - 1}{i - u}\binom{j - v + k - 1}{j - v} \bmod 2
+A_k[i, j] = \sum_{u, v}A_0[u, v]\binom{i - u + k - 1}{i - u}\binom{j - v
++ k - 1}{j - v} \bmod 2
 \]</span></p>
-<p>由卢卡斯定理，当 <span class="math inline">\(k = 2^{d_0} &gt; n\)</span> 时，<span class="math inline">\(\binom{i - u + k - 1}{i - u} \equiv 1 \pmod 2\)</span>，所以循环节是 <span class="math inline">\(2^{d_0}\)</span> 的因子。</p>
-<p>枚举循环节 <span class="math inline">\(k = 2^d\)</span>，由卢卡斯定理 <span class="math inline">\(\binom{i - u + k - 1}{i - u} \equiv 1 \pmod 2\)</span> 当且仅当 <span class="math inline">\(i - u = t \times 2^d\)</span>，即 <span class="math inline">\(u = i - 2^dt\)</span>，用二维前缀和可以 <span class="math inline">\(O(nm)\)</span> 验证。</p>
+<p>由卢卡斯定理，当 <span class="math inline">\(k = 2^{d_0} &gt;
+n\)</span> 时，<span class="math inline">\(\binom{i - u + k - 1}{i - u}
+\equiv 1 \pmod 2\)</span>，所以循环节是 <span
+class="math inline">\(2^{d_0}\)</span> 的因子。</p>
+<p>枚举循环节 <span class="math inline">\(k = 2^d\)</span>，由卢卡斯定理
+<span class="math inline">\(\binom{i - u + k - 1}{i - u} \equiv 1 \pmod
+2\)</span> 当且仅当 <span class="math inline">\(i - u = t \times
+2^d\)</span>，即 <span class="math inline">\(u = i -
+2^dt\)</span>，用二维前缀和可以 <span
+class="math inline">\(O(nm)\)</span> 验证。</p>
 <p>复杂度 <span class="math inline">\(O(nm\log(nm))\)</span>。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>ios<span class="bu">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
@@ -1025,12 +1013,22 @@ A_k[i, j] = \sum_{u, v}A_0[u, v]\binom{i - u + k - 1}{i - u}\binom{j - v + k - 1
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="d.-lis-on-circle">D. Lis on Circle</h2>
 <blockquote>
-<p><span class="math inline">\(n\)</span> 个人顺时针围成一圈，第 <span class="math inline">\(i\)</span> 个人手上有 <span class="math inline">\(m_i\)</span> 个数 <span class="math inline">\(a_1, a_2, \dots, a_{m_i}\)</span>，从 1 开始顺时针进行游戏，轮到一个人时他可以选择跳过，也可以出一个数，但这个数必须比之前的人出的数大。不能有连续超过 <span class="math inline">\(k\)</span> 个人跳过，求最多能出多少数。</p>
-<p><span class="math inline">\(0 \leq n, \sum m_i \leq 10^5, 0 \leq a_i \leq 10^9\)</span>。</p>
+<p><span class="math inline">\(n\)</span> 个人顺时针围成一圈，第 <span
+class="math inline">\(i\)</span> 个人手上有 <span
+class="math inline">\(m_i\)</span> 个数 <span class="math inline">\(a_1,
+a_2, \dots, a_{m_i}\)</span>，从 1
+开始顺时针进行游戏，轮到一个人时他可以选择跳过，也可以出一个数，但这个数必须比之前的人出的数大。不能有连续超过
+<span class="math inline">\(k\)</span> 个人跳过，求最多能出多少数。</p>
+<p><span class="math inline">\(0 \leq n, \sum m_i \leq 10^5, 0 \leq a_i
+\leq 10^9\)</span>。</p>
 </blockquote>
-<p>按数从小到大dp，设 <span class="math inline">\(dp[i]\)</span> 表示最后一个数是 <span class="math inline">\(i\)</span> 出的，最多出了多少数，转移是区间取 <span class="math inline">\(\min\)</span> 和单点赋值，线段树维护即可。</p>
+<p>按数从小到大dp，设 <span class="math inline">\(dp[i]\)</span>
+表示最后一个数是 <span class="math inline">\(i\)</span>
+出的，最多出了多少数，转移是区间取 <span
+class="math inline">\(\min\)</span> 和单点赋值，线段树维护即可。</p>
 <p>注意没有数的极端情况。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define perr</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>fprintf<span class="op">(</span>stderr<span class="op">,</span><span class="pp"> </span>a<span class="op">)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span><span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span>a<span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span><span class="op">)</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">,</span> <span class="kw">class</span> U<span class="op">&gt;</span></span>
@@ -1100,14 +1098,22 @@ A_k[i, j] = \sum_{u, v}A_0[u, v]\binom{i - u + k - 1}{i - u}\binom{j - v + k - 1
 <span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="e.-very-simple-sum">E. Very Simple Sum</h2>
 <blockquote>
-<p>给定数列 <span class="math inline">\(a_1, a_2, \dots, a_n, b_1, b_2, \dots, b_n\)</span>，求 <span class="math display">\[
-\sum_{1\leq x, y, z, w \leq n}(a_x+a_y+a_z+a_w)^{b_x\oplus b_y \oplus b_z \oplus b_w} \bmod 998244353
+<p>给定数列 <span class="math inline">\(a_1, a_2, \dots, a_n, b_1, b_2,
+\dots, b_n\)</span>，求 <span class="math display">\[
+\sum_{1\leq x, y, z, w \leq n}(a_x+a_y+a_z+a_w)^{b_x\oplus b_y \oplus
+b_z \oplus b_w} \bmod 998244353
 \]</span></p>
-<p><span class="math inline">\(1 \leq n \leq 10^5, 1 \leq a_i, b_i \leq 500\)</span>。</p>
+<p><span class="math inline">\(1 \leq n \leq 10^5, 1 \leq a_i, b_i \leq
+500\)</span>。</p>
 </blockquote>
-<p>设 <span class="math inline">\(cnt[i][j]\)</span> 表示 <span class="math inline">\(i^j\)</span> 项的个数，二维卷积 <span class="math inline">\(C[n][m] = \sum_{x + y = n, z \oplus w = m}A[x][z]\times B[y][w]\)</span>，分别用 <span class="math inline">\(FFT, FWT\)</span> 计算即可。</p>
+<p>设 <span class="math inline">\(cnt[i][j]\)</span> 表示 <span
+class="math inline">\(i^j\)</span> 项的个数，二维卷积 <span
+class="math inline">\(C[n][m] = \sum_{x + y = n, z \oplus w =
+m}A[x][z]\times B[y][w]\)</span>，分别用 <span
+class="math inline">\(FFT, FWT\)</span> 计算即可。</p>
 <p>复杂度 <span class="math inline">\(O(ab\log(ab))\)</span>。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">void</span> readInt<span class="op">(</span>T <span class="op">&amp;</span>w<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">char</span> c<span class="op">,</span> p <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
@@ -1214,18 +1220,27 @@ A_k[i, j] = \sum_{u, v}A_0[u, v]\binom{i - u + k - 1}{i - u}\binom{j - v + k - 1
 <span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="f.-random-xor">F. Random XOR</h2>
 <blockquote>
-<p>给定 <span class="math inline">\(a_1, a_2, \dots, a_n\)</span>，随机从中选取一些数的异或和为 <span class="math inline">\(s\)</span>，求 <span class="math inline">\(s^2\)</span> 的期望，对 <span class="math inline">\(10^9+7\)</span> 取模。</p>
+<p>给定 <span class="math inline">\(a_1, a_2, \dots,
+a_n\)</span>，随机从中选取一些数的异或和为 <span
+class="math inline">\(s\)</span>，求 <span
+class="math inline">\(s^2\)</span> 的期望，对 <span
+class="math inline">\(10^9+7\)</span> 取模。</p>
 <p><span class="math inline">\(n \leq 10^5\)</span>。</p>
 </blockquote>
-<p>设 <span class="math inline">\(s = \sum_{i\geq 0}b_i2^i\)</span>，则 <span class="math display">\[
+<p>设 <span class="math inline">\(s = \sum_{i\geq 0}b_i2^i\)</span>，则
+<span class="math display">\[
 \begin{aligned}
 s^2 &amp;= \sum_{i, j}b_ib_j2^{i+j}\\
-E(s^2) &amp;= \sum_{i, j}P(b_i \And b_j)2^{i+j} 
+E(s^2) &amp;= \sum_{i, j}P(b_i \And b_j)2^{i+j}
 \end{aligned}
 \]</span></p>
-<p><span class="math inline">\(P(b_i \And b_j)\)</span> 表示 <span class="math inline">\(b_i, b_j\)</span> 同时为 <span class="math inline">\(1\)</span> 的概率，可以 <span class="math inline">\(O(n)\)</span> 计算。</p>
+<p><span class="math inline">\(P(b_i \And b_j)\)</span> 表示 <span
+class="math inline">\(b_i, b_j\)</span> 同时为 <span
+class="math inline">\(1\)</span> 的概率，可以 <span
+class="math inline">\(O(n)\)</span> 计算。</p>
 <p>复杂度 <span class="math inline">\(O(n \log^2(P))\)</span>。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> LL <span class="op">=</span> <span class="dt">long</span> <span class="dt">long</span><span class="op">;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> PII <span class="op">=</span> <span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">&gt;;</span></span>
@@ -1265,13 +1280,16 @@ E(s^2) &amp;= \sum_{i, j}P(b_i \And b_j)2^{i+j}
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="op">(</span>ans <span class="op">+</span> P<span class="op">)</span> <span class="op">%</span> P <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h2 id="g.-sum-of-distances-in-cactus">G. Sum of Distances in Cactus</h2>
+<h2 id="g.-sum-of-distances-in-cactus">G. Sum of Distances in
+Cactus</h2>
 <blockquote>
 <p>给定一棵边权为 1 的点仙人掌，求两点间最短路之和。</p>
 <p><span class="math inline">\(n \leq 10^5\)</span>。</p>
 </blockquote>
-<p>对每条边算贡献，对于每个环计算 <span class="math inline">\(\sum_{i,j} s_is_j\min(|i-j|, len - |i-j|)\)</span>，前缀和优化即可。</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<p>对每条边算贡献，对于每个环计算 <span class="math inline">\(\sum_{i,j}
+s_is_j\min(|i-j|, len - |i-j|)\)</span>，前缀和优化即可。</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define perr</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>fprintf<span class="op">(</span>stderr<span class="op">,</span><span class="pp"> </span>a<span class="op">)</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span><span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span>a<span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span><span class="op">)</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">,</span> <span class="kw">class</span> U<span class="op">&gt;</span></span>
@@ -1349,8 +1367,10 @@ E(s^2) &amp;= \sum_{i, j}P(b_i \And b_j)2^{i+j}
 <p>给一个整数，每次操作将这个数从中间切成两半，然后替换为差的绝对值，直到最后，求最终的最小值以及操作过程。</p>
 <p><span class="math inline">\(0 \leq x \leq 10^12\)</span>。</p>
 </blockquote>
-<p>搜索，对于 <span class="math inline">\(10^7\)</span> 内的状态可以记忆化，大的状态数不多。</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<p>搜索，对于 <span class="math inline">\(10^7\)</span>
+内的状态可以记忆化，大的状态数不多。</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> LL <span class="op">=</span> <span class="dt">long</span> <span class="dt">long</span><span class="op">;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> PR <span class="op">=</span> <span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> LL<span class="op">&gt;;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>PR <span class="op">&amp;</span>get<span class="op">(</span>LL i<span class="op">)</span> <span class="op">{</span></span>
@@ -1390,17 +1410,37 @@ E(s^2) &amp;= \sum_{i, j}P(b_i \And b_j)2^{i+j}
 <span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="j.-paternity-testing">J. Paternity Testing</h2>
 <blockquote>
-<p><span class="math inline">\(n\)</span> 个节点的有根树，<span class="math inline">\(q\)</span> 次询问区间 <span class="math inline">\([l, r]\)</span> 中满足 <span class="math inline">\(l \leq i, j \leq r, i \in subtree_j\)</span> 的数对 <span class="math inline">\((i, j)\)</span> 的个数。</p>
+<p><span class="math inline">\(n\)</span> 个节点的有根树，<span
+class="math inline">\(q\)</span> 次询问区间 <span
+class="math inline">\([l, r]\)</span> 中满足 <span
+class="math inline">\(l \leq i, j \leq r, i \in subtree_j\)</span>
+的数对 <span class="math inline">\((i, j)\)</span> 的个数。</p>
 <p><span class="math inline">\(n, q \leq 50000\)</span>，强制在线。</p>
 </blockquote>
-<p>考虑求不满足条件的个数，容易发现条件为两个子树不交，所以跑一下dfs序转化为 <span class="math inline">\(in[i] &gt; out[j]\)</span>。</p>
-<p>如果只有一次询问，把 <span class="math inline">\(l\dots r\)</span> 分别按 <span class="math inline">\(in,out\)</span> 排序后双指针扫描即可。</p>
-<p>分块，设块长为 <span class="math inline">\(T\)</span>，对于节点 <span class="math inline">\(i\)</span> 分别用双指针扫描预处理出每块中 <span class="math inline">\(in[i] &gt; out[j]\)</span> 和 <span class="math inline">\(out[i] &lt; in[j]\)</span> 的 <span class="math inline">\(j\)</span> 的个数 <span class="math inline">\(g[i][b], h[i][b]\)</span>，复杂度 <span class="math inline">\(O(n\log n + \frac{n^2}{T})\)</span>。</p>
-<p>然后预处理块与块之间的区间答案，<span class="math inline">\(ans[u][v] = \sum_{i = l}^{r} \sum_{j = u}^v g[i][j]\)</span>，用前缀和可以做到 <span class="math inline">\(O(\frac{n^2}{T})\)</span>。</p>
+<p>考虑求不满足条件的个数，容易发现条件为两个子树不交，所以跑一下dfs序转化为
+<span class="math inline">\(in[i] &gt; out[j]\)</span>。</p>
+<p>如果只有一次询问，把 <span class="math inline">\(l\dots r\)</span>
+分别按 <span class="math inline">\(in,out\)</span>
+排序后双指针扫描即可。</p>
+<p>分块，设块长为 <span class="math inline">\(T\)</span>，对于节点 <span
+class="math inline">\(i\)</span> 分别用双指针扫描预处理出每块中 <span
+class="math inline">\(in[i] &gt; out[j]\)</span> 和 <span
+class="math inline">\(out[i] &lt; in[j]\)</span> 的 <span
+class="math inline">\(j\)</span> 的个数 <span
+class="math inline">\(g[i][b], h[i][b]\)</span>，复杂度 <span
+class="math inline">\(O(n\log n + \frac{n^2}{T})\)</span>。</p>
+<p>然后预处理块与块之间的区间答案，<span class="math inline">\(ans[u][v]
+= \sum_{i = l}^{r} \sum_{j = u}^v g[i][j]\)</span>，用前缀和可以做到
+<span class="math inline">\(O(\frac{n^2}{T})\)</span>。</p>
 <p>对于每一次询问，区间分成两个部分：中间连续的块和两边的散点。</p>
-<p>块之间的贡献已经预处理，散点自己的贡献可以双指针求出，散点和块的贡献可以根据 <span class="math inline">\(g, h\)</span> 的前缀和计算，复杂度 <span class="math inline">\(O(T\log T)\)</span>。</p>
-<p>总复杂度 <span class="math inline">\(O(n \log n + \frac{n^2}{T} + qT\log T)\)</span>，取 <span class="math inline">\(T = \frac{n}{\sqrt{q}}\)</span> 可过。</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<p>块之间的贡献已经预处理，散点自己的贡献可以双指针求出，散点和块的贡献可以根据
+<span class="math inline">\(g, h\)</span> 的前缀和计算，复杂度 <span
+class="math inline">\(O(T\log T)\)</span>。</p>
+<p>总复杂度 <span class="math inline">\(O(n \log n + \frac{n^2}{T} +
+qT\log T)\)</span>，取 <span class="math inline">\(T =
+\frac{n}{\sqrt{q}}\)</span> 可过。</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define perr</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>fprintf<span class="op">(</span>stderr<span class="op">,</span><span class="pp"> </span>a<span class="op">)</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span><span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span>a<span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span><span class="op">)</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">,</span> <span class="kw">class</span> U<span class="op">&gt;</span></span>

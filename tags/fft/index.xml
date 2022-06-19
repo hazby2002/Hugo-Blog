@@ -14,10 +14,11 @@
       <pubDate>Thu, 18 Mar 2021 15:28:59 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/fft/</guid>
-      <description>Introduction  快速傅里叶变换(Fast Fourier Transform，FFT)是一种可在 \(O(n \log n)\) 时间内完成的离散傅里叶变换 (Discrete Fourier Transform，DFT) 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。
- FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
+      <description>Introduction 快速傅里叶变换(Fast Fourier Transform，FFT)是一种可在 \(O(n \log n)\) 时间内完成的离散傅里叶变换 (Discrete Fourier Transform，DFT) 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。
+FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
 多项式 形如 \[ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} \] 的式子称为 \(x\) 的 \(n - 1\) 次多项式，其中 \(a_0, a_1, \dots, a_{n - 1}\) 称为多项式系数，\(n-1\) 称为多项式的次数，记为 \(\deg A(x)\) 或 \(\deg A\)。
-点值 \(n - 1\) 次多项式 \(A(x)\) 在 \(x = m\) 处的点值 \[ A(m) = \sum_{k=0}^{n-1} a_km^k \]</description>
+点值 \(n - 1\) 次多项式 \(A(x)\) 在 \(x = m\) 处的点值 \[ A(m) = \sum_{k=0}^{n-1} a_km^k \]
+多项式乘法 记 \(A(x)\times B(x)\) 表示多项式 \(A(x), B(x)\) 做多项式乘法，可以简写为 \(A(x)\cdot B(x)\) 或 \(A(x)B(x)\)。</description>
     </item>
     
   </channel>

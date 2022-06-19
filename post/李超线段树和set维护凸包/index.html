@@ -552,13 +552,21 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <h2 id="问题引入">问题引入</h2>
-<p>有一些点 <span class="math inline">\((a_i, b_i)\)</span>，需要多次询问 <span class="math inline">\(\max\{ax_0+b\}\)</span>。</p>
+<p>有一些点 <span class="math inline">\((a_i,
+b_i)\)</span>，需要多次询问 <span
+class="math inline">\(\max\{ax_0+b\}\)</span>。</p>
 <h2 id="李超线段树">李超线段树</h2>
 <p>利用李超线段树可以很好地维护上述信息。</p>
-<p>李超线段树就是支持 <span class="math inline">\(O(\log N)\)</span> 插入直线和查询 <span class="math inline">\(\max{L_i(x)}\)</span> 的数据结构。</p>
-<p>线段树的每个节点保存 <span class="math inline">\(L(mid)\)</span> 最大的那条直线。</p>
-<p>插入一条直线时，比较 <span class="math inline">\(L_{old}(mid)\)</span> 和 <span class="math inline">\(L_{new}(mid)\)</span>，较大者保留，较小者继续递归。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> N<span class="op">(</span><span class="fl">1e5</span> <span class="op">+</span> <span class="dv">5</span><span class="op">);</span></span>
+<p>李超线段树就是支持 <span class="math inline">\(O(\log N)\)</span>
+插入直线和查询 <span class="math inline">\(\max{L_i(x)}\)</span>
+的数据结构。</p>
+<p>线段树的每个节点保存 <span class="math inline">\(L(mid)\)</span>
+最大的那条直线。</p>
+<p>插入一条直线时，比较 <span
+class="math inline">\(L_{old}(mid)\)</span> 和 <span
+class="math inline">\(L_{new}(mid)\)</span>，较大者保留，较小者继续递归。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> N<span class="op">(</span><span class="fl">1e5</span> <span class="op">+</span> <span class="dv">5</span><span class="op">);</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Line <span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  LL k<span class="op">,</span> b<span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  LL f<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
@@ -580,7 +588,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">std::</span>max<span class="op">(</span>t<span class="op">[</span>o<span class="op">].</span>f<span class="op">(</span>x<span class="op">),</span> x <span class="op">&lt;=</span> m <span class="op">?</span> ask<span class="op">(</span>ls<span class="op">,</span> l<span class="op">,</span> m<span class="op">,</span> x<span class="op">)</span> <span class="op">:</span> ask<span class="op">(</span>rs<span class="op">,</span> m <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> r<span class="op">,</span> x<span class="op">));</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>李超树可以合并，下面copy自jiangly的代码。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Node <span class="op">*</span>merge<span class="op">(</span>Node <span class="op">*</span>p<span class="op">,</span> Node <span class="op">*</span>q<span class="op">,</span> <span class="dt">int</span> l<span class="op">,</span> <span class="dt">int</span> r<span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Node <span class="op">*</span>merge<span class="op">(</span>Node <span class="op">*</span>p<span class="op">,</span> Node <span class="op">*</span>q<span class="op">,</span> <span class="dt">int</span> l<span class="op">,</span> <span class="dt">int</span> r<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>p <span class="op">==</span> <span class="kw">nullptr</span><span class="op">)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> q<span class="op">;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>q <span class="op">==</span> <span class="kw">nullptr</span><span class="op">)</span></span>
@@ -591,8 +600,11 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  modify<span class="op">(</span>p<span class="op">,</span> l<span class="op">,</span> r<span class="op">,</span> q <span class="op">-&gt;</span> line<span class="op">);</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> p<span class="op">;</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>也可以维护lazytag，和普通线段树一样，就是在修改的时候要把当前区间的直线往下放（这种没写过，下面的代码也是复制的，来自 <a href="http://codeforces.com/blog/entry/86731">Li Chao Tree Extended</a>）。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> PushLine<span class="op">(</span>Node<span class="op">*</span> <span class="op">&amp;</span>n<span class="op">,</span> <span class="dt">data_t</span> tl<span class="op">,</span> <span class="dt">data_t</span> <span class="fu">tr</span><span class="op">)</span> <span class="op">{</span></span>
+<p>也可以维护lazytag，和普通线段树一样，就是在修改的时候要把当前区间的直线往下放（这种没写过，下面的代码也是复制的，来自
+<a href="http://codeforces.com/blog/entry/86731">Li Chao Tree
+Extended</a>）。</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> PushLine<span class="op">(</span>Node<span class="op">*</span> <span class="op">&amp;</span>n<span class="op">,</span> <span class="dt">data_t</span> tl<span class="op">,</span> <span class="dt">data_t</span> <span class="fu">tr</span><span class="op">)</span> <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="kw">nullptr</span><span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data_t</span> mid <span class="op">=</span> <span class="op">(</span>tl <span class="op">+</span> <span class="fu">tr</span><span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  InsertLineKnowingly<span class="op">(</span>n<span class="op">-&gt;</span>lc<span class="op">,</span> tl<span class="op">,</span> mid<span class="op">,</span> n<span class="op">-&gt;</span>line<span class="op">);</span></span>
@@ -601,7 +613,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="set-维护凸包">set 维护凸包</h2>
 <p>也可以用平衡树维护凸包来实现这个东西，有cf老哥搞了个set的版本，抄过来了。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> LL QB <span class="op">=</span> LLONG_MIN<span class="op">;</span></span>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> LL QB <span class="op">=</span> LLONG_MIN<span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Line <span class="op">{</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  LL a<span class="op">,</span> b<span class="op">;</span> <span class="co">// y = ax + b</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mutable</span> <span class="bu">std::</span>function<span class="op">&lt;</span><span class="at">const</span> Line <span class="op">*()&gt;</span> next<span class="op">;</span></span>

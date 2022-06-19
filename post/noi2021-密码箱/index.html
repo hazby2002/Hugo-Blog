@@ -514,8 +514,11 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                     <h2 id="题面">题面</h2>
 <p><img src="statement.png" /></p>
 <h2 id="题解">题解</h2>
-<p>设向量 <span class="math inline">\(\begin{pmatrix}x \\ y\end{pmatrix}\)</span> 表示分数 <span class="math inline">\(\dfrac x y\)</span>。</p>
-<p>那么整数加分数的运算 <span class="math inline">\(a+\dfrac x y = \dfrac{x + ay}{y}\)</span> 可以表示为 <span class="math display">\[
+<p>设向量 <span class="math inline">\(\begin{pmatrix}x \\
+y\end{pmatrix}\)</span> 表示分数 <span class="math inline">\(\dfrac x
+y\)</span>。</p>
+<p>那么整数加分数的运算 <span class="math inline">\(a+\dfrac x y =
+\dfrac{x + ay}{y}\)</span> 可以表示为 <span class="math display">\[
 \begin{pmatrix}
 1 &amp; a\\
 0 &amp; 1
@@ -528,7 +531,9 @@ x\\y
 x+ay\\
 y
 \end{pmatrix}
-\]</span> 设 <span class="math inline">\(a_k = \dfrac{x}{y}\)</span>，则 <span class="math inline">\(a_{k-1}&#39;=a_{k-1}+\dfrac y x\)</span>，写成矩阵形式为</p>
+\]</span> 设 <span class="math inline">\(a_k = \dfrac{x}{y}\)</span>，则
+<span class="math inline">\(a_{k-1}&#39;=a_{k-1}+\dfrac y
+x\)</span>，写成矩阵形式为</p>
 <p><span class="math display">\[
 \begin{pmatrix}
 a_{k-1} &amp; 1\\
@@ -560,7 +565,9 @@ a_{k} &amp; 1\\
 \]</span> 则 <span class="math display">\[
 f(a_0, a_1, \dots, a_n) = F_{0, 0}
 \]</span> 考虑维护矩阵 <span class="math inline">\(F\)</span>。</p>
-<p>操作<code>W</code>相当于右乘矩阵 <span class="math inline">\(\begin{pmatrix}1 &amp; 0\\1 &amp; 1\end{pmatrix}\)</span> <span class="math display">\[
+<p>操作<code>W</code>相当于右乘矩阵 <span
+class="math inline">\(\begin{pmatrix}1 &amp; 0\\1 &amp;
+1\end{pmatrix}\)</span> <span class="math display">\[
 \begin{pmatrix}
 a_{k} &amp; 1\\
 1 &amp; 0
@@ -574,12 +581,17 @@ a_{k} &amp; 1\\
 a_{k} + 1 &amp; 1\\
 1 &amp; 0
 \end{pmatrix}
-\]</span> 操作<code>E</code>先考虑第二种情况，可以发现是右乘矩阵 <span class="math inline">\(\begin{pmatrix}1 &amp; 0\\-1 &amp; 1\end{pmatrix}\begin{pmatrix}1 &amp; 1\\1 &amp; 0\end{pmatrix}^2=\begin{pmatrix}2 &amp; 1\\-1 &amp; 0\end{pmatrix}\)</span> <span class="math display">\[
+\]</span> 操作<code>E</code>先考虑第二种情况，可以发现是右乘矩阵 <span
+class="math inline">\(\begin{pmatrix}1 &amp; 0\\-1 &amp;
+1\end{pmatrix}\begin{pmatrix}1 &amp; 1\\1 &amp;
+0\end{pmatrix}^2=\begin{pmatrix}2 &amp; 1\\-1 &amp;
+0\end{pmatrix}\)</span> <span class="math display">\[
 \begin{pmatrix}a_{k} &amp; 1\\1 &amp; 0\end{pmatrix}
 \begin{pmatrix}2 &amp; 1\\-1 &amp; 0\end{pmatrix}
 =
 \begin{pmatrix}2a_{k}-1 &amp; a_k\\2 &amp; 1\end{pmatrix}
-\]</span> 验证 <span class="math inline">\(a_k=1\)</span> 时是否也符合题意：</p>
+\]</span> 验证 <span class="math inline">\(a_k=1\)</span>
+时是否也符合题意：</p>
 <p>一方面 <span class="math display">\[
 \begin{pmatrix}a_{k-1} &amp; 1\\1 &amp; 0\end{pmatrix}
 \begin{pmatrix}2a_{k}-1 &amp; a_k\\2 &amp; 1\end{pmatrix}=
@@ -588,10 +600,15 @@ a_{k} + 1 &amp; 1\\
 \begin{pmatrix}a_{k-1}+2 &amp; a_{k-1}+1\\1 &amp; 1\end{pmatrix}
 \]</span> 另一方面 <span class="math display">\[
 \begin{pmatrix}a_{k-1}+1 &amp; 1\\1 &amp; 0\end{pmatrix}
-\begin{pmatrix}1 &amp; 1\\1 &amp; 0\end{pmatrix}=\begin{pmatrix}a_{k-1}+2 &amp; a_{k-1}+1\\1 &amp; 1\end{pmatrix}
-\]</span> 所以操作<code>E</code>就是右乘矩阵 <span class="math inline">\(\begin{pmatrix}2 &amp; 1\\-1 &amp; 0\end{pmatrix}\)</span></p>
+\begin{pmatrix}1 &amp; 1\\1 &amp;
+0\end{pmatrix}=\begin{pmatrix}a_{k-1}+2 &amp; a_{k-1}+1\\1 &amp;
+1\end{pmatrix}
+\]</span> 所以操作<code>E</code>就是右乘矩阵 <span
+class="math inline">\(\begin{pmatrix}2 &amp; 1\\-1 &amp;
+0\end{pmatrix}\)</span></p>
 <p>平衡树维护即可。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Created: Fri Jul 30 19:13:22 2021</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>fprintf<span class="op">(</span>stderr<span class="op">,</span><span class="pp"> </span>a<span class="op">)</span></span>

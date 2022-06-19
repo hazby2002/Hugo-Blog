@@ -403,13 +403,18 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <p>“全局平衡二叉树”实际上是静态 Top Tree(实际上，更接近静态 LCT)。</p>
-<p>考虑一条重链，它在树上pushup，维护的信息的方式实际上就是 Compress。</p>
+<p>考虑一条重链，它在树上pushup，维护的信息的方式实际上就是
+Compress。</p>
 <p>而跳轻边，它实际上就是在 Rake。</p>
-<p>对于动态DP的模板，它是树上带权独立集，虚儿子信息（rake信息）是可减的 <code>f[0] -= max(g[0], g[1]), f[1] -= g[0]</code>。</p>
+<p>对于动态DP的模板，它是树上带权独立集，虚儿子信息（rake信息）是可减的
+<code>f[0] -= max(g[0], g[1]), f[1] -= g[0]</code>。</p>
 <p>如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。</p>
-<p>所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link, cut, evert 之类的动态树操作罢了。</p>
-<p>考虑到 Top Tree 的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Node <span class="op">*</span>build<span class="op">(</span><span class="dt">int</span> l<span class="op">,</span> <span class="dt">int</span> r<span class="op">)</span> <span class="op">{</span></span>
+<p>所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link,
+cut, evert 之类的动态树操作罢了。</p>
+<p>考虑到 Top Tree
+的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Node <span class="op">*</span>build<span class="op">(</span><span class="dt">int</span> l<span class="op">,</span> <span class="dt">int</span> r<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>l <span class="op">&gt;</span> r<span class="op">)</span> <span class="cf">return</span> <span class="kw">nullptr</span><span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> m <span class="op">=</span> l <span class="op">-</span> <span class="dv">1</span><span class="op">,</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> now <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> l<span class="op">;</span> i <span class="op">&lt;=</span> r<span class="op">;</span> i<span class="op">++)</span> sum <span class="op">+=</span> siz<span class="op">[</span>s<span class="op">[</span>i<span class="op">]]</span> <span class="op">-</span> siz<span class="op">[</span>son<span class="op">[</span>s<span class="op">[</span>i<span class="op">]]];</span></span>

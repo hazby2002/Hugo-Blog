@@ -552,37 +552,84 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <h2 id="前言">前言</h2>
-<p>本文写于 2021-12-02 14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。</p>
+<p>本文写于 2021-12-02
+14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。</p>
 <p>今天想起，需要重新整理好二叉（半）在线卷积的模板，这个东西在考场上还是很有用的。</p>
 <p>相关题目：</p>
 <ul>
-<li><a href="https://atcoder.jp/contests/abc230/submissions/27677271">ABC230H</a></li>
+<li><a
+href="https://atcoder.jp/contests/abc230/submissions/27677271">ABC230H</a></li>
 </ul>
 <h2 id="半在线卷积">半在线卷积</h2>
 <blockquote>
-<p>设 <span class="math inline">\(H = FG\)</span>。其中 <span class="math inline">\(G\)</span> 的系数事先给出，<span class="math inline">\(F\)</span> 的系数从低次到高次在线地给出，每次给出 <span class="math inline">\(F\)</span> 的 <span class="math inline">\(x^i\)</span> 系数后，你需要在线地计算 <span class="math inline">\(H\)</span> 的 <span class="math inline">\(x^i\)</span> 系数。</p>
+<p>设 <span class="math inline">\(H = FG\)</span>。其中 <span
+class="math inline">\(G\)</span> 的系数事先给出，<span
+class="math inline">\(F\)</span> 的系数从低次到高次在线地给出，每次给出
+<span class="math inline">\(F\)</span> 的 <span
+class="math inline">\(x^i\)</span> 系数后，你需要在线地计算 <span
+class="math inline">\(H\)</span> 的 <span
+class="math inline">\(x^i\)</span> 系数。</p>
 </blockquote>
-<p>考虑分治，将区间 <span class="math inline">\([l, r)\)</span> 分为 <span class="math inline">\(T\)</span> 段，每段长度为 <span class="math inline">\(B = 2^k\)</span>。 <span class="math display">\[
+<p>考虑分治，将区间 <span class="math inline">\([l, r)\)</span> 分为
+<span class="math inline">\(T\)</span> 段，每段长度为 <span
+class="math inline">\(B = 2^k\)</span>。 <span class="math display">\[
 [l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r)
-\]</span> 要分别计算对于 <span class="math inline">\(0 \leq i &lt; j &lt; T\)</span>, <span class="math inline">\(F[m_i, m_{i+1})\)</span> 对于 <span class="math inline">\(H[m_j, m_{j+1})\)</span> 的贡献，其中 <span class="math inline">\(A[l,r)\)</span> 表示多项式 <span class="math inline">\(A(x)\)</span> 在 <span class="math inline">\(x^l, x^{l+1}, \dots, x^{r-1}\)</span> 处的系数。</p>
-<p>显然 <span class="math inline">\(F[m_i, m_{i+1})\)</span> 要乘上 <span class="math inline">\(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)</span>。</p>
-<p>结果有 <span class="math inline">\(3B - 1\)</span> 项，从 0 开始标号，取第 <span class="math inline">\(B-1\)</span> 到 <span class="math inline">\(2B-2\)</span> 项，做长度为 <span class="math inline">\(2B\)</span> 的循环卷积即可。</p>
-<p>存储 <span class="math inline">\(F[m_i, m_{i+1})\)</span> 和 <span class="math inline">\(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)</span> 的点值，需要做 <span class="math inline">\(T\)</span> 次长度为 <span class="math inline">\(2B\)</span> 的 DFT，两两作点乘，最后再 IDFT，单层复杂度为</p>
+\]</span> 要分别计算对于 <span class="math inline">\(0 \leq i &lt; j
+&lt; T\)</span>, <span class="math inline">\(F[m_i, m_{i+1})\)</span>
+对于 <span class="math inline">\(H[m_j, m_{j+1})\)</span> 的贡献，其中
+<span class="math inline">\(A[l,r)\)</span> 表示多项式 <span
+class="math inline">\(A(x)\)</span> 在 <span class="math inline">\(x^l,
+x^{l+1}, \dots, x^{r-1}\)</span> 处的系数。</p>
+<p>显然 <span class="math inline">\(F[m_i, m_{i+1})\)</span> 要乘上
+<span class="math inline">\(G[m_j-m_{i+1}+1, m_{j+1} -
+m_i)\)</span>。</p>
+<p>结果有 <span class="math inline">\(3B - 1\)</span> 项，从 0
+开始标号，取第 <span class="math inline">\(B-1\)</span> 到 <span
+class="math inline">\(2B-2\)</span> 项，做长度为 <span
+class="math inline">\(2B\)</span> 的循环卷积即可。</p>
+<p>存储 <span class="math inline">\(F[m_i, m_{i+1})\)</span> 和 <span
+class="math inline">\(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)</span>
+的点值，需要做 <span class="math inline">\(T\)</span> 次长度为 <span
+class="math inline">\(2B\)</span> 的 DFT，两两作点乘，最后再
+IDFT，单层复杂度为</p>
 <p><span class="math display">\[
 O(BT\log B+T^2B+B\log B) = O(n \log \frac{n}{T} + nT)
 \]</span></p>
-<p>设总时间复杂度为 <span class="math inline">\(S(n)\)</span>，则 <span class="math display">\[
+<p>设总时间复杂度为 <span class="math inline">\(S(n)\)</span>，则 <span
+class="math display">\[
 S(n) = T\cdot S(\frac{n}{T}) + O(n\log \frac nT + nT)
 \]</span></p>
-<p>这里复杂度不会算，但是大家都取 <span class="math inline">\(T = \log n\)</span>，然后得到 <span class="math inline">\(O\bigg(\dfrac{n \log^2 n}{\log\log n}\bigg)\)</span>。</p>
+<p>这里复杂度不会算，但是大家都取 <span class="math inline">\(T = \log
+n\)</span>，然后得到 <span class="math inline">\(O\bigg(\dfrac{n \log^2
+n}{\log\log n}\bigg)\)</span>。</p>
 <h2 id="在线卷积">在线卷积</h2>
 <blockquote>
-<p>设 <span class="math inline">\(H = FG\)</span>。<span class="math inline">\(F, G\)</span> 的系数从低次到高次在线地给出，每次给出 <span class="math inline">\(F, G\)</span> 的 <span class="math inline">\(x^i\)</span> 系数后，你需要在线地计算 <span class="math inline">\(H\)</span> 的 <span class="math inline">\(x^i\)</span> 系数。</p>
+<p>设 <span class="math inline">\(H = FG\)</span>。<span
+class="math inline">\(F, G\)</span>
+的系数从低次到高次在线地给出，每次给出 <span class="math inline">\(F,
+G\)</span> 的 <span class="math inline">\(x^i\)</span>
+系数后，你需要在线地计算 <span class="math inline">\(H\)</span> 的 <span
+class="math inline">\(x^i\)</span> 系数。</p>
 </blockquote>
-<p>类似刚刚思路，但是进行到 &gt; <span class="math inline">\(F[m_i, m_{i+1})\)</span> 要乘上 <span class="math inline">\(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)</span></p>
-<p>这一步时，发现了问题：如果 <span class="math inline">\(m_i=0\)</span>，那么 <span class="math inline">\(G[m_{j}, m_{j+1})\)</span> 还没给出，无法计算。</p>
-<p>于是这里先避开 <span class="math inline">\(F[m_i, m_{i+1}) \times G[m_{j}, m_{j+1})\)</span> 这部分贡献不算，递归到 <span class="math inline">\([m_{j}, m_{j+1})\)</span> 这个区间时，再把这个补上。</p>
-<p>综上所述，对于当前区间 <span class="math inline">\([l, r)\)</span>，如果 <span class="math inline">\(l = 0\)</span>，那么需要计算 <span class="math inline">\(F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)</span>；如果 <span class="math inline">\(l &gt; 0\)</span>，那么除了 <span class="math inline">\(F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)</span> 之外，还要计算 <span class="math inline">\(G[m_i, m_{i+1}) \times F[m_j-m_{i+1}+1, m_{j+1} - m_i)\)</span>。</p>
+<p>类似刚刚思路，但是进行到 &gt; <span class="math inline">\(F[m_i,
+m_{i+1})\)</span> 要乘上 <span class="math inline">\(G[m_j-m_{i+1}+1,
+m_{j+1} - m_i)\)</span></p>
+<p>这一步时，发现了问题：如果 <span
+class="math inline">\(m_i=0\)</span>，那么 <span
+class="math inline">\(G[m_{j}, m_{j+1})\)</span>
+还没给出，无法计算。</p>
+<p>于是这里先避开 <span class="math inline">\(F[m_i, m_{i+1}) \times
+G[m_{j}, m_{j+1})\)</span> 这部分贡献不算，递归到 <span
+class="math inline">\([m_{j}, m_{j+1})\)</span>
+这个区间时，再把这个补上。</p>
+<p>综上所述，对于当前区间 <span class="math inline">\([l,
+r)\)</span>，如果 <span class="math inline">\(l =
+0\)</span>，那么需要计算 <span class="math inline">\(F[m_i, m_{i+1})
+\times G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)</span>；如果 <span
+class="math inline">\(l &gt; 0\)</span>，那么除了 <span
+class="math inline">\(F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} -
+m_i)\)</span> 之外，还要计算 <span class="math inline">\(G[m_i, m_{i+1})
+\times F[m_j-m_{i+1}+1, m_{j+1} - m_i)\)</span>。</p>
 <p>其余部分前面的半在线卷积完全相同。</p>
 
                     

@@ -15,14 +15,15 @@
       
       <guid>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</guid>
       <description>传送门
- 给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
+给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
 答案对 \(998244353\) 取模。
 \(1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351\)。
- 考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
+考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
 这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。
 这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。
 求单个的四元组，可以发现就是要求 \(\sum_{i=0}^{a_j} p^ii^k\)。
-对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。</description>
+对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。
+本文主要参考 EI 的评论 以及下面 ecnerwala 的解读。</description>
     </item>
     
     <item>
@@ -56,7 +57,7 @@
 你现在要在这里进行随机游走，其中，每一轮向上、下、左、右的概率分别为 \(u\%,d\%,l\%,r\%\)，如果移动后超过方格表或到达墙，则这次移动失效，保持原地不动。
 当你到达终点时，游戏就结束了。现在，在方格表第一行的所有空地中均匀随机一个作为起点，求你就进入每个终点的概率。
 \(1≤w≤20, 2≤h≤10000\)。
- 设其中一个终点为 \(t\)，\(f_{i, j}\) 表示 \((i, j)\) 走到 \(t\) 的概率。 \[ f_{i, j} = uf_{i-1, j}+df_{i+1, j}+lf_{i, j-1}+rf_{i, j+1} \]
+设其中一个终点为 \(t\)，\(f_{i, j}\) 表示 \((i, j)\) 走到 \(t\) 的概率。 \[ f_{i, j} = uf_{i-1, j}+df_{i+1, j}+lf_{i, j-1}+rf_{i, j+1} \]
 \[ f_{i, j} - uf_{i-1, j} - df_{i+1, j} - lf_{i, j-1} - rf_{i, j+1}=0 \]
 \[ f_t=1 \]
 \[ P\cdot\mathbf{f}=\mathbf{e} \]
@@ -69,7 +70,8 @@
       <pubDate>Thu, 15 Apr 2021 09:03:20 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102994/</guid>
-      <description>总览   题号 A B C D E F G H I J K L M    完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0    A. Everyone Loves Playing Games  A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。</description>
+      <description>总览 题号 A B C D E F G H I J K L M 完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0 A. Everyone Loves Playing Games A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。
+\(N, M \leq 10000, 0 \leq x \leq 10^{18}\)。</description>
     </item>
     
     <item>
@@ -78,10 +80,10 @@
       <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102441/</guid>
-      <description>总览   题号 A B C D E F G H I J K    完成情况 1 0 1 1 1 1 1 1 1 1 0    A. Template for Search  给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
+      <description>总览 题号 A B C D E F G H I J K 完成情况 1 0 1 1 1 1 1 1 1 1 0 A. Template for Search 给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
 \(1 \leq |s| \leq 500\)。
- 设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
- \(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段  B.</description>
+设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
+\(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段 B. Redistribution of Digits C. Partial Sums \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]</description>
     </item>
     
     <item>
@@ -90,8 +92,8 @@
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
-      <description>1 欧几里得算法  欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
- 不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
+      <description>1 欧几里得算法 欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
+不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
 一方面，设 \(d_1\) 为 \(a, b\) 的一个公约数，则 \[ \begin{aligned} a &amp;amp;= k_ad_1\\ b &amp;amp;= k_bd_1\\ r &amp;amp;= a - kb\\ &amp;amp;= (k_a - kk_b)d_1 \end{aligned} \] 即 \(d_1\) 也是 \(r\) 的约数，\(b, r\) 的公约数。
 另一方面，设 \(d_2\) 为 \(b, r\) 的一个公约数，则 \[ \begin{aligned} b &amp;amp;= k&amp;#39;_bd_2\\ r &amp;amp;= k_r&amp;#39;d_2\\ a &amp;amp;= kb + r\\ &amp;amp;= (kk&amp;#39;_b + k_r&amp;#39;)d_2 \end{aligned} \] 即 \(d_2\) 也是 \(a\) 的约数，\(a, b\) 的公约数。</description>
     </item>
@@ -103,12 +105,13 @@
       
       <guid>https://blog.asukakyle.top/post/codeforces566c-logistical-questions/</guid>
       <description>一棵 \(n\) 个节点的树，点有点权，边有边权。求这棵树的一个点 \(r\) 使下面的式子最小： \[ \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32} \] \(n \le 2 \times 10^5, val_i, dist(u, v) \ge 0\)。
- 带权重心问题，有点妙。
+带权重心问题，有点妙。
 设 \[ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} \] 这里函数 \(f\) 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。
 下面研究这个函数的性质。
 树上的函数显然不太方便研究，所以考虑换一个 \(\mathbf R\) 上的函数研究。
 随便选择一条树上路径 \(u \rightarrow v\) 作为 \(x\) 轴，把 \(u\) 当作原点，这样 \(x\) 就是路径上的点到 \(u\) 的距离。
-这里以 \(0 \rightarrow 5\) 为例，节点 \(6 \dots 11\) 分别代表其父亲的一些子树。</description>
+这里以 \(0 \rightarrow 5\) 为例，节点 \(6 \dots 11\) 分别代表其父亲的一些子树。
+记 \(d_i = dist(i, 0)\)，路径上的点分别考虑贡献： \[ f_i(x) = \begin{cases} \sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32 &amp;amp; x \le d_i\\ \sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32 &amp;amp; x &amp;gt; d_i \end{cases}\\ f(x) = f_0(x) + f_1(x) + f_2(x) + f_3(x) + f_4(x) + f_5(x) \] 发现 \(f_i(x)\) 可以写成下面这种形式（其中 \(c_1-x \ge 0, c_2 + x \ge 0\)） \[ f_i(x) = \begin{cases} \sum v(c_1 - x)^\frac32 &amp;amp; x \le d_i\\ \sum v(c_2 + x)^\frac32 &amp;amp; x &amp;gt; d_i \end{cases} \]</description>
     </item>
     
   </channel>

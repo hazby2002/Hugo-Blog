@@ -408,20 +408,31 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    <p><a href="https://codeforces.com/contest/1677/problem/F">传送门</a></p>
+                    <p><a
+href="https://codeforces.com/contest/1677/problem/F">传送门</a></p>
 <blockquote>
-<p>给定 <span class="math inline">\(n, k, p, a_1, a_2, \dots, a_n\)</span>，求 <span class="math display">\[
-\sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&gt;0]\right)\right)
+<p>给定 <span class="math inline">\(n, k, p, a_1, a_2, \dots,
+a_n\)</span>，求 <span class="math display">\[
+\sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i}
+\left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&gt;0]\right)\right)
 \]</span></p>
 <p>答案对 <span class="math inline">\(998244353\)</span> 取模。</p>
-<p><span class="math inline">\(1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351\)</span>。</p>
+<p><span class="math inline">\(1 \leq n, k\leq 10^5, 2 \leq p \leq
+998244351, 1 \leq a_i \leq 998244351\)</span>。</p>
 </blockquote>
-<p>考虑对固定的 <span class="math inline">\([l, r]\)</span> 计算答案，它是两个数乘积之和的形式。可以通过维护 <span class="math inline">\((\sum xy, \sum x, \sum y, \sum 1)\)</span> 四元组来计算答案。</p>
+<p>考虑对固定的 <span class="math inline">\([l, r]\)</span>
+计算答案，它是两个数乘积之和的形式。可以通过维护 <span
+class="math inline">\((\sum xy, \sum x, \sum y, \sum 1)\)</span>
+四元组来计算答案。</p>
 <p>这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。</p>
 <p>这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。</p>
-<p>求单个的四元组，可以发现就是要求 <span class="math inline">\(\sum_{i=0}^{a_j} p^ii^k\)</span>。</p>
-<p>对于这个问题，板子 OJ 有一个 <a href="https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial">单次询问的版本</a>，本题解没有参考上面的做法。</p>
-<p>本文主要参考 <a href="https://codeforces.com/blog/entry/102631?#comment-910383">EI 的评论</a> 以及下面 ecnerwala 的解读。</p>
+<p>求单个的四元组，可以发现就是要求 <span
+class="math inline">\(\sum_{i=0}^{a_j} p^ii^k\)</span>。</p>
+<p>对于这个问题，板子 OJ 有一个 <a
+href="https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial">单次询问的版本</a>，本题解没有参考上面的做法。</p>
+<p>本文主要参考 <a
+href="https://codeforces.com/blog/entry/102631?#comment-910383">EI
+的评论</a> 以及下面 ecnerwala 的解读。</p>
 <p>考虑</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -432,21 +443,36 @@ n^k &amp;= [x^k]e^{nx}k!\\
 &amp;= [x^k]k!(p^n\frac{e^{nx}-1}{pe^x-1}-\frac{e^{0x}-1}{pe^x-1})
 \end{aligned}
 \]</span></p>
-<p>设 <span class="math inline">\(S(n)=[x^k]k!\dfrac{e^{nx}-1}{pe^x-1}\)</span>，有 <span class="math display">\[
+<p>设 <span
+class="math inline">\(S(n)=[x^k]k!\dfrac{e^{nx}-1}{pe^x-1}\)</span>，有
+<span class="math display">\[
 \begin{aligned}
 p^nS(n) - p^0S(0) &amp;= \sum_{i=0}^{n-1}p^ii^k\\
 p^{n+1}S(n+1)-p^nS(n) &amp;= p^nn^k\\
 pS(x+1)-S(x) &amp;= x^k
 \end{aligned}
 \]</span></p>
-<p>考虑用 <span class="math inline">\(S(x)\)</span> 来表示 <span class="math inline">\(S(x+1)\)</span>，即将 <span class="math inline">\(S(x + 1)\)</span> 在 <span class="math inline">\(x\)</span> 处展开，得 <span class="math display">\[ 
-S(x+1) = \sum_{k \geq 0} \frac{1^k}{k!}{\mathrm D}^kS(x) = e^{\mathrm D}S(x)
-\]</span> 其中 <span class="math inline">\(\mathrm D\)</span> 表示微分算子。 则 <span class="math display">\[
+<p>考虑用 <span class="math inline">\(S(x)\)</span> 来表示 <span
+class="math inline">\(S(x+1)\)</span>，即将 <span
+class="math inline">\(S(x + 1)\)</span> 在 <span
+class="math inline">\(x\)</span> 处展开，得 <span
+class="math display">\[
+S(x+1) = \sum_{k \geq 0} \frac{1^k}{k!}{\mathrm D}^kS(x) = e^{\mathrm
+D}S(x)
+\]</span> 其中 <span class="math inline">\(\mathrm D\)</span>
+表示微分算子。 则 <span class="math display">\[
 S(x) = \frac{x^k}{pe^{\mathrm D}-1}
-\]</span> 这也证明了 <span class="math inline">\(S(x)\)</span> 是一个 <span class="math inline">\(k\)</span> 次多项式（考虑生成函数 <span class="math inline">\(F({\mathrm D}) = \frac{1}{pe^{\mathrm D}-1}\)</span>，高于 <span class="math inline">\(k\)</span> 次微分 <span class="math inline">\(x^k\)</span> 就变成 <span class="math inline">\(0\)</span> 了）。</p>
-<p>用求逆算出 <span class="math inline">\(S(x)\)</span> 后，多点求值即可。</p>
+\]</span> 这也证明了 <span class="math inline">\(S(x)\)</span> 是一个
+<span class="math inline">\(k\)</span> 次多项式（考虑生成函数 <span
+class="math inline">\(F({\mathrm D}) = \frac{1}{pe^{\mathrm
+D}-1}\)</span>，高于 <span class="math inline">\(k\)</span> 次微分 <span
+class="math inline">\(x^k\)</span> 就变成 <span
+class="math inline">\(0\)</span> 了）。</p>
+<p>用求逆算出 <span class="math inline">\(S(x)\)</span>
+后，多点求值即可。</p>
 <p><span class="math inline">\(O(k\log k + n\log n \log k)\)</span></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n<span class="op">,</span> k<span class="op">,</span> p<span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n <span class="op">&gt;&gt;</span> k <span class="op">&gt;&gt;</span> p<span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  Poly f<span class="op">(</span>k <span class="op">+</span> <span class="dv">1</span><span class="op">),</span> g<span class="op">(</span>k <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>

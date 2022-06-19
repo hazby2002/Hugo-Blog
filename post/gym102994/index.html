@@ -278,26 +278,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#a.-everyone-loves-playing-games" onclick="onNavClick(`#a.-everyone-loves-playing-games-nav`)" id="a.-everyone-loves-playing-games-nav">
-									A. Everyone Loves Playing Games
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-						
-						
-						
-							<li>
 								<a href="#b.-gifted-composer" onclick="onNavClick(`#b.-gifted-composer-nav`)" id="b.-gifted-composer-nav">
 									B. Gifted Composer
 								</a>
@@ -400,26 +380,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 							<li>
 								<a href="#g.-blackjack" onclick="onNavClick(`#g.-blackjack-nav`)" id="g.-blackjack-nav">
 									G. Blackjack
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-						
-						
-						
-							<li>
-								<a href="#h.-yet-another-geometry-problem" onclick="onNavClick(`#h.-yet-another-geometry-problem-nav`)" id="h.-yet-another-geometry-problem-nav">
-									H. Yet Another Geometry Problem
 								</a>
 							</li>
 						
@@ -656,26 +616,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#a.-everyone-loves-playing-games" onclick="onNavClick(`#a.-everyone-loves-playing-games-nav`)" id="a.-everyone-loves-playing-games-nav">
-									A. Everyone Loves Playing Games
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-						
-						
-						
-							<li>
 								<a href="#b.-gifted-composer" onclick="onNavClick(`#b.-gifted-composer-nav`)" id="b.-gifted-composer-nav">
 									B. Gifted Composer
 								</a>
@@ -778,26 +718,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 							<li>
 								<a href="#g.-blackjack" onclick="onNavClick(`#g.-blackjack-nav`)" id="g.-blackjack-nav">
 									G. Blackjack
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-						
-						
-						
-							<li>
-								<a href="#h.-yet-another-geometry-problem" onclick="onNavClick(`#h.-yet-another-geometry-problem-nav`)" id="h.-yet-another-geometry-problem-nav">
-									H. Yet Another Geometry Problem
 								</a>
 							</li>
 						
@@ -1048,15 +968,33 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 </tr>
 </tbody>
 </table>
-<h2 id="a.-everyone-loves-playing-games">A. Everyone Loves Playing Games</h2>
+<h2 id="a.-everyone-loves-playing-games">A. Everyone Loves Playing
+Games</h2>
 <blockquote>
-<p>A 有 <span class="math inline">\(N\)</span> 对数， B 有 <span class="math inline">\(M\)</span> 对数，A 从 <span class="math inline">\(N\)</span> 对数中分别选一个数得到异或和 <span class="math inline">\(X\)</span>，然后 B 从 <span class="math inline">\(N\)</span> 对数得到一个异或和 <span class="math inline">\(Y\)</span>，<span class="math inline">\(A\)</span> 希望 <span class="math inline">\(X \oplus Y\)</span> 最大，<span class="math inline">\(B\)</span> 希望 <span class="math inline">\(X \oplus Y\)</span> 最小，求最后的结果。</p>
-<p><span class="math inline">\(N, M \leq 10000, 0 \leq x \leq 10^{18}\)</span>。</p>
+<p>A 有 <span class="math inline">\(N\)</span> 对数， B 有 <span
+class="math inline">\(M\)</span> 对数，A 从 <span
+class="math inline">\(N\)</span> 对数中分别选一个数得到异或和 <span
+class="math inline">\(X\)</span>，然后 B 从 <span
+class="math inline">\(N\)</span> 对数得到一个异或和 <span
+class="math inline">\(Y\)</span>，<span class="math inline">\(A\)</span>
+希望 <span class="math inline">\(X \oplus Y\)</span> 最大，<span
+class="math inline">\(B\)</span> 希望 <span class="math inline">\(X
+\oplus Y\)</span> 最小，求最后的结果。</p>
+<p><span class="math inline">\(N, M \leq 10000, 0 \leq x \leq
+10^{18}\)</span>。</p>
 </blockquote>
-<p>设每对数为 <span class="math inline">\((x_i, y_i)\)</span>，先都选上 <span class="math inline">\(x_i\)</span>，然后变成选或不选 <span class="math inline">\(x_i \oplus y_i\)</span> 的问题。</p>
+<p>设每对数为 <span class="math inline">\((x_i, y_i)\)</span>，先都选上
+<span class="math inline">\(x_i\)</span>，然后变成选或不选 <span
+class="math inline">\(x_i \oplus y_i\)</span> 的问题。</p>
 <p>A 和 B 分别建出线性基，然后从高位向低位考虑。</p>
-<p>只需要考虑某一位 A 和 B 都有影响的情况，这位如果为 1 那么 A B 只会选一个，如果为 0 则要么都选，要么都不选，不管哪种情况两种状态都可以通过异或 <span class="math inline">\(A_i \oplus B_i\)</span> 来相互转换，所以这种情况将 <span class="math inline">\(A_i \oplus B_i\)</span> 插入 <span class="math inline">\(A\)</span> 的线性基来提供“反悔”的机会。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<p>只需要考虑某一位 A 和 B 都有影响的情况，这位如果为 1 那么 A B
+只会选一个，如果为 0
+则要么都选，要么都不选，不管哪种情况两种状态都可以通过异或 <span
+class="math inline">\(A_i \oplus B_i\)</span> 来相互转换，所以这种情况将
+<span class="math inline">\(A_i \oplus B_i\)</span> 插入 <span
+class="math inline">\(A\)</span> 的线性基来提供“反悔”的机会。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define perr</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>fprintf<span class="op">(</span>stderr<span class="op">,</span><span class="pp"> </span>a<span class="op">)</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span><span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span>a<span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span><span class="op">)</span></span>
@@ -1124,10 +1062,15 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <p>有一个空字符串，每次操作在开头或结尾加一个字符，然后求当前字符串的循环节个数。</p>
 <p><span class="math inline">\(n \leq 10^6\)</span>。</p>
 </blockquote>
-<p>长度为 <span class="math inline">\(x\)</span> 的循环节一定在第 <span class="math inline">\(x\)</span> 次操作后出现，然后在某一时间消失，后面不会再出现。</p>
-<p>枚举 <span class="math inline">\(x\)</span> 然后二分这个消失的时间，判断循环节可以通过判断是否存在长度 <span class="math inline">\(n - x\)</span> 的 Border 来实现。</p>
+<p>长度为 <span class="math inline">\(x\)</span> 的循环节一定在第 <span
+class="math inline">\(x\)</span>
+次操作后出现，然后在某一时间消失，后面不会再出现。</p>
+<p>枚举 <span class="math inline">\(x\)</span>
+然后二分这个消失的时间，判断循环节可以通过判断是否存在长度 <span
+class="math inline">\(n - x\)</span> 的 Border 来实现。</p>
 <p>复杂度 <span class="math inline">\(O(n \log n)\)</span>。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">uint32_t</span> P<span class="op">(</span><span class="fl">1e9</span> <span class="op">+</span> <span class="dv">7</span><span class="op">);</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Hash <span class="op">=</span> <span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">uint64_t</span><span class="op">,</span> <span class="dt">uint64_t</span><span class="op">&gt;;</span></span>
@@ -1201,13 +1144,26 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <h2 id="c.-an-unsure-catch">C. An Unsure Catch</h2>
 <h2 id="d.-string-theory">D. String Theory</h2>
 <blockquote>
-<p>给定一个字符串 <span class="math inline">\(S\)</span>，和整数 <span class="math inline">\(k\)</span>，求形如 <span class="math inline">\(AAA\dots A\)</span> （<span class="math inline">\(k\)</span> 个 <span class="math inline">\(A\)</span>）的子串的个数，其中 <span class="math inline">\(A\)</span> 是任意非空字符串。</p>
-<p><span class="math inline">\(n \leq 3 \times 10^5, 1 \leq k \leq 20\)</span>。</p>
+<p>给定一个字符串 <span class="math inline">\(S\)</span>，和整数 <span
+class="math inline">\(k\)</span>，求形如 <span
+class="math inline">\(AAA\dots A\)</span> （<span
+class="math inline">\(k\)</span> 个 <span
+class="math inline">\(A\)</span>）的子串的个数，其中 <span
+class="math inline">\(A\)</span> 是任意非空字符串。</p>
+<p><span class="math inline">\(n \leq 3 \times 10^5, 1 \leq k \leq
+20\)</span>。</p>
 </blockquote>
-<p>枚举循环节长度 <span class="math inline">\(i\)</span>，枚举左端点 <span class="math inline">\(l\)</span>，右端点 <span class="math inline">\(r\)</span> 可以二分得出，然后这个贡献是 <span class="math inline">\(r - l + 1 - ki + 1\)</span>，发现下一个左端点一定在区间 <span class="math inline">\([r - k + 1, r + 1]\)</span>，总枚举次数是调和级数。</p>
+<p>枚举循环节长度 <span class="math inline">\(i\)</span>，枚举左端点
+<span class="math inline">\(l\)</span>，右端点 <span
+class="math inline">\(r\)</span> 可以二分得出，然后这个贡献是 <span
+class="math inline">\(r - l + 1 - ki +
+1\)</span>，发现下一个左端点一定在区间 <span class="math inline">\([r -
+k + 1, r + 1]\)</span>，总枚举次数是调和级数。</p>
 <p>复杂度 <span class="math inline">\(O(n \log^2 n)\)</span>。</p>
-<p><span class="math inline">\(k \leq 20\)</span> 的条件实际上是没用的。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<p><span class="math inline">\(k \leq 20\)</span>
+的条件实际上是没用的。</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">uint32_t</span> P<span class="op">(</span><span class="fl">1e9</span> <span class="op">+</span> <span class="dv">7</span><span class="op">);</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Hash <span class="op">=</span> <span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">uint64_t</span><span class="op">,</span> <span class="dt">uint64_t</span><span class="op">&gt;;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> Hash <span class="kw">operator</span><span class="op">+(</span>Hash a<span class="op">,</span> Hash b<span class="op">)</span> <span class="op">{</span></span>
@@ -1275,14 +1231,22 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <h2 id="e.-road-construction">E. Road Construction</h2>
 <h2 id="f.-girlfriend">F. Girlfriend</h2>
 <blockquote>
-<p>给定一个无向图，q 次询问 <span class="math inline">\(s\)</span> 到 <span class="math inline">\(t\)</span> 的次大边权的最小值。</p>
-<p><span class="math inline">\(n, q \leq 10^5, m \leq 2 \times 10^5\)</span>。</p>
+<p>给定一个无向图，q 次询问 <span class="math inline">\(s\)</span> 到
+<span class="math inline">\(t\)</span> 的次大边权的最小值。</p>
+<p><span class="math inline">\(n, q \leq 10^5, m \leq 2 \times
+10^5\)</span>。</p>
 </blockquote>
-<p>二分答案 <span class="math inline">\(ans\)</span>，问题转化为判断是否存在一条边连接两个联通块（<span class="math inline">\(s\)</span> 和 <span class="math inline">\(t\)</span> 只走小于等于 <span class="math inline">\(ans\)</span> 的边形成的联通块）。</p>
+<p>二分答案 <span
+class="math inline">\(ans\)</span>，问题转化为判断是否存在一条边连接两个联通块（<span
+class="math inline">\(s\)</span> 和 <span
+class="math inline">\(t\)</span> 只走小于等于 <span
+class="math inline">\(ans\)</span> 的边形成的联通块）。</p>
 <p>建出 kruskal 重构树倍增即可求出这两个联通块。</p>
-<p>然后判断是否存在连接两个子树的边，转换成 dfs 序后用一个二维偏序的数据结构解决即可。</p>
+<p>然后判断是否存在连接两个子树的边，转换成 dfs
+序后用一个二维偏序的数据结构解决即可。</p>
 <p>复杂度 <span class="math inline">\(O(n \log^2 n)\)</span>。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">constexpr</span> <span class="dt">int</span> N<span class="op">(</span><span class="fl">2e5</span> <span class="op">+</span> <span class="dv">5</span><span class="op">);</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> up<span class="op">[</span><span class="dv">20</span><span class="op">][</span>N<span class="op">],</span> fa<span class="op">[</span>N<span class="op">],</span> in<span class="op">[</span>N<span class="op">],</span> out<span class="op">[</span>N<span class="op">],</span> cnt<span class="op">,</span> val<span class="op">[</span>N<span class="op">];</span></span>
@@ -1393,13 +1357,21 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="g.-blackjack">G. Blackjack</h2>
 <blockquote>
-<p>有 <span class="math inline">\(n\)</span> 个物品，权值为 <span class="math inline">\(v_i\)</span>，每轮随机拿走一个，然后你可以选择是否进行下一轮，求最优策略下，最后拿走物品的权值和在 <span class="math inline">\((a, b]\)</span> 区间内的概率。 <span class="math inline">\(n, v_i, a, b \leq 500\)</span>。</p>
+<p>有 <span class="math inline">\(n\)</span> 个物品，权值为 <span
+class="math inline">\(v_i\)</span>，每轮随机拿走一个，然后你可以选择是否进行下一轮，求最优策略下，最后拿走物品的权值和在
+<span class="math inline">\((a, b]\)</span> 区间内的概率。 <span
+class="math inline">\(n, v_i, a, b \leq 500\)</span>。</p>
 </blockquote>
-<p>最优策略显然就是一直拿直到落到 <span class="math inline">\((a, b]\)</span> 上，或者超过了 <span class="math inline">\(b\)</span> 游戏结束。</p>
-<p>问题转化成随机拿若干个物品，最后落在 <span class="math inline">\((a, b]\)</span>，且倒数第二步没有落在 <span class="math inline">\((a, b]\)</span> 的概率。</p>
+<p>最优策略显然就是一直拿直到落到 <span class="math inline">\((a,
+b]\)</span> 上，或者超过了 <span class="math inline">\(b\)</span>
+游戏结束。</p>
+<p>问题转化成随机拿若干个物品，最后落在 <span class="math inline">\((a,
+b]\)</span>，且倒数第二步没有落在 <span class="math inline">\((a,
+b]\)</span> 的概率。</p>
 <p>这是个背包问题，先求出整个背包，然后枚举最后一个拿的物品退背包即可。</p>
 <p>复杂度 <span class="math inline">\(O(n^2b)\)</span>。</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define perr</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>fprintf<span class="op">(</span>stderr<span class="op">,</span><span class="pp"> </span>a<span class="op">)</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>a<span class="op">...)</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span><span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span>a<span class="op">),</span><span class="pp"> </span>perr<span class="op">(</span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span><span class="op">)</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">,</span> <span class="kw">class</span> U<span class="op">&gt;</span></span>
@@ -1447,28 +1419,50 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%.10f\n</span><span class="st">&quot;</span><span class="op">,</span> ans<span class="op">);</span></span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h2 id="h.-yet-another-geometry-problem">H. Yet Another Geometry Problem</h2>
+<h2 id="h.-yet-another-geometry-problem">H. Yet Another Geometry
+Problem</h2>
 <h2 id="i.-a-math-problem">I. A Math Problem</h2>
 <h2 id="j.-gaokao">J. Gaokao</h2>
 <p>签到题。</p>
 <h2 id="k.-data-structure">K. Data Structure</h2>
 <blockquote>
-<p>给定一棵树，<span class="math inline">\(q\)</span> 次操作，第一种操作为 <span class="math inline">\(a, x, y, z\)</span> 表示 <span class="math inline">\(a\)</span> 的子树中距离 <span class="math inline">\(a\)</span> 模 <span class="math inline">\(x\)</span> 余 <span class="math inline">\(y\)</span> 的点权值加 <span class="math inline">\(z\)</span>，第二种操作为询问 <span class="math inline">\(a\)</span> 的权值。</p>
+<p>给定一棵树，<span class="math inline">\(q\)</span>
+次操作，第一种操作为 <span class="math inline">\(a, x, y, z\)</span>
+表示 <span class="math inline">\(a\)</span> 的子树中距离 <span
+class="math inline">\(a\)</span> 模 <span
+class="math inline">\(x\)</span> 余 <span
+class="math inline">\(y\)</span> 的点权值加 <span
+class="math inline">\(z\)</span>，第二种操作为询问 <span
+class="math inline">\(a\)</span> 的权值。</p>
 <p><span class="math inline">\(n, q \leq 3\times 10^5\)</span>。</p>
 </blockquote>
-<p>如果暴力修改的话一种思路是按深度将点分类，直接 <span class="math inline">\(\frac n x\)</span> 次区间修改，然后单点查询。</p>
-<p>另一种思路是每个模数用dfs序维护子树，每次区间修改 <span class="math inline">\([in_a, out_a]\)</span>，查询时枚举模数单点查询。</p>
-<p>按 <span class="math inline">\(x\)</span> 分类，大于 <span class="math inline">\(X\)</span> 的用第一种，小于 <span class="math inline">\(X\)</span> 的用第二种。</p>
-<p>设两种单次修改时间分别为 <span class="math inline">\(C_1(n), C_2(n)\)</span>，单次查询时间分别为 <span class="math inline">\(Q_1(n), Q_2(n)\)</span>，则总复杂度为</p>
+<p>如果暴力修改的话一种思路是按深度将点分类，直接 <span
+class="math inline">\(\frac n x\)</span> 次区间修改，然后单点查询。</p>
+<p>另一种思路是每个模数用dfs序维护子树，每次区间修改 <span
+class="math inline">\([in_a,
+out_a]\)</span>，查询时枚举模数单点查询。</p>
+<p>按 <span class="math inline">\(x\)</span> 分类，大于 <span
+class="math inline">\(X\)</span> 的用第一种，小于 <span
+class="math inline">\(X\)</span> 的用第二种。</p>
+<p>设两种单次修改时间分别为 <span class="math inline">\(C_1(n),
+C_2(n)\)</span>，单次查询时间分别为 <span class="math inline">\(Q_1(n),
+Q_2(n)\)</span>，则总复杂度为</p>
 <p><span class="math display">\[
-O\left(q\left[\frac{n}{X} C_1(n) + C_2(n) + Q_1(n) + XQ_2(n)\right]\right)
+O\left(q\left[\frac{n}{X} C_1(n) + C_2(n) + Q_1(n) +
+XQ_2(n)\right]\right)
 \]</span></p>
-<p>取 <span class="math inline">\(X = \sqrt\frac{nC_1(n)}{Q_2(n)}\)</span>，最优复杂度为 <span class="math display">\[
+<p>取 <span class="math inline">\(X =
+\sqrt\frac{nC_1(n)}{Q_2(n)}\)</span>，最优复杂度为 <span
+class="math display">\[
 O\left(q\left[\sqrt{nC_1(n)Q_2(n)} + C_2(n) + Q_1(n)\right]\right)
 \]</span></p>
-<p>如果 <span class="math inline">\(C_1(n) = Q_2(n) = O(1), C_2(n) = Q_1(n) = O(\sqrt n)\)</span>，可以做到 <span class="math inline">\(O(q \sqrt n)\)</span>。</p>
-<p>这题我现场写了树状数组和线段树，<span class="math inline">\(O(q \sqrt n \log n)\)</span>，也跑过了。</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<p>如果 <span class="math inline">\(C_1(n) = Q_2(n) = O(1), C_2(n) =
+Q_1(n) = O(\sqrt n)\)</span>，可以做到 <span class="math inline">\(O(q
+\sqrt n)\)</span>。</p>
+<p>这题我现场写了树状数组和线段树，<span class="math inline">\(O(q \sqrt
+n \log n)\)</span>，也跑过了。</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> N<span class="op">(</span><span class="fl">3e5</span> <span class="op">+</span> <span class="dv">5</span><span class="op">),</span> T<span class="op">(</span><span class="dv">233</span><span class="op">);</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>

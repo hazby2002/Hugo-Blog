@@ -412,16 +412,36 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <blockquote>
-<p>给定两个串 <span class="math inline">\(s,t\)</span> 整数 <span class="math inline">\(k\)</span> ,你可以在 <span class="math inline">\(s\)</span> 中取出任意的两个不相交的长度为 <span class="math inline">\(k\)</span> 串，将它们按顺序拼在一起形成一个新串。</p>
-<p>求一种取串的方案使得 <span class="math inline">\(t\)</span> 是新串的子串。</p>
+<p>给定两个串 <span class="math inline">\(s,t\)</span> 整数 <span
+class="math inline">\(k\)</span> ,你可以在 <span
+class="math inline">\(s\)</span> 中取出任意的两个不相交的长度为 <span
+class="math inline">\(k\)</span>
+串，将它们按顺序拼在一起形成一个新串。</p>
+<p>求一种取串的方案使得 <span class="math inline">\(t\)</span>
+是新串的子串。</p>
 <p><span class="math inline">\(|s|,|t| \leq 5 \times 10^5\)</span>。</p>
 </blockquote>
-<p>kmp 算出正串和反串的能匹配 <span class="math inline">\(t\)</span> 的前/后缀最大长度。</p>
-<p>设 <span class="math inline">\(s\)</span> 串的前缀 <span class="math inline">\([pre_1 \dots pre_i]\)</span> 能匹配 <span class="math inline">\(t\)</span> 的前缀集合为 <span class="math inline">\(P\)</span>，后缀 <span class="math inline">\([suf_{i+1},suf_n]\)</span> 能匹配 <span class="math inline">\(t\)</span> 的后缀集合为 <span class="math inline">\(Q\)</span>，只要判断是否存在 <span class="math inline">\(x\in P,y\in Q,x, y\leq k,x+y=|s|\)</span> 即可。</p>
-<p>类似 AC 自动机那样建出 fail 树，那么一个点能匹配的前缀长度集合就是在 fail 树上到根的路径，在正串 fail 树上维护集合 <span class="math inline">\(P\)</span>，每次添加一个数 <span class="math inline">\(x\)</span> 时，标记 <span class="math inline">\(k-x\)</span> 对应在反串 fail 树上的点，每次查询反串 fail 树上一个点的祖先是否被标记。</p>
+<p>kmp 算出正串和反串的能匹配 <span class="math inline">\(t\)</span>
+的前/后缀最大长度。</p>
+<p>设 <span class="math inline">\(s\)</span> 串的前缀 <span
+class="math inline">\([pre_1 \dots pre_i]\)</span> 能匹配 <span
+class="math inline">\(t\)</span> 的前缀集合为 <span
+class="math inline">\(P\)</span>，后缀 <span
+class="math inline">\([suf_{i+1},suf_n]\)</span> 能匹配 <span
+class="math inline">\(t\)</span> 的后缀集合为 <span
+class="math inline">\(Q\)</span>，只要判断是否存在 <span
+class="math inline">\(x\in P,y\in Q,x, y\leq k,x+y=|s|\)</span>
+即可。</p>
+<p>类似 AC 自动机那样建出 fail 树，那么一个点能匹配的前缀长度集合就是在
+fail 树上到根的路径，在正串 fail 树上维护集合 <span
+class="math inline">\(P\)</span>，每次添加一个数 <span
+class="math inline">\(x\)</span> 时，标记 <span
+class="math inline">\(k-x\)</span> 对应在反串 fail
+树上的点，每次查询反串 fail 树上一个点的祖先是否被标记。</p>
 <p>具体实现时，标记一个点可以用子树加一，查询的时候单点查询即可。</p>
 <p>复杂度 <span class="math inline">\(O(n \log n)\)</span>。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(...)</span><span class="pp"> </span><span class="bu">std::</span>cerr<span class="op"> &lt;&lt;</span><span class="pp"> </span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span><span class="op">,</span><span class="pp"> </span>fprintf<span class="op">(</span>stderr<span class="op">,</span><span class="pp"> </span><span class="ot">__VA_ARGS__</span><span class="op">),</span><span class="pp"> </span><span class="bu">std::</span>cerr<span class="op"> &lt;&lt;</span><span class="pp"> </span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">,</span> <span class="kw">class</span> U<span class="op">&gt;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smin<span class="op">(</span>T <span class="op">&amp;</span>x<span class="op">,</span> <span class="at">const</span> U <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> y <span class="op">&lt;</span> x <span class="op">?</span> x <span class="op">=</span> y<span class="op">,</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>

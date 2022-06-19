@@ -19,7 +19,7 @@
 李超线段树就是支持 \(O(\log N)\) 插入直线和查询 \(\max{L_i(x)}\) 的数据结构。
 线段树的每个节点保存 \(L(mid)\) 最大的那条直线。
 插入一条直线时，比较 \(L_{old}(mid)\) 和 \(L_{new}(mid)\)，较大者保留，较小者继续递归。
-constexpr int N(1e5 + 5); struct Line {  LL k, b;  LL f(int x) {  return k * x + b;  } } t[N &amp;lt;&amp;lt; 2]; #define ls o&amp;lt;&amp;lt;1 #define rs o&amp;lt;&amp;lt;1|1 void ins(int o, int l, int r, Line x) {  int m = l + r &amp;gt;&amp;gt; 1;  bool lv = x.</description>
+constexpr int N(1e5 + 5); struct Line { LL k, b; LL f(int x) { return k * x + b; } } t[N &amp;lt;&amp;lt; 2]; #define ls o &amp;lt;&amp;lt; 1 #define rs o &amp;lt;&amp;lt; 1 | 1 void ins(int o, int l, int r, Line x) { int m = l + r &amp;gt;&amp;gt; 1; bool lv = x.</description>
     </item>
     
   </channel>

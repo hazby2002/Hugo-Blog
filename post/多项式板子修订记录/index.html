@@ -936,7 +936,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <li>多项式复合逆</li>
 </ul>
 <h2 id="poly">Poly</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> P<span class="op">(</span><span class="dv">998244353</span><span class="op">),</span> G<span class="op">(</span><span class="dv">3</span><span class="op">),</span> L<span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">18</span><span class="op">);</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> P<span class="op">(</span><span class="dv">998244353</span><span class="op">),</span> G<span class="op">(</span><span class="dv">3</span><span class="op">),</span> L<span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">18</span><span class="op">);</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">void</span> inc<span class="op">(</span><span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">,</span> <span class="dt">int</span> y<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  x <span class="op">+=</span> y<span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>x <span class="op">&gt;=</span> P<span class="op">)</span> x <span class="op">-=</span> P<span class="op">;</span></span>
@@ -1186,7 +1187,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
 <h2 id="不常用">不常用</h2>
 <h3 id="又臭又长">又臭又长</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Poly <span class="kw">operator</span><span class="op">/(</span>Poly a<span class="op">,</span> Poly b<span class="op">)</span> <span class="op">{</span>  <span class="co">// return: c(len = n - m + 1), a = b * c + r</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Poly <span class="kw">operator</span><span class="op">/(</span>Poly a<span class="op">,</span> Poly b<span class="op">)</span> <span class="op">{</span>  <span class="co">// return: c(len = n - m + 1), a = b * c + r</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n <span class="op">=</span> a<span class="op">.</span>size<span class="op">(),</span> m <span class="op">=</span> b<span class="op">.</span>size<span class="op">();</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>n <span class="op">&lt;</span> m<span class="op">)</span> <span class="cf">return</span> <span class="op">{</span><span class="dv">0</span><span class="op">};</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> k <span class="op">=</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>__lg<span class="op">(</span>n <span class="op">-</span> m <span class="op">&lt;&lt;</span> <span class="dv">1</span> <span class="op">|</span> <span class="dv">1</span><span class="op">);</span></span>
@@ -1404,7 +1406,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> a<span class="op">;</span></span>
 <span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="fpfactorial-polynomial">FP(Factorial Polynomial)</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> FP <span class="op">{</span></span>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> FP <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Poly toFp<span class="op">(</span>Poly a<span class="op">)</span> <span class="op">{</span> <span class="co">// Factorial Polynomial</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n <span class="op">=</span> a<span class="op">.</span>size<span class="op">();</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  Poly p<span class="op">(</span>n<span class="op">);</span></span>
@@ -1459,7 +1462,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>  <span class="co">// namespace FP</span></span></code></pre></div>
 <h3 id="stirling">Stirling</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Stirling <span class="op">{</span></span>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Stirling <span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Poly getS1<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> <span class="op">{</span><span class="dv">1</span><span class="op">};</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  Poly p <span class="op">=</span> getS1<span class="op">(</span>n <span class="op">/</span> <span class="dv">2</span><span class="op">);</span></span>
@@ -1507,7 +1511,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>  <span class="co">// namespace Stirling</span></span></code></pre></div>
 <h2 id="fftcomplex">FFTComplex</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> FFTComplex <span class="op">{</span></span>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> FFTComplex <span class="op">{</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">double</span> PI <span class="op">=</span> acos<span class="op">(-</span><span class="fl">1.0</span><span class="op">);</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> C <span class="op">{</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">double</span> x<span class="op">,</span> y<span class="op">;</span></span>
@@ -1560,7 +1565,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="co">// namespace FFTComplex</span></span></code></pre></div>
 <h2 id="拆系数fft">拆系数FFT</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> PolyBase <span class="op">{</span></span>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> PolyBase <span class="op">{</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Poly <span class="op">=</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> P<span class="op">(</span><span class="fl">1e9</span> <span class="op">+</span> <span class="dv">7</span><span class="op">);</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">void</span> inc<span class="op">(</span><span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">,</span> <span class="dt">int</span> y<span class="op">)</span> <span class="op">{</span> <span class="op">(</span>x <span class="op">+=</span> y<span class="op">)</span> <span class="op">&gt;=</span> P <span class="op">?</span> x <span class="op">-=</span> P <span class="op">:</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>
@@ -1640,10 +1646,15 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <p><strong>##Basic</strong></p>
 <p><strong>###主要功能列表</strong></p>
 <ul>
-<li><code>using Poly = std::vector&lt;int&gt;;</code>：用 vector 表示多项式。</li>
-<li><code>void dft/idft(int *a, n);</code>：长度为 <span class="math inline">\(n\)</span> 的 dft/idft，需要保证 <span class="math inline">\(n = 2^k\)</span>。</li>
+<li><code>using Poly = std::vector&lt;int&gt;;</code>：用 vector
+表示多项式。</li>
+<li><code>void dft/idft(int *a, n);</code>：长度为 <span
+class="math inline">\(n\)</span> 的 dft/idft，需要保证 <span
+class="math inline">\(n = 2^k\)</span>。</li>
 <li><code>void dft/idft(Poly &amp;a);</code>：参数为多项式的dft/idft。</li>
-<li><code>void dftDoubling(int *x, int n);</code>：将长度为 <span class="math inline">\(n\)</span> 的 dft 扩大为长度 <span class="math inline">\(2n\)</span> 的 dft。</li>
+<li><code>void dftDoubling(int *x, int n);</code>：将长度为 <span
+class="math inline">\(n\)</span> 的 dft 扩大为长度 <span
+class="math inline">\(2n\)</span> 的 dft。</li>
 <li><code>Poly operator*(Poly a, Poly b)</code>：多项式乘法。</li>
 <li><code>Poly operator+(Poly a, Poly b)</code>：多项式加法。</li>
 <li><code>Poly operator-(Poly a, Poly b)</code>：多项式减法。</li>
@@ -1654,26 +1665,44 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <li><code>Poly deriv(Poly a);</code>：多项式求导。</li>
 <li><code>Poly integ(Poly a);</code>：多项式积分。</li>
 <li><code>Poly ln(Poly a);</code>：多项式对数函数。</li>
-<li><code>Poly expNewton(Poly a);</code>：多项式指数函数（牛顿迭代，<strong>需要保证长度为 2 的幂</strong>）。</li>
+<li><code>Poly expNewton(Poly a);</code>：多项式指数函数（牛顿迭代，<strong>需要保证长度为
+2 的幂</strong>）。</li>
 <li><code>Poly exp2(Poly a);</code>：多项式指数函数（半在线卷积）。</li>
 <li><code>Poly exp(Poly a);</code>：多项式指数函数（优化半在线卷积）。</li>
 <li><code>Poly power(Poly a, int k);</code>：多项式幂函数。</li>
-<li><code>Poly power(Poly a, int k1, int k2);</code>：多项式幂函数（模数对 <span class="math inline">\(P\)</span> 和 <span class="math inline">\(\varphi(P)\)</span> 取模）。</li>
-<li><code>Poly divAt(Poly p, Poly q, LL n);</code>：计算 <span class="math inline">\([x^n]\dfrac{P(x)}{Q(x)}\)</span>。</li>
-<li><code>Poly invRange(Poly q, LL l, LL r);</code>：计算 <span class="math inline">\([x^k]\dfrac{1}{Q(x)}, k = l, l + 1, \dots, r\)</span>。</li>
-<li><code>Poly divAt2(Poly p, Poly q, LL n);</code>：计算 <span class="math inline">\([x^n]\dfrac{P(x)}{Q(x)}\)</span>，使用 <code>invRange</code>。</li>
+<li><code>Poly power(Poly a, int k1, int k2);</code>：多项式幂函数（模数对
+<span class="math inline">\(P\)</span> 和 <span
+class="math inline">\(\varphi(P)\)</span> 取模）。</li>
+<li><code>Poly divAt(Poly p, Poly q, LL n);</code>：计算 <span
+class="math inline">\([x^n]\dfrac{P(x)}{Q(x)}\)</span>。</li>
+<li><code>Poly invRange(Poly q, LL l, LL r);</code>：计算 <span
+class="math inline">\([x^k]\dfrac{1}{Q(x)}, k = l, l + 1, \dots,
+r\)</span>。</li>
+<li><code>Poly divAt2(Poly p, Poly q, LL n);</code>：计算 <span
+class="math inline">\([x^n]\dfrac{P(x)}{Q(x)}\)</span>，使用
+<code>invRange</code>。</li>
 </ul>
 <p><strong>###2021/8/11</strong></p>
 <ul>
-<li><code>int divAt(Poly p, Poly q, LL n);</code>：增加 <span class="math inline">\([x^n]\dfrac{P(x)}{Q(x)}\)</span>，并稍微卡了卡常。</li>
-<li><code>expNewton, exp2, exp</code>：牛顿迭代exp改名，分别增加 <span class="math inline">\(O\left(n \log^2n\right)\)</span> 和 <span class="math inline">\(O\left(\dfrac{n \log^2n}{\log\log n}\right)\)</span> 半在线卷积求多项式 Exp。（由于懒得写递归的，顺便发明了多叉cdq分治迭代版）</li>
-<li><code>invRec, inverse</code>：原求逆需要长度为 2 的幂，保留为 <code>invRec</code>，增加新的 <code>inverse</code>，不需要保证长度。现在所有多项式操作（除了 <code>dft, idft, expNewton</code>）均不要求长度为 2 的幂。</li>
+<li><code>int divAt(Poly p, Poly q, LL n);</code>：增加 <span
+class="math inline">\([x^n]\dfrac{P(x)}{Q(x)}\)</span>，并稍微卡了卡常。</li>
+<li><code>expNewton, exp2, exp</code>：牛顿迭代exp改名，分别增加 <span
+class="math inline">\(O\left(n \log^2n\right)\)</span> 和 <span
+class="math inline">\(O\left(\dfrac{n \log^2n}{\log\log
+n}\right)\)</span> 半在线卷积求多项式
+Exp。（由于懒得写递归的，顺便发明了多叉cdq分治迭代版）</li>
+<li><code>invRec, inverse</code>：原求逆需要长度为 2 的幂，保留为
+<code>invRec</code>，增加新的
+<code>inverse</code>，不需要保证长度。现在所有多项式操作（除了
+<code>dft, idft, expNewton</code>）均不要求长度为 2 的幂。</li>
 </ul>
 <p><strong>###2021/9/19</strong></p>
 <ul>
 <li><code>dftDoubling</code>：增加扩大 dft 长度函数，用于减小常数。</li>
-<li><code>invRange</code>：求多项式逆的若干项，<span class="math inline">\(O(n \log^2 n)\)</span>。</li>
-<li><code>divAt2</code>：使用 <code>invRange</code> 实现的 <code>divAt</code>。</li>
+<li><code>invRange</code>：求多项式逆的若干项，<span
+class="math inline">\(O(n \log^2 n)\)</span>。</li>
+<li><code>divAt2</code>：使用 <code>invRange</code> 实现的
+<code>divAt</code>。</li>
 <li>增加了少量注释。</li>
 </ul>
 <p><strong>###2021/11/29</strong></p>
@@ -1683,7 +1712,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <li><code>std::pair&lt;Poly, Poly&gt; div(Poly a, Poly b)</code>：分离了多项式取模。</li>
 <li><code>sqrt</code>：内置 <code>modSqrt</code>。</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Polynomial <span class="op">{</span></span>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Polynomial <span class="op">{</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Poly <span class="op">=</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> P<span class="op">(</span><span class="dv">998244353</span><span class="op">),</span> G<span class="op">(</span><span class="dv">3</span><span class="op">),</span> L<span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">18</span><span class="op">);</span> <span class="co">// L : max length of dft</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">void</span> inc<span class="op">(</span><span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">,</span> <span class="dt">int</span> y<span class="op">)</span> <span class="op">{</span> <span class="op">(</span>x <span class="op">+=</span> y<span class="op">)</span> <span class="op">&gt;=</span> P <span class="op">?</span> x <span class="op">-=</span> P <span class="op">:</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>
@@ -2129,7 +2159,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <li>多点求值</li>
 <li>快速插值</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> PolyEI <span class="op">{</span>  <span class="co">// Polyial-MultiEvaluation &amp; Interpolation-Polyial.</span></span>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> PolyEI <span class="op">{</span>  <span class="co">// Polyial-MultiEvaluation &amp; Interpolation-Polyial.</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">To calc f(a_i): Construct SegTree with {a} and call multiEval(f).</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">To calc f from (a_i, b_i): Construct SegTree with {a} and call interpolate(b).</span></span>

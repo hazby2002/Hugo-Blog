@@ -407,27 +407,44 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <blockquote>
-<p>一棵 <span class="math inline">\(n\)</span> 个节点的树，点有点权，边有边权。求这棵树的一个点 <span class="math inline">\(r\)</span> 使下面的式子最小： <span class="math display">\[
+<p>一棵 <span class="math inline">\(n\)</span>
+个节点的树，点有点权，边有边权。求这棵树的一个点 <span
+class="math inline">\(r\)</span> 使下面的式子最小： <span
+class="math display">\[
 \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32}
-\]</span> <span class="math inline">\(n \le 2 \times 10^5, val_i, dist(u, v) \ge 0\)</span>。</p>
+\]</span> <span class="math inline">\(n \le 2 \times 10^5, val_i,
+dist(u, v) \ge 0\)</span>。</p>
 </blockquote>
 <p>带权重心问题，有点妙。</p>
 <p>设 <span class="math display">\[
 f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32}
-\]</span> 这里函数 <span class="math inline">\(f\)</span> 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。</p>
+\]</span> 这里函数 <span class="math inline">\(f\)</span>
+的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。</p>
 <p>下面研究这个函数的性质。</p>
-<p>树上的函数显然不太方便研究，所以考虑换一个 <span class="math inline">\(\mathbf R\)</span> 上的函数研究。</p>
-<p>随便选择一条树上路径 <span class="math inline">\(u \rightarrow v\)</span> 作为 <span class="math inline">\(x\)</span> 轴，把 <span class="math inline">\(u\)</span> 当作原点，这样 <span class="math inline">\(x\)</span> 就是路径上的点到 <span class="math inline">\(u\)</span> 的距离。</p>
+<p>树上的函数显然不太方便研究，所以考虑换一个 <span
+class="math inline">\(\mathbf R\)</span> 上的函数研究。</p>
+<p>随便选择一条树上路径 <span class="math inline">\(u \rightarrow
+v\)</span> 作为 <span class="math inline">\(x\)</span> 轴，把 <span
+class="math inline">\(u\)</span> 当作原点，这样 <span
+class="math inline">\(x\)</span> 就是路径上的点到 <span
+class="math inline">\(u\)</span> 的距离。</p>
 <p><img src="1.png" /></p>
-<p>这里以 <span class="math inline">\(0 \rightarrow 5\)</span> 为例，节点 <span class="math inline">\(6 \dots 11\)</span> 分别代表其父亲的一些子树。</p>
-<p>记 <span class="math inline">\(d_i = dist(i, 0)\)</span>，路径上的点分别考虑贡献： <span class="math display">\[
+<p>这里以 <span class="math inline">\(0 \rightarrow 5\)</span>
+为例，节点 <span class="math inline">\(6 \dots 11\)</span>
+分别代表其父亲的一些子树。</p>
+<p>记 <span class="math inline">\(d_i = dist(i,
+0)\)</span>，路径上的点分别考虑贡献： <span class="math display">\[
 f_i(x) =
 \begin{cases}
-\sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32 &amp; x \le d_i\\
-\sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32 &amp; x &gt; d_i
+\sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32
+&amp; x \le d_i\\
+\sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32
+&amp; x &gt; d_i
 \end{cases}\\
 f(x) = f_0(x) + f_1(x) + f_2(x) + f_3(x) + f_4(x) + f_5(x)
-\]</span> 发现 <span class="math inline">\(f_i(x)\)</span> 可以写成下面这种形式（其中 <span class="math inline">\(c_1-x \ge 0, c_2 + x \ge 0\)</span>） <span class="math display">\[
+\]</span> 发现 <span class="math inline">\(f_i(x)\)</span>
+可以写成下面这种形式（其中 <span class="math inline">\(c_1-x \ge 0, c_2
++ x \ge 0\)</span>） <span class="math display">\[
 f_i(x) =
 \begin{cases}
 \sum v(c_1 - x)^\frac32 &amp; x \le d_i\\
@@ -446,20 +463,40 @@ f_i&#39;&#39;(x) =
 \frac34\sum v(c_1 - x)^{-\frac12} &amp; x \le d_i\\
 \frac34\sum v(c_2 + x)^{-\frac12} &amp; x &gt; d_i
 \end{cases}
-\]</span> 发现 <span class="math inline">\(f&#39;&#39;_i(x) \ge 0\)</span>，所以 <span class="math inline">\(f&#39;&#39;(x) = \sum_if&#39;&#39;_i(x) \ge 0\)</span>，所以 <span class="math inline">\(f(x)\)</span> 是个凸函数，至多一个最小值。</p>
-<p>注意到对于树上任意路径这个结论都成立，所以固定起点 <span class="math inline">\(u\)</span>，对于所有终点 <span class="math inline">\(v\)</span> 求一次最小值就可以得到答案。</p>
-<p>下图中 <span class="math inline">\(2, 3, 4\)</span> 都代表子树，假设当前在 <span class="math inline">\(1\)</span> ，需要考虑 <span class="math inline">\(1 \rightarrow 2, 3, 4 \rightarrow \dots\)</span> 几种路径。</p>
+\]</span> 发现 <span class="math inline">\(f&#39;&#39;_i(x) \ge
+0\)</span>，所以 <span class="math inline">\(f&#39;&#39;(x) =
+\sum_if&#39;&#39;_i(x) \ge 0\)</span>，所以 <span
+class="math inline">\(f(x)\)</span> 是个凸函数，至多一个最小值。</p>
+<p>注意到对于树上任意路径这个结论都成立，所以固定起点 <span
+class="math inline">\(u\)</span>，对于所有终点 <span
+class="math inline">\(v\)</span> 求一次最小值就可以得到答案。</p>
+<p>下图中 <span class="math inline">\(2, 3, 4\)</span>
+都代表子树，假设当前在 <span class="math inline">\(1\)</span> ，需要考虑
+<span class="math inline">\(1 \rightarrow 2, 3, 4 \rightarrow
+\dots\)</span> 几种路径。</p>
 <p><img src="2.png" /></p>
-<p>对于路径 <span class="math inline">\(1 \rightarrow i \rightarrow \dots\)</span>，有 <span class="math display">\[
+<p>对于路径 <span class="math inline">\(1 \rightarrow i \rightarrow
+\dots\)</span>，有 <span class="math display">\[
 \begin{aligned}
-f&#39;(0)_i &amp;= \frac32\left(\sum_{x\in 0} val_xdist(x, 1)^\frac12 - \sum_{x\in i}val_xdist(x, 1)^\frac12\right)\\
-&amp;= \frac32\left(\sum_{x}val_xdist(x, 1)^\frac12 - 2\sum_{x\in i}val_xdist(x, 1)^\frac12\right)
+f&#39;(0)_i &amp;= \frac32\left(\sum_{x\in 0} val_xdist(x, 1)^\frac12 -
+\sum_{x\in i}val_xdist(x, 1)^\frac12\right)\\
+&amp;= \frac32\left(\sum_{x}val_xdist(x, 1)^\frac12 - 2\sum_{x\in
+i}val_xdist(x, 1)^\frac12\right)
 \end{aligned}
-\]</span> 观察这个式子，发现最多只有一个 <span class="math inline">\(i\)</span> 会使导数小于零，就是使 <span class="math inline">\(\sum_{x \in i}val_xdist(x, i)^{\frac12}\)</span> 最大的那个。</p>
+\]</span> 观察这个式子，发现最多只有一个 <span
+class="math inline">\(i\)</span> 会使导数小于零，就是使 <span
+class="math inline">\(\sum_{x \in i}val_xdist(x, i)^{\frac12}\)</span>
+最大的那个。</p>
 <p>所以我们只需要向导数小于零的那个方向走就可以了。</p>
-<p>假如从根出发向叶子的方向走，最多走 <span class="math inline">\(maxdep\)</span> 次，每次需要花 <span class="math inline">\(O(n)\)</span> 时间计算答案和导数， 最坏是 <span class="math inline">\(O(n^2)\)</span> 的，考虑优化。</p>
-<p>每次走到一个节点时，需要考虑的节点范围会缩小到当前节点的子树内，如果每次找到当前子树的重心，每次规模会减半，这样最多走 <span class="math inline">\(\log n\)</span> 次，最终复杂度 <span class="math inline">\(O(n \log n)\)</span>。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<p>假如从根出发向叶子的方向走，最多走 <span
+class="math inline">\(maxdep\)</span> 次，每次需要花 <span
+class="math inline">\(O(n)\)</span> 时间计算答案和导数， 最坏是 <span
+class="math inline">\(O(n^2)\)</span> 的，考虑优化。</p>
+<p>每次走到一个节点时，需要考虑的节点范围会缩小到当前节点的子树内，如果每次找到当前子树的重心，每次规模会减半，这样最多走
+<span class="math inline">\(\log n\)</span> 次，最终复杂度 <span
+class="math inline">\(O(n \log n)\)</span>。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">,</span> <span class="kw">class</span> U<span class="op">&gt;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smin<span class="op">(</span>T <span class="op">&amp;</span>x<span class="op">,</span> <span class="at">const</span> U <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> y <span class="op">&lt;</span> x <span class="op">?</span> x <span class="op">=</span> y<span class="op">,</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>

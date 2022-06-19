@@ -754,19 +754,28 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <p>题目是乱序的。</p>
 <h2 id="e3-mountains">E3 Mountains</h2>
 <blockquote>
-<p>求 <span class="math inline">\(n \times m\)</span> 的非负矩阵个数，满足 <span class="math inline">\((1, 1)\)</span> 到 <span class="math inline">\((n, m)\)</span> 的最大路径和不超过 <span class="math inline">\(k\)</span>。答案对 <span class="math inline">\(10^9 + 7\)</span> 取模。</p>
+<p>求 <span class="math inline">\(n \times m\)</span>
+的非负矩阵个数，满足 <span class="math inline">\((1, 1)\)</span> 到
+<span class="math inline">\((n, m)\)</span> 的最大路径和不超过 <span
+class="math inline">\(k\)</span>。答案对 <span
+class="math inline">\(10^9 + 7\)</span> 取模。</p>
 <p><span class="math inline">\(1 \leq n, m, k \leq 100\)</span></p>
 </blockquote>
 <p>最大路径和，有个经典DP。</p>
 <p><span class="math display">\[
 dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \}
 \]</span></p>
-<p>由 <span class="math inline">\(a_{i, j} \geq 0\)</span>，得到 <span class="math inline">\(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}\)</span>。</p>
+<p>由 <span class="math inline">\(a_{i, j} \geq 0\)</span>，得到 <span
+class="math inline">\(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq
+dp_{i, j - 1}\)</span>。</p>
 <p>然后还有 <span class="math inline">\(dp_{n, m} \leq k\)</span>。</p>
 <p>由上面的等式可知a和dp数组可以相互转化，所以问题转化为求dp矩阵的个数。</p>
-<p>画出三维的方块图，<span class="math inline">\(dp_{i, j}\)</span> 表示 (i, j) 上有 <span class="math inline">\(dp_{i, j}\)</span> 个方块，然后可以转化为不相交路径计数，用LGV引理解决。</p>
+<p>画出三维的方块图，<span class="math inline">\(dp_{i, j}\)</span> 表示
+(i, j) 上有 <span class="math inline">\(dp_{i, j}\)</span>
+个方块，然后可以转化为不相交路径计数，用LGV引理解决。</p>
 <p><img src="e3.png" /></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n<span class="op">,</span> m<span class="op">,</span> k<span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n <span class="op">&gt;&gt;</span> m <span class="op">&gt;&gt;</span> k<span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span>Z<span class="op">&gt;&gt;</span> bin<span class="op">(</span>k <span class="op">+</span> m <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>Z<span class="op">&gt;(</span>k <span class="op">+</span> m <span class="op">+</span> <span class="dv">1</span><span class="op">));</span></span>
@@ -809,14 +818,18 @@ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \}
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="i3-box-packing">I3 Box Packing</h2>
 <blockquote>
-<p>给定 <span class="math inline">\(n\)</span> 个二元组 <span class="math inline">\((a_i, b_i)\)</span>，按字典序有序。</p>
+<p>给定 <span class="math inline">\(n\)</span> 个二元组 <span
+class="math inline">\((a_i, b_i)\)</span>，按字典序有序。</p>
 <p>求最长的子序列长度，满足该子序列可以划分成不超过k个a,b均单调不降的子序列。</p>
-<p><span class="math inline">\(1 \leq n \leq 10^5, 1 \leq k \leq 100\)</span></p>
+<p><span class="math inline">\(1 \leq n \leq 10^5, 1 \leq k \leq
+100\)</span></p>
 </blockquote>
-<p><a href="https://oi-wiki.org/math/young-tableau/">Young tableau</a></p>
+<p><a href="https://oi-wiki.org/math/young-tableau/">Young
+tableau</a></p>
 <p>杨表。科技题，证明还non-trival，难搞哦。</p>
 <p>19年集训队论文《浅谈杨氏矩阵在信息学竞赛中的应用》</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n<span class="op">,</span> k<span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n <span class="op">&gt;&gt;</span> k<span class="op">;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>PII<span class="op">&gt;</span> a<span class="op">(</span>n<span class="op">);</span></span>
@@ -846,16 +859,31 @@ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \}
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="k3-fancy-arrays">K3 Fancy Arrays</h2>
 <blockquote>
-<p>求长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(a\)</span> 的数量，满足 <span class="math inline">\(a_i | m, \operatorname{gcd}(a_i, a_{i+1})&gt;1\)</span>。<span class="math inline">\(q\)</span> 次询问 <span class="math inline">\(n\)</span>。</p>
-<p><span class="math inline">\(m \leq 10^{16}, q \leq 150, n \leq 10^{18}\)</span>。</p>
+<p>求长度为 <span class="math inline">\(n\)</span> 的序列 <span
+class="math inline">\(a\)</span> 的数量，满足 <span
+class="math inline">\(a_i | m, \operatorname{gcd}(a_i,
+a_{i+1})&gt;1\)</span>。<span class="math inline">\(q\)</span> 次询问
+<span class="math inline">\(n\)</span>。</p>
+<p><span class="math inline">\(m \leq 10^{16}, q \leq 150, n \leq
+10^{18}\)</span>。</p>
 </blockquote>
-<p><span class="math inline">\(m\)</span> 质因数分解后，指数相同的质因子是等价的，划分成一个类，状态表示为等价类内选择了多少个质因子。</p>
-<p>状态数 <span class="math inline">\(N\)</span> 不超过256个，预处理出转移矩阵的幂 <span class="math inline">\(M, M^2, M^4, M^8, \dots\)</span>。</p>
-<p>这样每次矩阵乘一个向量是 <span class="math inline">\(O(N^2)\)</span> 的。</p>
-<p>总复杂度 <span class="math inline">\(O(N^3\log n + qN^2\log n)\)</span></p>
+<p><span class="math inline">\(m\)</span>
+质因数分解后，指数相同的质因子是等价的，划分成一个类，状态表示为等价类内选择了多少个质因子。</p>
+<p>状态数 <span class="math inline">\(N\)</span>
+不超过256个，预处理出转移矩阵的幂 <span class="math inline">\(M, M^2,
+M^4, M^8, \dots\)</span>。</p>
+<p>这样每次矩阵乘一个向量是 <span class="math inline">\(O(N^2)\)</span>
+的。</p>
+<p>总复杂度 <span class="math inline">\(O(N^3\log n + qN^2\log
+n)\)</span></p>
 <p>这题还可以直接 BM，下面是牛逼群友的解释：</p>
-<p>You need to count some number of paths in graph, number of paths is equal to sum of A^n * v, where A is transition matrix and v is initial vector. Any element of A^n*v follows linear recurrence defined by minimal polynomial of A, so answer for the problem also follows linear recurrence.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
+<p>You need to count some number of paths in graph, number of paths is
+equal to sum of A^n * v, where A is transition matrix and v is initial
+vector. Any element of A^n*v follows linear recurrence defined by
+minimal polynomial of A, so answer for the problem also follows linear
+recurrence.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Author:  HolyK</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Created: Sun Feb 13 22:37:24 2022</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1070,13 +1098,18 @@ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \}
 <span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="g3-maximal-subsequence">G3 Maximal Subsequence</h2>
 <blockquote>
-<p>给定序列 <span class="math inline">\(a_n\)</span>，求最长的子序列，满足其严格 LIS 小于原序列。</p>
-<p><span class="math inline">\(1 \leq n \leq 5 \times 10^5, 1 \leq a_i \leq 10^9\)</span>。</p>
+<p>给定序列 <span
+class="math inline">\(a_n\)</span>，求最长的子序列，满足其严格 LIS
+小于原序列。</p>
+<p><span class="math inline">\(1 \leq n \leq 5 \times 10^5, 1 \leq a_i
+\leq 10^9\)</span>。</p>
 </blockquote>
 <p>https://dmoj.ca/problem/coci21c1p5/editorial</p>
-<p>问题可以转化为求 <span class="math inline">\(n\)</span> - 可以拿出多少个LIS。</p>
+<p>问题可以转化为求 <span class="math inline">\(n\)</span> -
+可以拿出多少个LIS。</p>
 <p>直接按照字典序贪心的拿就是对的，证明见上面的链接。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n<span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n<span class="op">;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> a<span class="op">(</span>n<span class="op">),</span> b<span class="op">,</span> f<span class="op">(</span>n<span class="op">);</span></span>
@@ -1124,15 +1157,22 @@ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \}
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="c3-inversions">C3 Inversions</h2>
 <blockquote>
-<p><span class="math inline">\(n\)</span> 的排列 <span class="math inline">\(p\)</span> 的逆序对个数为 <span class="math inline">\(\operatorname{inv}(p)\)</span>，求 <span class="math inline">\(\operatorname{inv}(p) ^k \bmod 998244353\)</span>。</p>
-<p><span class="math inline">\(1 \leq n \leq 10^{18}, 1 \leq k \leq 1000\)</span>。</p>
+<p><span class="math inline">\(n\)</span> 的排列 <span
+class="math inline">\(p\)</span> 的逆序对个数为 <span
+class="math inline">\(\operatorname{inv}(p)\)</span>，求 <span
+class="math inline">\(\operatorname{inv}(p) ^k \bmod
+998244353\)</span>。</p>
+<p><span class="math inline">\(1 \leq n \leq 10^{18}, 1 \leq k \leq
+1000\)</span>。</p>
 </blockquote>
 <p>设 <span class="math inline">\(g(n, k)\)</span> 表示答案。</p>
 <p><span class="math display">\[
 \begin{aligned}
 g(n+1, k) &amp;= \sum_{i = 0}^n \sum_p (i + \operatorname{inv}(p))^k\\
-&amp;= \sum_{i=0}^n\sum_{j=0}^k \sum_p \operatorname{inv}(p)^j i^{k-j} \frac{k!}{j!(k-j)!}\\
-\frac{g(n+1, k)}{k!} &amp;= \sum_{j = 0}^k \frac{g(n, j)}{j!}\sum_{i=0}^n \frac{i^{k-j}}{(k - j)!}\\
+&amp;= \sum_{i=0}^n\sum_{j=0}^k \sum_p \operatorname{inv}(p)^j i^{k-j}
+\frac{k!}{j!(k-j)!}\\
+\frac{g(n+1, k)}{k!} &amp;= \sum_{j = 0}^k \frac{g(n,
+j)}{j!}\sum_{i=0}^n \frac{i^{k-j}}{(k - j)!}\\
 G_{n + 1}(x) &amp;= G_n(x) A_n(x)\\
 A_n(x) &amp;= \sum_{k\geq 0} \frac{x^k}{k!} \sum_{i = 0}^n i^k\\
 &amp;= \sum_{i = 0}^n e^{ix}\\
@@ -1140,9 +1180,13 @@ A_n(x) &amp;= \sum_{k\geq 0} \frac{x^k}{k!} \sum_{i = 0}^n i^k\\
 G_n(x) &amp;= \prod_{k = 1}^n\frac{1 - e^{kx}}{1 - e^x}
 \end{aligned}
 \]</span></p>
-<p>结论是 <span class="math inline">\(\dfrac{g(n, k)}{n!}\)</span> 是关于 <span class="math inline">\(n\)</span> 的 <span class="math inline">\(2k\)</span> 次多项式，插值出这个多项式就行了。</p>
-<p>需要算大数阶乘 <span class="math inline">\(n!\)</span>，可以分段打表。</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span> </span>
+<p>结论是 <span class="math inline">\(\dfrac{g(n, k)}{n!}\)</span>
+是关于 <span class="math inline">\(n\)</span> 的 <span
+class="math inline">\(2k\)</span> 次多项式，插值出这个多项式就行了。</p>
+<p>需要算大数阶乘 <span
+class="math inline">\(n!\)</span>，可以分段打表。</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  init<span class="op">();</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  LL n<span class="op">,</span> k<span class="op">;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n <span class="op">&gt;&gt;</span> k<span class="op">;</span></span>
@@ -1202,9 +1246,17 @@ G_n(x) &amp;= \prod_{k = 1}^n\frac{1 - e^{kx}}{1 - e^x}
 <span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> ans <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
 <span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="upd-2022.05.11"><strong>UPD 2022.05.11</strong></h3>
-<p>反转了，上面这个做法实在是太菜了，令 <span class="math inline">\(F(x) = \dfrac{e^x-1}{x}\)</span>，则 <span class="math inline">\(\displaystyle{G(x) = n!\prod_{i=1}^n\frac{F(ix)}{F(x)}}\)</span>，先 <span class="math inline">\(\ln\)</span> 再 <span class="math inline">\(\exp\)</span> 即可，需要处理 <span class="math inline">\(n^i(i = 0, 1, \dots, k)\)</span> 的自然数幂和，用 <span class="math inline">\(e^{ax}\)</span> 等比数列求和即可。</p>
+<p>反转了，上面这个做法实在是太菜了，令 <span class="math inline">\(F(x)
+= \dfrac{e^x-1}{x}\)</span>，则 <span
+class="math inline">\(\displaystyle{G(x) =
+n!\prod_{i=1}^n\frac{F(ix)}{F(x)}}\)</span>，先 <span
+class="math inline">\(\ln\)</span> 再 <span
+class="math inline">\(\exp\)</span> 即可，需要处理 <span
+class="math inline">\(n^i(i = 0, 1, \dots, k)\)</span> 的自然数幂和，用
+<span class="math inline">\(e^{ax}\)</span> 等比数列求和即可。</p>
 <p>复杂度 <span class="math inline">\(O(k\log k)\)</span>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  init<span class="op">();</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  LL n<span class="op">;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> k<span class="op">;</span></span>
@@ -1238,15 +1290,30 @@ G_n(x) &amp;= \prod_{k = 1}^n\frac{1 - e^{kx}}{1 - e^x}
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="k1-kings-palace">K1 King’s Palace</h2>
 <blockquote>
-<p><span class="math inline">\(n\)</span> 个物品，每个物品可以染RGB三种颜色。有 <span class="math inline">\(m\)</span> 个限制，形如 <span class="math inline">\((a, x, b, y)\)</span>，表示第 <span class="math inline">\(a\)</span> 个物品的颜色是 <span class="math inline">\(x\)</span>，第 <span class="math inline">\(b\)</span> 个物品的颜色是 <span class="math inline">\(y\)</span> 的情况是不合法的。</p>
+<p><span class="math inline">\(n\)</span>
+个物品，每个物品可以染RGB三种颜色。有 <span
+class="math inline">\(m\)</span> 个限制，形如 <span
+class="math inline">\((a, x, b, y)\)</span>，表示第 <span
+class="math inline">\(a\)</span> 个物品的颜色是 <span
+class="math inline">\(x\)</span>，第 <span
+class="math inline">\(b\)</span> 个物品的颜色是 <span
+class="math inline">\(y\)</span> 的情况是不合法的。</p>
 <p>求合法染色方案数。</p>
-<p><span class="math inline">\(1 \leq n \leq 22, 1 \leq m \leq 9n(n-1)/2, 1 \leq a &lt; b \leq n\)</span>。</p>
+<p><span class="math inline">\(1 \leq n \leq 22, 1 \leq m \leq
+9n(n-1)/2, 1 \leq a &lt; b \leq n\)</span>。</p>
 </blockquote>
 <p>Meet in the middle.</p>
-<p>分成 <span class="math inline">\(t, n - t\)</span> 两个部分，对于跨两个部分的限制，将第 <span class="math inline">\(i\)</span> 个物品的第 <span class="math inline">\(j\)</span> 个颜色是否可以使用压成 <span class="math inline">\(3t\)</span> 位二进制，使用高维前缀和计算。</p>
+<p>分成 <span class="math inline">\(t, n - t\)</span>
+两个部分，对于跨两个部分的限制，将第 <span
+class="math inline">\(i\)</span> 个物品的第 <span
+class="math inline">\(j\)</span> 个颜色是否可以使用压成 <span
+class="math inline">\(3t\)</span> 位二进制，使用高维前缀和计算。</p>
 <p>取 <span class="math inline">\(t = 7\)</span> 可以通过。</p>
-<p>复杂度可以是 <span class="math inline">\(O(3^t + 3^{n - t} + (n - t)2^{3(n-t)})\)</span>，前半部分图方便随便写了，后半部分 <span class="math inline">\(3^{n-t}\)</span> 是关键。</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
+<p>复杂度可以是 <span class="math inline">\(O(3^t + 3^{n - t} + (n -
+t)2^{3(n-t)})\)</span>，前半部分图方便随便写了，后半部分 <span
+class="math inline">\(3^{n-t}\)</span> 是关键。</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n<span class="op">,</span> m<span class="op">;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n <span class="op">&gt;&gt;</span> m<span class="op">;</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> t <span class="op">=</span> <span class="bu">std::</span>min<span class="op">(</span>n<span class="op">,</span> <span class="dv">7</span><span class="op">);</span></span>
@@ -1337,17 +1404,22 @@ G_n(x) &amp;= \prod_{k = 1}^n\frac{1 - e^{kx}}{1 - e^x}
 <span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="m1-math-string">M1 Math String</h2>
 <blockquote>
-<p>求长度为 <span class="math inline">\(n\)</span> 的所有合法的只包含<code>+</code> <code>*</code>运算和数字 <span class="math inline">\(1 \dots 9\)</span> 的算术表达式的结果之和。</p>
+<p>求长度为 <span class="math inline">\(n\)</span>
+的所有合法的只包含<code>+</code> <code>*</code>运算和数字 <span
+class="math inline">\(1 \dots 9\)</span> 的算术表达式的结果之和。</p>
 <p><span class="math inline">\(1 \leq n \leq 10^{18}\)</span>。</p>
 </blockquote>
-<p>tourist 的方法是暴力搜出表达式的形状，后面再填数计算结果，这个大概是比 <span class="math inline">\(3^n\)</span> 小的。</p>
+<p>tourist
+的方法是暴力搜出表达式的形状，后面再填数计算结果，这个大概是比 <span
+class="math inline">\(3^n\)</span> 小的。</p>
 <p>算出 20 项之后直接 BM。</p>
 <p>递推式是6阶的。</p>
 <p>这个暴力是比较容易想的一个做法，但是为啥是 linear recurrence 呢。</p>
 <p>TG 老哥给出了生成函数的思路：</p>
 <p>纯数字的答案， <span class="math display">\[
 \begin{aligned}
-a_n &amp;= 9a_{n - 1} + (1 + 2 + \dots + 9) \times 10^{n-1}\times 9^{n-1}\\
+a_n &amp;= 9a_{n - 1} + (1 + 2 + \dots + 9) \times 10^{n-1}\times
+9^{n-1}\\
 A(x) &amp;= 9xA(x) + \frac{45x}{1 - 90x}\\
 A(x) &amp;= \frac{45x}{(1-90x)(1-9x)}
 \end{aligned}
@@ -1367,14 +1439,18 @@ C(x) &amp;= 9x + 9xC(x) + 18x^2C(x)\\
 C(x) &amp;= \frac{9x}{1 - 9x - 18x^2}
 \end{aligned}
 \]</span></p>
-<p>最终答案（没有+的表达式，在边上的表达式的贡献，在中间的表达式的贡献） <span class="math display">\[
+<p>最终答案（没有+的表达式，在边上的表达式的贡献，在中间的表达式的贡献）
+<span class="math display">\[
 \begin{aligned}
 F(x) &amp;= B(x) + 2B(x)xC(x) + B(x) x^2C(x)\\
 &amp;= B(x)(1 + xC(x))^2
 \end{aligned}
 \]</span></p>
-<p>综上所述， <span class="math inline">\(F(x) = \dfrac{P(x)}{Q(x)}\)</span> 且 <span class="math inline">\(P(x), Q(x)\)</span> 均为多项式，符合线性递归的形式。</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
+<p>综上所述， <span class="math inline">\(F(x) =
+\dfrac{P(x)}{Q(x)}\)</span> 且 <span class="math inline">\(P(x),
+Q(x)\)</span> 均为多项式，符合线性递归的形式。</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  Poly p <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> P <span class="op">-</span> <span class="dv">9</span><span class="op">,</span> P <span class="op">-</span> <span class="dv">9</span><span class="op">},</span> q <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> P <span class="op">-</span> <span class="dv">9</span><span class="op">,</span> P <span class="op">-</span> <span class="dv">18</span><span class="op">};</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> p <span class="op">*</span> p <span class="op">*</span> Poly<span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">45</span><span class="op">},</span> q <span class="op">=</span> q <span class="op">*</span> q <span class="op">*</span> Poly<span class="op">{</span><span class="dv">1</span><span class="op">,</span> P <span class="op">-</span> <span class="dv">99</span><span class="op">,</span> <span class="dv">765</span><span class="op">};</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  LL n<span class="op">;</span></span>

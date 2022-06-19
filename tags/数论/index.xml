@@ -15,9 +15,9 @@
       
       <guid>https://blog.asukakyle.top/post/min_25/</guid>
       <description>min_25 筛 约定
- \(\mathbf{P}\) 表示全体质数集合 \(p_i\) 表示第 \(i\) 个质数，特别地，\(p_0 =1\)。 \(\mathrm{lpf}_i\) 表示 \(i\)​ 的最小质因子。   计算数论函数 \(f(n)\)​​​​ 的前缀和，要求 \(f(p_i)\)​​​​ 是低阶多项式，且对于合数 \(n\)​​​​，\(f(n)\)​ 可以写成形如 \(f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)\)​​​​的式子，其中 \(A(p^e)\)​​​​ 可以快速求值或预处理。
+\(\mathbf{P}\) 表示全体质数集合 \(p_i\) 表示第 \(i\) 个质数，特别地，\(p_0 =1\)。 \(\mathrm{lpf}_i\) 表示 \(i\)​ 的最小质因子。 计算数论函数 \(f(n)\)​​​​ 的前缀和，要求 \(f(p_i)\)​​​​ 是低阶多项式，且对于合数 \(n\)​​​​，\(f(n)\)​ 可以写成形如 \(f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)\)​​​​的式子，其中 \(A(p^e)\)​​​​ 可以快速求值或预处理。
 当 \(f(n)\)​ 是积性函数时，\(A(p^e) = f(p^e), B(n) = f(n)\)​。
- Part. 1 令 \[ g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\ \mathrm{lpf}_j &amp;gt; p_i] \] 直观地，\(g_k(n, i)\) 表示埃式筛第 \(i\) 轮后剩余 \(n\) 以内的数的 \(k\) 次方之和。 \[ g_k(n, i) = \begin{cases} g_k(n, i - 1), &amp;amp; p_i^2 &amp;gt; n\\ g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp;amp; p_i^2 \leq n \end{cases} \] 直观地，考虑埃式筛第 \(i\) 轮：</description>
+Part. 1 令 \[ g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\ \mathrm{lpf}_j &amp;gt; p_i] \] 直观地，\(g_k(n, i)\) 表示埃式筛第 \(i\) 轮后剩余 \(n\) 以内的数的 \(k\) 次方之和。 \[ g_k(n, i) = \begin{cases} g_k(n, i - 1), &amp;amp; p_i^2 &amp;gt; n\\ g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp;amp; p_i^2 \leq n \end{cases} \] 直观地，考虑埃式筛第 \(i\) 轮：</description>
     </item>
     
     <item>
@@ -26,10 +26,10 @@
       <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102441/</guid>
-      <description>总览   题号 A B C D E F G H I J K    完成情况 1 0 1 1 1 1 1 1 1 1 0    A. Template for Search  给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
+      <description>总览 题号 A B C D E F G H I J K 完成情况 1 0 1 1 1 1 1 1 1 1 0 A. Template for Search 给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
 \(1 \leq |s| \leq 500\)。
- 设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
- \(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段  B.</description>
+设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
+\(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段 B. Redistribution of Digits C. Partial Sums \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]</description>
     </item>
     
     <item>
@@ -38,8 +38,8 @@
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
-      <description>1 欧几里得算法  欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
- 不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
+      <description>1 欧几里得算法 欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
+不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
 一方面，设 \(d_1\) 为 \(a, b\) 的一个公约数，则 \[ \begin{aligned} a &amp;amp;= k_ad_1\\ b &amp;amp;= k_bd_1\\ r &amp;amp;= a - kb\\ &amp;amp;= (k_a - kk_b)d_1 \end{aligned} \] 即 \(d_1\) 也是 \(r\) 的约数，\(b, r\) 的公约数。
 另一方面，设 \(d_2\) 为 \(b, r\) 的一个公约数，则 \[ \begin{aligned} b &amp;amp;= k&amp;#39;_bd_2\\ r &amp;amp;= k_r&amp;#39;d_2\\ a &amp;amp;= kb + r\\ &amp;amp;= (kk&amp;#39;_b + k_r&amp;#39;)d_2 \end{aligned} \] 即 \(d_2\) 也是 \(a\) 的约数，\(a, b\) 的公约数。</description>
     </item>

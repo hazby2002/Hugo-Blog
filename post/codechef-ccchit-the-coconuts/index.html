@@ -410,22 +410,42 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <blockquote>
-<p>题意： <span class="math inline">\(N\)</span> 个椰子, 第 <span class="math inline">\(i\)</span> 个需要敲 <span class="math inline">\(a_i\)</span> 下才能打开，问最坏情况下最少要敲多少下才能打开 <span class="math inline">\(k\)</span> 个椰子。</p>
+<p>题意： <span class="math inline">\(N\)</span> 个椰子, 第 <span
+class="math inline">\(i\)</span> 个需要敲 <span
+class="math inline">\(a_i\)</span>
+下才能打开，问最坏情况下最少要敲多少下才能打开 <span
+class="math inline">\(k\)</span> 个椰子。</p>
 </blockquote>
 <p>不妨设 <span class="math inline">\(a_i \le a_{i + 1}\)</span>。</p>
 <p>要敲开一个椰子，现在有两种方法：</p>
 <ol type="1">
-<li>随便拿起一个椰子不停地敲，最多要 <span class="math inline">\(a_n\)</span> 次。</li>
-<li>有目的性地想要敲开某个椰子 <span class="math inline">\(a_i\)</span>，可以发现最优的策略就是每个椰子都敲 <span class="math inline">\(a_i\)</span> 次，最多要敲 <span class="math inline">\(a_i\times(n - i + 1)\)</span> 次，所有情况下取最小值。</li>
+<li>随便拿起一个椰子不停地敲，最多要 <span
+class="math inline">\(a_n\)</span> 次。</li>
+<li>有目的性地想要敲开某个椰子 <span
+class="math inline">\(a_i\)</span>，可以发现最优的策略就是每个椰子都敲
+<span class="math inline">\(a_i\)</span> 次，最多要敲 <span
+class="math inline">\(a_i\times(n - i + 1)\)</span>
+次，所有情况下取最小值。</li>
 </ol>
 <p>第二种情况实际上包含了第一种。</p>
-<p>那么要敲开 <span class="math inline">\(k\)</span> 个椰子，也有两种方法：</p>
+<p>那么要敲开 <span class="math inline">\(k\)</span>
+个椰子，也有两种方法：</p>
 <ol type="1">
-<li>每次都随便拿一个敲开，最多要 <span class="math inline">\(a_n + a_{n - 1}+ \dots + a_{n - k + 1}\)</span> 次。</li>
-<li>选 <span class="math inline">\(k\)</span> 个椰子 <span class="math inline">\(a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &lt; b_{i + 1})\)</span>，有目的性地敲开它们。发现最优策略下最多要敲 <span class="math inline">\(\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)\)</span> 次，其中 <span class="math inline">\(a_{b_0} = 0\)</span>，所有情况下取最小值。</li>
+<li>每次都随便拿一个敲开，最多要 <span class="math inline">\(a_n + a_{n
+- 1}+ \dots + a_{n - k + 1}\)</span> 次。</li>
+<li>选 <span class="math inline">\(k\)</span> 个椰子 <span
+class="math inline">\(a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &lt; b_{i +
+1})\)</span>，有目的性地敲开它们。发现最优策略下最多要敲 <span
+class="math inline">\(\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n -
+b_i + 1)\)</span> 次，其中 <span class="math inline">\(a_{b_0} =
+0\)</span>，所有情况下取最小值。</li>
 </ol>
 <p>第二种情况也包含了第一种。</p>
-<p>因此考虑第二种情况的求解，设 <span class="math inline">\(dp[i][k]\)</span> 表示前 <span class="math inline">\(i\)</span> 个椰子敲开 <span class="math inline">\(k\)</span> 个（包括第 <span class="math inline">\(i\)</span> 个椰子）的最少次数。</p>
+<p>因此考虑第二种情况的求解，设 <span
+class="math inline">\(dp[i][k]\)</span> 表示前 <span
+class="math inline">\(i\)</span> 个椰子敲开 <span
+class="math inline">\(k\)</span> 个（包括第 <span
+class="math inline">\(i\)</span> 个椰子）的最少次数。</p>
 <p><span class="math display">\[
 dp[i][k] = \min\{dp[j][k - 1] + (a_i - a_j) \times (n - i + 1)\}
 \]</span></p>
@@ -433,8 +453,12 @@ dp[i][k] = \min\{dp[j][k - 1] + (a_i - a_j) \times (n - i + 1)\}
 <p><span class="math display">\[
 dp[i] = \min\{a_j \times (i - n - 1) + dp[j]\} + a_i \times (n - i + 1)
 \]</span></p>
-<p>设直线 <span class="math inline">\(L_j(x) = a_j \cdot x + dp[j]\)</span>，求 <span class="math inline">\(\min L_j(i - n - 1)\)</span>，斜率和横坐标都是递增的，可以用栈维护一个上凸壳，复杂度 <span class="math inline">\(O(nk + n\log n)\)</span>。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<p>设直线 <span class="math inline">\(L_j(x) = a_j \cdot x +
+dp[j]\)</span>，求 <span class="math inline">\(\min L_j(i - n -
+1)\)</span>，斜率和横坐标都是递增的，可以用栈维护一个上凸壳，复杂度
+<span class="math inline">\(O(nk + n\log n)\)</span>。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef LOCAL</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>args<span class="op">...)</span><span class="pp"> </span><span class="bu">std::</span>cerr<span class="op"> &lt;&lt;</span><span class="pp"> </span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span><span class="pp"> </span><span class="op">&lt;&lt;</span><span class="pp"> #</span>args<span class="pp"> </span><span class="op">&lt;&lt;</span><span class="pp"> </span><span class="st">&quot; -&gt; &quot;</span><span class="op">,</span><span class="pp"> </span>err<span class="op">(</span>args<span class="op">)</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>

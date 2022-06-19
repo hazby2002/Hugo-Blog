@@ -14,7 +14,7 @@
       <pubDate>Sun, 29 Aug 2021 14:20:06 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/notes/</guid>
-      <description> 慎用无符号整数。注意 0 - 1 = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。 关于模板的整理：  需要在保证正确性的同时，做好代码长度和效率的平衡。 不能为短而短，刻意压行。 一些常用的操作都尽量封装。  对于 \(INF\)（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 \(X + INF = INF\) 之类的情况。在进行 \(INF\) 之间的比较时，如果前面图方便，计算时会出现 \(X + INF\) 这样的数，这里就要注意诸如 \(X + INF \leq INF\) 的比较。（问题出现于决策单调性优化） 计算几何随机旋转可以避免很多小错误。 (CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用 std::map&amp;lt;int, Info&amp;gt;，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写。每次进行区间染色 \([l, r)\) 的时候，先把 \(l, r\) 两点加入map，然后就可以直接循环删除中间的，然后处理修改。 思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。 非旋转 Treap 的 merge 是有返回值的，内部实现时的 x-&amp;gt;rs = merge(x-&amp;gt;rs, y) 不要把前面的 x-&amp;gt;rs = 漏掉。 有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。 让new变得cache友好，直接把全局的 operator new 重载：  void *operator new(size_t n) {  static char *l, *r   if (r &amp;lt; l + n) {  static constexpr int L = 1 &amp;lt;&amp;lt; 24;  l = (char *)malloc(L), r = l + L;  }  return r -= n; }  next  </description>
+      <description> 慎用无符号整数。注意 0 - 1 = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。 关于模板的整理： 需要在保证正确性的同时，做好代码长度和效率的平衡。 不能为短而短，刻意压行。 一些常用的操作都尽量封装。 对于 \(INF\)（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 \(X + INF = INF\) 之类的情况。在进行 \(INF\) 之间的比较时，如果前面图方便，计算时会出现 \(X + INF\) 这样的数，这里就要注意诸如 \(X + INF \leq INF\) 的比较。（问题出现于决策单调性优化） 计算几何随机旋转可以避免很多小错误。 (CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用 std::map&amp;lt;int, Info&amp;gt;，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写。每次进行区间染色 \([l, r)\) 的时候，先把 \(l, r\) 两点加入map，然后就可以直接循环删除中间的，然后处理修改。 思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。 非旋转 Treap 的 merge 是有返回值的，内部实现时的 x-&amp;gt;rs = merge(x-&amp;gt;rs, y) 不要把前面的 x-&amp;gt;rs = 漏掉。 有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。 让new变得cache友好，直接把全局的 operator new 重载： void *operator new(size_t n) { static char *l, *r if (r &amp;lt; l + n) { static constexpr int L = 1 &amp;lt;&amp;lt; 24; l = (char *)malloc(L), r = l + L; } return r -= n; } next </description>
     </item>
     
     <item>
@@ -25,7 +25,7 @@
       <guid>https://blog.asukakyle.top/post/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%9D%BF%E5%AD%90%E4%BF%AE%E8%AE%A2%E8%AE%B0%E5%BD%95/</guid>
       <description>日志 2021/12/3 进行了结构性调整，且增加了一些不常用内容，修改了一些细节上的写法，因此不在原文修改，旧版附在最后。
 2021/12/19 弃用原模板，保留一部分在不常用里面，其他删除。
-TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(998244353), G(3), L(1 &amp;lt;&amp;lt; 18); inline void inc(int &amp;amp;x, int y) {  x += y;  if (x &amp;gt;= P) x -= P; } inline void dec(int &amp;amp;x, int y) {  x -= y;  if (x &amp;lt; 0) x += P; } inline int mod(LL x) { return x % P; } int fpow(int x, int k = P - 2) {  int r = 1;  for (; k; k &amp;gt;&amp;gt;= 1, x = 1LL * x * x % P) {  if (k &amp;amp; 1) r = 1LL * r * x % P;  }  return r; } int w[L], fac[L], ifac[L], inv[L], _ = [] {  w[L / 2] = 1;  for (int i = L / 2 + 1, x = fpow(G, (P - 1) / L); i &amp;lt; L; i++) w[i] = 1LL * w[i - 1] * x % P;  for (int i = L / 2 - 1; i &amp;gt;= 0; i--) w[i] = w[i &amp;lt;&amp;lt; 1];    fac[0] = 1;  for (int i = 1; i &amp;lt; L; i++) fac[i] = 1LL * fac[i - 1] * i % P;  ifac[L - 1] = fpow(fac[L - 1]);  for (int i = L - 1; i; i--) {  ifac[i - 1] = 1LL * ifac[i] * i % P;  inv[i] = 1LL * ifac[i] * fac[i - 1] % P;  }  return 0; }(); void dft(int *a, int n) {  assert((n &amp;amp; n - 1) == 0);  for (int k = n &amp;gt;&amp;gt; 1; k; k &amp;gt;&amp;gt;= 1) {  for (int i = 0; i &amp;lt; n; i += k &amp;lt;&amp;lt; 1) {  for (int j = 0; j &amp;lt; k; j++) {  int &amp;amp;x = a[i + j], y = a[i + j + k];  a[i + j + k] = 1LL * (x - y + P) * w[k + j] % P;  inc(x, y);  }  }  } } void idft(int *a, int n) {  assert((n &amp;amp; n - 1) == 0);  for (int k = 1; k &amp;lt; n; k &amp;lt;&amp;lt;= 1) {  for (int i = 0; i &amp;lt; n; i += k &amp;lt;&amp;lt; 1) {  for (int j = 0; j &amp;lt; k; j++) {  int x = a[i + j], y = 1LL * a[i + j + k] * w[k + j] % P;  a[i + j + k] = x - y &amp;lt; 0 ?</description>
+TODO 多项式GCD 多项式复合 多项式复合逆 Poly constexpr int P(998244353), G(3), L(1 &amp;lt;&amp;lt; 18); inline void inc(int &amp;amp;x, int y) { x += y; if (x &amp;gt;= P) x -= P; } inline void dec(int &amp;amp;x, int y) { x -= y; if (x &amp;lt; 0) x += P; } inline int mod(LL x) { return x % P; } int fpow(int x, int k = P - 2) { int r = 1; for (; k; k &amp;gt;&amp;gt;= 1, x = 1LL * x * x % P) { if (k &amp;amp; 1) r = 1LL * r * x % P; } return r; } int w[L], fac[L], ifac[L], inv[L], _ = [] { w[L / 2] = 1; for (int i = L / 2 + 1, x = fpow(G, (P - 1) / L); i &amp;lt; L; i++) w[i] = 1LL * w[i - 1] * x % P; for (int i = L / 2 - 1; i &amp;gt;= 0; i--) w[i] = w[i &amp;lt;&amp;lt; 1]; fac[0] = 1; for (int i = 1; i &amp;lt; L; i++) fac[i] = 1LL * fac[i - 1] * i % P; ifac[L - 1] = fpow(fac[L - 1]); for (int i = L - 1; i; i--) { ifac[i - 1] = 1LL * ifac[i] * i % P; inv[i] = 1LL * ifac[i] * fac[i - 1] % P; } return 0; }(); void dft(int *a, int n) { assert((n &amp;amp; n - 1) == 0); for (int k = n &amp;gt;&amp;gt; 1; k; k &amp;gt;&amp;gt;= 1) { for (int i = 0; i &amp;lt; n; i += k &amp;lt;&amp;lt; 1) { for (int j = 0; j &amp;lt; k; j++) { int &amp;amp;x = a[i + j], y = a[i + j + k]; a[i + j + k] = 1LL * (x - y + P) * w[k + j] % P; inc(x, y); } } } } void idft(int *a, int n) { assert((n &amp;amp; n - 1) == 0); for (int k = 1; k &amp;lt; n; k &amp;lt;&amp;lt;= 1) { for (int i = 0; i &amp;lt; n; i += k &amp;lt;&amp;lt; 1) { for (int j = 0; j &amp;lt; k; j++) { int x = a[i + j], y = 1LL * a[i + j + k] * w[k + j] % P; a[i + j + k] = x - y &amp;lt; 0 ?</description>
     </item>
     
     <item>
@@ -36,8 +36,8 @@ TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(9982
       <guid>https://blog.asukakyle.top/post/emacs/</guid>
       <description>以下 C 代表 Ctrl，M 代表 Alt，S 代表 Shift。
 例如 C-x C-f 表示 Ctrl+x Ctrl+f，visit new file，访问文件，如果文件不存在则创建新的。
- C-x C-f：访问文件 C-x C-s：保存 C-x C-c：关闭emacs C-x C-z：最小化emacs C-x h：全选 C-x C-p：全选 C-x 1：关闭其他window C-x 2：向下分裂window C-x 3：向右分裂window C-x 0：关闭当前window C-x o：切换window C-x k：关闭buffer M-x shell：打开shell M-! 即 M-S-1 或 ESC !：shell-command M-%：替换 C-s：向下查找 C-r：向上查找 C-a：移动到行首 C-e：移动到行尾 C-k：剪切当前行光标后的内容 C-S-Backspace：删除当前行 C-w：剪切 M-w：复制 C-y：粘贴 C-/：撤销(undo)  CUA-Keys（在options菜单里）开启的情况下：
- C-x：剪切 C-c：复制 C-v：粘贴 C-z：撤销(undo)  想要撤销(redo)上次撤销(undo)操作，可以在上次 C-/(C-z) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 C-/(C-z)。</description>
+C-x C-f：访问文件 C-x C-s：保存 C-x C-c：关闭emacs C-x C-z：最小化emacs C-x h：全选 C-x C-p：全选 C-x 1：关闭其他window C-x 2：向下分裂window C-x 3：向右分裂window C-x 0：关闭当前window C-x o：切换window C-x k：关闭buffer M-x shell：打开shell M-! 即 M-S-1 或 ESC !：shell-command M-%：替换 C-s：向下查找 C-r：向上查找 C-a：移动到行首 C-e：移动到行尾 C-k：剪切当前行光标后的内容 C-S-Backspace：删除当前行 C-w：剪切 M-w：复制 C-y：粘贴 C-/：撤销(undo) CUA-Keys（在options菜单里）开启的情况下：
+C-x：剪切 C-c：复制 C-v：粘贴 C-z：撤销(undo) 想要撤销(redo)上次撤销(undo)操作，可以在上次 C-/(C-z) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 C-/(C-z)。</description>
     </item>
     
     <item>
@@ -49,8 +49,8 @@ TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(9982
       <description>前言 本文写于 2021-12-02 14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。
 今天想起，需要重新整理好二叉（半）在线卷积的模板，这个东西在考场上还是很有用的。
 相关题目：
- ABC230H  半在线卷积  设 \(H = FG\)。其中 \(G\) 的系数事先给出，\(F\) 的系数从低次到高次在线地给出，每次给出 \(F\) 的 \(x^i\) 系数后，你需要在线地计算 \(H\) 的 \(x^i\) 系数。
- 考虑分治，将区间 \([l, r)\) 分为 \(T\) 段，每段长度为 \(B = 2^k\)。 \[ [l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r) \] 要分别计算对于 \(0 \leq i &amp;lt; j &amp;lt; T\), \(F[m_i, m_{i+1})\) 对于 \(H[m_j, m_{j+1})\) 的贡献，其中 \(A[l,r)\) 表示多项式 \(A(x)\) 在 \(x^l, x^{l+1}, \dots, x^{r-1}\) 处的系数。
+ABC230H 半在线卷积 设 \(H = FG\)。其中 \(G\) 的系数事先给出，\(F\) 的系数从低次到高次在线地给出，每次给出 \(F\) 的 \(x^i\) 系数后，你需要在线地计算 \(H\) 的 \(x^i\) 系数。
+考虑分治，将区间 \([l, r)\) 分为 \(T\) 段，每段长度为 \(B = 2^k\)。 \[ [l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r) \] 要分别计算对于 \(0 \leq i &amp;lt; j &amp;lt; T\), \(F[m_i, m_{i+1})\) 对于 \(H[m_j, m_{j+1})\) 的贡献，其中 \(A[l,r)\) 表示多项式 \(A(x)\) 在 \(x^l, x^{l+1}, \dots, x^{r-1}\) 处的系数。
 显然 \(F[m_i, m_{i+1})\) 要乘上 \(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)。</description>
     </item>
     
@@ -61,14 +61,15 @@ TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(9982
       
       <guid>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</guid>
       <description>传送门
- 给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
+给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
 答案对 \(998244353\) 取模。
 \(1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351\)。
- 考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
+考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
 这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。
 这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。
 求单个的四元组，可以发现就是要求 \(\sum_{i=0}^{a_j} p^ii^k\)。
-对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。</description>
+对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。
+本文主要参考 EI 的评论 以及下面 ecnerwala 的解读。</description>
     </item>
     
     <item>
@@ -95,7 +96,7 @@ TODO  多项式GCD 多项式复合 多项式复合逆  Poly constexpr int P(9982
 如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。
 所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link, cut, evert 之类的动态树操作罢了。
 考虑到 Top Tree 的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。
-Node *build(int l, int r) {  if (l &amp;gt; r) return nullptr;  int m = l - 1, sum = 0, now = 0;  for (int i = l; i &amp;lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]];  while (now * 2 &amp;lt; sum &amp;amp;&amp;amp; m &amp;lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]];  Node *o = t + s[m];  o-&amp;gt;ls = build(l, m - 1), o-&amp;gt;rs = build(m + 1, r);  if (o-&amp;gt;ls) o-&amp;gt;ls-&amp;gt;fa = o;  if (o-&amp;gt;rs) o-&amp;gt;rs-&amp;gt;fa = o;  pushup(o);  return o; } </description>
+Node *build(int l, int r) { if (l &amp;gt; r) return nullptr; int m = l - 1, sum = 0, now = 0; for (int i = l; i &amp;lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]]; while (now * 2 &amp;lt; sum &amp;amp;&amp;amp; m &amp;lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]]; Node *o = t + s[m]; o-&amp;gt;ls = build(l, m - 1), o-&amp;gt;rs = build(m + 1, r); if (o-&amp;gt;ls) o-&amp;gt;ls-&amp;gt;fa = o; if (o-&amp;gt;rs) o-&amp;gt;rs-&amp;gt;fa = o; pushup(o); return o; } </description>
     </item>
     
     <item>
@@ -109,11 +110,11 @@ UPD. 2022.04.27
 发现很多以前写的懒得写题解，感觉又都不太会了，后面还是做一题写一题比较好。
 发现刷 Ynoi 收益很小，大部分时间只是在卡常。
 不过数据结构题写起来有意思，自己写起来乐在其中，可能刷 Ynoi 对于算法竞赛并没有什么用，更多只是自我满足罢了。
-P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), \(m\) 次询问区间逆序对。
+P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II 给定序列 \(a_n\), \(m\) 次询问区间逆序对。
 \(1 \leq n, m \leq 10^5, 1 \leq a_i \leq 10^9\)。
- 莫队二次离线。
+莫队二次离线。
 求前缀比它小/大的数的个数，用 \(O(\sqrt n)\) 修改，\(O(1)\) 查询的搞一下就行。
-#include &amp;lt;bits/stdc++.h&amp;gt;  constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry {  int l, r, id;  bool operator&amp;lt;(const Qry &amp;amp;rhs) const {  return l / T == rhs.</description>
+#include &amp;lt;bits/stdc++.h&amp;gt; constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry { int l, r, id; bool operator&amp;lt;(const Qry &amp;amp;rhs) const { return l / T == rhs.</description>
     </item>
     
     <item>
@@ -130,7 +131,7 @@ P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II  给定序列 \(a_n\), 
 然后就是解决 \([x^n]\dfrac{P(x)}{Q(x)}\) 的问题。
 使用 EI 提到的方法，考虑 \[ \frac{P(x)}{Q(x)} = \frac{P(x)Q(-x)}{Q(x)Q(-x)} \] 由于 \(Q(x)Q(-x) = Q(-x)Q(x)\)，所以它只有偶次项有值，设 \(U(x^2) = Q(x)Q(-x)\)， \[ \frac{P(x)}{Q(x)} = \frac{E(x^2)}{U(x^2)}+x\frac{O(x^2)}{U(x^2)} \] 只需要递归到一侧即可。
 朴素实现只需要写多项式乘法，优化的实现已经在多项式板子里。
-int divAt(Poly p, Poly q, LL n) {  for (; n; n &amp;gt;&amp;gt;= 1) {  Poly r(q);  for (int i = 1; i &amp;lt; r.</description>
+int divAt(Poly p, Poly q, LL n) { for (; n; n &amp;gt;&amp;gt;= 1) { Poly r(q); for (int i = 1; i &amp;lt; r.</description>
     </item>
     
     <item>
@@ -141,11 +142,12 @@ int divAt(Poly p, Poly q, LL n) {  for (; n; n &amp;gt;&amp;gt;= 1) {  Poly r(q)
       <guid>https://blog.asukakyle.top/post/2022ptzwinter/</guid>
       <description>Ptz camp 的部分题。
 题目是乱序的。
-E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \((n, m)\) 的最大路径和不超过 \(k\)。答案对 \(10^9 + 7\) 取模。
+E3 Mountains 求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \((n, m)\) 的最大路径和不超过 \(k\)。答案对 \(10^9 + 7\) 取模。
 \(1 \leq n, m, k \leq 100\)
- 最大路径和，有个经典DP。
+最大路径和，有个经典DP。
 \[ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \} \]
-由 \(a_{i, j} \geq 0\)，得到 \(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}\)。</description>
+由 \(a_{i, j} \geq 0\)，得到 \(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}\)。
+然后还有 \(dp_{n, m} \leq k\)。</description>
     </item>
     
     <item>
@@ -156,7 +158,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <guid>https://blog.asukakyle.top/post/agc036d-negative-cycle/</guid>
       <description>题意：\(n\) 个点的有向图，初始有边 \(i \to i + 1\)，边权为 0，不可删除。有边 \(i \to j(i \neq j)\)，边权为 \(\begin{cases}1, &amp;amp;i &amp;gt; j\\-1, &amp;amp;i&amp;lt;j\end{cases}\)，可删除，删除代价为 \(a_{i, j}\)，你需要删除一些边，使得这张图上没有负环，求最小代价。
 \(1 \leq n \leq 500\)
- 有向图上没有负环，则存在最短路，则差分约束有解。
+有向图上没有负环，则存在最短路，则差分约束有解。
 每个点设变量 \(x_i\)，那么一条 \(i \to j\) 边权为 \(w\) 的边就代表 \(x_j - x_i \leq w\)。
 所以初始 \(i \to i + 1\) 的边表示 \(x_i \geq x_{i+1}\)。
 设 \(d_i = x_{i-1} - x_i \geq 0\)。
@@ -169,7 +171,8 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Tue, 31 Aug 2021 09:15:07 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021ccpc%E7%BD%91%E7%BB%9C%E8%B5%9B/</guid>
-      <description>Pro. ID Problem Title Solved    7100 Cut The Wire （赛时）  7101 Time-division Multiplexing （赛时）  7102 Pattern Recognition （赛后）  7103 Depth First Search （赛后）  7104 Easy Math Problem （赛后）  7105 Power Sum （赛时）  7106 Function （赛时）  7107 GCD on Sequence （赛时）  7108 Command Sequence （赛时）  7109 Random Walk （赛后）  7110 Shooting Bricks （赛时）  7111 Remove （赛时）  7112 Start Dash !</description>
+      <description>Pro. ID Problem Title Solved 7100 Cut The Wire （赛时） 7101 Time-division Multiplexing （赛时） 7102 Pattern Recognition （赛后） 7103 Depth First Search （赛后） 7104 Easy Math Problem （赛后） 7105 Power Sum （赛时） 7106 Function （赛时） 7107 GCD on Sequence （赛时） 7108 Command Sequence （赛时） 7109 Random Walk （赛后） 7110 Shooting Bricks （赛时） 7111 Remove （赛时） 7112 Start Dash ! ! Cut The Wire Time-division Multiplexing 数据较水，1.1 倍过了。
+// Author: HolyK // Created: Sat Aug 28 13:37:05 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -187,7 +190,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Thu, 19 Aug 2021 17:31:49 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu10/</guid>
-      <description>题号 题目 完成情况    7077 Pty loves sequence   7078 Pty with card   7079 Pty loves lines 通过  7080 Pty hates prime numbers 通过  7081 Pty loves book   7082 Pty loves lcm   7083 Pty loves graph   7084 Pty loves string 通过  7085 Pty loves SegmentTree   7086 Pty plays game     Pty loves sequence Pty with card Pty loves lines #include &amp;lt;bits/stdc++.</description>
+      <description>题号 题目 完成情况 7077 Pty loves sequence 7078 Pty with card 7079 Pty loves lines 通过 7080 Pty hates prime numbers 通过 7081 Pty loves book 7082 Pty loves lcm 7083 Pty loves graph 7084 Pty loves string 通过 7085 Pty loves SegmentTree 7086 Pty plays game Pty loves sequence Pty with card Pty loves lines #include &amp;lt;bits/stdc++.h&amp;gt; struct Interval { int l, r; }; std::vector&amp;lt;Interval&amp;gt; f[705]; int a[705 * 705]; int main() { std::ios::sync_with_stdio(0); std::cin.</description>
     </item>
     
     <item>
@@ -196,7 +199,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Wed, 18 Aug 2021 22:13:07 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder10/</guid>
-      <description>题号 标题 团队的状态    A Browser Games 通过  B Child’s play 未通过  C Dance Party 未通过  D Diameter Counting 未通过  E More Fantastic Chess Problem 通过  F Train Wreck 通过  G Game of Death 通过  H War of Inazuma (Easy Version) 通过  I War of Inazuma (Hard Version) 未通过  J Illuminations 通过  K Walking 通过    Browser Games Child’s play Dance Party Diameter Counting More Fantastic Chess Problem // Author: HolyK // Created: Tue Aug 31 10:32:26 2021 #include &amp;lt;algorithm&amp;gt; #include &amp;lt;bits/stdc++.</description>
+      <description>题号 标题 团队的状态 A Browser Games 通过 B Child’s play 未通过 C Dance Party 未通过 D Diameter Counting 未通过 E More Fantastic Chess Problem 通过 F Train Wreck 通过 G Game of Death 通过 H War of Inazuma (Easy Version) 通过 I War of Inazuma (Hard Version) 未通过 J Illuminations 通过 K Walking 通过 Browser Games Child’s play Dance Party Diameter Counting More Fantastic Chess Problem // Author: HolyK // Created: Tue Aug 31 10:32:26 2021 #include &amp;lt;algorithm&amp;gt; #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -205,7 +208,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Tue, 17 Aug 2021 17:31:45 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu9/</guid>
-      <description>题号 题目 完成情况    7066 NJU emulator 通过  7067 Just another board game 通过  7068 Dota2 Pro Circuit 通过  7069 Into the woods   7070 Did I miss the lethal?   7071 Guess the weight 通过  7072 Boring data structure problem 通过  7073 Integers Have Friends 2.0 通过  7074 Little prince and the garden of roses   7075 Unfair contest 通过  7076 ZYB’s kingdom 通过    NJU emulator // Author: HolyK // Created: Tue Aug 17 16:06:20 2021 #include &amp;lt;bits/stdc++.</description>
+      <description>题号 题目 完成情况 7066 NJU emulator 通过 7067 Just another board game 通过 7068 Dota2 Pro Circuit 通过 7069 Into the woods 7070 Did I miss the lethal? 7071 Guess the weight 通过 7072 Boring data structure problem 通过 7073 Integers Have Friends 2.0 通过 7074 Little prince and the garden of roses 7075 Unfair contest 通过 7076 ZYB’s kingdom 通过 NJU emulator // Author: HolyK // Created: Tue Aug 17 16:06:20 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -226,8 +229,8 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Sat, 14 Aug 2021 18:36:09 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder9/</guid>
-      <description>题号 标题 团队的状态    A A Math Challenge 通过  B Best Subgraph 未通过  C Cells 通过  D Divide-and-conquer on Tree 未通过  E Eyjafjalla 通过  F Financial Order Execution 未通过  G Glass Balls 通过  H Happy Number 通过  I Incentive Model 通过  J Jam 通过    A Math Challenge LOJ138 + 自然数幂和。
-// Author: HolyK // Created: Sun Aug 15 21:59:21 2021 #include &amp;lt;bits/stdc++.</description>
+      <description>题号 标题 团队的状态 A A Math Challenge 通过 B Best Subgraph 未通过 C Cells 通过 D Divide-and-conquer on Tree 未通过 E Eyjafjalla 通过 F Financial Order Execution 未通过 G Glass Balls 通过 H Happy Number 通过 I Incentive Model 通过 J Jam 通过 A Math Challenge LOJ138 + 自然数幂和。
+// Author: HolyK // Created: Sun Aug 15 21:59:21 2021 #include &amp;lt;bits/stdc++.h&amp;gt; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -245,8 +248,8 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Thu, 12 Aug 2021 19:45:56 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu8/</guid>
-      <description>题号 题目 完成情况    7056 X-liked Counting 通过  7057 Buying Snacks 通过  7058 Ink on paper 通过  7059 Counting Stars 通过  7060 Separated Number 通过  7061 GCD Game 通过  7062 A Simple Problem 通过  7063 Square Card 通过  7064 Singing Superstar 通过  7065 Yinyang     X-liked Counting 直接记忆化搜索常数比较大，一部分用for循环代替。
-// Author: HolyK // Created: Fri Aug 13 16:54:31 2021 #include &amp;lt;bits/stdc++.</description>
+      <description>题号 题目 完成情况 7056 X-liked Counting 通过 7057 Buying Snacks 通过 7058 Ink on paper 通过 7059 Counting Stars 通过 7060 Separated Number 通过 7061 GCD Game 通过 7062 A Simple Problem 通过 7063 Square Card 通过 7064 Singing Superstar 通过 7065 Yinyang X-liked Counting 直接记忆化搜索常数比较大，一部分用for循环代替。
+// Author: HolyK // Created: Fri Aug 13 16:54:31 2021 #include &amp;lt;bits/stdc++.h&amp;gt; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -265,7 +268,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Sat, 07 Aug 2021 19:38:21 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder7/</guid>
-      <description>题号 标题 团队的状态    A xay loves connected graphs 通过  B xay loves monotonicity 通过  C xay loves jumping 未通过  D xay loves matrices 通过  E xay loves nim 通过  F xay loves trees 通过  G xay loves KDT 未通过  H xay loves count 通过  I xay loves or 通过  J xay loves Floyd 通过  K xay loves sequence 通过    xay loves connected graphs // Author: HolyK // Created: Sun Aug 8 18:17:17 2021 #include &amp;lt;bits/stdc++.</description>
+      <description>题号 标题 团队的状态 A xay loves connected graphs 通过 B xay loves monotonicity 通过 C xay loves jumping 未通过 D xay loves matrices 通过 E xay loves nim 通过 F xay loves trees 通过 G xay loves KDT 未通过 H xay loves count 通过 I xay loves or 通过 J xay loves Floyd 通过 K xay loves sequence 通过 xay loves connected graphs // Author: HolyK // Created: Sun Aug 8 18:17:17 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -275,9 +278,9 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       
       <guid>https://blog.asukakyle.top/post/min_25/</guid>
       <description>min_25 筛 约定
- \(\mathbf{P}\) 表示全体质数集合 \(p_i\) 表示第 \(i\) 个质数，特别地，\(p_0 =1\)。 \(\mathrm{lpf}_i\) 表示 \(i\)​ 的最小质因子。   计算数论函数 \(f(n)\)​​​​ 的前缀和，要求 \(f(p_i)\)​​​​ 是低阶多项式，且对于合数 \(n\)​​​​，\(f(n)\)​ 可以写成形如 \(f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)\)​​​​的式子，其中 \(A(p^e)\)​​​​ 可以快速求值或预处理。
+\(\mathbf{P}\) 表示全体质数集合 \(p_i\) 表示第 \(i\) 个质数，特别地，\(p_0 =1\)。 \(\mathrm{lpf}_i\) 表示 \(i\)​ 的最小质因子。 计算数论函数 \(f(n)\)​​​​ 的前缀和，要求 \(f(p_i)\)​​​​ 是低阶多项式，且对于合数 \(n\)​​​​，\(f(n)\)​ 可以写成形如 \(f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)\)​​​​的式子，其中 \(A(p^e)\)​​​​ 可以快速求值或预处理。
 当 \(f(n)\)​ 是积性函数时，\(A(p^e) = f(p^e), B(n) = f(n)\)​。
- Part. 1 令 \[ g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\ \mathrm{lpf}_j &amp;gt; p_i] \] 直观地，\(g_k(n, i)\) 表示埃式筛第 \(i\) 轮后剩余 \(n\) 以内的数的 \(k\) 次方之和。 \[ g_k(n, i) = \begin{cases} g_k(n, i - 1), &amp;amp; p_i^2 &amp;gt; n\\ g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp;amp; p_i^2 \leq n \end{cases} \] 直观地，考虑埃式筛第 \(i\) 轮：</description>
+Part. 1 令 \[ g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\ \mathrm{lpf}_j &amp;gt; p_i] \] 直观地，\(g_k(n, i)\) 表示埃式筛第 \(i\) 轮后剩余 \(n\) 以内的数的 \(k\) 次方之和。 \[ g_k(n, i) = \begin{cases} g_k(n, i - 1), &amp;amp; p_i^2 &amp;gt; n\\ g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp;amp; p_i^2 \leq n \end{cases} \] 直观地，考虑埃式筛第 \(i\) 轮：</description>
     </item>
     
     <item>
@@ -286,7 +289,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Sat, 07 Aug 2021 09:53:25 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder6/</guid>
-      <description>题号 标题 团队的状态    A Contracting Convex Hull 未通过  B Defend Ponyville 通过  C Delete Edges 通过  D Gambling Monster 通过  E Growing Tree 通过  F Hamburger Steak 通过  G Hasse Diagram 通过  H Hopping Rabbit 通过  I Intervals on the Ring 通过  J Defend Your Country 通过  K Starch Cat 通过    Contracting Convex Hull Defend Ponyville // Author: HolyK // Created: Fri Aug 13 20:54:58 2021 #include &amp;lt;bits/stdc++.</description>
+      <description>题号 标题 团队的状态 A Contracting Convex Hull 未通过 B Defend Ponyville 通过 C Delete Edges 通过 D Gambling Monster 通过 E Growing Tree 通过 F Hamburger Steak 通过 G Hasse Diagram 通过 H Hopping Rabbit 通过 I Intervals on the Ring 通过 J Defend Your Country 通过 K Starch Cat 通过 Contracting Convex Hull Defend Ponyville // Author: HolyK // Created: Fri Aug 13 20:54:58 2021 #include &amp;lt;bits/stdc++.h&amp;gt; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -295,7 +298,8 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Thu, 05 Aug 2021 20:42:30 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu6/</guid>
-      <description>题号 题目 完成情况    7025 Yes, Prime Minister 通过  7026 Might and Magic   7027 0 tree 通过  7028 Decomposition   7029 Median 通过  7030 The Struggle   7031 Power Station of Art   7032 Command and Conquer: Red Alert 2   7033 Typing Contest   7034 Array   7035 Game     Yes, Prime Minister Might and Magic 凸函数的和仍是凸函数。</description>
+      <description>题号 题目 完成情况 7025 Yes, Prime Minister 通过 7026 Might and Magic 7027 0 tree 通过 7028 Decomposition 7029 Median 通过 7030 The Struggle 7031 Power Station of Art 7032 Command and Conquer: Red Alert 2 7033 Typing Contest 7034 Array 7035 Game Yes, Prime Minister Might and Magic 凸函数的和仍是凸函数。
+// Author: HolyK // Created: Thu Aug 5 20:56:29 2021 #include &amp;lt;bits/stdc++.h&amp;gt; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -304,7 +308,8 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Wed, 04 Aug 2021 12:03:49 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu5/</guid>
-      <description>题号 题目 完成情况    7012 Miserable Faith 通过  7013 String Mod 通过  7014 VC Is All You Need 通过  7015 Another String   7016 Random Walk 2 通过  7017 Cute Tree 通过  7018 Banzhuan 通过  7019 Supermarket   7020 Array 通过  7021 Guess Or Not 2   7022 Jsljgame   7023 Yet Another Matrix Problem   7024 Penguin Love Tour 通过    Miserable Faith LCT 裸题。</description>
+      <description>题号 题目 完成情况 7012 Miserable Faith 通过 7013 String Mod 通过 7014 VC Is All You Need 通过 7015 Another String 7016 Random Walk 2 通过 7017 Cute Tree 通过 7018 Banzhuan 通过 7019 Supermarket 7020 Array 通过 7021 Guess Or Not 2 7022 Jsljgame 7023 Yet Another Matrix Problem 7024 Penguin Love Tour 通过 Miserable Faith LCT 裸题。
+#include &amp;lt;bits/stdc++.h&amp;gt; using LL = long long; constexpr int N(1e5 + 5); std::vector&amp;lt;int&amp;gt; g[N]; struct Node { int ch[2], fa, siz, top; } t[N]; int n, m, in[N], out[N], cnt, dep[N], f[18][N]; int lca(int x, int y) { if (dep[x] &amp;lt; dep[y]) std::swap(x, y); for (int i = 0; dep[x] !</description>
     </item>
     
     <item>
@@ -313,7 +318,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Sat, 31 Jul 2021 11:28:53 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder3/</guid>
-      <description>题号 标题 团队的状态    A Guess and lies 通过  B Black and white 通过  C Minimum grid 通过  D Count 通过  E Math 通过  F 24dian 通过  G Yu Ling(Ling YueZheng) and Colorful Tree 通过  H Ling Qiu, Luna and Triple Backpack 未通过  I Kuriyama Mirai and Exclusive Or 通过  J Counting Triangles 通过    Guess and lies Black and white Minimum grid Count Math 24dian Yu Ling(Ling YueZheng) and Colorful Tree  一棵 \(n\) 个点的树，1 是根。\(q\) 次操作：</description>
+      <description>题号 标题 团队的状态 A Guess and lies 通过 B Black and white 通过 C Minimum grid 通过 D Count 通过 E Math 通过 F 24dian 通过 G Yu Ling(Ling YueZheng) and Colorful Tree 通过 H Ling Qiu, Luna and Triple Backpack 未通过 I Kuriyama Mirai and Exclusive Or 通过 J Counting Triangles 通过 Guess and lies Black and white Minimum grid Count Math 24dian Yu Ling(Ling YueZheng) and Colorful Tree 一棵 \(n\) 个点的树，1 是根。\(q\) 次操作：</description>
     </item>
     
     <item>
@@ -345,7 +350,8 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Thu, 29 Jul 2021 18:01:33 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu4/</guid>
-      <description>总览   题号 题目 完成情况    6985 Calculus 通过  6986 Kanade Loves Maze Designing 通过  6987 Cycle Binary   6988 Display Substring 通过  6989 Didn’t I Say to Make My Abilities Average in the Next Life?! 通过  6990 Directed Minimum Spanning Tree   6991 Increasing Subsequence 通过  6992 Lawn of the Dead 通过  6993 License Plate Recognition 通过  6994 Pony Running   6995 Travel on Tree 通过    Calculus 签到题，常数不是 0 的都不收敛。</description>
+      <description>总览 题号 题目 完成情况 6985 Calculus 通过 6986 Kanade Loves Maze Designing 通过 6987 Cycle Binary 6988 Display Substring 通过 6989 Didn’t I Say to Make My Abilities Average in the Next Life?! 通过 6990 Directed Minimum Spanning Tree 6991 Increasing Subsequence 通过 6992 Lawn of the Dead 通过 6993 License Plate Recognition 通过 6994 Pony Running 6995 Travel on Tree 通过 Calculus 签到题，常数不是 0 的都不收敛。
+// Author: HolyK // Created: Thu Jul 29 12:12:45 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -354,7 +360,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Tue, 27 Jul 2021 20:39:53 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu3/</guid>
-      <description>题号 题目 完成情况    6973 Bookshop 通过  6974 Destinations 通过  6975 Forgiving Matching 通过  6976 Game on Plane 通过  6977 Kart Race 通过  6978 New Equipments II   6979 Photoshop Layers 通过  6980 Restore Atlantis II   6981 Rise in Price 通过  6982 Road Discount 通过  6983 Segment Tree with Pruning 通过  6984 Tree Planting     Bookshop  给定一棵树，每个点有个权值 \(w_i\)，\(m\) 次询问，给出 \(x, y, z\)，表示从 \(x\) 走到 \(y\)，每经过一个点 \(i\)，如果 \(z \geq w_i\) 则 \(z -= w_i\)，最终 \(z\) 是多少。</description>
+      <description>题号 题目 完成情况 6973 Bookshop 通过 6974 Destinations 通过 6975 Forgiving Matching 通过 6976 Game on Plane 通过 6977 Kart Race 通过 6978 New Equipments II 6979 Photoshop Layers 通过 6980 Restore Atlantis II 6981 Rise in Price 通过 6982 Road Discount 通过 6983 Segment Tree with Pruning 通过 6984 Tree Planting Bookshop 给定一棵树，每个点有个权值 \(w_i\)，\(m\) 次询问，给出 \(x, y, z\)，表示从 \(x\) 走到 \(y\)，每经过一个点 \(i\)，如果 \(z \geq w_i\) 则 \(z -= w_i\)，最终 \(z\) 是多少。</description>
     </item>
     
     <item>
@@ -363,7 +369,8 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Thu, 22 Jul 2021 18:50:15 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu2/</guid>
-      <description>总览   题号 题目 完成情况    6961 I love cube 通过  6962 I love tree 通过  6963 I love playing games   6964 I love counting 通过  6965 I love string 通过  6966 I love sequences   6967 I love data structure 通过  6968 I love exam 通过  6969 I love triples 通过  6970 I love permutation   6971 I love max and multiply 通过    I love cube 队友切了</description>
+      <description>总览 题号 题目 完成情况 6961 I love cube 通过 6962 I love tree 通过 6963 I love playing games 6964 I love counting 通过 6965 I love string 通过 6966 I love sequences 6967 I love data structure 通过 6968 I love exam 通过 6969 I love triples 通过 6970 I love permutation 6971 I love max and multiply 通过 I love cube 队友切了
+I love tree 树链依次加 \(1^2, 2^2, 3^2, \dots\)，单点询问。\(10^5\)。</description>
     </item>
     
     <item>
@@ -372,7 +379,9 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Wed, 21 Jul 2021 13:31:31 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder2/</guid>
-      <description>总览   题号 标题 团队的状态    A Arithmetic Progression 通过  B Cannon 通过  C Draw Grids 通过  D Er Ba Game 通过  E Gas Station 通过  F Girlfriend 通过  G League of Legends 通过  H Olefin 未通过  I Penguins 通过  J Product of GCDs 通过  K Stack 通过  L WeChat Walk 通过    Arithmetic Progression  给定每个元素互不相同的序列 \(a_n\)，求排序后能构成等差数列的区间个数。</description>
+      <description>总览 题号 标题 团队的状态 A Arithmetic Progression 通过 B Cannon 通过 C Draw Grids 通过 D Er Ba Game 通过 E Gas Station 通过 F Girlfriend 通过 G League of Legends 通过 H Olefin 未通过 I Penguins 通过 J Product of GCDs 通过 K Stack 通过 L WeChat Walk 通过 Arithmetic Progression 给定每个元素互不相同的序列 \(a_n\)，求排序后能构成等差数列的区间个数。
+\(1 \leq n \leq 10^5, 1 \leq a_i \leq 10^9\)
+结论：对于元素互不相同的序列 \(b_n\)，其排序后是公差为 \(d\) 等差数列的充要条件是 \(d=\gcd(|b_2-b_1|,|b_3-b_2|,\dots)\) 且 \(\max b_i - \min b_i = (n-1)d\)。</description>
     </item>
     
     <item>
@@ -381,7 +390,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Tue, 20 Jul 2021 18:31:28 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder1/</guid>
-      <description>  题号 标题 团队的状态    A Alice and Bob 通过  B Ball Dropping 通过  C Cut the Tree 通过  D Determine the Photo Position 通过  E Escape along Water Pipe 通过  F Find 3-friendly Integers 通过  G Game of Swapping Numbers 通过  H Hash Function 通过  I Increasing Subsequence 通过  J Journey among Railway Stations 通过  K Knowledge Test about Match 通过    Alice and Bob Ball Dropping Cut the Tree Determine the Photo Position Escape along Water Pipe Find 3-friendly Integers Game of Swapping Numbers Hash Function Increasing Subsequence Journey among Railway Stations Knowledge Test about Match </description>
+      <description> 题号 标题 团队的状态 A Alice and Bob 通过 B Ball Dropping 通过 C Cut the Tree 通过 D Determine the Photo Position 通过 E Escape along Water Pipe 通过 F Find 3-friendly Integers 通过 G Game of Swapping Numbers 通过 H Hash Function 通过 I Increasing Subsequence 通过 J Journey among Railway Stations 通过 K Knowledge Test about Match 通过 Alice and Bob Ball Dropping Cut the Tree Determine the Photo Position Escape along Water Pipe Find 3-friendly Integers Game of Swapping Numbers Hash Function Increasing Subsequence Journey among Railway Stations Knowledge Test about Match </description>
     </item>
     
     <item>
@@ -390,7 +399,8 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
       <pubDate>Tue, 20 Jul 2021 18:20:13 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021hdu1/</guid>
-      <description>题号 题目 完成情况    6950 Mod, Or and Everything 通过  6951 Rocket land 通过  6952 Puzzle loop 通过  6953 Another thief in a Shop   6954 Minimum spanning tree 通过  6955 Xor sum 通过  6956 Pass! 通过  6957 Maximal submatrix 通过  6958 KD-Graph 通过  6959 zoto 通过  6960 Necklace of Beads     Mod, Or and Everything 队友切了。</description>
+      <description>题号 题目 完成情况 6950 Mod, Or and Everything 通过 6951 Rocket land 通过 6952 Puzzle loop 通过 6953 Another thief in a Shop 6954 Minimum spanning tree 通过 6955 Xor sum 通过 6956 Pass! 通过 6957 Maximal submatrix 通过 6958 KD-Graph 通过 6959 zoto 通过 6960 Necklace of Beads Mod, Or and Everything 队友切了。
+Rocket land // Author: HolyK // Created: Tue Aug 31 16:33:34 2021 #include &amp;lt;algorithm&amp;gt; #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -406,7 +416,7 @@ E3 Mountains  求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \
 有两个根，奇根1 和 偶根0，fa[0] = 1, len[1] = -1。
 常用的构造方法是均摊 \(O(n)\) 的，证明很简单，略。
 代码：
-char s[N], *now = s; std::array&amp;lt;int, 26&amp;gt; ch[N]; int fa[N], len[N], cnt, dep[N]; int jmp(int x) {  for (; now[~len[x]] != *now; x = fa[x]) ;  return x;  } int ins(int x) {  static int p, q;  now++;  if (!ch[p = jmp(p)][x]) {  len[q = ++cnt] = len[p] + 2;  fa[q] = ch[jmp(fa[p])][x];  ch[p][x] = q;  dep[q] = dep[fa[q]] + 1;  }  return p = ch[p][x]; } int main() {  std::ios::sync_with_stdio(false);  std::cin.</description>
+char s[N], *now = s; std::array&amp;lt;int, 26&amp;gt; ch[N]; int fa[N], len[N], cnt, dep[N]; int jmp(int x) { for (; now[~len[x]] != *now; x = fa[x]) ; return x; } int ins(int x) { static int p, q; now++; if (!ch[p = jmp(p)][x]) { len[q = ++cnt] = len[p] + 2; fa[q] = ch[jmp(fa[p])][x]; ch[p][x] = q; dep[q] = dep[fa[q]] + 1; } return p = ch[p][x]; } int main() { std::ios::sync_with_stdio(false); std::cin.</description>
     </item>
     
     <item>
@@ -416,17 +426,17 @@ char s[N], *now = s; std::array&amp;lt;int, 26&amp;gt; ch[N]; int fa[N], len[N],
       
       <guid>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F/</guid>
       <description>莫队二次离线 从 \([x, y]\) 移动到 \([l, r]\)。
- \(x \to l\)
+\(x \to l\)
 查询 \(a_i\) 在区间 \([i+1, y]\) 的贡献，拆成两个前缀 \(i, y\)，预处理 \(a_{i-1}\) 对前缀 \(i-1\) 的贡献，设贡献的前缀和为 \(pre_1[i]\)。
 \(x&amp;lt;l\)
 删除 \(a_{x} \dots a_{l-1}\)。
 减前缀 \(y\) 的贡献、加前缀 \(i\) 的贡献。
 离线 \(\{y, x, l-1,-1\}, \Delta ans= pre_1[l] - pre_1[x]\)。
- \(x&amp;gt;l\)
+\(x&amp;gt;l\)
 加入 \(a_l\dots a_{x-1}\)。
 加前缀 \(y\) 的贡献、减前缀 \(i\) 的贡献。
 离线 \(\{y, l, x-1,+1\}, \Delta ans= pre_1[l] - pre_1[x]\)。
-  \(y\to r\)
+\(y\to r\)
 查询 \(a_i\) 在区间 \([x, i-1]\) 的贡献，拆成两个前缀 \(x-1, i-1\)，预处理 \(a_{i}\) 对前缀 \(i-1\) 的贡献，设贡献的前缀和为 \(pre_2[i]\)。</description>
     </item>
     
@@ -438,12 +448,12 @@ char s[N], *now = s; std::array&amp;lt;int, 26&amp;gt; ch[N]; int fa[N], len[N],
       <guid>https://blog.asukakyle.top/post/uoj91%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C/</guid>
       <description>有一个数列 \(a_1,a_2,\dots,a_n\)，每个 \(a_i\) 都是小于 \(2^m\) 的非负整数。
 现在需要实现三种操作，格式说明如下：
- 1 x y w：对于所有 \(x≤i≤y\)，将 \(a_i\) 修改为 \(a_i\oplus w\)。其中 \(w\) 是一个小于 \(2^m\) 的非负整数。 2 x y w：对于所有 \(x≤i≤y\)，将 \(a_i\) 修改为 \(w\)。其中 \(w\) 是一个小于 \(2^m\) 的非负整数。 3：从 \(a_1,a_2,⋯,a_n\) 中选出若干个数，使得选出的数异或和最大。请输出这个最大值。  这里 \(\oplus\) 表示按位异或运算，\(x_1,x_2,⋯,x_l\) 的异或和是指 \(x_1\oplus x_2\oplus \cdots\oplus x_l\)。
+1 x y w：对于所有 \(x≤i≤y\)，将 \(a_i\) 修改为 \(a_i\oplus w\)。其中 \(w\) 是一个小于 \(2^m\) 的非负整数。 2 x y w：对于所有 \(x≤i≤y\)，将 \(a_i\) 修改为 \(w\)。其中 \(w\) 是一个小于 \(2^m\) 的非负整数。 3：从 \(a_1,a_2,⋯,a_n\) 中选出若干个数，使得选出的数异或和最大。请输出这个最大值。 这里 \(\oplus\) 表示按位异或运算，\(x_1,x_2,⋯,x_l\) 的异或和是指 \(x_1\oplus x_2\oplus \cdots\oplus x_l\)。
 \(n,m,q≤2000\)。
- 将原序列差分，线性基不变。
+将原序列差分，线性基不变。
 然后每次操作就是单点插入和删除，下面给出两种可删除线性基的写法。
 离线 记录存活时间，贪心。
-using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int&amp;gt;; PBI base[2000]; void ins(PBI x) {  for (int i = 1999; i &amp;gt;= 0; i--) {  if (!</description>
+using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int&amp;gt;; PBI base[2000]; void ins(PBI x) { for (int i = 1999; i &amp;gt;= 0; i--) { if (!</description>
     </item>
     
     <item>
@@ -456,7 +466,7 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
 你现在要在这里进行随机游走，其中，每一轮向上、下、左、右的概率分别为 \(u\%,d\%,l\%,r\%\)，如果移动后超过方格表或到达墙，则这次移动失效，保持原地不动。
 当你到达终点时，游戏就结束了。现在，在方格表第一行的所有空地中均匀随机一个作为起点，求你就进入每个终点的概率。
 \(1≤w≤20, 2≤h≤10000\)。
- 设其中一个终点为 \(t\)，\(f_{i, j}\) 表示 \((i, j)\) 走到 \(t\) 的概率。 \[ f_{i, j} = uf_{i-1, j}+df_{i+1, j}+lf_{i, j-1}+rf_{i, j+1} \]
+设其中一个终点为 \(t\)，\(f_{i, j}\) 表示 \((i, j)\) 走到 \(t\) 的概率。 \[ f_{i, j} = uf_{i-1, j}+df_{i+1, j}+lf_{i, j-1}+rf_{i, j+1} \]
 \[ f_{i, j} - uf_{i-1, j} - df_{i+1, j} - lf_{i, j-1} - rf_{i, j+1}=0 \]
 \[ f_t=1 \]
 \[ P\cdot\mathbf{f}=\mathbf{e} \]
@@ -471,11 +481,11 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
       <guid>https://blog.asukakyle.top/post/cf938g/</guid>
       <description>给定一个带权无向图，实现三种操作：加边，删边，询问两点间的异或最短路。
 \(n, m, q \leq 2\times 10^5\)。
- 类似最大 xor 和路径，用线性基可以求解异或最短路。
+类似最大 xor 和路径，用线性基可以求解异或最短路。
 因为线性基删除很麻烦，所以直接离线用线段树分治。
 图可能不连通，需要用并查集维护连通性，然后记录每个点到当前根的异或和 \(d_x\)。
 加边时设 \(val = d_x\oplus d_y \oplus w\)，如果 \(x, y\) 已经联通则将 \(val\) 加入当前联通块的线性基，如果不在一个并查集，连接两个根，边权为 \(val\)。
-#include &amp;lt;bits/stdc++.h&amp;gt; #define perr(a...)fprintf(stderr,a) #define dbg(a...)perr(&amp;quot;\033[32;1m&amp;quot;),perr(a),perr(&amp;quot;\033[0m&amp;quot;) template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) {  return y &amp;lt; x ? x = y, 1 : 0; } template &amp;lt;class T, class U&amp;gt; inline bool smax(T &amp;amp;x, const U &amp;amp;y) {  return x &amp;lt; y ?</description>
+#include &amp;lt;bits/stdc++.h&amp;gt; #define perr(a...) fprintf(stderr, a) #define dbg(a...) perr(&amp;quot;\033[32;1m&amp;quot;), perr(a), perr(&amp;quot;\033[0m&amp;quot;) template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ? x = y, 1 : 0; } template &amp;lt;class T, class U&amp;gt; inline bool smax(T &amp;amp;x, const U &amp;amp;y) { return x &amp;lt; y ?</description>
     </item>
     
     <item>
@@ -484,7 +494,8 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
       <pubDate>Thu, 15 Apr 2021 09:03:20 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102994/</guid>
-      <description>总览   题号 A B C D E F G H I J K L M    完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0    A. Everyone Loves Playing Games  A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。</description>
+      <description>总览 题号 A B C D E F G H I J K L M 完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0 A. Everyone Loves Playing Games A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。
+\(N, M \leq 10000, 0 \leq x \leq 10^{18}\)。</description>
     </item>
     
     <item>
@@ -493,10 +504,10 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
       <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102441/</guid>
-      <description>总览   题号 A B C D E F G H I J K    完成情况 1 0 1 1 1 1 1 1 1 1 0    A. Template for Search  给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
+      <description>总览 题号 A B C D E F G H I J K 完成情况 1 0 1 1 1 1 1 1 1 1 0 A. Template for Search 给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
 \(1 \leq |s| \leq 500\)。
- 设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
- \(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段  B.</description>
+设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
+\(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段 B. Redistribution of Digits C. Partial Sums \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]</description>
     </item>
     
     <item>
@@ -508,12 +519,12 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
       <description>给定两个串 \(s,t\) 整数 \(k\) ,你可以在 \(s\) 中取出任意的两个不相交的长度为 \(k\) 串，将它们按顺序拼在一起形成一个新串。
 求一种取串的方案使得 \(t\) 是新串的子串。
 \(|s|,|t| \leq 5 \times 10^5\)。
- kmp 算出正串和反串的能匹配 \(t\) 的前/后缀最大长度。
+kmp 算出正串和反串的能匹配 \(t\) 的前/后缀最大长度。
 设 \(s\) 串的前缀 \([pre_1 \dots pre_i]\) 能匹配 \(t\) 的前缀集合为 \(P\)，后缀 \([suf_{i+1},suf_n]\) 能匹配 \(t\) 的后缀集合为 \(Q\)，只要判断是否存在 \(x\in P,y\in Q,x, y\leq k,x+y=|s|\) 即可。
 类似 AC 自动机那样建出 fail 树，那么一个点能匹配的前缀长度集合就是在 fail 树上到根的路径，在正串 fail 树上维护集合 \(P\)，每次添加一个数 \(x\) 时，标记 \(k-x\) 对应在反串 fail 树上的点，每次查询反串 fail 树上一个点的祖先是否被标记。
 具体实现时，标记一个点可以用子树加一，查询的时候单点查询即可。
 复杂度 \(O(n \log n)\)。
-#include &amp;lt;bits/stdc++.h&amp;gt; #define dbg(.</description>
+#include &amp;lt;bits/stdc++.h&amp;gt; #define dbg(...) std::cerr &amp;lt;&amp;lt; &amp;quot;\033[32;1m&amp;quot;, fprintf(stderr, __VA_ARGS__), std::cerr &amp;lt;&amp;lt; &amp;quot;\033[0m&amp;quot; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -522,8 +533,8 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
-      <description>1 欧几里得算法  欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
- 不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
+      <description>1 欧几里得算法 欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
+不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
 一方面，设 \(d_1\) 为 \(a, b\) 的一个公约数，则 \[ \begin{aligned} a &amp;amp;= k_ad_1\\ b &amp;amp;= k_bd_1\\ r &amp;amp;= a - kb\\ &amp;amp;= (k_a - kk_b)d_1 \end{aligned} \] 即 \(d_1\) 也是 \(r\) 的约数，\(b, r\) 的公约数。
 另一方面，设 \(d_2\) 为 \(b, r\) 的一个公约数，则 \[ \begin{aligned} b &amp;amp;= k&amp;#39;_bd_2\\ r &amp;amp;= k_r&amp;#39;d_2\\ a &amp;amp;= kb + r\\ &amp;amp;= (kk&amp;#39;_b + k_r&amp;#39;)d_2 \end{aligned} \] 即 \(d_2\) 也是 \(a\) 的约数，\(a, b\) 的公约数。</description>
     </item>
@@ -536,7 +547,7 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
       <guid>https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
       <description>给定一棵 \(n\) 个点的无根树，每条边都有标记0或1。现在有 \(m\) 次操作，每次操作将第 \(id\) 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。
 \(n,m \leq 5 \times 10^5\)。
- 动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
+动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
 容易写出转移（\(val_y\) 表示 \(y\) 的父边的权值）： \[ \begin{aligned} dp&amp;#39;[x][0] &amp;amp;= \max\{dp[x][0], dp[y][val_y] + 1\}\\ dp&amp;#39;[x][1] &amp;amp;= \max\{dp[x][1], dp[y][val_y \oplus 1] + 1\}\\ dp&amp;#39;[x][2] &amp;amp;= \max\{dp[x][0] + dp[y][val_y] + 1, dp[x][1] + dp[y][val_y \oplus 1] + 1, dp[x][2],dp[y][2]\} \end{aligned} \] 改写成 \(x\) 从重儿子 \(y\) 转移的矩阵（这里以 \(val_y = 0\) 为例）： \[ \begin{bmatrix} dp&amp;#39;[x][0]\\ dp&amp;#39;[x][1]\\ dp&amp;#39;[x][2]\\ 0 \end{bmatrix} = \begin{bmatrix} 1 &amp;amp; -\infty &amp;amp; -\infty &amp;amp; dp[x][0]\\ -\infty &amp;amp; 1 &amp;amp; -\infty &amp;amp; dp[x][1]\\ dp[x][0] + 1 &amp;amp; dp[x][1] + 1 &amp;amp; 0 &amp;amp; dp[x][2]\\ -\infty &amp;amp; -\infty &amp;amp; -\infty &amp;amp; 0 \end{bmatrix} \begin{bmatrix} dp[y][0]\\ dp[y][1]\\ dp[y][2]\\ 0 \end{bmatrix} \] 上面的 \(dp[x]\) 是指排除掉 \(x\) 重儿子的答案，\(dp&amp;#39;[x]\) 是指完整的 \(x\) 的答案。</description>
     </item>
     
@@ -547,11 +558,11 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
       
       <guid>https://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/</guid>
       <description>题意： \(N\) 个椰子, 第 \(i\) 个需要敲 \(a_i\) 下才能打开，问最坏情况下最少要敲多少下才能打开 \(k\) 个椰子。
- 不妨设 \(a_i \le a_{i + 1}\)。
+不妨设 \(a_i \le a_{i + 1}\)。
 要敲开一个椰子，现在有两种方法：
-随便拿起一个椰子不停地敲，最多要 \(a_n\) 次。 有目的性地想要敲开某个椰子 \(a_i\)，可以发现最优的策略就是每个椰子都敲 \(a_i\) 次，最多要敲 \(a_i\times(n - i + 1)\) 次，所有情况下取最小值。  第二种情况实际上包含了第一种。
+随便拿起一个椰子不停地敲，最多要 \(a_n\) 次。 有目的性地想要敲开某个椰子 \(a_i\)，可以发现最优的策略就是每个椰子都敲 \(a_i\) 次，最多要敲 \(a_i\times(n - i + 1)\) 次，所有情况下取最小值。 第二种情况实际上包含了第一种。
 那么要敲开 \(k\) 个椰子，也有两种方法：
-每次都随便拿一个敲开，最多要 \(a_n + a_{n - 1}+ \dots + a_{n - k + 1}\) 次。 选 \(k\) 个椰子 \(a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &amp;lt; b_{i + 1})\)，有目的性地敲开它们。发现最优策略下最多要敲 \(\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)\) 次，其中 \(a_{b_0} = 0\)，所有情况下取最小值。  第二种情况也包含了第一种。</description>
+每次都随便拿一个敲开，最多要 \(a_n + a_{n - 1}+ \dots + a_{n - k + 1}\) 次。 选 \(k\) 个椰子 \(a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &amp;lt; b_{i + 1})\)，有目的性地敲开它们。发现最优策略下最多要敲 \(\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)\) 次，其中 \(a_{b_0} = 0\)，所有情况下取最小值。 第二种情况也包含了第一种。</description>
     </item>
     
     <item>
@@ -562,7 +573,7 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
       <guid>https://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</guid>
       <description>\(n\) 个人，每个人有个权值 \(a_i\)。进行 \(n\) 轮操作，每轮开枪杀死一个人，\(i\) 被杀死的概率 \(p_i=\dfrac{a_i}{\sum_{x\ is\ alive}a_x}\) ，求最后死的那个人是 \(1\) 的概率。答案对 \(998244353\) 取模。
 \(a_i &amp;gt; 0, 1 \le \sum a_i \le 10^5\)。
- 设 \(s = \sum_{i=1}^na_i,w=\sum_{x\ is\ alive}a_x\)，那么有 \[ \begin{aligned} p_i &amp;amp;= \frac{a_i}{w}\\ \frac wsp_i &amp;amp;= \frac {a_i}{s}\\ p_i &amp;amp;= \frac {a_i}{s} + \frac{s - w}s p_i \end{aligned} \] 最后的这个式子可以理解为，每次开枪的目标是所有活人和死人，如果打到活人就会杀死他，如果打到死人不算，重打。
+设 \(s = \sum_{i=1}^na_i,w=\sum_{x\ is\ alive}a_x\)，那么有 \[ \begin{aligned} p_i &amp;amp;= \frac{a_i}{w}\\ \frac wsp_i &amp;amp;= \frac {a_i}{s}\\ p_i &amp;amp;= \frac {a_i}{s} + \frac{s - w}s p_i \end{aligned} \] 最后的这个式子可以理解为，每次开枪的目标是所有活人和死人，如果打到活人就会杀死他，如果打到死人不算，重打。
 这样变成进行无限轮，每轮的目标都是所有人，打到某个人的概率更容易表示。
 然后考虑容斥，设 \(A = \{ a_2, a_3, \dots, a_n \}\)， \(1\) 在第 \(r\) 轮被打死，且至少有 \(k\) 个人在 \(1\) 之后被打死。 \[ \begin{aligned} ans &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \sum_{r = 1}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r - 1} \cdot \frac{a_1}{s}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \sum_{r = 0}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \frac{1}{1 - \dfrac{s - a_1 - \sum_{i \in S} a_i}{s}}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{a_1 + \sum_{i \in S} a_i}\\ &amp;amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times \sum_{S \subseteq A, \sum_{i \in S} a_i = k} (-1)^{|S|}\\ &amp;amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times [x^k] \prod_{i=2}^n(1 - x^{a_i}) \end{aligned} \] 分治求 \(\prod_{i=2}^n(1 - x^{a_i})\) 即可，复杂度 \(O(n \log n \log s)\) 。</description>
     </item>
@@ -578,7 +589,7 @@ using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int
 李超线段树就是支持 \(O(\log N)\) 插入直线和查询 \(\max{L_i(x)}\) 的数据结构。
 线段树的每个节点保存 \(L(mid)\) 最大的那条直线。
 插入一条直线时，比较 \(L_{old}(mid)\) 和 \(L_{new}(mid)\)，较大者保留，较小者继续递归。
-constexpr int N(1e5 + 5); struct Line {  LL k, b;  LL f(int x) {  return k * x + b;  } } t[N &amp;lt;&amp;lt; 2]; #define ls o&amp;lt;&amp;lt;1 #define rs o&amp;lt;&amp;lt;1|1 void ins(int o, int l, int r, Line x) {  int m = l + r &amp;gt;&amp;gt; 1;  bool lv = x.</description>
+constexpr int N(1e5 + 5); struct Line { LL k, b; LL f(int x) { return k * x + b; } } t[N &amp;lt;&amp;lt; 2]; #define ls o &amp;lt;&amp;lt; 1 #define rs o &amp;lt;&amp;lt; 1 | 1 void ins(int o, int l, int r, Line x) { int m = l + r &amp;gt;&amp;gt; 1; bool lv = x.</description>
     </item>
     
     <item>
@@ -587,10 +598,11 @@ constexpr int N(1e5 + 5); struct Line {  LL k, b;  LL f(int x) {  return k * x +
       <pubDate>Thu, 18 Mar 2021 15:28:59 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/fft/</guid>
-      <description>Introduction  快速傅里叶变换(Fast Fourier Transform，FFT)是一种可在 \(O(n \log n)\) 时间内完成的离散傅里叶变换 (Discrete Fourier Transform，DFT) 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。
- FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
+      <description>Introduction 快速傅里叶变换(Fast Fourier Transform，FFT)是一种可在 \(O(n \log n)\) 时间内完成的离散傅里叶变换 (Discrete Fourier Transform，DFT) 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。
+FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
 多项式 形如 \[ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} \] 的式子称为 \(x\) 的 \(n - 1\) 次多项式，其中 \(a_0, a_1, \dots, a_{n - 1}\) 称为多项式系数，\(n-1\) 称为多项式的次数，记为 \(\deg A(x)\) 或 \(\deg A\)。
-点值 \(n - 1\) 次多项式 \(A(x)\) 在 \(x = m\) 处的点值 \[ A(m) = \sum_{k=0}^{n-1} a_km^k \]</description>
+点值 \(n - 1\) 次多项式 \(A(x)\) 在 \(x = m\) 处的点值 \[ A(m) = \sum_{k=0}^{n-1} a_km^k \]
+多项式乘法 记 \(A(x)\times B(x)\) 表示多项式 \(A(x), B(x)\) 做多项式乘法，可以简写为 \(A(x)\cdot B(x)\) 或 \(A(x)B(x)\)。</description>
     </item>
     
     <item>
@@ -602,7 +614,7 @@ constexpr int N(1e5 + 5); struct Line {  LL k, b;  LL f(int x) {  return k * x +
       <description>给定一个最初为空的数组，然后进行 \(n\) 次操作，每次操作给定 \(x,l,r,k\)，在数组末尾插入 \(x\) ，然后查询满足 \(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\) 的数对 \((i,j)\) 的个数，强制在线。
 \(mex(S)\) 表示集合 \(S\) 中最小的未出现的 自然数。
 \(n \leq 2 \times 10^5\)。
- 为表示方便，下面记 \(mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})\)。
+为表示方便，下面记 \(mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})\)。
 容易发现，如果向集合 \(S\) 中添加数，\(mex(S)\) 不会减小。
 所以如果固定右端点 \(j\)，\(mex(i, j)\) 是非严格单调减的；固定左端点 \(i\)，\(mex(i, j)\) 是非严格单调增的。
 维护一个 \(n \times n\) 矩阵，\(A[i][j] = mex(j, i)\)，则矩阵 \(A\) 的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。
@@ -616,12 +628,13 @@ constexpr int N(1e5 + 5); struct Line {  LL k, b;  LL f(int x) {  return k * x +
       
       <guid>https://blog.asukakyle.top/post/codeforces566c-logistical-questions/</guid>
       <description>一棵 \(n\) 个节点的树，点有点权，边有边权。求这棵树的一个点 \(r\) 使下面的式子最小： \[ \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32} \] \(n \le 2 \times 10^5, val_i, dist(u, v) \ge 0\)。
- 带权重心问题，有点妙。
+带权重心问题，有点妙。
 设 \[ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} \] 这里函数 \(f\) 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。
 下面研究这个函数的性质。
 树上的函数显然不太方便研究，所以考虑换一个 \(\mathbf R\) 上的函数研究。
 随便选择一条树上路径 \(u \rightarrow v\) 作为 \(x\) 轴，把 \(u\) 当作原点，这样 \(x\) 就是路径上的点到 \(u\) 的距离。
-这里以 \(0 \rightarrow 5\) 为例，节点 \(6 \dots 11\) 分别代表其父亲的一些子树。</description>
+这里以 \(0 \rightarrow 5\) 为例，节点 \(6 \dots 11\) 分别代表其父亲的一些子树。
+记 \(d_i = dist(i, 0)\)，路径上的点分别考虑贡献： \[ f_i(x) = \begin{cases} \sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32 &amp;amp; x \le d_i\\ \sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32 &amp;amp; x &amp;gt; d_i \end{cases}\\ f(x) = f_0(x) + f_1(x) + f_2(x) + f_3(x) + f_4(x) + f_5(x) \] 发现 \(f_i(x)\) 可以写成下面这种形式（其中 \(c_1-x \ge 0, c_2 + x \ge 0\)） \[ f_i(x) = \begin{cases} \sum v(c_1 - x)^\frac32 &amp;amp; x \le d_i\\ \sum v(c_2 + x)^\frac32 &amp;amp; x &amp;gt; d_i \end{cases} \]</description>
     </item>
     
   </channel>

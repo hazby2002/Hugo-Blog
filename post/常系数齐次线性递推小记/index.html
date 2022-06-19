@@ -509,23 +509,36 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <h2 id="常系数齐次线性递推">常系数齐次线性递推</h2>
-<p>对于 <span class="math inline">\(n \geq k\)</span>，<span class="math inline">\(\sum_{i=0}^kq_ia_{n-i}=0\)</span>，其中 <span class="math inline">\(q_0 \neq 0\)</span>。</p>
-<p>数列 <span class="math inline">\(a_n\)</span> 的生成函数为 <span class="math inline">\(A(x)\)</span>。</p>
-<p>上式左边看作卷积，右边看作生成函数 <span class="math inline">\(P(x)\)</span> 的 <span class="math inline">\(n \geq k\)</span> 时的系数。</p>
+<p>对于 <span class="math inline">\(n \geq k\)</span>，<span
+class="math inline">\(\sum_{i=0}^kq_ia_{n-i}=0\)</span>，其中 <span
+class="math inline">\(q_0 \neq 0\)</span>。</p>
+<p>数列 <span class="math inline">\(a_n\)</span> 的生成函数为 <span
+class="math inline">\(A(x)\)</span>。</p>
+<p>上式左边看作卷积，右边看作生成函数 <span
+class="math inline">\(P(x)\)</span> 的 <span class="math inline">\(n
+\geq k\)</span> 时的系数。</p>
 <p><span class="math display">\[
 Q(x)A(x) = P(x)
 \]</span> <span class="math display">\[
 A(x) = \frac{P(x)}{Q(x)}
 \]</span></p>
-<p><span class="math inline">\(P(x)\)</span> 为 <span class="math inline">\(k-1\)</span> 次多项式，<span class="math inline">\(Q(x)\)</span> 为 <span class="math inline">\(k\)</span> 次多项式。</p>
-<p>然后就是解决 <span class="math inline">\([x^n]\dfrac{P(x)}{Q(x)}\)</span> 的问题。</p>
+<p><span class="math inline">\(P(x)\)</span> 为 <span
+class="math inline">\(k-1\)</span> 次多项式，<span
+class="math inline">\(Q(x)\)</span> 为 <span
+class="math inline">\(k\)</span> 次多项式。</p>
+<p>然后就是解决 <span
+class="math inline">\([x^n]\dfrac{P(x)}{Q(x)}\)</span> 的问题。</p>
 <p>使用 EI 提到的方法，考虑 <span class="math display">\[
 \frac{P(x)}{Q(x)} = \frac{P(x)Q(-x)}{Q(x)Q(-x)}
-\]</span> 由于 <span class="math inline">\(Q(x)Q(-x) = Q(-x)Q(x)\)</span>，所以它只有偶次项有值，设 <span class="math inline">\(U(x^2) = Q(x)Q(-x)\)</span>， <span class="math display">\[
+\]</span> 由于 <span class="math inline">\(Q(x)Q(-x) =
+Q(-x)Q(x)\)</span>，所以它只有偶次项有值，设 <span
+class="math inline">\(U(x^2) = Q(x)Q(-x)\)</span>， <span
+class="math display">\[
 \frac{P(x)}{Q(x)} = \frac{E(x^2)}{U(x^2)}+x\frac{O(x^2)}{U(x^2)}
 \]</span> 只需要递归到一侧即可。</p>
 <p>朴素实现只需要写多项式乘法，优化的实现已经在多项式板子里。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> divAt<span class="op">(</span>Poly p<span class="op">,</span> Poly q<span class="op">,</span> LL n<span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> divAt<span class="op">(</span>Poly p<span class="op">,</span> Poly q<span class="op">,</span> LL n<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(;</span> n<span class="op">;</span> n <span class="op">&gt;&gt;=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    Poly r<span class="op">(</span>q<span class="op">);</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> r<span class="op">.</span>size<span class="op">();</span> i <span class="op">+=</span> <span class="dv">2</span><span class="op">)</span> r<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> P <span class="op">-</span> r<span class="op">[</span>i<span class="op">];</span></span>
@@ -538,7 +551,8 @@ A(x) = \frac{P(x)}{Q(x)}
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="berlekamp-massey-算法">Berlekamp Massey 算法</h2>
 <p>懒得学，直接拖 tourist 的板子。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span>T<span class="op">&gt;</span> bm<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span>T<span class="op">&gt;</span> a<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>T<span class="op">&gt;</span> p <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">},</span> q <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">};</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> l <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>

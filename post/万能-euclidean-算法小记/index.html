@@ -515,35 +515,69 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <p><span class="math display">\[
 F(P, R, Q, N, X, Y) = \prod_{i = 0}^N \left(Y^{f(i) - f(i-1)}X\right)
 \]</span></p>
-<p>其中 <span class="math inline">\(f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0\)</span>​。<span class="math inline">\(X, Y\)</span> <del>为操作序列，有乘法结合律，类比矩阵</del> <span class="math inline">\(\in\)</span> <strong>半群</strong> <span class="math inline">\((S, \times)\)</span>。</p>
-<p>若 <span class="math inline">\(R \geq Q\)</span>​，则 <span class="math inline">\(f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor + \lfloor\dfrac{R}{Q}\rfloor\)</span>​，所以 <span class="math display">\[
-F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q, N, X, Y)
+<p>其中 <span class="math inline">\(f(i) = \lfloor
+\dfrac{Pi+R}{Q}\rfloor, f(-1) = 0\)</span>​。<span
+class="math inline">\(X, Y\)</span>
+<del>为操作序列，有乘法结合律，类比矩阵</del> <span
+class="math inline">\(\in\)</span> <strong>半群</strong> <span
+class="math inline">\((S, \times)\)</span>。</p>
+<p>若 <span class="math inline">\(R \geq Q\)</span>​，则 <span
+class="math inline">\(f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor +
+\lfloor\dfrac{R}{Q}\rfloor\)</span>​，所以 <span class="math display">\[
+F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q,
+N, X, Y)
 \]</span></p>
-<p>若 <span class="math inline">\(P \geq Q\)</span>​，则 <span class="math inline">\(f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor + \lfloor\dfrac{P}{Q}\rfloor i\)</span>​，记 <span class="math inline">\(f&#39;(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor\)</span>​ <span class="math display">\[
+<p>若 <span class="math inline">\(P \geq Q\)</span>​，则 <span
+class="math inline">\(f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor +
+\lfloor\dfrac{P}{Q}\rfloor i\)</span>​，记 <span
+class="math inline">\(f&#39;(i)= \lfloor \dfrac{(P \bmod
+Q)i+R}{Q}\rfloor\)</span>​ <span class="math display">\[
 \begin{aligned}
-F(P, R, Q, N, X, Y) 
-&amp;= X\prod_{i = 1}^N Y^{f&#39;(i) - f&#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\
-&amp;= X\prod_{i = 0}^{N - 1} Y^{f&#39;(i+1) - f&#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\
-&amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1, Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y)
+F(P, R, Q, N, X, Y)
+&amp;= X\prod_{i = 1}^N Y^{f&#39;(i) -
+f&#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\
+&amp;= X\prod_{i = 0}^{N - 1} Y^{f&#39;(i+1) -
+f&#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\
+&amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1,
+Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y)
 \end{aligned}
-\]</span> 若 <span class="math inline">\(P &lt; Q\)</span>，考虑交换 <span class="math inline">\(X, Y\)</span>。</p>
-<p>第 <span class="math inline">\(i\)</span> 个 <span class="math inline">\(X\)</span> 前有 <span class="math inline">\(f(i)\)</span> 个 <span class="math inline">\(Y\)</span>，设第 <span class="math inline">\(i\)</span> 个 <span class="math inline">\(Y\)</span> 前有 <span class="math inline">\(g(i)\)</span> 个 <span class="math inline">\(X\)</span>， <span class="math display">\[
+\]</span> 若 <span class="math inline">\(P &lt; Q\)</span>，考虑交换
+<span class="math inline">\(X, Y\)</span>。</p>
+<p>第 <span class="math inline">\(i\)</span> 个 <span
+class="math inline">\(X\)</span> 前有 <span
+class="math inline">\(f(i)\)</span> 个 <span
+class="math inline">\(Y\)</span>，设第 <span
+class="math inline">\(i\)</span> 个 <span
+class="math inline">\(Y\)</span> 前有 <span
+class="math inline">\(g(i)\)</span> 个 <span
+class="math inline">\(X\)</span>， <span class="math display">\[
 \begin{aligned}
 g(i)
 &amp;= \sum_{j \geq 0} [f(j) &lt; i+1]\\
-&amp;= \sum_{j \geq 0} \left[\lfloor \frac{Pj+R}{Q}\rfloor &lt; i+1\right]\\
+&amp;= \sum_{j \geq 0} \left[\lfloor \frac{Pj+R}{Q}\rfloor &lt;
+i+1\right]\\
 &amp;= \sum_{j \geq 0} \left[ Pj+R\ &lt; Qi+Q\right]\\
-&amp;= \sum_{j \geq 0} \left[j &lt; \lfloor \frac{Qi + Q-R + P - 1}{P} \rfloor\right]\\
+&amp;= \sum_{j \geq 0} \left[j &lt; \lfloor \frac{Qi + Q-R + P - 1}{P}
+\rfloor\right]\\
 &amp;= \lfloor \frac{Qi + Q-R + P - 1}{P} \rfloor
 \end{aligned}
-\]</span> 但是末尾还有一些 <span class="math inline">\(X\)</span>​ 后面没有 <span class="math inline">\(Y\)</span>​，需要单独拿出来 <span class="math inline">\(X^{N+1 - \max g(i)}\)</span>。​​</p>
+\]</span> 但是末尾还有一些 <span class="math inline">\(X\)</span>​
+后面没有 <span class="math inline">\(Y\)</span>​，需要单独拿出来 <span
+class="math inline">\(X^{N+1 - \max g(i)}\)</span>。​​</p>
 <p>于是 <span class="math display">\[
-F(P, R, Q, N, X, Y) = F(Q, Q - R + P - 1, P, \lfloor \frac{PN + R}{Q} \rfloor-1, Y, X)X^{N+1 - \max g(i)}
+F(P, R, Q, N, X, Y) = F(Q, Q - R + P - 1, P, \lfloor \frac{PN + R}{Q}
+\rfloor-1, Y, X)X^{N+1 - \max g(i)}
 \]</span></p>
-<p>复杂度为 <span class="math inline">\(O(T(S) \log N\log \min\{p, q\})\)</span>，<span class="math inline">\(T(S)\)</span> 为 <span class="math inline">\(S\)</span> 上的乘法复杂度。</p>
+<p>复杂度为 <span class="math inline">\(O(T(S) \log N\log \min\{p,
+q\})\)</span>，<span class="math inline">\(T(S)\)</span> 为 <span
+class="math inline">\(S\)</span> 上的乘法复杂度。</p>
 <h2 id="模板">模板</h2>
-<p><code>S</code> 即半群 <span class="math inline">\((S, \times)\)</span> 的结构体，这里假定它是幺半群（否则可以加一个幺元进去），则 <code>S()</code> 代表幺元。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>LL div<span class="op">(</span>LL p<span class="op">,</span> LL i<span class="op">,</span> LL r<span class="op">,</span> LL q<span class="op">)</span> <span class="op">{</span></span>
+<p><code>S</code> 即半群 <span class="math inline">\((S,
+\times)\)</span>
+的结构体，这里假定它是幺半群（否则可以加一个幺元进去），则
+<code>S()</code> 代表幺元。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>LL div<span class="op">(</span>LL p<span class="op">,</span> LL i<span class="op">,</span> LL r<span class="op">,</span> LL q<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">(</span>p <span class="op">*</span> i <span class="op">+</span> r<span class="op">)</span> <span class="op">/</span> q<span class="op">;</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>S cal<span class="op">(</span>LL p<span class="op">,</span> LL r<span class="op">,</span> LL q<span class="op">,</span> LL n<span class="op">,</span> <span class="at">const</span> S <span class="op">&amp;</span>x<span class="op">,</span> <span class="at">const</span> S <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span></span>

@@ -516,32 +516,86 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 <div class="post-body" v-pre>
                 
                     <blockquote>
-<p>给定一个最初为空的数组，然后进行 <span class="math inline">\(n\)</span> 次操作，每次操作给定 <span class="math inline">\(x,l,r,k\)</span>，在数组末尾插入 <span class="math inline">\(x\)</span> ，然后查询满足 <span class="math inline">\(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\)</span> 的数对 <span class="math inline">\((i,j)\)</span> 的个数，<strong>强制在线</strong>。</p>
-<p><span class="math inline">\(mex(S)\)</span> 表示集合 <span class="math inline">\(S\)</span> 中最小的未出现的 <strong>自然数</strong>。</p>
+<p>给定一个最初为空的数组，然后进行 <span
+class="math inline">\(n\)</span> 次操作，每次操作给定 <span
+class="math inline">\(x,l,r,k\)</span>，在数组末尾插入 <span
+class="math inline">\(x\)</span> ，然后查询满足 <span
+class="math inline">\(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\)</span>
+的数对 <span class="math inline">\((i,j)\)</span>
+的个数，<strong>强制在线</strong>。</p>
+<p><span class="math inline">\(mex(S)\)</span> 表示集合 <span
+class="math inline">\(S\)</span> 中最小的未出现的
+<strong>自然数</strong>。</p>
 <p><span class="math inline">\(n \leq 2 \times 10^5\)</span>。</p>
 </blockquote>
-<p>为表示方便，下面记 <span class="math inline">\(mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})\)</span>。</p>
-<p>容易发现，如果向集合 <span class="math inline">\(S\)</span> 中添加数，<span class="math inline">\(mex(S)\)</span> 不会减小。</p>
-<p>所以如果固定右端点 <span class="math inline">\(j\)</span>，<span class="math inline">\(mex(i, j)\)</span> 是<strong>非严格单调减</strong>的；固定左端点 <span class="math inline">\(i\)</span>，<span class="math inline">\(mex(i, j)\)</span> 是<strong>非严格单调增</strong>的。</p>
-<p>维护一个 <span class="math inline">\(n \times n\)</span> 矩阵，<span class="math inline">\(A[i][j] = mex(j, i)\)</span>，则矩阵 <span class="math inline">\(A\)</span> 的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。</p>
-<p>第 <span class="math inline">\(i\)</span> 次操作增加一个数 <span class="math inline">\(x\)</span>，考虑从第 <span class="math inline">\(i - 1\)</span> 行拓展到第 <span class="math inline">\(i\)</span> 行时矩阵 <span class="math inline">\(A\)</span> 的变化。</p>
+<p>为表示方便，下面记 <span class="math inline">\(mex(i, j) = mex(\{a_i,
+a_{i + 1}, \dots, a_j\})\)</span>。</p>
+<p>容易发现，如果向集合 <span class="math inline">\(S\)</span>
+中添加数，<span class="math inline">\(mex(S)\)</span> 不会减小。</p>
+<p>所以如果固定右端点 <span class="math inline">\(j\)</span>，<span
+class="math inline">\(mex(i, j)\)</span>
+是<strong>非严格单调减</strong>的；固定左端点 <span
+class="math inline">\(i\)</span>，<span class="math inline">\(mex(i,
+j)\)</span> 是<strong>非严格单调增</strong>的。</p>
+<p>维护一个 <span class="math inline">\(n \times n\)</span> 矩阵，<span
+class="math inline">\(A[i][j] = mex(j, i)\)</span>，则矩阵 <span
+class="math inline">\(A\)</span>
+的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。</p>
+<p>第 <span class="math inline">\(i\)</span> 次操作增加一个数 <span
+class="math inline">\(x\)</span>，考虑从第 <span class="math inline">\(i
+- 1\)</span> 行拓展到第 <span class="math inline">\(i\)</span> 行时矩阵
+<span class="math inline">\(A\)</span> 的变化。</p>
 <p>首先 <span class="math inline">\(A[i][i]=[x=0]\)</span>。</p>
 <p>下面只考虑 <span class="math inline">\(j &lt; i\)</span> 的情况。</p>
-<p>如果 <span class="math inline">\(A[i-1][j]=x\)</span>，则 <span class="math inline">\(A[i][j]&gt;x\)</span>，否则 <span class="math inline">\(A[i][j] = A[i - 1][j]\)</span>。</p>
-<p>所以每次变化的只有等于 <span class="math inline">\(x\)</span> 的那些位置，根据单调性，这是一段区间，记为 <span class="math inline">\([p,q]\)</span>。</p>
-<p>设 <span class="math inline">\(j \in [p, q]\)</span>，要求 <span class="math inline">\(mex(j, i)\)</span>，只需要知道最后一次出现的位置小于 <span class="math inline">\(j\)</span> 的最小的数。所以用线段树维护序列 <span class="math inline">\(seq_{lastpos[x]} = x\)</span> ，每次求区间最小值，找到对应位置 <span class="math inline">\(index\)</span>，这个位置右边的所有 <span class="math inline">\(A[i][j]\)</span> 都等于这个最小值，然后令 <span class="math inline">\(q = index\)</span>，反复迭代，直到待求区间为空。</p>
-<p>分析一下这个操作的复杂度，每次相当于删除一个区间 <span class="math inline">\([p,q]\)</span>，添加若干个小区间。</p>
-<p>开始只有一个区间，最后的区间数不超过 <span class="math inline">\(n\)</span>，中间只会删除最多 <span class="math inline">\(n\)</span> 次区间。</p>
-<p>所以添加区间的总次数不会超过 <span class="math inline">\(2n\)</span> ，复杂度为 <span class="math inline">\(O(n \log n)\)</span>。</p>
+<p>如果 <span class="math inline">\(A[i-1][j]=x\)</span>，则 <span
+class="math inline">\(A[i][j]&gt;x\)</span>，否则 <span
+class="math inline">\(A[i][j] = A[i - 1][j]\)</span>。</p>
+<p>所以每次变化的只有等于 <span class="math inline">\(x\)</span>
+的那些位置，根据单调性，这是一段区间，记为 <span
+class="math inline">\([p,q]\)</span>。</p>
+<p>设 <span class="math inline">\(j \in [p, q]\)</span>，要求 <span
+class="math inline">\(mex(j,
+i)\)</span>，只需要知道最后一次出现的位置小于 <span
+class="math inline">\(j\)</span> 的最小的数。所以用线段树维护序列 <span
+class="math inline">\(seq_{lastpos[x]} = x\)</span>
+，每次求区间最小值，找到对应位置 <span
+class="math inline">\(index\)</span>，这个位置右边的所有 <span
+class="math inline">\(A[i][j]\)</span> 都等于这个最小值，然后令 <span
+class="math inline">\(q =
+index\)</span>，反复迭代，直到待求区间为空。</p>
+<p>分析一下这个操作的复杂度，每次相当于删除一个区间 <span
+class="math inline">\([p,q]\)</span>，添加若干个小区间。</p>
+<p>开始只有一个区间，最后的区间数不超过 <span
+class="math inline">\(n\)</span>，中间只会删除最多 <span
+class="math inline">\(n\)</span> 次区间。</p>
+<p>所以添加区间的总次数不会超过 <span class="math inline">\(2n\)</span>
+，复杂度为 <span class="math inline">\(O(n \log n)\)</span>。</p>
 <p>然后考虑回答询问。</p>
 <h2 id="矩形交的面积">矩形交的面积</h2>
-<p>我们用四元组 <span class="math inline">\((top,bottom,left,right)\)</span> 描述一个矩形 <span class="math inline">\(\{(i,j):top \leq i \leq bottom,left \leq j \leq right\}\)</span>。</p>
-<p>每次询问可以看作是询问矩形 <span class="math inline">\((l, r, l, r)\)</span> 内 <span class="math inline">\(A[i][j]=k\)</span> 的个数。</p>
-<p>那么由上面 <span class="math inline">\(mex\)</span> 的单调性可以发现，<span class="math inline">\(A[i][j] = k\)</span> 的点可以组成一个个连通块，每个连通块由若干个矩形构成<strong>阶梯状</strong>（矩形的 <span class="math inline">\(left\)</span> 相同，<span class="math inline">\(right\)</span> 递增）。 且前一个连通块的 <span class="math inline">\(right\)</span> 小于后一个连通块的 <span class="math inline">\(left\)</span>。</p>
+<p>我们用四元组 <span
+class="math inline">\((top,bottom,left,right)\)</span> 描述一个矩形
+<span class="math inline">\(\{(i,j):top \leq i \leq bottom,left \leq j
+\leq right\}\)</span>。</p>
+<p>每次询问可以看作是询问矩形 <span class="math inline">\((l, r, l,
+r)\)</span> 内 <span class="math inline">\(A[i][j]=k\)</span>
+的个数。</p>
+<p>那么由上面 <span class="math inline">\(mex\)</span>
+的单调性可以发现，<span class="math inline">\(A[i][j] = k\)</span>
+的点可以组成一个个连通块，每个连通块由若干个矩形构成<strong>阶梯状</strong>（矩形的
+<span class="math inline">\(left\)</span> 相同，<span
+class="math inline">\(right\)</span> 递增）。 且前一个连通块的 <span
+class="math inline">\(right\)</span> 小于后一个连通块的 <span
+class="math inline">\(left\)</span>。</p>
 <p>问题转化为求这些矩形与询问矩形交的面积之和。</p>
-<p>用 <code>std::vector</code> 存下每个 <span class="math inline">\(k\)</span> 的所有矩形，维护前缀面积和，二分出相交与非相交的临界点，对于完全包含的用前缀和搞定，对于相交却不包含的，由于是阶梯状，所以也可以 <span class="math inline">\(O(1)\)</span> 计算，细节有点多。</p>
-<p>由上面的复杂度分析可知，所有矩形的数量不会超过 <span class="math inline">\(2n\)</span> 个，所以总复杂度 <span class="math inline">\(O(n \log n)\)</span>。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<p>用 <code>std::vector</code> 存下每个 <span
+class="math inline">\(k\)</span>
+的所有矩形，维护前缀面积和，二分出相交与非相交的临界点，对于完全包含的用前缀和搞定，对于相交却不包含的，由于是阶梯状，所以也可以
+<span class="math inline">\(O(1)\)</span> 计算，细节有点多。</p>
+<p>由上面的复杂度分析可知，所有矩形的数量不会超过 <span
+class="math inline">\(2n\)</span> 个，所以总复杂度 <span
+class="math inline">\(O(n \log n)\)</span>。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef LOCAL</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>args<span class="op">...)</span><span class="pp"> </span><span class="bu">std::</span>cerr<span class="op"> &lt;&lt;</span><span class="pp"> </span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span><span class="pp"> </span><span class="op">&lt;&lt;</span><span class="pp"> #</span>args<span class="pp"> </span><span class="op">&lt;&lt;</span><span class="pp"> </span><span class="st">&quot; -&gt; &quot;</span><span class="op">,</span><span class="pp"> </span>err<span class="op">(</span>args<span class="op">)</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
@@ -683,12 +737,19 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="可持久化线段树">可持久化线段树</h2>
 <p>接上矩阵的思路。</p>
-<p>看作每个数维护一个二维数组，每次矩阵内的数 <span class="math inline">\(+1\)</span> ，然后询问一个矩阵的和。</p>
+<p>看作每个数维护一个二维数组，每次矩阵内的数 <span
+class="math inline">\(+1\)</span> ，然后询问一个矩阵的和。</p>
 <p>这个可以用可持久化线段树维护。</p>
-<p>可持久化线段树可以想象成一个矩阵 <span class="math inline">\(a[i][j]\)</span>，第一维是时间，第二维是区间。</p>
-<p>类似于树状数组的区间加区间和的方法，维护差分 <span class="math inline">\(b[i][j] = a[i][j] - a[i - 1][j]\)</span>。</p>
-<p>即每次修改时，在 <span class="math inline">\(top\)</span> 时间对区间 <span class="math inline">\((left,right)+1\)</span>，在 <span class="math inline">\(bottom + 1\)</span> 时间对区间 <span class="math inline">\((left, right)-1\)</span></p>
-<p>查询矩阵和（本题中时间和区间都是 <span class="math inline">\([l, r]\)</span>），即 <span class="math display">\[
+<p>可持久化线段树可以想象成一个矩阵 <span
+class="math inline">\(a[i][j]\)</span>，第一维是时间，第二维是区间。</p>
+<p>类似于树状数组的区间加区间和的方法，维护差分 <span
+class="math inline">\(b[i][j] = a[i][j] - a[i - 1][j]\)</span>。</p>
+<p>即每次修改时，在 <span class="math inline">\(top\)</span> 时间对区间
+<span class="math inline">\((left,right)+1\)</span>，在 <span
+class="math inline">\(bottom + 1\)</span> 时间对区间 <span
+class="math inline">\((left, right)-1\)</span></p>
+<p>查询矩阵和（本题中时间和区间都是 <span class="math inline">\([l,
+r]\)</span>），即 <span class="math display">\[
 \begin{aligned}
   &amp;\sum_{i = l}^r\sum_{j = l}^r a[i][j]\\
 = &amp;\sum_{i = l}^r \sum_{k = 1}^i \sum_{j = l}^rb[k][j]\\
@@ -697,9 +758,11 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 &amp;\{\text{note } s_k = \sum_{j = l}^rb[k][j]\}\\
 = &amp;(r + 1)\sum_{k = 1}^rs_k - \sum_{k = 1}^rk\cdot s_k
 \end{aligned}
-\]</span> 所以直接在线段树上维护两个值 <span class="math inline">\(v, v \times time\)</span> 就行了。</p>
+\]</span> 所以直接在线段树上维护两个值 <span class="math inline">\(v, v
+\times time\)</span> 就行了。</p>
 <p>每个数都要维护可持久化线段树，要注意写法，容易爆内存（直接改上面的程序成功MLE了）。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef LOCAL</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define dbg</span><span class="op">(</span>args<span class="op">...)</span><span class="pp"> </span><span class="bu">std::</span>cerr<span class="op"> &lt;&lt;</span><span class="pp"> </span><span class="st">&quot;</span><span class="sc">\033</span><span class="st">[32;1m&quot;</span><span class="pp"> </span><span class="op">&lt;&lt;</span><span class="pp"> #</span>args<span class="pp"> </span><span class="op">&lt;&lt;</span><span class="pp"> </span><span class="st">&quot; -&gt; &quot;</span><span class="op">,</span><span class="pp"> </span>err<span class="op">(</span>args<span class="op">)</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>

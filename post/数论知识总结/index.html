@@ -401,26 +401,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 						
-							
-						
-						
-						
-							<li>
-								<a href="#%e4%b8%ad%e5%9b%bd%e5%89%a9%e4%bd%99%e5%ae%9a%e7%90%86chinese-remainder-theorem" onclick="onNavClick(`#中国剩余定理chinese-remainder-theorem-nav`)" id="中国剩余定理chinese-remainder-theorem-nav">
-									4 中国剩余定理(Chinese Remainder Theorem)
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
 						
 							
 								<ul class="collapse" data-toggle="collapse">
@@ -841,26 +821,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 							
 								<ul class="collapse" data-toggle="collapse">
 							
-						
-						
-							<li>
-								<a href="#%e5%a4%a7%e6%ad%a5%e5%b0%8f%e6%ad%a5%e7%ae%97%e6%b3%95baby-step-giant-step" onclick="onNavClick(`#大步小步算法baby-step-giant-step-nav`)" id="大步小步算法baby-step-giant-step-nav">
-									9.1 大步小步算法(Baby Step Giant Step)
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-						
 						
 						
 							<li>
@@ -1297,26 +1257,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 						
-							
-						
-						
-						
-							<li>
-								<a href="#%e4%b8%ad%e5%9b%bd%e5%89%a9%e4%bd%99%e5%ae%9a%e7%90%86chinese-remainder-theorem" onclick="onNavClick(`#中国剩余定理chinese-remainder-theorem-nav`)" id="中国剩余定理chinese-remainder-theorem-nav">
-									4 中国剩余定理(Chinese Remainder Theorem)
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
 						
 							
 								<ul class="collapse" data-toggle="collapse">
@@ -1740,26 +1680,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e5%a4%a7%e6%ad%a5%e5%b0%8f%e6%ad%a5%e7%ae%97%e6%b3%95baby-step-giant-step" onclick="onNavClick(`#大步小步算法baby-step-giant-step-nav`)" id="大步小步算法baby-step-giant-step-nav">
-									9.1 大步小步算法(Baby Step Giant Step)
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-						
-						
-						
-							<li>
 								<a href="#exbsgs" onclick="onNavClick(`#exbsgs-nav`)" id="exbsgs-nav">
 									9.2 EXBSGS
 								</a>
@@ -2033,40 +1953,65 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                     <h2 id="欧几里得算法">1 欧几里得算法</h2>
 <blockquote>
-<p>欧几里得算法可以求两个数的最大公约数 <span class="math inline">\(\gcd(a, b)\)</span>。</p>
+<p>欧几里得算法可以求两个数的最大公约数 <span
+class="math inline">\(\gcd(a, b)\)</span>。</p>
 </blockquote>
-<p>不妨设 <span class="math inline">\(a \geq b, a = kb + r(k \geq 1, 0 \leq r &lt; b)\)</span>。</p>
-<p>一方面，设 <span class="math inline">\(d_1\)</span> 为 <span class="math inline">\(a, b\)</span> 的一个公约数，则 <span class="math display">\[
+<p>不妨设 <span class="math inline">\(a \geq b, a = kb + r(k \geq 1, 0
+\leq r &lt; b)\)</span>。</p>
+<p>一方面，设 <span class="math inline">\(d_1\)</span> 为 <span
+class="math inline">\(a, b\)</span> 的一个公约数，则 <span
+class="math display">\[
 \begin{aligned}
 a &amp;= k_ad_1\\
 b &amp;= k_bd_1\\
 r &amp;= a - kb\\
   &amp;= (k_a - kk_b)d_1
 \end{aligned}
-\]</span> 即 <span class="math inline">\(d_1\)</span> 也是 <span class="math inline">\(r\)</span> 的约数，<span class="math inline">\(b, r\)</span> 的公约数。</p>
-<p>另一方面，设 <span class="math inline">\(d_2\)</span> 为 <span class="math inline">\(b, r\)</span> 的一个公约数，则 <span class="math display">\[
+\]</span> 即 <span class="math inline">\(d_1\)</span> 也是 <span
+class="math inline">\(r\)</span> 的约数，<span class="math inline">\(b,
+r\)</span> 的公约数。</p>
+<p>另一方面，设 <span class="math inline">\(d_2\)</span> 为 <span
+class="math inline">\(b, r\)</span> 的一个公约数，则 <span
+class="math display">\[
 \begin{aligned}
 b &amp;= k&#39;_bd_2\\
 r &amp;= k_r&#39;d_2\\
 a &amp;= kb + r\\
   &amp;= (kk&#39;_b + k_r&#39;)d_2
 \end{aligned}
-\]</span> 即 <span class="math inline">\(d_2\)</span> 也是 <span class="math inline">\(a\)</span> 的约数，<span class="math inline">\(a, b\)</span> 的公约数。</p>
-<p>所以 <span class="math inline">\(a, b\)</span> 的公约数集合和 <span class="math inline">\(b, r\)</span> 的公约数集合相同，于是 <span class="math inline">\(\gcd(a, b) = \gcd(b, r) = \gcd(b, a \bmod b)\)</span></p>
-<p>递归求解，终止状态为 <span class="math inline">\(b = 0\)</span>，此时原 <span class="math inline">\(a, b\)</span> 的公约数集合为 <span class="math inline">\(a\)</span> 的约数集合。</p>
-<p>因为 <span class="math inline">\(a = kb + r &gt; (k + 1)r\)</span> 所以 <span class="math inline">\(r &lt; \frac{a}{k + 1} \leq \frac{a}{2}\)</span>，所以每次 <span class="math inline">\(a\)</span> 最少折半，算法复杂度为 <span class="math inline">\(O(\log a + \log b)\)</span>。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
+\]</span> 即 <span class="math inline">\(d_2\)</span> 也是 <span
+class="math inline">\(a\)</span> 的约数，<span class="math inline">\(a,
+b\)</span> 的公约数。</p>
+<p>所以 <span class="math inline">\(a, b\)</span> 的公约数集合和 <span
+class="math inline">\(b, r\)</span> 的公约数集合相同，于是 <span
+class="math inline">\(\gcd(a, b) = \gcd(b, r) = \gcd(b, a \bmod
+b)\)</span></p>
+<p>递归求解，终止状态为 <span class="math inline">\(b =
+0\)</span>，此时原 <span class="math inline">\(a, b\)</span>
+的公约数集合为 <span class="math inline">\(a\)</span> 的约数集合。</p>
+<p>因为 <span class="math inline">\(a = kb + r &gt; (k + 1)r\)</span>
+所以 <span class="math inline">\(r &lt; \frac{a}{k + 1} \leq
+\frac{a}{2}\)</span>，所以每次 <span class="math inline">\(a\)</span>
+最少折半，算法复杂度为 <span class="math inline">\(O(\log a + \log
+b)\)</span>。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> b <span class="op">?</span> gcd<span class="op">(</span>b<span class="op">,</span> a <span class="op">%</span> b<span class="op">)</span> <span class="op">:</span> a<span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="裴蜀定理">2 裴蜀定理</h2>
 <blockquote>
-<p>设 <span class="math inline">\(a, b\)</span> 是不全为零的整数，则存在整数 <span class="math inline">\(x, y\)</span> 使得 <span class="math inline">\(ax + by = \gcd(a, b)\)</span>。</p>
+<p>设 <span class="math inline">\(a, b\)</span>
+是不全为零的整数，则存在整数 <span class="math inline">\(x, y\)</span>
+使得 <span class="math inline">\(ax + by = \gcd(a, b)\)</span>。</p>
 </blockquote>
 <h3 id="拓展欧几里得算法">2.1 拓展欧几里得算法</h3>
 <blockquote>
-<p>拓展欧几里得算法可以求方程 <span class="math inline">\(ax + by = g\)</span> 的一组解，其中 <span class="math inline">\(g = \gcd(a, b)\)</span>。</p>
+<p>拓展欧几里得算法可以求方程 <span class="math inline">\(ax + by =
+g\)</span> 的一组解，其中 <span class="math inline">\(g = \gcd(a,
+b)\)</span>。</p>
 </blockquote>
-<p>不妨设 <span class="math inline">\(a \geq b, a = kb + r(k \geq 1, 0 \leq r &lt; b)\)</span>。</p>
+<p>不妨设 <span class="math inline">\(a \geq b, a = kb + r(k \geq 1, 0
+\leq r &lt; b)\)</span>。</p>
 <p><span class="math display">\[
 \begin{aligned}
 g &amp;= ax + by \\
@@ -2075,44 +2020,72 @@ g &amp;= ax + by \\
   &amp;= bx&#39; + ry&#39; \\
 \end{aligned}
 \]</span></p>
-<p>假设我们已经得出方程 <span class="math inline">\(bx + ry = g\)</span> 的一组解 <span class="math inline">\(x&#39;, y&#39;\)</span>，那么原方程的解可以表示为： <span class="math display">\[
+<p>假设我们已经得出方程 <span class="math inline">\(bx + ry = g\)</span>
+的一组解 <span class="math inline">\(x&#39;,
+y&#39;\)</span>，那么原方程的解可以表示为： <span
+class="math display">\[
 \begin{cases}
 x &amp;= y&#39;\\
 y &amp;= x&#39; - ky&#39;
 \end{cases}
 \]</span></p>
-<p>可以在欧几里得算法的递归中完成，<span class="math inline">\(a = g, b = 0\)</span> 时显然 <span class="math inline">\(x = 1, y = 0\)</span> 是一组解。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> exgcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">,</span> <span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">,</span> <span class="dt">int</span> <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span></span>
+<p>可以在欧几里得算法的递归中完成，<span class="math inline">\(a = g, b
+= 0\)</span> 时显然 <span class="math inline">\(x = 1, y = 0\)</span>
+是一组解。</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> exgcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">,</span> <span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">,</span> <span class="dt">int</span> <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>b<span class="op">)</span> <span class="cf">return</span> x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> a<span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> g <span class="op">=</span> exgcd<span class="op">(</span>b<span class="op">,</span> a <span class="op">%</span> b<span class="op">,</span> y<span class="op">,</span> x<span class="op">);</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  y <span class="op">-=</span> a <span class="op">/</span> b <span class="op">*</span> x<span class="op">;</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> g<span class="op">;</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>假设用该算法得出一组特解 <span class="math inline">\((x_0, y_0)\)</span>，那么通解为 <span class="math inline">\((x_0 + k\dfrac b g, y_0 - k\dfrac a g)\)</span>。</p>
+<p>假设用该算法得出一组特解 <span class="math inline">\((x_0,
+y_0)\)</span>，那么通解为 <span class="math inline">\((x_0 + k\dfrac b
+g, y_0 - k\dfrac a g)\)</span>。</p>
 <blockquote>
-<p><strong>推论：</strong> 方程 <span class="math inline">\(ax + by = c\)</span> 有解的充分必要条件是 <span class="math inline">\(\gcd(a, b) \mid c\)</span>。</p>
+<p><strong>推论：</strong> 方程 <span class="math inline">\(ax + by =
+c\)</span> 有解的充分必要条件是 <span class="math inline">\(\gcd(a, b)
+\mid c\)</span>。</p>
 <p><strong>证明：</strong> 充分性由裴蜀定理可得证。</p>
-<p>必要性：设 <span class="math inline">\(\gcd(a, b) = g, a = ug, b = vg\)</span>，则 <span class="math inline">\(c = g(ux + vy)\)</span>，所以 <span class="math inline">\(g \mid c\)</span>。<span class="math inline">\(\square\)</span></p>
+<p>必要性：设 <span class="math inline">\(\gcd(a, b) = g, a = ug, b =
+vg\)</span>，则 <span class="math inline">\(c = g(ux +
+vy)\)</span>，所以 <span class="math inline">\(g \mid c\)</span>。<span
+class="math inline">\(\square\)</span></p>
 </blockquote>
-<p>因此，对于方程 <span class="math inline">\(ax + by = c\)</span>，首先用欧几里得算法求出 <span class="math inline">\(ax+by=g\)</span> 的一组解 <span class="math inline">\((x_0, y_0)\)</span>，则</p>
-<p>原方程的一组特解为 <span class="math inline">\((\dfrac cg x_0, \dfrac cg y_0)\)</span>，通解为 <span class="math inline">\((\dfrac cg x_0 + k\dfrac bg, \dfrac cg y_0 - k \dfrac a g)\)</span>。</p>
+<p>因此，对于方程 <span class="math inline">\(ax + by =
+c\)</span>，首先用欧几里得算法求出 <span
+class="math inline">\(ax+by=g\)</span> 的一组解 <span
+class="math inline">\((x_0, y_0)\)</span>，则</p>
+<p>原方程的一组特解为 <span class="math inline">\((\dfrac cg x_0, \dfrac
+cg y_0)\)</span>，通解为 <span class="math inline">\((\dfrac cg x_0 +
+k\dfrac bg, \dfrac cg y_0 - k \dfrac a g)\)</span>。</p>
 <h3 id="线性同余方程">2.2 线性同余方程</h3>
 <blockquote>
-<p>形如 <span class="math inline">\(ax \equiv b \pmod c\)</span> 的方程称为线性同余方程。</p>
+<p>形如 <span class="math inline">\(ax \equiv b \pmod c\)</span>
+的方程称为线性同余方程。</p>
 </blockquote>
 <p>求解线性同余方程可以使用拓展欧几里得算法：</p>
-<p>原方程等价于 <span class="math inline">\(ax - b = cy\)</span>，即 <span class="math inline">\(ax - cy = b\)</span>。</p>
-<p>由 <em>裴蜀定理的推论</em> 得知方程有解当且仅当 <span class="math inline">\(\gcd(a, c) \mid b\)</span>，此时可以用拓展欧几里得算法求解。</p>
+<p>原方程等价于 <span class="math inline">\(ax - b = cy\)</span>，即
+<span class="math inline">\(ax - cy = b\)</span>。</p>
+<p>由 <em>裴蜀定理的推论</em> 得知方程有解当且仅当 <span
+class="math inline">\(\gcd(a, c) \mid
+b\)</span>，此时可以用拓展欧几里得算法求解。</p>
 <h3 id="乘法逆元">2.3 乘法逆元</h3>
 <blockquote>
-<p>若 <span class="math inline">\(ax \equiv 1 \pmod b\)</span>，则 <span class="math inline">\(x\)</span> 称为 <span class="math inline">\(a \bmod b\)</span> 的乘法逆元，简称逆元，记作 <span class="math inline">\(a^{-1}\)</span>。</p>
+<p>若 <span class="math inline">\(ax \equiv 1 \pmod b\)</span>，则 <span
+class="math inline">\(x\)</span> 称为 <span class="math inline">\(a
+\bmod b\)</span> 的乘法逆元，简称逆元，记作 <span
+class="math inline">\(a^{-1}\)</span>。</p>
 </blockquote>
-<p>求解上述线性方程组即可求出单个整数 <span class="math inline">\(a\)</span> 的乘法逆元。</p>
+<p>求解上述线性方程组即可求出单个整数 <span
+class="math inline">\(a\)</span> 的乘法逆元。</p>
 <h4 id="线性递推逆元">2.3.1 线性递推逆元</h4>
 <blockquote>
-<p>求 <span class="math inline">\(1 \dots n \bmod p\)</span> 的乘法逆元。</p>
+<p>求 <span class="math inline">\(1 \dots n \bmod p\)</span>
+的乘法逆元。</p>
 </blockquote>
-<p>设 <span class="math inline">\(p = kn + r\)</span>，则 <span class="math display">\[
+<p>设 <span class="math inline">\(p = kn + r\)</span>，则 <span
+class="math display">\[
 \begin{aligned}
 kn + r &amp;\equiv 0 &amp;\pmod p\\
 r^{-1}(kn + r) &amp;\equiv 0 &amp;\pmod p\\
@@ -2129,57 +2102,96 @@ n^{-1} \equiv
 \]</span></p>
 <h2 id="费马小定理">3 费马小定理</h2>
 <blockquote>
-<p>设 <span class="math inline">\(p\)</span> 是质数，<span class="math inline">\(a\)</span> 是任意整数且 <span class="math inline">\(a \not\equiv 0 \pmod p\)</span>，则 <span class="math display">\[
+<p>设 <span class="math inline">\(p\)</span> 是质数，<span
+class="math inline">\(a\)</span> 是任意整数且 <span
+class="math inline">\(a \not\equiv 0 \pmod p\)</span>，则 <span
+class="math display">\[
 a^{p - 1} \equiv 1 \pmod p
 \]</span></p>
 </blockquote>
 <blockquote>
-<p><strong>引理3.1</strong> 若 <span class="math inline">\(p \mid ab, \gcd(p, a) = 1\)</span>，则 <span class="math inline">\(p \mid b\)</span>。</p>
-<p><strong>证明：</strong> 根据 <em>裴蜀定理</em> 方程 <span class="math inline">\(px + ay = 1\)</span> 有整数解 <span class="math inline">\((x_0, y_0)\)</span>。</p>
-<p>所以，<span class="math inline">\(b = pbx_0 + aby_0 = p(bx_0 + \frac{ab}{p})\)</span>。</p>
-<p>又因为 <span class="math inline">\(p \mid ab\)</span> 所以 <span class="math inline">\(p \mid b\)</span>。 <span class="math inline">\(\square\)</span></p>
+<p><strong>引理3.1</strong> 若 <span class="math inline">\(p \mid ab,
+\gcd(p, a) = 1\)</span>，则 <span class="math inline">\(p \mid
+b\)</span>。</p>
+<p><strong>证明：</strong> 根据 <em>裴蜀定理</em> 方程 <span
+class="math inline">\(px + ay = 1\)</span> 有整数解 <span
+class="math inline">\((x_0, y_0)\)</span>。</p>
+<p>所以，<span class="math inline">\(b = pbx_0 + aby_0 = p(bx_0 +
+\frac{ab}{p})\)</span>。</p>
+<p>又因为 <span class="math inline">\(p \mid ab\)</span> 所以 <span
+class="math inline">\(p \mid b\)</span>。 <span
+class="math inline">\(\square\)</span></p>
 </blockquote>
 <blockquote>
-<p><strong>引理3.2</strong> 设 <span class="math inline">\(p\)</span> 是质数，<span class="math inline">\(a\)</span> 是任意整数且 <span class="math inline">\(a \not\equiv 0 \pmod p\)</span>，则数 <span class="math inline">\(a, 2a, 3a, \dots, (p - 1)a \pmod p\)</span> 是 <span class="math inline">\(1 \dots p - 1\)</span> 的一个排列。</p>
-<p><strong>证明：</strong> 因为 <span class="math inline">\(p \nmid a\)</span> 所以 <span class="math inline">\(ia\)</span> 的值只可能在 <span class="math inline">\(1\)</span> 和 <span class="math inline">\(p - 1\)</span> 间，下面证明他们两两不同。</p>
-<p>假设 <span class="math inline">\(1 \leq j, k \leq p - 1, ja \equiv ka \pmod p\)</span>，则 <span class="math inline">\(p \mid (j - k)a\)</span>。</p>
-<p>因为假设 <span class="math inline">\(p \nmid a\)</span>，所以 <span class="math inline">\(p \mid (j - k)\)</span> (<em>引理3.1</em>)。</p>
-<p>又 <span class="math inline">\(2 - p \leq j - k\leq p - 2\)</span>，所以 <span class="math inline">\(j - k = 0\)</span>。</p>
-<p>所以数 <span class="math inline">\(a, 2a, 3a, \dots, (p - 1)a \pmod p\)</span> 两两不同。<span class="math inline">\(\square\)</span></p>
+<p><strong>引理3.2</strong> 设 <span class="math inline">\(p\)</span>
+是质数，<span class="math inline">\(a\)</span> 是任意整数且 <span
+class="math inline">\(a \not\equiv 0 \pmod p\)</span>，则数 <span
+class="math inline">\(a, 2a, 3a, \dots, (p - 1)a \pmod p\)</span> 是
+<span class="math inline">\(1 \dots p - 1\)</span> 的一个排列。</p>
+<p><strong>证明：</strong> 因为 <span class="math inline">\(p \nmid
+a\)</span> 所以 <span class="math inline">\(ia\)</span> 的值只可能在
+<span class="math inline">\(1\)</span> 和 <span class="math inline">\(p
+- 1\)</span> 间，下面证明他们两两不同。</p>
+<p>假设 <span class="math inline">\(1 \leq j, k \leq p - 1, ja \equiv ka
+\pmod p\)</span>，则 <span class="math inline">\(p \mid (j -
+k)a\)</span>。</p>
+<p>因为假设 <span class="math inline">\(p \nmid a\)</span>，所以 <span
+class="math inline">\(p \mid (j - k)\)</span> (<em>引理3.1</em>)。</p>
+<p>又 <span class="math inline">\(2 - p \leq j - k\leq p -
+2\)</span>，所以 <span class="math inline">\(j - k = 0\)</span>。</p>
+<p>所以数 <span class="math inline">\(a, 2a, 3a, \dots, (p - 1)a \pmod
+p\)</span> 两两不同。<span class="math inline">\(\square\)</span></p>
 </blockquote>
-<p><strong>证明：</strong> 由 <em>引理3.2</em> <span class="math display">\[
+<p><strong>证明：</strong> 由 <em>引理3.2</em> <span
+class="math display">\[
 \begin{aligned}
 \prod_{i = 1}^{p - 1} ia \equiv (p - 1)! \pmod p\\
 a^{p - 1} (p - 1)! \equiv (p - 1)! \pmod p\\
 p \mid \left(a^{p -1} - 1\right)(p - 1)!
 \end{aligned}
-\]</span> 因为 <span class="math inline">\(p \nmid (p-1)!\)</span>，所以 <span class="math inline">\(p \mid (a^{p - 1} - 1)\)</span> (<em>引理3.1</em>)，即 <span class="math inline">\(a^{p - 1} \equiv 1 \pmod p\)</span>。<span class="math inline">\(\square\)</span></p>
+\]</span> 因为 <span class="math inline">\(p \nmid (p-1)!\)</span>，所以
+<span class="math inline">\(p \mid (a^{p - 1} - 1)\)</span>
+(<em>引理3.1</em>)，即 <span class="math inline">\(a^{p - 1} \equiv 1
+\pmod p\)</span>。<span class="math inline">\(\square\)</span></p>
 <p>用费马小定理可以求模质数的逆元： <span class="math display">\[
 \begin{aligned}
 a \cdot a^{p - 2} &amp;\equiv 1 &amp;\pmod p\\
 a^{-1} &amp;\equiv a^{p - 2} &amp;\pmod p
 \end{aligned}
 \]</span></p>
-<h2 id="中国剩余定理chinese-remainder-theorem">4 中国剩余定理(Chinese Remainder Theorem)</h2>
+<h2 id="中国剩余定理chinese-remainder-theorem">4 中国剩余定理(Chinese
+Remainder Theorem)</h2>
 <blockquote>
-<p>设整数 <span class="math inline">\(m_1, m_2, \dots, m_n\)</span> 其中 <strong>任两数</strong> 互质，<span class="math inline">\(M = \prod_{i = 1}^nm_i, M_i = \frac{M}{m_i}\)</span>，则对任意正整数 <span class="math inline">\(a_1, a_2, \dots, a_n\)</span>，线性同余方程组 <span class="math display">\[
+<p>设整数 <span class="math inline">\(m_1, m_2, \dots, m_n\)</span> 其中
+<strong>任两数</strong> 互质，<span class="math inline">\(M = \prod_{i =
+1}^nm_i, M_i = \frac{M}{m_i}\)</span>，则对任意正整数 <span
+class="math inline">\(a_1, a_2, \dots, a_n\)</span>，线性同余方程组
+<span class="math display">\[
 \begin{cases}
 x &amp;\equiv a_1 \pmod {m_1} \\
 x &amp;\equiv a_2 \pmod {m_2} \\
 &amp;\vdots \\
 x &amp;\equiv a_n \pmod {m_n}
 \end{cases}
-\]</span> 在模 <span class="math inline">\(M\)</span> 意义下有唯一解 <span class="math display">\[
+\]</span> 在模 <span class="math inline">\(M\)</span> 意义下有唯一解
+<span class="math display">\[
 x \equiv \sum_{i = 1}^{n} a_iM_iv_i \pmod M
-\]</span> 其中 <span class="math inline">\(M_iv_i \equiv 1 \pmod {m_i}\)</span></p>
+\]</span> 其中 <span class="math inline">\(M_iv_i \equiv 1 \pmod
+{m_i}\)</span></p>
 </blockquote>
-<p><strong>证明：</strong> 将 <span class="math inline">\(x\)</span> 代入各同余方程，显然都成立。</p>
-<p>另外，假设 <span class="math inline">\(x_1\)</span> 和 <span class="math inline">\(x_2\)</span> 都是方程组的解，那么</p>
+<p><strong>证明：</strong> 将 <span class="math inline">\(x\)</span>
+代入各同余方程，显然都成立。</p>
+<p>另外，假设 <span class="math inline">\(x_1\)</span> 和 <span
+class="math inline">\(x_2\)</span> 都是方程组的解，那么</p>
 <p><span class="math display">\[
 \forall i \in \{1, 2, \cdots , n\},  x_1 - x_2 \equiv 0 \pmod {m_i}
 \]</span></p>
-<p>因为 <span class="math inline">\(m_1, m_2, \ldots, m_n\)</span> 两两互质，所以 <span class="math inline">\(x_1 - x_2 \equiv 0 \pmod M\)</span>，所以方程组在模 <span class="math inline">\(M\)</span> 意义下有唯一解。<span class="math inline">\(\square\)</span></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">;</span></span>
+<p>因为 <span class="math inline">\(m_1, m_2, \ldots, m_n\)</span>
+两两互质，所以 <span class="math inline">\(x_1 - x_2 \equiv 0 \pmod
+M\)</span>，所以方程组在模 <span class="math inline">\(M\)</span>
+意义下有唯一解。<span class="math inline">\(\square\)</span></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n<span class="op">;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> a<span class="op">(</span>n<span class="op">),</span> m<span class="op">(</span>n<span class="op">);</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>LL p <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
@@ -2196,58 +2208,106 @@ x \equiv \sum_{i = 1}^{n} a_iM_iv_i \pmod M
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="op">(</span>ans <span class="op">+</span> p<span class="op">)</span> <span class="op">%</span> p <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span></code></pre></div>
 <h3 id="拓展中国剩余定理">4.1 拓展中国剩余定理</h3>
 <blockquote>
-<p>当 <span class="math inline">\(m_1, m_2, \dots, m_n\)</span> 不满足两两互质时，中国剩余定理失效（因为 <span class="math inline">\(v_i\)</span> 可能不存在），可以通过合并同余方程的方式解决。</p>
+<p>当 <span class="math inline">\(m_1, m_2, \dots, m_n\)</span>
+不满足两两互质时，中国剩余定理失效（因为 <span
+class="math inline">\(v_i\)</span>
+可能不存在），可以通过合并同余方程的方式解决。</p>
 </blockquote>
 <p>考虑线性同余方程组 <span class="math display">\[
 \begin{cases}
 x &amp;\equiv a_1 &amp;\pmod{m_1}\\
 x &amp;\equiv a_2 &amp;\pmod{m_2}
 \end{cases}
-\]</span> 由第一个方程得 <span class="math inline">\(x = a_1 + k_1m_1\)</span>，代入第二个方程，<span class="math inline">\(a_1 + k_1m_1 \equiv a_2 \pmod{m_2}\)</span>，即 <span class="math inline">\(k_1m_1 + k_2m_2 = a_2 - a_1\)</span>。</p>
-<p>由 <em>裴蜀定理的推论</em> 得知方程有解当且仅当 <span class="math inline">\(\gcd(m_1, m_2) \mid (a_2 - a_1)\)</span>，此时可以用拓展欧几里得算法求解 <span class="math inline">\(k_1, k_2\)</span>。</p>
-<p>假设求出 <span class="math inline">\(k_1\)</span> 的通解为 <span class="math inline">\(k_1 = k_0 + t\dfrac{m_2}{\gcd(m_1, m_2)}\)</span>，则 <span class="math inline">\(x = a_1 + k_1m_1 = a_1 + k_0m_1 + t\dfrac{m_1m_2}{\gcd(m_1, m_2)}\)</span>，即 <span class="math display">\[
+\]</span> 由第一个方程得 <span class="math inline">\(x = a_1 +
+k_1m_1\)</span>，代入第二个方程，<span class="math inline">\(a_1 +
+k_1m_1 \equiv a_2 \pmod{m_2}\)</span>，即 <span
+class="math inline">\(k_1m_1 + k_2m_2 = a_2 - a_1\)</span>。</p>
+<p>由 <em>裴蜀定理的推论</em> 得知方程有解当且仅当 <span
+class="math inline">\(\gcd(m_1, m_2) \mid (a_2 -
+a_1)\)</span>，此时可以用拓展欧几里得算法求解 <span
+class="math inline">\(k_1, k_2\)</span>。</p>
+<p>假设求出 <span class="math inline">\(k_1\)</span> 的通解为 <span
+class="math inline">\(k_1 = k_0 + t\dfrac{m_2}{\gcd(m_1,
+m_2)}\)</span>，则 <span class="math inline">\(x = a_1 + k_1m_1 = a_1 +
+k_0m_1 + t\dfrac{m_1m_2}{\gcd(m_1, m_2)}\)</span>，即 <span
+class="math display">\[
 x \equiv a_1 + k_0m_1 \pmod{\operatorname{lcm}(m_1, m_2)}
 \]</span></p>
 <p>这样我们把两个同余方程合并成了一个，重复上述操作即可求出原方程组的解。</p>
 <h2 id="欧拉函数">5 欧拉函数</h2>
 <blockquote>
-<p>欧拉函数 <span class="math inline">\(\varphi(m)\)</span> 表示在 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(m\)</span> 之间与 <span class="math inline">\(m\)</span> 互素的数的个数。即 <span class="math display">\[
+<p>欧拉函数 <span class="math inline">\(\varphi(m)\)</span> 表示在 <span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(m\)</span> 之间与 <span
+class="math inline">\(m\)</span> 互素的数的个数。即 <span
+class="math display">\[
 \varphi(m) = |\{x | \gcd(x, m) = 1, 1 \leq x \leq m\}|
 \]</span></p>
 </blockquote>
 <h3 id="欧拉函数公式">5.1 欧拉函数公式</h3>
 <blockquote>
-<p>① 如果 <span class="math inline">\(p\)</span> 为素数且 <span class="math inline">\(k \geq 1\)</span> 则 <span class="math inline">\(\varphi(p^k) = p^k - p^{k - 1}\)</span>。</p>
-<p>② 如果 <span class="math inline">\(\gcd(m, n) = 1\)</span>，则 <span class="math inline">\(\varphi(mn) = \varphi(m)\varphi(n)\)</span>。</p>
+<p>① 如果 <span class="math inline">\(p\)</span> 为素数且 <span
+class="math inline">\(k \geq 1\)</span> 则 <span
+class="math inline">\(\varphi(p^k) = p^k - p^{k - 1}\)</span>。</p>
+<p>② 如果 <span class="math inline">\(\gcd(m, n) = 1\)</span>，则 <span
+class="math inline">\(\varphi(mn) = \varphi(m)\varphi(n)\)</span>。</p>
 </blockquote>
 <p><strong>证明：</strong></p>
-<p>① 只有 <span class="math inline">\(p, 2p, 3p, \dots, (p^{k - 1} -1)p, p^k\)</span> 和 <span class="math inline">\(p^k\)</span> 不互素，所以 <span class="math inline">\(\varphi(p^k) = p^k - p^{k - 1}\)</span>。</p>
+<p>① 只有 <span class="math inline">\(p, 2p, 3p, \dots, (p^{k - 1} -1)p,
+p^k\)</span> 和 <span class="math inline">\(p^k\)</span> 不互素，所以
+<span class="math inline">\(\varphi(p^k) = p^k - p^{k -
+1}\)</span>。</p>
 <p>② 设 <span class="math display">\[
 A = \{a | 1 \leq a \leq mn, \gcd(a, mn) = 1\}
 \]</span> <span class="math display">\[
-B = \left\{(b, c) | 
+B = \left\{(b, c) |
 \begin{aligned}
 &amp;1 \leq b \leq m,\gcd(b, m) = 1,\\
 &amp;1 \leq c \leq n,\gcd(c, n) = 1
 \end{aligned}
 \right\}
-\]</span> 则 <span class="math inline">\(|A| = \varphi(mn), |B| = \varphi(m)\varphi(n)\)</span>。</p>
-<p>一方面，对于 <span class="math inline">\(A\)</span> 中的任意元素 <span class="math inline">\(a\)</span>，因为 <span class="math inline">\(m, n\)</span> 互质，所以 <span class="math inline">\(\gcd(a, m) = \gcd(a, n) = 1\)</span>。</p>
-<p>所以 <span class="math inline">\(\gcd(a \bmod m, m) = \gcd(a \bmod n, n) = 1\)</span>。</p>
-<p>所以 <span class="math inline">\((a \bmod m, a \bmod n)\)</span> 一定在集合 <span class="math inline">\(B\)</span> 中。</p>
-<p>假设存在 <span class="math inline">\(a_1, a_2\)</span> 使得 <span class="math inline">\((a_1 \bmod m, a_1 \bmod n) = (a_2 \bmod m, a_2 \bmod n)\)</span>，则 <span class="math inline">\(m \mid (a_1 - a_2), n \mid (a_1 - a_2)\)</span>。</p>
-<p>又因为 <span class="math inline">\(m, n\)</span> 互质，所以 <span class="math inline">\(mn \mid (a_1 - a_2)\)</span>，而 <span class="math inline">\(a_1, a_2 &lt; mn\)</span>，所以 <span class="math inline">\(a_1 = a_2\)</span>。</p>
-<p>另一方面，对于 <span class="math inline">\(B\)</span> 中的任意元素 <span class="math inline">\((b, c)\)</span>，根据中国剩余定理，在模 <span class="math inline">\(mn\)</span> 意义下必定存在唯一的 <span class="math inline">\(x\)</span> 满足</p>
+\]</span> 则 <span class="math inline">\(|A| = \varphi(mn), |B| =
+\varphi(m)\varphi(n)\)</span>。</p>
+<p>一方面，对于 <span class="math inline">\(A\)</span> 中的任意元素
+<span class="math inline">\(a\)</span>，因为 <span
+class="math inline">\(m, n\)</span> 互质，所以 <span
+class="math inline">\(\gcd(a, m) = \gcd(a, n) = 1\)</span>。</p>
+<p>所以 <span class="math inline">\(\gcd(a \bmod m, m) = \gcd(a \bmod n,
+n) = 1\)</span>。</p>
+<p>所以 <span class="math inline">\((a \bmod m, a \bmod n)\)</span>
+一定在集合 <span class="math inline">\(B\)</span> 中。</p>
+<p>假设存在 <span class="math inline">\(a_1, a_2\)</span> 使得 <span
+class="math inline">\((a_1 \bmod m, a_1 \bmod n) = (a_2 \bmod m, a_2
+\bmod n)\)</span>，则 <span class="math inline">\(m \mid (a_1 - a_2), n
+\mid (a_1 - a_2)\)</span>。</p>
+<p>又因为 <span class="math inline">\(m, n\)</span> 互质，所以 <span
+class="math inline">\(mn \mid (a_1 - a_2)\)</span>，而 <span
+class="math inline">\(a_1, a_2 &lt; mn\)</span>，所以 <span
+class="math inline">\(a_1 = a_2\)</span>。</p>
+<p>另一方面，对于 <span class="math inline">\(B\)</span> 中的任意元素
+<span class="math inline">\((b, c)\)</span>，根据中国剩余定理，在模
+<span class="math inline">\(mn\)</span> 意义下必定存在唯一的 <span
+class="math inline">\(x\)</span> 满足</p>
 <p><span class="math display">\[
 \begin{cases}
 &amp;x \equiv b \pmod m\\
 &amp;x \equiv c \pmod n
 \end{cases}
 \]</span></p>
-<p>因为 <span class="math inline">\(\gcd(x, m) = \gcd(b, m) = 1, \gcd(x, n) = \gcd(c, n) = 1\)</span>，所以 <span class="math inline">\(\gcd(x, mn) = 1\)</span>，即 <span class="math inline">\(x\)</span> 在集合 <span class="math inline">\(A\)</span> 中。</p>
-<p>综上我们建立了集合 <span class="math inline">\(A, B\)</span> 之间的单射，所以 <span class="math inline">\(|A| = |B|\)</span>，即 <span class="math inline">\(\varphi(mn) = \varphi(m)\varphi(n)\)</span>。<span class="math inline">\(\square\)</span></p>
+<p>因为 <span class="math inline">\(\gcd(x, m) = \gcd(b, m) = 1, \gcd(x,
+n) = \gcd(c, n) = 1\)</span>，所以 <span class="math inline">\(\gcd(x,
+mn) = 1\)</span>，即 <span class="math inline">\(x\)</span> 在集合 <span
+class="math inline">\(A\)</span> 中。</p>
+<p>综上我们建立了集合 <span class="math inline">\(A, B\)</span>
+之间的单射，所以 <span class="math inline">\(|A| = |B|\)</span>，即
+<span class="math inline">\(\varphi(mn) =
+\varphi(m)\varphi(n)\)</span>。<span
+class="math inline">\(\square\)</span></p>
 <blockquote>
-<p>③ 设整数 <span class="math inline">\(m\)</span> 可以分解为素数的乘积 <span class="math inline">\(m = p_1^{k_1}p_2^{k_2}\dots p_r^{k_r}\)</span>（由算数基本定理得知这样的分解存在且唯一，这在后文会给出证明），则 <span class="math display">\[
+<p>③ 设整数 <span class="math inline">\(m\)</span> 可以分解为素数的乘积
+<span class="math inline">\(m = p_1^{k_1}p_2^{k_2}\dots
+p_r^{k_r}\)</span>（由算数基本定理得知这样的分解存在且唯一，这在后文会给出证明），则
+<span class="math display">\[
 \varphi(m) = m\prod_{i=1}^{r}(1 - \frac{1}{p_i})
 \]</span></p>
 </blockquote>
@@ -2260,11 +2320,15 @@ B = \left\{(b, c) |
 \]</span> <span class="math inline">\(\square\)</span></p>
 <h3 id="欧拉定理">5.2 欧拉定理</h3>
 <blockquote>
-<p>如果 <span class="math inline">\(\gcd(a, m) = 1\)</span>，则 <span class="math display">\[
+<p>如果 <span class="math inline">\(\gcd(a, m) = 1\)</span>，则 <span
+class="math display">\[
 a^{\varphi(m)} \equiv 1 \pmod m
 \]</span></p>
 </blockquote>
-<p>类似费马小定理的证明，取在 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(m\)</span> 之间与 <span class="math inline">\(m\)</span> 互素的数分别与 <span class="math inline">\(a\)</span> 相乘即可。</p>
+<p>类似费马小定理的证明，取在 <span class="math inline">\(1\)</span> 到
+<span class="math inline">\(m\)</span> 之间与 <span
+class="math inline">\(m\)</span> 互素的数分别与 <span
+class="math inline">\(a\)</span> 相乘即可。</p>
 <h3 id="拓展欧拉定理">5.3 拓展欧拉定理</h3>
 <blockquote>
 <p><span class="math display">\[
@@ -2272,7 +2336,8 @@ a^b\equiv
 \begin{cases}
 a^{b\ \bmod\ \varphi(p)},&amp;\gcd(a,p)=1\\
 a^b,&amp;\gcd(a,p)\ne1,b&lt;\varphi(p)\\
-a^{b\ \bmod\ \varphi(p)\ +\ \varphi(p)},&amp;\gcd(a,p)\ne1,b\ge\varphi(p) 
+a^{b\ \bmod\ \varphi(p)\ +\
+\varphi(p)},&amp;\gcd(a,p)\ne1,b\ge\varphi(p)
 \end{cases} \pmod p
 \]</span></p>
 </blockquote>
@@ -2282,62 +2347,111 @@ a^{b\ \bmod\ \varphi(p)\ +\ \varphi(p)},&amp;\gcd(a,p)\ne1,b\ge\varphi(p)
 <blockquote>
 <p>存在无穷多个素数。</p>
 </blockquote>
-<p><strong>证明：</strong> 设当前已找到素数 <span class="math inline">\(p_1, p_2, \dots, p_r\)</span>，下面证明总可以找到另外的素数。</p>
+<p><strong>证明：</strong> 设当前已找到素数 <span
+class="math inline">\(p_1, p_2, \dots,
+p_r\)</span>，下面证明总可以找到另外的素数。</p>
 <p>令 <span class="math display">\[
 A = p_1p_2\dots p_r + 1
-\]</span> 若 <span class="math inline">\(A\)</span> 本身是素数，则证明已完成，否则存在一个素数 <span class="math inline">\(q\)</span> 整除 <span class="math inline">\(A\)</span>。</p>
-<p>如果 <span class="math inline">\(q\)</span> 是 <span class="math inline">\(p_1p_2\dots p_r\)</span> 中的一个，那么 <span class="math inline">\(A \equiv 1 \pmod q\)</span>，矛盾，所以 <span class="math inline">\(q\)</span> 是一个新素数。 <span class="math inline">\(\square\)</span></p>
+\]</span> 若 <span class="math inline">\(A\)</span>
+本身是素数，则证明已完成，否则存在一个素数 <span
+class="math inline">\(q\)</span> 整除 <span
+class="math inline">\(A\)</span>。</p>
+<p>如果 <span class="math inline">\(q\)</span> 是 <span
+class="math inline">\(p_1p_2\dots p_r\)</span> 中的一个，那么 <span
+class="math inline">\(A \equiv 1 \pmod q\)</span>，矛盾，所以 <span
+class="math inline">\(q\)</span> 是一个新素数。 <span
+class="math inline">\(\square\)</span></p>
 <h3 id="算术级数的素数狄利克雷定理">6.2 算术级数的素数狄利克雷定理</h3>
 <blockquote>
-<p>设 <span class="math inline">\(\gcd(a, m) = 1\)</span>，则存在无穷多个素数满足 <span class="math display">\[
+<p>设 <span class="math inline">\(\gcd(a, m) =
+1\)</span>，则存在无穷多个素数满足 <span class="math display">\[
 p \equiv a \pmod m
 \]</span></p>
 </blockquote>
 <h3 id="素数定理">6.3 素数定理</h3>
 <blockquote>
-<p>设 <span class="math inline">\(\pi(x)\)</span> 表示小于 <span class="math inline">\(x\)</span> 的素数个数，则 <span class="math display">\[
+<p>设 <span class="math inline">\(\pi(x)\)</span> 表示小于 <span
+class="math inline">\(x\)</span> 的素数个数，则 <span
+class="math display">\[
 \lim_{x \to \infty}\frac{\pi(x)}{x / \ln(x)} = 1
 \]</span></p>
 </blockquote>
 <h3 id="算数基本定理唯一分解定理">6.4 算数基本定理（唯一分解定理）</h3>
 <blockquote>
-<p>设整数 <span class="math inline">\(n \geq 2\)</span>，则 <span class="math inline">\(n\)</span> 可以唯一分解成素数的乘积 <span class="math display">\[
+<p>设整数 <span class="math inline">\(n \geq 2\)</span>，则 <span
+class="math inline">\(n\)</span> 可以唯一分解成素数的乘积 <span
+class="math display">\[
 n = p_1p_2\dots p_r(p_1 \leq p_2 \leq \dots \leq p_r)
 \]</span></p>
 </blockquote>
-<p>分解的唯一性并不是显然的，因此有必要对这个定理给出证明。 证明分为下面两个部分。</p>
+<p>分解的唯一性并不是显然的，因此有必要对这个定理给出证明。
+证明分为下面两个部分。</p>
 <blockquote>
-<p>断言1：<span class="math inline">\(n\)</span> 可以分解成素数的乘积。</p>
+<p>断言1：<span class="math inline">\(n\)</span>
+可以分解成素数的乘积。</p>
 </blockquote>
-<p><strong>证明：</strong> <span class="math inline">\((1)\)</span> <span class="math inline">\(n = 2, 3\)</span> 时显然成立。</p>
-<p><span class="math inline">\((2)\)</span> 假设 <span class="math inline">\(n \leq N\)</span> 可分解为素数的乘积。 对于 <span class="math inline">\(N + 1\)</span>，若它已经是素数，则证明完成。</p>
-<p>否则 <span class="math inline">\(N + 1\)</span> 是合数，这说明它可以分解成 <span class="math inline">\(N + 1 = n_1n_2, 2 \leq n_1, n_2 \leq N\)</span>，由归纳假设，<span class="math inline">\(n_1, n_2\)</span> 都可以表示成素数的乘积，因此 <span class="math inline">\(N+1\)</span> 也可以表示成素数的乘积。</p>
-<p>由 <span class="math inline">\((1)(2)\)</span> 归纳得知断言1成立。<span class="math inline">\(\square\)</span></p>
+<p><strong>证明：</strong> <span class="math inline">\((1)\)</span>
+<span class="math inline">\(n = 2, 3\)</span> 时显然成立。</p>
+<p><span class="math inline">\((2)\)</span> 假设 <span
+class="math inline">\(n \leq N\)</span> 可分解为素数的乘积。 对于 <span
+class="math inline">\(N + 1\)</span>，若它已经是素数，则证明完成。</p>
+<p>否则 <span class="math inline">\(N + 1\)</span>
+是合数，这说明它可以分解成 <span class="math inline">\(N + 1 = n_1n_2, 2
+\leq n_1, n_2 \leq N\)</span>，由归纳假设，<span
+class="math inline">\(n_1, n_2\)</span> 都可以表示成素数的乘积，因此
+<span class="math inline">\(N+1\)</span> 也可以表示成素数的乘积。</p>
+<p>由 <span class="math inline">\((1)(2)\)</span>
+归纳得知断言1成立。<span class="math inline">\(\square\)</span></p>
 <blockquote>
-<p>断言2：<span class="math inline">\(n\)</span> 的素数分解是唯一的。</p>
+<p>断言2：<span class="math inline">\(n\)</span>
+的素数分解是唯一的。</p>
 </blockquote>
-<p><strong>证明：</strong> 假设 <span class="math inline">\(n\)</span> 能分解成两种形式的素数乘积 <span class="math display">\[
+<p><strong>证明：</strong> 假设 <span class="math inline">\(n\)</span>
+能分解成两种形式的素数乘积 <span class="math display">\[
 n = p_1p_2\dots p_r = q_1q_2\dots q_s
-\]</span> 根据 <em>引理3.1</em>，因为 <span class="math inline">\(p_1 | q_1q_2\dots q_s\)</span>，所以 <span class="math inline">\(p_1\)</span> 整除 <span class="math inline">\(q_1, q_2, \dots, q_s\)</span> 其中的某一个，设为 <span class="math inline">\(q_k\)</span>。</p>
-<p>因为 <span class="math inline">\(p_1, q_k\)</span> 均为素数，所以 <span class="math inline">\(p_1 = q_k\)</span>，于是可以将它从等式两边除去。重复上述操作 <span class="math inline">\(r\)</span> 次，最终只可能剩下等式 <span class="math inline">\(1 = 1\)</span>，于是 <span class="math inline">\(r = s, p_i = q_i\)</span>。<span class="math inline">\(\square\)</span></p>
+\]</span> 根据 <em>引理3.1</em>，因为 <span class="math inline">\(p_1 |
+q_1q_2\dots q_s\)</span>，所以 <span class="math inline">\(p_1\)</span>
+整除 <span class="math inline">\(q_1, q_2, \dots, q_s\)</span>
+其中的某一个，设为 <span class="math inline">\(q_k\)</span>。</p>
+<p>因为 <span class="math inline">\(p_1, q_k\)</span> 均为素数，所以
+<span class="math inline">\(p_1 =
+q_k\)</span>，于是可以将它从等式两边除去。重复上述操作 <span
+class="math inline">\(r\)</span> 次，最终只可能剩下等式 <span
+class="math inline">\(1 = 1\)</span>，于是 <span class="math inline">\(r
+= s, p_i = q_i\)</span>。<span
+class="math inline">\(\square\)</span></p>
 <h3 id="梅森素数和完全数">6.5 梅森素数和完全数</h3>
 <blockquote>
-<p>如果对整数 <span class="math inline">\(a \geq 2, n \geq 2, a^n-1\)</span> 是素数，则 <span class="math inline">\(a = 2\)</span> 且 <span class="math inline">\(n\)</span> 为素数。</p>
-<p>形如 <span class="math inline">\(2^p-1\)</span> 的素数被称为梅森素数。</p>
+<p>如果对整数 <span class="math inline">\(a \geq 2, n \geq 2,
+a^n-1\)</span> 是素数，则 <span class="math inline">\(a = 2\)</span> 且
+<span class="math inline">\(n\)</span> 为素数。</p>
+<p>形如 <span class="math inline">\(2^p-1\)</span>
+的素数被称为梅森素数。</p>
 </blockquote>
-<p><strong>证明：</strong> 当 <span class="math inline">\(a &gt; 2\)</span> 时，因为 <span class="math display">\[
+<p><strong>证明：</strong> 当 <span class="math inline">\(a &gt;
+2\)</span> 时，因为 <span class="math display">\[
 a^n-1 = (a - 1)(a^{n-1}+a^{n-2}+\dots+a^2+a+1)
-\]</span> 所以 <span class="math inline">\(a^n-1\)</span> 有约数 <span class="math inline">\(a - 1\)</span>，是合数。</p>
-<p>当 <span class="math inline">\(n\)</span> 是合数时，设 <span class="math inline">\(n = mk\)</span>，则 <span class="math display">\[
-2^n - 1 = \left(2^{m}\right)^k - 1 = (2^m - 1)(2^{m(k-1)}+2^{m(k-2)}+\dots+2^{m}+1)
-\]</span> 所以 <span class="math inline">\(2^n-1\)</span> 有约数 <span class="math inline">\(2^m - 1\)</span>，是合数。<span class="math inline">\(\square\)</span></p>
+\]</span> 所以 <span class="math inline">\(a^n-1\)</span> 有约数 <span
+class="math inline">\(a - 1\)</span>，是合数。</p>
+<p>当 <span class="math inline">\(n\)</span> 是合数时，设 <span
+class="math inline">\(n = mk\)</span>，则 <span class="math display">\[
+2^n - 1 = \left(2^{m}\right)^k - 1 = (2^m -
+1)(2^{m(k-1)}+2^{m(k-2)}+\dots+2^{m}+1)
+\]</span> 所以 <span class="math inline">\(2^n-1\)</span> 有约数 <span
+class="math inline">\(2^m - 1\)</span>，是合数。<span
+class="math inline">\(\square\)</span></p>
 <blockquote>
 <p>真因数之和等于本身的正整数称为完全数。（真因数即除了本身以外的因数）</p>
 </blockquote>
 <p>梅森素数和完全数有很大的相关性：</p>
 <blockquote>
-<p><strong>6.4.1 欧几里得完全数公式</strong> 如果 <span class="math inline">\(2^p-1\)</span> 是素数，则 <span class="math inline">\(2^{p-1}(2^p-1)\)</span> 是完全数。</p>
-<p><strong>6.4.2 欧拉完全数定理</strong> 如果 <span class="math inline">\(n\)</span> 是<strong>偶完全数</strong>，则 <span class="math inline">\(n = 2^{p-1}(2^p-1)\)</span>，其中<span class="math inline">\(2^p-1\)</span> 是梅森素数。</p>
+<p><strong>6.4.1 欧几里得完全数公式</strong> 如果 <span
+class="math inline">\(2^p-1\)</span> 是素数，则 <span
+class="math inline">\(2^{p-1}(2^p-1)\)</span> 是完全数。</p>
+<p><strong>6.4.2 欧拉完全数定理</strong> 如果 <span
+class="math inline">\(n\)</span> 是<strong>偶完全数</strong>，则 <span
+class="math inline">\(n = 2^{p-1}(2^p-1)\)</span>，其中<span
+class="math inline">\(2^p-1\)</span> 是梅森素数。</p>
 </blockquote>
 <p>至今没有人发现有奇完全数。</p>
 <h3 id="miller-rabin-素性测试">6.6 Miller-Rabin 素性测试</h3>
@@ -2352,27 +2466,39 @@ a^n-1 = (a - 1)(a^{n-1}+a^{n-2}+\dots+a^2+a+1)
 1, &amp; k = 0 \text{ or } k = p
 \end{cases}
 \pmod p
-\]</span> ② 对任意数 <span class="math inline">\(A, B\)</span>，有 <span class="math display">\[
+\]</span> ② 对任意数 <span class="math inline">\(A, B\)</span>，有 <span
+class="math display">\[
 (A + B)^p \equiv A^p + B^p \pmod p
 \]</span></p>
 </blockquote>
-<p><strong>证明：</strong> ① <span class="math inline">\(\dbinom{p}{k} = \dfrac{p^{\underline{k}}}{k!}\)</span></p>
-<p>当 <span class="math inline">\(1 \leq k \leq p - 1\)</span> 时，由于 <span class="math inline">\(p\)</span> 是质数，分子上的 <span class="math inline">\(p\)</span> 不会被约去，所以 <span class="math inline">\(\dbinom{p}{k}\equiv 0 \pmod p\)</span>；</p>
-<p>当 <span class="math inline">\(k = 0\)</span> 或 <span class="math inline">\(k = p\)</span> 时，<span class="math inline">\(\binom{p}{k} = 1\)</span>。</p>
-<p>② 用二项式定理展开再套用①的公式即得证。<span class="math inline">\(\square\)</span></p>
+<p><strong>证明：</strong> ① <span class="math inline">\(\dbinom{p}{k} =
+\dfrac{p^{\underline{k}}}{k!}\)</span></p>
+<p>当 <span class="math inline">\(1 \leq k \leq p - 1\)</span> 时，由于
+<span class="math inline">\(p\)</span> 是质数，分子上的 <span
+class="math inline">\(p\)</span> 不会被约去，所以 <span
+class="math inline">\(\dbinom{p}{k}\equiv 0 \pmod p\)</span>；</p>
+<p>当 <span class="math inline">\(k = 0\)</span> 或 <span
+class="math inline">\(k = p\)</span> 时，<span
+class="math inline">\(\binom{p}{k} = 1\)</span>。</p>
+<p>② 用二项式定理展开再套用①的公式即得证。<span
+class="math inline">\(\square\)</span></p>
 <h3 id="lucas-定理">7.2 Lucas 定理</h3>
 <blockquote>
-<p>设 <span class="math inline">\(p\)</span> 为素数， <span class="math display">\[
-\binom n m \equiv \binom{\lfloor n / p \rfloor}{\lfloor m / p \rfloor} \binom{n \bmod p}{m \bmod p} \pmod p
+<p>设 <span class="math inline">\(p\)</span> 为素数， <span
+class="math display">\[
+\binom n m \equiv \binom{\lfloor n / p \rfloor}{\lfloor m / p \rfloor}
+\binom{n \bmod p}{m \bmod p} \pmod p
 \]</span></p>
 </blockquote>
 <p><strong>证明：</strong> <span class="math display">\[
-(1 + x)^p = 1 + \binom{p}{1}x + \binom{p}{2}x^2 + \dots + \binom{p}{p}x^p
+(1 + x)^p = 1 + \binom{p}{1}x + \binom{p}{2}x^2 + \dots +
+\binom{p}{p}x^p
 \]</span></p>
 <p>由 <em>模 p 二项式定理</em> 有 <span class="math display">\[
 \begin{aligned}
 (1 + x)^p &amp;\equiv 1 + x^p &amp;\pmod p\\
-(1 + x)^{p^k} &amp;\equiv (1 + x^p)^{p^{k - 1}} \equiv \dots \equiv 1 + x^{p^k} &amp;\pmod p
+(1 + x)^{p^k} &amp;\equiv (1 + x^p)^{p^{k - 1}} \equiv \dots \equiv 1 +
+x^{p^k} &amp;\pmod p
 \end{aligned}
 \]</span></p>
 <p>设 <span class="math display">\[
@@ -2382,31 +2508,49 @@ m &amp;= \sum_{i \geq 0}b_ip^i
 \end{cases}
 \]</span> 则 <span class="math display">\[
 \begin{aligned}
-(1 + x)^n = \prod_{i \geq 0} (1 + x)^{a_ip^i} 
+(1 + x)^n = \prod_{i \geq 0} (1 + x)^{a_ip^i}
 &amp;\equiv \prod_{i \geq 0}(1 + x^{p^i})^{a_i} &amp;\pmod p\\
-[x^m](1 + x)^n &amp;\equiv [x^m]\prod_{i \geq 0}(1 + x^{p^i})^{a_i} &amp;\pmod p\\
+[x^m](1 + x)^n &amp;\equiv [x^m]\prod_{i \geq 0}(1 + x^{p^i})^{a_i}
+&amp;\pmod p\\
 \binom{n}{m} &amp;\equiv \prod_{i \geq 0} \binom{a_i}{b_i} &amp;\pmod p
 \end{aligned}
 \]</span></p>
 <p><span class="math inline">\(\square\)</span></p>
 <h3 id="拓展-lucas-定理">7.3 拓展 Lucas 定理</h3>
 <blockquote>
-<p>对于 <span class="math inline">\(p\)</span> 是合数的情形，Lucas 定理失效，此时可以通过另外的方法求二项式系数对 <span class="math inline">\(p\)</span> 的模。思路如下：</p>
-<p>将 <span class="math inline">\(p\)</span> 质因数分解为 <span class="math inline">\(p = \sum_{i = 1}^{r} q_i^{k_i}\)</span>，分别求出 <span class="math inline">\(\dbinom{n}{m} \bmod q_i^{k_i}\)</span>，然后用中国剩余定理合并。</p>
+<p>对于 <span class="math inline">\(p\)</span> 是合数的情形，Lucas
+定理失效，此时可以通过另外的方法求二项式系数对 <span
+class="math inline">\(p\)</span> 的模。思路如下：</p>
+<p>将 <span class="math inline">\(p\)</span> 质因数分解为 <span
+class="math inline">\(p = \sum_{i = 1}^{r} q_i^{k_i}\)</span>，分别求出
+<span class="math inline">\(\dbinom{n}{m} \bmod
+q_i^{k_i}\)</span>，然后用中国剩余定理合并。</p>
 </blockquote>
-<p>通常二项式系数的计算式为 <span class="math inline">\(\dbinom{n}{m} = \dfrac{n!}{m!(n - m)!}\)</span>，需要求出 <span class="math inline">\(m!(n-m)!\)</span> 的逆元，然而在 <span class="math inline">\(q_i \mid m!(n - m)!\)</span> 的情况下逆元不存在，需要特殊处理。</p>
-<p>设 <span class="math inline">\(n = q^{r(n)}k(n)\)</span>，其中 <span class="math inline">\(k \nmid q\)</span>，则 <span class="math display">\[
-\binom{n}{m} = \frac{n!}{m!(n - m)!} = \frac{n!}{k(m!)k((n-m)!)}\cdot q^{-r(m) - r(n - m)}
-\]</span> 这样逆元都是存在的，问题在于求 <span class="math inline">\(r(n!)\)</span>。</p>
+<p>通常二项式系数的计算式为 <span class="math inline">\(\dbinom{n}{m} =
+\dfrac{n!}{m!(n - m)!}\)</span>，需要求出 <span
+class="math inline">\(m!(n-m)!\)</span> 的逆元，然而在 <span
+class="math inline">\(q_i \mid m!(n - m)!\)</span>
+的情况下逆元不存在，需要特殊处理。</p>
+<p>设 <span class="math inline">\(n = q^{r(n)}k(n)\)</span>，其中 <span
+class="math inline">\(k \nmid q\)</span>，则 <span
+class="math display">\[
+\binom{n}{m} = \frac{n!}{m!(n - m)!} = \frac{n!}{k(m!)k((n-m)!)}\cdot
+q^{-r(m) - r(n - m)}
+\]</span> 这样逆元都是存在的，问题在于求 <span
+class="math inline">\(r(n!)\)</span>。</p>
 <p><strong>太毒瘤了，咕咕咕……</strong></p>
 <h3 id="kummer-定理">7.4 Kummer 定理</h3>
 <blockquote>
-<p><span class="math inline">\(\dbinom{n + m}{m}\)</span> 中素因子 <span class="math inline">\(p\)</span> 的个数等于 <span class="math inline">\(n, m\)</span> 在 <span class="math inline">\(p\)</span> 进制下做加法的进位次数。</p>
+<p><span class="math inline">\(\dbinom{n + m}{m}\)</span> 中素因子 <span
+class="math inline">\(p\)</span> 的个数等于 <span
+class="math inline">\(n, m\)</span> 在 <span
+class="math inline">\(p\)</span> 进制下做加法的进位次数。</p>
 </blockquote>
 <p>例题 <a href="https://www.luogu.com.cn/problem/CF582D">CF582D</a></p>
 <h2 id="二次剩余">8 二次剩余</h2>
 <p>直接拖了 yosupo 的板子。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> SqrtMod <span class="op">{</span></span>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> SqrtMod <span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Int <span class="op">=</span> <span class="dt">long</span> <span class="dt">long</span><span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// a^-1 (mod m)</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">//   m &gt; 0</span></span>
@@ -2479,22 +2623,35 @@ m &amp;= \sum_{i \geq 0}b_ip^i
 <span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="co">// namespace SqrtMod</span></span></code></pre></div>
 <h2 id="离散对数">9 离散对数</h2>
 <blockquote>
-<p>求解同余方程 <span class="math inline">\(a^x \equiv b \pmod p\)</span>。</p>
+<p>求解同余方程 <span class="math inline">\(a^x \equiv b \pmod
+p\)</span>。</p>
 </blockquote>
-<h3 id="大步小步算法baby-step-giant-step">9.1 大步小步算法(Baby Step Giant Step)</h3>
+<h3 id="大步小步算法baby-step-giant-step">9.1 大步小步算法(Baby Step
+Giant Step)</h3>
 <p>设 <span class="math inline">\(\gcd(a, p) = 1\)</span>。</p>
-<p>令 <span class="math inline">\(x = kT - m(T = \lceil \sqrt p \rceil, 0 \leq m &lt; T)\)</span>。</p>
-<p>原方程变为 <span class="math display">\[a^{kT - m} \equiv b \pmod p\]</span></p>
-<p>由于 <span class="math inline">\(a, p\)</span> 互质，<span class="math inline">\(a\)</span> 存在逆元，于是方程等价于 <span class="math display">\[(a^T)^{k} \equiv ba^m \pmod p\]</span></p>
-<p>把 <span class="math inline">\(ba^m\)</span> 的所有值插入哈希表，然后枚举 <span class="math inline">\(k\)</span> 即可。</p>
+<p>令 <span class="math inline">\(x = kT - m(T = \lceil \sqrt p \rceil,
+0 \leq m &lt; T)\)</span>。</p>
+<p>原方程变为 <span class="math display">\[a^{kT - m} \equiv b \pmod
+p\]</span></p>
+<p>由于 <span class="math inline">\(a, p\)</span> 互质，<span
+class="math inline">\(a\)</span> 存在逆元，于是方程等价于 <span
+class="math display">\[(a^T)^{k} \equiv ba^m \pmod p\]</span></p>
+<p>把 <span class="math inline">\(ba^m\)</span>
+的所有值插入哈希表，然后枚举 <span class="math inline">\(k\)</span>
+即可。</p>
 <p>复杂度 <span class="math inline">\(O(\sqrt p)\)</span>。</p>
 <h3 id="exbsgs">9.2 EXBSGS</h3>
 <p>设 <span class="math inline">\(\gcd(a, p) \neq 1\)</span>。</p>
-<p>先验证 <span class="math inline">\(x = 0\)</span>，下面假定 <span class="math inline">\(x &gt; 0\)</span>。</p>
-<p>设 <span class="math inline">\(d = \gcd(a, p)\)</span>，当 <span class="math inline">\(d \nmid b\)</span> 时方程无解。</p>
-<p>否则方程等价于 <span class="math display">\[a^{x-1}\dfrac{a}{d} \equiv \dfrac{b}{d} \pmod {\dfrac{p}{d}}\]</span></p>
-<p>重复此过程，直到底数和模数互质，此时可以用 <code>BSGS</code> 求解。</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> exgcd<span class="op">(</span>LL a<span class="op">,</span> LL b<span class="op">,</span> LL <span class="op">&amp;</span>x<span class="op">,</span> LL <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span></span>
+<p>先验证 <span class="math inline">\(x = 0\)</span>，下面假定 <span
+class="math inline">\(x &gt; 0\)</span>。</p>
+<p>设 <span class="math inline">\(d = \gcd(a, p)\)</span>，当 <span
+class="math inline">\(d \nmid b\)</span> 时方程无解。</p>
+<p>否则方程等价于 <span class="math display">\[a^{x-1}\dfrac{a}{d}
+\equiv \dfrac{b}{d} \pmod {\dfrac{p}{d}}\]</span></p>
+<p>重复此过程，直到底数和模数互质，此时可以用 <code>BSGS</code>
+求解。</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> exgcd<span class="op">(</span>LL a<span class="op">,</span> LL b<span class="op">,</span> LL <span class="op">&amp;</span>x<span class="op">,</span> LL <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>b<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
@@ -2532,17 +2689,35 @@ m &amp;= \sum_{i \geq 0}b_ip^i
 <p><strong>下面的内容大部分摘自 OI Wiki。</strong></p>
 <h3 id="阶">10.1 阶</h3>
 <blockquote>
-<p><strong>阶</strong>：由欧拉定理可知，对 <span class="math inline">\(a\in \mathbf{Z}\)</span>，<span class="math inline">\(m\in\mathbf{N}^{*}\)</span>，若 <span class="math inline">\(\gcd(a,m)=1\)</span>，则 <span class="math inline">\(a^{\varphi(m)}\equiv 1\pmod m\)</span>。</p>
-<p>因此满足同余式 <span class="math inline">\(a^n \equiv 1 \pmod m\)</span> 的最小正整数 <span class="math inline">\(n\)</span> 存在，这个 <span class="math inline">\(n\)</span> 称作 <span class="math inline">\(a\)</span> 模 <span class="math inline">\(m\)</span> 的阶，记作 <span class="math inline">\(\delta_m(a)\)</span>。</p>
+<p><strong>阶</strong>：由欧拉定理可知，对 <span
+class="math inline">\(a\in \mathbf{Z}\)</span>，<span
+class="math inline">\(m\in\mathbf{N}^{*}\)</span>，若 <span
+class="math inline">\(\gcd(a,m)=1\)</span>，则 <span
+class="math inline">\(a^{\varphi(m)}\equiv 1\pmod m\)</span>。</p>
+<p>因此满足同余式 <span class="math inline">\(a^n \equiv 1 \pmod
+m\)</span> 的最小正整数 <span class="math inline">\(n\)</span>
+存在，这个 <span class="math inline">\(n\)</span> 称作 <span
+class="math inline">\(a\)</span> 模 <span
+class="math inline">\(m\)</span> 的阶，记作 <span
+class="math inline">\(\delta_m(a)\)</span>。</p>
 </blockquote>
 <blockquote>
-<p><strong>定理 10.1.1</strong>：<span class="math inline">\(a,a^2,\cdots,a^{\delta_m(a)}\)</span> 模 <span class="math inline">\(m\)</span> 两两不同余。</p>
-<p><strong>定理 10.1.2</strong>：若 <span class="math inline">\(a^n \equiv 1 \pmod m\)</span>，则 <span class="math inline">\(\delta_m(a)\mid n\)</span>。</p>
-<p><strong>推论</strong>：若 <span class="math inline">\(a^p\equiv a^q\pmod m\)</span>，则有 <span class="math inline">\(p\equiv q\pmod{\delta_m(a)}\)</span>。</p>
+<p><strong>定理 10.1.1</strong>：<span
+class="math inline">\(a,a^2,\cdots,a^{\delta_m(a)}\)</span> 模 <span
+class="math inline">\(m\)</span> 两两不同余。</p>
+<p><strong>定理 10.1.2</strong>：若 <span class="math inline">\(a^n
+\equiv 1 \pmod m\)</span>，则 <span
+class="math inline">\(\delta_m(a)\mid n\)</span>。</p>
+<p><strong>推论</strong>：若 <span class="math inline">\(a^p\equiv
+a^q\pmod m\)</span>，则有 <span class="math inline">\(p\equiv
+q\pmod{\delta_m(a)}\)</span>。</p>
 </blockquote>
 <p>还有两个与四则运算有关的重要性质。</p>
 <blockquote>
-<p><strong>定理 10.1.3</strong>：设 <span class="math inline">\(m\in\mathbf{N}^{*}\)</span>，<span class="math inline">\(a,b\in\mathbf{Z}\)</span>，<span class="math inline">\(\gcd(a,m)=\gcd(b,m)=1\)</span>，则</p>
+<p><strong>定理 10.1.3</strong>：设 <span
+class="math inline">\(m\in\mathbf{N}^{*}\)</span>，<span
+class="math inline">\(a,b\in\mathbf{Z}\)</span>，<span
+class="math inline">\(\gcd(a,m)=\gcd(b,m)=1\)</span>，则</p>
 <p><span class="math display">\[
 \delta_m(ab)=\delta_m(a)\delta_m(b)
 \]</span></p>
@@ -2553,7 +2728,9 @@ m &amp;= \sum_{i \geq 0}b_ip^i
 </blockquote>
 <p><strong>证明</strong>：</p>
 <p><strong>必要性</strong></p>
-<p>由 <span class="math inline">\(a^{\delta_m(a)}\equiv 1 \pmod m\)</span> 及 <span class="math inline">\(b^{\delta_m(b)} \equiv 1 \pmod m\)</span>，可知</p>
+<p>由 <span class="math inline">\(a^{\delta_m(a)}\equiv 1 \pmod
+m\)</span> 及 <span class="math inline">\(b^{\delta_m(b)} \equiv 1 \pmod
+m\)</span>，可知</p>
 <p><span class="math display">\[
 (ab)^{\operatorname{lcm}(\delta_m(a),\delta_m(b))}\equiv 1 \pmod m
 \]</span></p>
@@ -2561,17 +2738,24 @@ m &amp;= \sum_{i \geq 0}b_ip^i
 <p><span class="math display">\[
 \delta_m(ab)\mid\operatorname{lcm}\big(\delta_m(a),\delta_m(b)\big)
 \]</span></p>
-<p>又由于 <span class="math inline">\(\delta_m(ab)=\delta_m(a)\delta_m(b)\)</span>，故</p>
+<p>又由于 <span
+class="math inline">\(\delta_m(ab)=\delta_m(a)\delta_m(b)\)</span>，故</p>
 <p><span class="math display">\[
 \delta_m(a)\delta_m(b)\mid\operatorname{lcm}\big(\delta_m(a),\delta_m(b)\big)
 \]</span></p>
-<p>即 <span class="math inline">\(\gcd(\delta_m(a),\delta_m(b))=1\)</span>。</p>
+<p>即 <span
+class="math inline">\(\gcd(\delta_m(a),\delta_m(b))=1\)</span>。</p>
 <p><strong>充分性</strong></p>
-<p>由 <span class="math inline">\((ab)^{\delta_m(ab)}\equiv 1 \pmod m\)</span> 可知</p>
+<p>由 <span class="math inline">\((ab)^{\delta_m(ab)}\equiv 1 \pmod
+m\)</span> 可知</p>
 <p><span class="math display">\[
-1 \equiv (ab)^{\delta_m(ab)\delta_m(b)}\equiv a^{\delta_m(ab)\delta_m(b)} \pmod m
+1 \equiv (ab)^{\delta_m(ab)\delta_m(b)}\equiv
+a^{\delta_m(ab)\delta_m(b)} \pmod m
 \]</span></p>
-<p>故 <span class="math inline">\(\delta_m(a)\mid\delta_m(ab)\delta_m(b)\)</span>。结合 <span class="math inline">\(\gcd(\delta_m(a),\delta_m(b))=1\)</span> 即得</p>
+<p>故 <span
+class="math inline">\(\delta_m(a)\mid\delta_m(ab)\delta_m(b)\)</span>。结合
+<span class="math inline">\(\gcd(\delta_m(a),\delta_m(b))=1\)</span>
+即得</p>
 <p><span class="math display">\[
 \delta_m(a)\mid\delta_m(ab)
 \]</span></p>
@@ -2585,7 +2769,8 @@ m &amp;= \sum_{i \geq 0}b_ip^i
 \]</span></p>
 <p>另一方面，有</p>
 <p><span class="math display">\[
-(ab)^{\delta_m(a)\delta_m(b)}\equiv(a^{\delta_m(a)})^{\delta_m(b)}\times(b^{\delta_m(b)})^{\delta_m(a)}\equiv 1 \pmod m
+(ab)^{\delta_m(a)\delta_m(b)}\equiv(a^{\delta_m(a)})^{\delta_m(b)}\times(b^{\delta_m(b)})^{\delta_m(a)}\equiv
+1 \pmod m
 \]</span></p>
 <p>故</p>
 <p><span class="math display">\[
@@ -2597,7 +2782,11 @@ m &amp;= \sum_{i \geq 0}b_ip^i
 \]</span></p>
 <p><span class="math inline">\(\square\)</span></p>
 <blockquote>
-<p><strong>定理 10.1.4</strong>：设 <span class="math inline">\(k \in \mathbf{N}\)</span>，<span class="math inline">\(m\in \mathbf{N}^{*}\)</span>，<span class="math inline">\(a\in\mathbf{Z}\)</span>，<span class="math inline">\(\gcd(a,m)=1\)</span>，则</p>
+<p><strong>定理 10.1.4</strong>：设 <span class="math inline">\(k \in
+\mathbf{N}\)</span>，<span class="math inline">\(m\in
+\mathbf{N}^{*}\)</span>，<span
+class="math inline">\(a\in\mathbf{Z}\)</span>，<span
+class="math inline">\(\gcd(a,m)=1\)</span>，则</p>
 <p><span class="math display">\[
 \delta_m(a^k)=\dfrac{\delta_m(a)}{\gcd\big(\delta_m(a),k\big)}
 \]</span></p>
@@ -2610,11 +2799,14 @@ a^{k\delta_m(a^k)}=(a^k)^{\delta_m(a^k)}\equiv 1 \pmod m
 \Rightarrow \delta_m(a)\mid k\delta_m(a^k)
 \]</span></p>
 <p><span class="math display">\[
-\Rightarrow \dfrac{\delta_m(a)}{\gcd\big(\delta_m(a),k\big)}\mid\delta_m(a^k)
+\Rightarrow
+\dfrac{\delta_m(a)}{\gcd\big(\delta_m(a),k\big)}\mid\delta_m(a^k)
 \]</span></p>
-<p>另一方面，由 <span class="math inline">\(a^{\delta_m(a)}\equiv 1 \pmod m\)</span>，可知：</p>
+<p>另一方面，由 <span class="math inline">\(a^{\delta_m(a)}\equiv 1
+\pmod m\)</span>，可知：</p>
 <p><span class="math display">\[
-(a^k)^{\dfrac{\delta_m(a)}{\gcd(\delta_m(a),k)}}=(a^{\delta_m(a)})^{\dfrac{k}{\gcd(\delta_m(a),k)}}\equiv 1 \pmod m
+(a^k)^{\dfrac{\delta_m(a)}{\gcd(\delta_m(a),k)}}=(a^{\delta_m(a)})^{\dfrac{k}{\gcd(\delta_m(a),k)}}\equiv
+1 \pmod m
 \]</span></p>
 <p>故：</p>
 <p><span class="math display">\[
@@ -2627,31 +2819,65 @@ a^{k\delta_m(a^k)}=(a^k)^{\delta_m(a^k)}\equiv 1 \pmod m
 <p><span class="math inline">\(\square\)</span></p>
 <h3 id="原根">10.2 原根</h3>
 <blockquote>
-<p><strong>原根</strong>：设 <span class="math inline">\(m \in \mathbf{N}^{*}\)</span>，<span class="math inline">\(a\in \mathbf{Z}\)</span>。若 <span class="math inline">\(\gcd(a,m)=1\)</span>，且 <span class="math inline">\(\delta_m(a)=\varphi(m)\)</span>，则称 <span class="math inline">\(a\)</span> 为模 <span class="math inline">\(m\)</span> 的原根。</p>
+<p><strong>原根</strong>：设 <span class="math inline">\(m \in
+\mathbf{N}^{*}\)</span>，<span class="math inline">\(a\in
+\mathbf{Z}\)</span>。若 <span
+class="math inline">\(\gcd(a,m)=1\)</span>，且 <span
+class="math inline">\(\delta_m(a)=\varphi(m)\)</span>，则称 <span
+class="math inline">\(a\)</span> 为模 <span
+class="math inline">\(m\)</span> 的原根。</p>
 </blockquote>
 <h4 id="原根个数">10.2.1 原根个数</h4>
 <blockquote>
-<p>若一个数 <span class="math inline">\(m\)</span> 有原根，则它原根的个数为 <span class="math inline">\(\varphi(\varphi(m))\)</span>。</p>
+<p>若一个数 <span class="math inline">\(m\)</span>
+有原根，则它原根的个数为 <span
+class="math inline">\(\varphi(\varphi(m))\)</span>。</p>
 </blockquote>
 <h4 id="原根存在定理">10.2.2 原根存在定理</h4>
 <blockquote>
-<p><strong>原根存在定理</strong>：一个数 <span class="math inline">\(m\)</span> 存在原根当且仅当 <span class="math inline">\(m=2,4,p^{\alpha},2p^{\alpha}\)</span>，其中 <span class="math inline">\(p\)</span> 为奇素数，<span class="math inline">\(\alpha\in \mathbf{N}^{*}\)</span>。</p>
+<p><strong>原根存在定理</strong>：一个数 <span
+class="math inline">\(m\)</span> 存在原根当且仅当 <span
+class="math inline">\(m=2,4,p^{\alpha},2p^{\alpha}\)</span>，其中 <span
+class="math inline">\(p\)</span> 为奇素数，<span
+class="math inline">\(\alpha\in \mathbf{N}^{*}\)</span>。</p>
 </blockquote>
 <h4 id="求原根">10.2.3 求原根</h4>
 <blockquote>
-<p><strong>原根判定定理</strong>：若一个数 <span class="math inline">\(g\)</span> 是模 <span class="math inline">\(m\)</span> 的原根，则有对于 <span class="math inline">\(\varphi(m)\)</span> 任何大于 <span class="math inline">\(1\)</span> 且不为自身的因数 <span class="math inline">\(p\)</span>，都有 <span class="math inline">\(g^{\varphi(m)/p}\not\equiv 1\pmod m\)</span>。</p>
+<p><strong>原根判定定理</strong>：若一个数 <span
+class="math inline">\(g\)</span> 是模 <span
+class="math inline">\(m\)</span> 的原根，则有对于 <span
+class="math inline">\(\varphi(m)\)</span> 任何大于 <span
+class="math inline">\(1\)</span> 且不为自身的因数 <span
+class="math inline">\(p\)</span>，都有 <span
+class="math inline">\(g^{\varphi(m)/p}\not\equiv 1\pmod m\)</span>。</p>
 </blockquote>
 <blockquote>
-<p><strong>最小原根的数量级</strong> 王元于 <span class="math inline">\(1959\)</span> 年证明了若 <span class="math inline">\(m\)</span> 有原根，其最小原根是不多于 <span class="math inline">\(m^{0.25}\)</span> 级别的。</p>
+<p><strong>最小原根的数量级</strong> 王元于 <span
+class="math inline">\(1959\)</span> 年证明了若 <span
+class="math inline">\(m\)</span> 有原根，其最小原根是不多于 <span
+class="math inline">\(m^{0.25}\)</span> 级别的。</p>
 </blockquote>
 <p>于是可以从小到大枚举判定。</p>
-<p>由 <em>定理 10.1.4</em> 可知，设 <span class="math inline">\(g\)</span> 为模 <span class="math inline">\(m\)</span> 的任意原根，<span class="math inline">\(a = g^x\)</span>，则 <span class="math inline">\(a\)</span> 为模 <span class="math inline">\(m\)</span> 的原根当且仅当 <span class="math inline">\(\gcd(x, \varphi(m)) = 1\)</span>。</p>
-<p>所以可以枚举 <span class="math inline">\(x\)</span> 求出所有 <span class="math inline">\(\varphi(\varphi(m))\)</span> 个原根。</p>
+<p>由 <em>定理 10.1.4</em> 可知，设 <span
+class="math inline">\(g\)</span> 为模 <span
+class="math inline">\(m\)</span> 的任意原根，<span
+class="math inline">\(a = g^x\)</span>，则 <span
+class="math inline">\(a\)</span> 为模 <span
+class="math inline">\(m\)</span> 的原根当且仅当 <span
+class="math inline">\(\gcd(x, \varphi(m)) = 1\)</span>。</p>
+<p>所以可以枚举 <span class="math inline">\(x\)</span> 求出所有 <span
+class="math inline">\(\varphi(\varphi(m))\)</span> 个原根。</p>
 <h2 id="数论函数">11 数论函数</h2>
 <h3 id="积性函数">11.1 积性函数</h3>
 <blockquote>
-<p>若数论函数 <span class="math inline">\(f\)</span> 满足对于任意的 <span class="math inline">\(a, b \in \mathbf{N}^*, \gcd(a, b) = 1\)</span> 都有 <span class="math inline">\(f(ab) = f(a)f(b)\)</span>，则称 <span class="math inline">\(f\)</span> 为积性函数。</p>
-<p>特别地，如果对于任意 <span class="math inline">\(a, b \in \mathbf{N}^*\)</span> 都满足上面的条件，则称 <span class="math inline">\(f\)</span> 为完全积性函数。</p>
+<p>若数论函数 <span class="math inline">\(f\)</span> 满足对于任意的
+<span class="math inline">\(a, b \in \mathbf{N}^*, \gcd(a, b) =
+1\)</span> 都有 <span class="math inline">\(f(ab) =
+f(a)f(b)\)</span>，则称 <span class="math inline">\(f\)</span>
+为积性函数。</p>
+<p>特别地，如果对于任意 <span class="math inline">\(a, b \in
+\mathbf{N}^*\)</span> 都满足上面的条件，则称 <span
+class="math inline">\(f\)</span> 为完全积性函数。</p>
 </blockquote>
 
                     
