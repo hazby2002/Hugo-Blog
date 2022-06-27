@@ -1442,7 +1442,7 @@ C(m) = A(m)B(m)
 <p>循环卷积 <span class="math display">\[
 C(x) = \operatorname{conv}(A, B, n)
 \]</span> 系数关系表示为 <span class="math display">\[
-c_k = \sum_{p, q}[(p + q) \mod n = k]a_pb_q
+c_k = \sum_{p, q}[(p + q) \bmod n = k]a_pb_q
 \]</span> 其中 <span class="math inline">\(\deg C = n - 1\)</span>。</p>
 <p>容易发现，当 <span class="math inline">\(n &gt; \deg A + \deg
 B\)</span> 时，该运算等价于多项式乘法。</p>
@@ -1467,14 +1467,14 @@ C(\omega_n^k) = A(\omega_n^k)B(\omega_n^k)
 <p>IDFT 是 DFT 的逆变换。</p>
 <p>首先，用等比数列求和易证： <span class="math display">\[
 \begin{aligned}
-\frac1n\sum_{k = 0}^{n - 1}\omega_n^{vk} &amp;= [v \mod n = 0]
+\frac1n\sum_{k = 0}^{n - 1}\omega_n^{vk} &amp;= [v \bmod n = 0]
 \end{aligned}
 \]</span> 考虑循环卷积 <span class="math inline">\(C(x) =
 \operatorname{conv}(A, B, n)\)</span> 的系数表示 <span
 class="math display">\[
 \begin{aligned}
-c_r = &amp;\sum_{p, q}[(p + q) \mod n = r]a_pb_q\\
-= &amp;\sum_{p, q}[(p + q - r) \mod n = 0]a_pb_q\\
+c_r = &amp;\sum_{p, q}[(p + q) \bmod n = r]a_pb_q\\
+= &amp;\sum_{p, q}[(p + q - r) \bmod n = 0]a_pb_q\\
 = &amp;\sum_{p, q}\frac1n\sum_{k = 0}^{n - 1}\omega_n^{pk+qk-rk}a_pb_q\\
 = &amp;\sum_{p, q}\frac1n\sum_{k = 0}^{n -
 1}\omega_n^{-rk}\cdot\omega_n^{pk}a_p\cdot\omega_n^{qk}b_q\\
@@ -1650,7 +1650,7 @@ class="math inline">\(p_i&#39;\)</span>（<code>相对位置</code>指它在括�
 class="math inline">\(a_1\)</span> 的相对位置为 <span
 class="math inline">\(0\)</span>）。</p>
 <p>容易发现 <span class="math display">\[
-p&#39;_i = p_i \mod \frac{n}{2^i}
+p&#39;_i = p_i \bmod \frac{n}{2^i}
 \]</span> <span class="math display">\[
 p_{i + 1} = p_{i} - p&#39;_i +
 \begin{cases}
@@ -2896,7 +2896,7 @@ A_0B_1, A_1B_0, A_1B_1\)</span> 的系数。</p>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2021-08-13</p>
+		    <p style="color:#777;">最后修改于 2022-06-27</p>
                     
                 </div>
             </div>
