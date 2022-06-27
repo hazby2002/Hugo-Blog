@@ -7,25 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Thu, 19 Aug 2021 20:20:26 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%A4%9A%E6%A0%A1/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>2021多校总结</title>
-      <link>https://blog.asukakyle.top/post/2021%E5%A4%9A%E6%A0%A1%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Thu, 19 Aug 2021 20:20:26 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021%E5%A4%9A%E6%A0%A1%E6%80%BB%E7%BB%93/</guid>
-      <description>一事无成。</description>
-    </item>
-    
-    <item>
-      <title>2021杭电多校10</title>
-      <link>https://blog.asukakyle.top/post/2021hdu10/</link>
-      <pubDate>Thu, 19 Aug 2021 17:31:49 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021hdu10/</guid>
-      <description>题号 题目 完成情况 7077 Pty loves sequence 7078 Pty with card 7079 Pty loves lines 通过 7080 Pty hates prime numbers 通过 7081 Pty loves book 7082 Pty loves lcm 7083 Pty loves graph 7084 Pty loves string 通过 7085 Pty loves SegmentTree 7086 Pty plays game Pty loves sequence Pty with card Pty loves lines #include &amp;lt;bits/stdc++.h&amp;gt; struct Interval { int l, r; }; std::vector&amp;lt;Interval&amp;gt; f[705]; int a[705 * 705]; int main() { std::ios::sync_with_stdio(0); std::cin.</description>
-    </item>
-    
+    <lastBuildDate>Wed, 18 Aug 2021 22:13:07 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/tags/%E5%A4%9A%E6%A0%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2021牛客多校10</title>
       <link>https://blog.asukakyle.top/post/2021nowcoder10/</link>
@@ -36,15 +18,6 @@
     </item>
     
     <item>
-      <title>2021杭电多校9</title>
-      <link>https://blog.asukakyle.top/post/2021hdu9/</link>
-      <pubDate>Tue, 17 Aug 2021 17:31:45 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021hdu9/</guid>
-      <description>题号 题目 完成情况 7066 NJU emulator 通过 7067 Just another board game 通过 7068 Dota2 Pro Circuit 通过 7069 Into the woods 7070 Did I miss the lethal? 7071 Guess the weight 通过 7072 Boring data structure problem 通过 7073 Integers Have Friends 2.0 通过 7074 Little prince and the garden of roses 7075 Unfair contest 通过 7076 ZYB’s kingdom 通过 NJU emulator // Author: HolyK // Created: Tue Aug 17 16:06:20 2021 #include &amp;lt;bits/stdc++.</description>
-    </item>
-    
-    <item>
       <title>2021牛客多校9</title>
       <link>https://blog.asukakyle.top/post/2021nowcoder9/</link>
       <pubDate>Sat, 14 Aug 2021 18:36:09 +0800</pubDate>
@@ -52,16 +25,6 @@
       <guid>https://blog.asukakyle.top/post/2021nowcoder9/</guid>
       <description>题号 标题 团队的状态 A A Math Challenge 通过 B Best Subgraph 未通过 C Cells 通过 D Divide-and-conquer on Tree 未通过 E Eyjafjalla 通过 F Financial Order Execution 未通过 G Glass Balls 通过 H Happy Number 通过 I Incentive Model 通过 J Jam 通过 A Math Challenge LOJ138 + 自然数幂和。
 // Author: HolyK // Created: Sun Aug 15 21:59:21 2021 #include &amp;lt;bits/stdc++.h&amp;gt; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
-    </item>
-    
-    <item>
-      <title>2021杭电多校8</title>
-      <link>https://blog.asukakyle.top/post/2021hdu8/</link>
-      <pubDate>Thu, 12 Aug 2021 19:45:56 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021hdu8/</guid>
-      <description>题号 题目 完成情况 7056 X-liked Counting 通过 7057 Buying Snacks 通过 7058 Ink on paper 通过 7059 Counting Stars 通过 7060 Separated Number 通过 7061 GCD Game 通过 7062 A Simple Problem 通过 7063 Square Card 通过 7064 Singing Superstar 通过 7065 Yinyang X-liked Counting 直接记忆化搜索常数比较大，一部分用for循环代替。
-// Author: HolyK // Created: Fri Aug 13 16:54:31 2021 #include &amp;lt;bits/stdc++.h&amp;gt; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -83,61 +46,12 @@
     </item>
     
     <item>
-      <title>2021杭电多校6</title>
-      <link>https://blog.asukakyle.top/post/2021hdu6/</link>
-      <pubDate>Thu, 05 Aug 2021 20:42:30 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021hdu6/</guid>
-      <description>题号 题目 完成情况 7025 Yes, Prime Minister 通过 7026 Might and Magic 7027 0 tree 通过 7028 Decomposition 7029 Median 通过 7030 The Struggle 7031 Power Station of Art 7032 Command and Conquer: Red Alert 2 7033 Typing Contest 7034 Array 7035 Game Yes, Prime Minister Might and Magic 凸函数的和仍是凸函数。
-// Author: HolyK // Created: Thu Aug 5 20:56:29 2021 #include &amp;lt;bits/stdc++.h&amp;gt; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
-    </item>
-    
-    <item>
-      <title>2021杭电多校5</title>
-      <link>https://blog.asukakyle.top/post/2021hdu5/</link>
-      <pubDate>Wed, 04 Aug 2021 12:03:49 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021hdu5/</guid>
-      <description>题号 题目 完成情况 7012 Miserable Faith 通过 7013 String Mod 通过 7014 VC Is All You Need 通过 7015 Another String 7016 Random Walk 2 通过 7017 Cute Tree 通过 7018 Banzhuan 通过 7019 Supermarket 7020 Array 通过 7021 Guess Or Not 2 7022 Jsljgame 7023 Yet Another Matrix Problem 7024 Penguin Love Tour 通过 Miserable Faith LCT 裸题。
-#include &amp;lt;bits/stdc++.h&amp;gt; using LL = long long; constexpr int N(1e5 + 5); std::vector&amp;lt;int&amp;gt; g[N]; struct Node { int ch[2], fa, siz, top; } t[N]; int n, m, in[N], out[N], cnt, dep[N], f[18][N]; int lca(int x, int y) { if (dep[x] &amp;lt; dep[y]) std::swap(x, y); for (int i = 0; dep[x] !</description>
-    </item>
-    
-    <item>
       <title>2021牛客多校3</title>
       <link>https://blog.asukakyle.top/post/2021nowcoder3/</link>
       <pubDate>Sat, 31 Jul 2021 11:28:53 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder3/</guid>
       <description>题号 标题 团队的状态 A Guess and lies 通过 B Black and white 通过 C Minimum grid 通过 D Count 通过 E Math 通过 F 24dian 通过 G Yu Ling(Ling YueZheng) and Colorful Tree 通过 H Ling Qiu, Luna and Triple Backpack 未通过 I Kuriyama Mirai and Exclusive Or 通过 J Counting Triangles 通过 Guess and lies Black and white Minimum grid Count Math 24dian Yu Ling(Ling YueZheng) and Colorful Tree 一棵 \(n\) 个点的树，1 是根。\(q\) 次操作：</description>
-    </item>
-    
-    <item>
-      <title>2021杭电多校4</title>
-      <link>https://blog.asukakyle.top/post/2021hdu4/</link>
-      <pubDate>Thu, 29 Jul 2021 18:01:33 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021hdu4/</guid>
-      <description>总览 题号 题目 完成情况 6985 Calculus 通过 6986 Kanade Loves Maze Designing 通过 6987 Cycle Binary 6988 Display Substring 通过 6989 Didn’t I Say to Make My Abilities Average in the Next Life?! 通过 6990 Directed Minimum Spanning Tree 6991 Increasing Subsequence 通过 6992 Lawn of the Dead 通过 6993 License Plate Recognition 通过 6994 Pony Running 6995 Travel on Tree 通过 Calculus 签到题，常数不是 0 的都不收敛。
-// Author: HolyK // Created: Thu Jul 29 12:12:45 2021 #include &amp;lt;bits/stdc++.</description>
-    </item>
-    
-    <item>
-      <title>2021杭电多校3</title>
-      <link>https://blog.asukakyle.top/post/2021hdu3/</link>
-      <pubDate>Tue, 27 Jul 2021 20:39:53 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021hdu3/</guid>
-      <description>题号 题目 完成情况 6973 Bookshop 通过 6974 Destinations 通过 6975 Forgiving Matching 通过 6976 Game on Plane 通过 6977 Kart Race 通过 6978 New Equipments II 6979 Photoshop Layers 通过 6980 Restore Atlantis II 6981 Rise in Price 通过 6982 Road Discount 通过 6983 Segment Tree with Pruning 通过 6984 Tree Planting Bookshop 给定一棵树，每个点有个权值 \(w_i\)，\(m\) 次询问，给出 \(x, y, z\)，表示从 \(x\) 走到 \(y\)，每经过一个点 \(i\)，如果 \(z \geq w_i\) 则 \(z -= w_i\)，最终 \(z\) 是多少。</description>
-    </item>
-    
-    <item>
-      <title>2021杭电多校2</title>
-      <link>https://blog.asukakyle.top/post/2021hdu2/</link>
-      <pubDate>Thu, 22 Jul 2021 18:50:15 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021hdu2/</guid>
-      <description>总览 题号 题目 完成情况 6961 I love cube 通过 6962 I love tree 通过 6963 I love playing games 6964 I love counting 通过 6965 I love string 通过 6966 I love sequences 6967 I love data structure 通过 6968 I love exam 通过 6969 I love triples 通过 6970 I love permutation 6971 I love max and multiply 通过 I love cube 队友切了
-I love tree 树链依次加 \(1^2, 2^2, 3^2, \dots\)，单点询问。\(10^5\)。</description>
     </item>
     
     <item>
@@ -149,25 +63,6 @@ I love tree 树链依次加 \(1^2, 2^2, 3^2, \dots\)，单点询问。\(10^5\)�
       <description>总览 题号 标题 团队的状态 A Arithmetic Progression 通过 B Cannon 通过 C Draw Grids 通过 D Er Ba Game 通过 E Gas Station 通过 F Girlfriend 通过 G League of Legends 通过 H Olefin 未通过 I Penguins 通过 J Product of GCDs 通过 K Stack 通过 L WeChat Walk 通过 Arithmetic Progression 给定每个元素互不相同的序列 \(a_n\)，求排序后能构成等差数列的区间个数。
 \(1 \leq n \leq 10^5, 1 \leq a_i \leq 10^9\)
 结论：对于元素互不相同的序列 \(b_n\)，其排序后是公差为 \(d\) 等差数列的充要条件是 \(d=\gcd(|b_2-b_1|,|b_3-b_2|,\dots)\) 且 \(\max b_i - \min b_i = (n-1)d\)。</description>
-    </item>
-    
-    <item>
-      <title>2021牛客多校1</title>
-      <link>https://blog.asukakyle.top/post/2021nowcoder1/</link>
-      <pubDate>Tue, 20 Jul 2021 18:31:28 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021nowcoder1/</guid>
-      <description> 题号 标题 团队的状态 A Alice and Bob 通过 B Ball Dropping 通过 C Cut the Tree 通过 D Determine the Photo Position 通过 E Escape along Water Pipe 通过 F Find 3-friendly Integers 通过 G Game of Swapping Numbers 通过 H Hash Function 通过 I Increasing Subsequence 通过 J Journey among Railway Stations 通过 K Knowledge Test about Match 通过 Alice and Bob Ball Dropping Cut the Tree Determine the Photo Position Escape along Water Pipe Find 3-friendly Integers Game of Swapping Numbers Hash Function Increasing Subsequence Journey among Railway Stations Knowledge Test about Match </description>
-    </item>
-    
-    <item>
-      <title>2021杭电多校1</title>
-      <link>https://blog.asukakyle.top/post/2021hdu1/</link>
-      <pubDate>Tue, 20 Jul 2021 18:20:13 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/2021hdu1/</guid>
-      <description>题号 题目 完成情况 6950 Mod, Or and Everything 通过 6951 Rocket land 通过 6952 Puzzle loop 通过 6953 Another thief in a Shop 6954 Minimum spanning tree 通过 6955 Xor sum 通过 6956 Pass! 通过 6957 Maximal submatrix 通过 6958 KD-Graph 通过 6959 zoto 通过 6960 Necklace of Beads Mod, Or and Everything 队友切了。
-Rocket land // Author: HolyK // Created: Tue Aug 31 16:33:34 2021 #include &amp;lt;algorithm&amp;gt; #include &amp;lt;bits/stdc++.</description>
     </item>
     
   </channel>
