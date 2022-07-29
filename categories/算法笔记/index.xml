@@ -7,17 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Sun, 17 Jul 2022 23:59:40 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>DAG 链剖分小记</title>
-      <link>https://blog.asukakyle.top/post/dag-%E9%93%BE%E5%89%96%E5%88%86%E5%B0%8F%E8%AE%B0/</link>
-      <pubDate>Sun, 17 Jul 2022 23:59:40 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/dag-%E9%93%BE%E5%89%96%E5%88%86%E5%B0%8F%E8%AE%B0/</guid>
-      <description>这个东西出自 UOJ697【候选队互测2022】广为人知题，可能是比较新的科技。
-这里，对每个结点 \(v\)，记以 \(v\) 为起点的路径有 \(f_v\) 条，以 \(v\) 为终点的有 \(g_v\) 条。则令 \((u,v)\) 为重边当且仅当 \(2f_v&amp;gt;f_u\) 且 \(2g_u&amp;gt;g_v\)。则可以发现一条路径上至多经过 \(O(\log n)\) 条轻边。</description>
-    </item>
-    
+    <lastBuildDate>Fri, 20 May 2022 12:26:31 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>（半）在线卷积小记</title>
       <link>https://blog.asukakyle.top/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/</link>
