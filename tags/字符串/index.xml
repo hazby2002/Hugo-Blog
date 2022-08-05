@@ -14,7 +14,7 @@
       <pubDate>Fri, 05 Aug 2022 23:16:50 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/</guid>
-      <description> P5576 [CmdOI2019]口头禅 给定一堆字符串，多次询问区间字符串最长公共子串。 广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。 </description>
+      <description> P5576 [CmdOI2019]口头禅 给定一堆字符串，多次询问区间字符串最长公共子串。 广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。 P4482 [BJWC2018]Border 的四种求法 多次询问字符串区间border。 parent树上链分治。先考虑 \(node_r\) 暴力向上跳，找 pos 集合区间最大值的方法。HLD 之后把跳的过程拆到重链上。利用轻子树大小和为 \(O(n\log n)\)，每条重链处理，要求 \(pos - len &amp;lt; L\)，线段树以 \(pos\) 为下标，维护 \(\min\{pos-len\}\)，然后线段树上二分。 CF1098F Ж-function 多次询问 \(f(l, r)\) 表示子串 \(s[l, r]\) 每个后缀与该子串的 lcp 的和。 思路同上，用 HLD 优化暴力跳的过程，拆到重链上变成一个三维偏序，然后用 CDQ 分治做。 </description>
     </item>
     
     <item>
