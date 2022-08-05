@@ -1,3 +1,4 @@
+<?xml-stylesheet href="/rss.xsl" type="text/xsl"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HolyK&#39;s Blog</title>
@@ -6,9 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Fri, 20 May 2022 12:26:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Aug 2022 23:16:50 +0800</lastBuildDate>
     
         <atom:link href="https://blog.asukakyle.top/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     
     
     

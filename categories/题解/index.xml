@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Thu, 12 May 2022 00:35:08 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Aug 2022 23:16:50 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/categories/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>字符串记录</title>
+      <link>https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Fri, 05 Aug 2022 23:16:50 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/</guid>
+      <description> P5576 [CmdOI2019]口头禅 给定一堆字符串，多次询问区间字符串最长公共子串。 广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。 </description>
+    </item>
+    
     <item>
       <title>[Codeforces1677F] Tokitsukaze and Gems</title>
       <link>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</link>
