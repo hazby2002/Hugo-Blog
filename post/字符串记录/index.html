@@ -424,11 +424,39 @@ class="math inline">\(\min\{pos-len\}\)</span>，然后线段树上二分。</li
 表示子串 <span class="math inline">\(s[l, r]\)</span> 每个后缀与该子串的
 lcp 的和。 思路同上，用 HLD
 优化暴力跳的过程，拆到重链上变成一个三维偏序，然后用 CDQ 分治做。</li>
+<li><a href="https://ac.nowcoder.com/acm/contest/33191/L">2022牛客多校6
+L Striking String Problem</a> 给定串 <span class="math inline">\(S,
+T\)</span>，令 <span class="math inline">\(U = S[l_1, r_1] + S[l_2, r_2]
++ \dots + S[l_k, r_k]\)</span>，<span class="math inline">\(q\)</span>
+次询问 <span class="math inline">\(T\)</span> 在 <span
+class="math inline">\(U[x_i, y_i]\)</span>
+中的出现次数。<strong>数据结构优化KMP。</strong>
+询问可以拆成两个前缀的答案之差，考虑对一个前缀的查询，设它在 <span
+class="math inline">\(S[l_i, r_i]\)</span> 里，预处理前 <span
+class="math inline">\(i-1\)</span> 的答案，设 <span
+class="math inline">\(\operatorname{query}(i, p)\)</span> 表示右端点在
+<span class="math inline">\([l_i, l_i+p)\)</span> 的答案，完全落在 <span
+class="math inline">\(S[l, r]\)</span> 内的答案可以预处理前缀和。 跨过
+<span class="math inline">\(l_i\)</span> 的答案，设超出长度为 <span
+class="math inline">\(D\)</span>，需要满足 <span
+class="math inline">\(D+p \geq |T|, D+\operatorname{lcp}(S[l:], T[D+1:])
+\geq |T|\)</span>，对于同一个 <span
+class="math inline">\(D\)</span>，<span
+class="math inline">\(S[l:]\)</span>
+要满足的条件是后缀树上的一个子树。对 <span
+class="math inline">\(T\)</span> 的 kmp
+失配树建可持久化线段树，区间修改单点查询。满足条件的 <span
+class="math inline">\(D\)</span> 是失配树上的一个祖孙链，需要知道 <span
+class="math inline">\(S[l_1, r_1]+\dots+S[l_{i-1}, r_{i-1}]\)</span> 和
+<span class="math inline">\(T\)</span>
+的匹配长度，这个可以预处理，分匹配完全在 <span
+class="math inline">\(S[l, r]\)</span>
+和跨左端点讨论一下，后者还是在失配树上用线段树搞一下。</li>
 </ul>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2022-08-06</p>
+		    <p style="color:#777;">最后修改于 2022-08-07</p>
                     
                 </div>
             </div>
