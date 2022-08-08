@@ -412,8 +412,9 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。</li>
 <li><a href = "https://www.luogu.com.cn/problem/P4482">P4482
 [BJWC2018]Border 的四种求法</a>
-多次询问字符串<strong>区间border</strong>。 parent树上链分治。先考虑
-<span class="math inline">\(node_r\)</span> 暴力向上跳，找 pos
+多次询问字符串<strong>区间border</strong>。
+<strong>parent树上链分治。</strong>先考虑 <span
+class="math inline">\(node_r\)</span> 暴力向上跳，找 pos
 集合区间最大值的方法。HLD 之后把跳的过程拆到重链上。利用轻子树大小和为
 <span class="math inline">\(O(n\log n)\)</span>，每条重链处理，要求
 <span class="math inline">\(pos - len &lt; L\)</span>，线段树以 <span

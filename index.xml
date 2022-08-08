@@ -64,6 +64,7 @@ class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt
 &lt;ul&gt;
 &lt;li&gt;随机点集的凸包点数是 &lt;span class=&#34;math inline&#34;&gt;\(O(\log
 n)\)&lt;/span&gt;。&lt;/li&gt;
+&lt;li&gt;测试缓存&lt;/li&gt;
 &lt;/ul&gt;
 - https://blog.asukakyle.top/post/notes/ - CC BY-NC-SA 4.0</description>
         </item>
@@ -137,8 +138,9 @@ file，访问文件，如果文件不存在则创建新的。&lt;/p&gt;
 广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。&lt;/li&gt;
 &lt;li&gt;&lt;a href = &#34;https://www.luogu.com.cn/problem/P4482&#34;&gt;P4482
 [BJWC2018]Border 的四种求法&lt;/a&gt;
-多次询问字符串&lt;strong&gt;区间border&lt;/strong&gt;。 parent树上链分治。先考虑
-&lt;span class=&#34;math inline&#34;&gt;\(node_r\)&lt;/span&gt; 暴力向上跳，找 pos
+多次询问字符串&lt;strong&gt;区间border&lt;/strong&gt;。
+&lt;strong&gt;parent树上链分治。&lt;/strong&gt;先考虑 &lt;span
+class=&#34;math inline&#34;&gt;\(node_r\)&lt;/span&gt; 暴力向上跳，找 pos
 集合区间最大值的方法。HLD 之后把跳的过程拆到重链上。利用轻子树大小和为
 &lt;span class=&#34;math inline&#34;&gt;\(O(n\log n)\)&lt;/span&gt;，每条重链处理，要求
 &lt;span class=&#34;math inline&#34;&gt;\(pos - len &amp;lt; L\)&lt;/span&gt;，线段树以 &lt;span
