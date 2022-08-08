@@ -14,7 +14,7 @@
       <pubDate>Sun, 29 Aug 2021 14:20:06 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/notes/</guid>
-      <description> - 慎用无符号整数。注意 `0 - 1 = ~0`。 - 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 `Null` 节点的方式写。 - 关于模板的整理： - 需要在保证正确性的同时，做好代码长度和效率的平衡。 - 不能为短而短，刻意压行。 - 一些常用的操作都尽量封装。 - 对于 $INF$（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 $X + INF = INF$ 之类的情况。在进行 $INF$ 之间的比较时，如果前面图方便，计算时会出现 $X + INF$ 这样的数，这里就要注意诸如 $X + INF \leq INF$ 的比较。（问题出现于决策单调性优化） - 计算几何随机旋转可以避免很多小错误。 - (CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用 `std::map`，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写。每次进行区间染色 $[l, r)$ 的时候，先把 $l, r$ 两点加入map，然后就可以直接循环删除中间的，然后处理修改。 - 思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。 - 非旋转 Treap 的 `merge` 是有返回值的，内部实现时的 `x-&gt;rs = merge(x-&gt;rs, y)` 不要把前面的 `x-&gt;rs =` 漏掉。 - 有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。 - 让new变得cache友好，直接把全局的 `operator new` 重载： ```cpp void *operator new(size_t n) { static char *l, *r if (r &lt; l + n) { static constexpr int L = 1 &lt;&lt; 24; l = (char *)malloc(L), r = l + L; } return r -= n; } ``` - 随机点集的凸包点数是 $O(\log n)$。 - 权值线段树求前k小和，要注意在 $l=r$ 的时候返回 $k\cdot l$。 </description>
+      <description> 慎用无符号整数。注意 0 - 1 = ~0。 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 Null 节点的方式写。 关于模板的整理： 需要在保证正确性的同时，做好代码长度和效率的平衡。 不能为短而短，刻意压行。 一些常用的操作都尽量封装。 对于 \(INF\)（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 \(X + INF = INF\) 之类的情况。在进行 \(INF\) 之间的比较时，如果前面图方便，计算时会出现 \(X + INF\) 这样的数，这里就要注意诸如 \(X + INF \leq INF\) 的比较。（问题出现于决策单调性优化） 计算几何随机旋转可以避免很多小错误。 (CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用 std::map&amp;lt;int, Info&amp;gt;，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写。每次进行区间染色 \([l, r)\) 的时候，先把 \(l, r\) 两点加入map，然后就可以直接循环删除中间的，然后处理修改。 思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。 非旋转 Treap 的 merge 是有返回值的，内部实现时的 x-&amp;gt;rs = merge(x-&amp;gt;rs, y) 不要把前面的 x-&amp;gt;rs = 漏掉。 有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。 让new变得cache友好，直接把全局的 operator new 重载： void *operator new(size_t n) { static char *l, *r if (r &amp;lt; l + n) { static constexpr int L = 1 &amp;lt;&amp;lt; 24; l = (char *)malloc(L), r = l + L; } return r -= n; } 随机点集的凸包点数是 \(O(\log n)\)。 权值线段树求前k小和，要注意在 \(l=r\) 的时候返回 \(k\cdot l\)。 </description>
     </item>
     
     <item>
@@ -23,27 +23,10 @@
       <pubDate>Sun, 27 Feb 2022 22:57:21 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/emacs/</guid>
-      <description>以下 `C` 代表 `Ctrl`，`M` 代表 `Alt`，`S` 代表 `Shift`。
-
-例如 `C-x C-f` 表示 `Ctrl+x Ctrl+f`，visit new file，访问文件，如果文件不存在则创建新的。
-
-- `C-x C-f`：访问文件
-- `C-x C-s`：保存
-- `C-x C-c`：关闭emacs
-- `C-x C-z`：最小化emacs
-- `C-x h`：全选
-- `C-x C-p`：全选
-- `C-x 1`：关闭其他window
-- `C-x 2`：向下分裂window
-- `C-x 3`：向右分裂window
-- `C-x 0`：关闭当前window
-- `C-x o`：切换window
-- `C-x k`：关闭buffer
-- `M-x shell`：打开shell
-- `M-!` 即 `M-S-1` 或 `ESC !`：shell-command
-- `M-%`：替换
-- `C-s`：向下查找
-- `C-r`：向上查找</description>
+      <description>以下 C 代表 Ctrl，M 代表 Alt，S 代表 Shift。
+例如 C-x C-f 表示 Ctrl+x Ctrl+f，visit new file，访问文件，如果文件不存在则创建新的。
+C-x C-f：访问文件 C-x C-s：保存 C-x C-c：关闭emacs C-x C-z：最小化emacs C-x h：全选 C-x C-p：全选 C-x 1：关闭其他window C-x 2：向下分裂window C-x 3：向右分裂window C-x 0：关闭当前window C-x o：切换window C-x k：关闭buffer M-x shell：打开shell M-! 即 M-S-1 或 ESC !：shell-command M-%：替换 C-s：向下查找 C-r：向上查找 C-a：移动到行首 C-e：移动到行尾 C-k：剪切当前行光标后的内容 C-S-Backspace：删除当前行 C-w：剪切 M-w：复制 C-y：粘贴 C-/：撤销(undo) CUA-Keys（在options菜单里）开启的情况下：
+C-x：剪切 C-c：复制 C-v：粘贴 C-z：撤销(undo) 想要撤销(redo)上次撤销(undo)操作，可以在上次 C-/(C-z) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 C-/(C-z)。</description>
     </item>
     
     <item>
@@ -52,7 +35,7 @@
       <pubDate>Fri, 05 Aug 2022 23:16:50 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/</guid>
-      <description>- P5576 [CmdOI2019]口头禅 给定一堆字符串，多次询问**区间字符串最长公共子串**。 广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。 - P4482 [BJWC2018]Border 的四种求法 多次询问字符串**区间border**。 **parent树上链分治。**先考虑 $node_r$ 暴力向上跳，找 pos 集合区间最大值的方法。HLD 之后把跳的过程拆到重链上。利用轻子树大小和为 $O(n\log n)$，每条重链处理，要求 $pos - len &lt; L$，线段树以 $pos$ 为下标，维护 $\min\{pos-len\}$，然后线段树上二分。 - CF1098F Ж-function 多次询问 $f(l, r)$ 表示子串 $s[l, r]$ 每个后缀与该子串的 lcp 的和。 思路同上，用 HLD 优化暴力跳的过程，拆到重链上变成一个三维偏序，然后用 CDQ 分治做。 - [2022牛客多校6 L Striking String Problem](https://ac.nowcoder.com/acm/contest/33191/L) 给定串 $S, T$，令 $U = S[l_1, r_1] + S[l_2, r_2] + \dots + S[l_k, r_k]$，$q$ 次询问 $T$ 在 $U[x_i, y_i]$ 中的出现次数。**数据结构优化KMP。** 询问可以拆成两个前缀的答案之差，考虑对一个前缀的查询，设它在 $S[l_i, r_i]$ 里，预处理前 $i-1$ 的答案，设 $\operatorname{query}(i, p)$ 表示右端点在 $[l_i, l_i+p)$ 的答案，完全落在 $S[l, r]$ 内的答案可以预处理前缀和。 跨过 $l_i$ 的答案，设超出长度为 $D$，需要满足 $D+p \geq |T|, D+\operatorname{lcp}(S[l:], T[D+1:]) \geq |T|$，对于同一个 $D$，$S[l:]$ 要满足的条件是后缀树上的一个子树。对 $T$ 的 kmp 失配树建可持久化线段树，区间修改单点查询。满足条件的 $D$ 是失配树上的一个祖孙链，需要知道 $S[l_1, r_1]+\dots+S[l_{i-1}, r_{i-1}]$ 和 $T$ 的匹配长度，这个可以预处理，分匹配完全在 $S[l, r]$ 和跨左端点讨论一下，后者还是在失配树上用线段树搞一下。</description>
+      <description> P5576 [CmdOI2019]口头禅 给定一堆字符串，多次询问区间字符串最长公共子串。 广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。 P4482 [BJWC2018]Border 的四种求法 多次询问字符串区间border。 parent树上链分治。先考虑 \(node_r\) 暴力向上跳，找 pos 集合区间最大值的方法。HLD 之后把跳的过程拆到重链上。利用轻子树大小和为 \(O(n\log n)\)，每条重链处理，要求 \(pos - len &amp;lt; L\)，线段树以 \(pos\) 为下标，维护 \(\min\{pos-len\}\)，然后线段树上二分。 CF1098F Ж-function 多次询问 \(f(l, r)\) 表示子串 \(s[l, r]\) 每个后缀与该子串的 lcp 的和。 思路同上，用 HLD 优化暴力跳的过程，拆到重链上变成一个三维偏序，然后用 CDQ 分治做。 2022牛客多校6 L Striking String Problem 给定串 \(S, T\)，令 \(U = S[l_1, r_1] + S[l_2, r_2] + \dots + S[l_k, r_k]\)，\(q\) 次询问 \(T\) 在 \(U[x_i, y_i]\) 中的出现次数。数据结构优化KMP。 询问可以拆成两个前缀的答案之差，考虑对一个前缀的查询，设它在 \(S[l_i, r_i]\) 里，预处理前 \(i-1\) 的答案，设 \(\operatorname{query}(i, p)\) 表示右端点在 \([l_i, l_i+p)\) 的答案，完全落在 \(S[l, r]\) 内的答案可以预处理前缀和。 跨过 \(l_i\) 的答案，设超出长度为 \(D\)，需要满足 \(D+p \geq |T|, D+\operatorname{lcp}(S[l:], T[D+1:]) \geq |T|\)，对于同一个 \(D\)，\(S[l:]\) 要满足的条件是后缀树上的一个子树。对 \(T\) 的 kmp 失配树建可持久化线段树，区间修改单点查询。满足条件的 \(D\) 是失配树上的一个祖孙链，需要知道 \(S[l_1, r_1]+\dots+S[l_{i-1}, r_{i-1}]\) 和 \(T\) 的匹配长度，这个可以预处理，分匹配完全在 \(S[l, r]\) 和跨左端点讨论一下，后者还是在失配树上用线段树搞一下。 </description>
     </item>
     
     <item>
@@ -61,7 +44,12 @@
       <pubDate>Fri, 20 May 2022 12:26:31 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/</guid>
-      <description> ## 前言 本文写于 2021-12-02 14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。 今天想起，需要重新整理好二叉（半）在线卷积的模板，这个东西在考场上还是很有用的。 相关题目： - [ABC230H](https://atcoder.jp/contests/abc230/submissions/27677271) ## 半在线卷积 &gt; 设 $H = FG$。其中 $G$ 的系数事先给出，$F$ 的系数从低次到高次在线地给出，每次给出 $F$ 的 $x^i$ 系数后，你需要在线地计算 $H$ 的 $x^i$ 系数。 考虑分治，将区间 $[l, r)$ 分为 $T$ 段，每段长度为 $B = 2^k$。 $$ [l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r) $$ 要分别计算对于 $0 \leq i &lt; j &lt; T$, $F[m_i, m_{i+1})$ 对于 $H[m_j, m_{j+1})$ 的贡献，其中 $A[l,r)$ 表示多项式 $A(x)$ 在 $x^l, x^{l+1}, \dots, x^{r-1}$ 处的系数。 显然 $F[m_i, m_{i+1})$ 要乘上 $G[m_j-m_{i+1}+1, m_{j+1} - m_i)$。 结果有 $3B - 1$ 项，从 0 开始标号，取第 $B-1$ 到 $2B-2$ 项，做长度为 $2B$ 的循环卷积即可。 存储 $F[m_i, m_{i+1})$ 和 $G[m_j-m_{i+1}+1, m_{j+1} - m_i)$ 的点值，需要做 $T$ 次长度为 $2B$ 的 DFT，两两作点乘，最后再 IDFT，单层复杂度为 $$ O(BT\log B+T^2B+B\log B) = O(n \log \frac{n}{T} + nT) $$ 设总时间复杂度为 $S(n)$，则 $$ S(n) = T\cdot S(\frac{n}{T}) + O(n\log \frac nT + nT) $$ 这里复杂度不会算，但是大家都取 $T = \log n$，然后得到 $O\bigg(\dfrac{n \log^2 n}{\log\log n}\bigg)$。 ## 在线卷积 &gt; 设 $H = FG$。$F, G$ 的系数从低次到高次在线地给出，每次给出 $F, G$ 的 $x^i$ 系数后，你需要在线地计算 $H$ 的 $x^i$ 系数。 类似刚刚思路，但是进行到 &gt; $F[m_i, m_{i+1})$ 要乘上 $G[m_j-m_{i+1}+1, m_{j+1} - m_i)$ 这一步时，发现了问题：如果 $m_i=0$，那么 $G[m_{j}, m_{j+1})$ 还没给出，无法计算。 于是这里先避开 $F[m_i, m_{i+1}) \times G[m_{j}, m_{j+1})$ 这部分贡献不算，递归到 $[m_{j}, m_{j+1})$ 这个区间时，再把这个补上。 综上所述，对于当前区间 $[l, r)$，如果 $l = 0$，那么需要计算 $F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)$；如果 $l &gt; 0$，那么除了 $F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)$ 之外，还要计算 $G[m_i, m_{i+1}) \times F[m_j-m_{i+1}+1, m_{j+1} - m_i)$。 其余部分前面的半在线卷积完全相同。 </description>
+      <description>前言 本文写于 2021-12-02 14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。
+今天想起，需要重新整理好二叉（半）在线卷积的模板，这个东西在考场上还是很有用的。
+相关题目：
+ABC230H 半在线卷积 设 \(H = FG\)。其中 \(G\) 的系数事先给出，\(F\) 的系数从低次到高次在线地给出，每次给出 \(F\) 的 \(x^i\) 系数后，你需要在线地计算 \(H\) 的 \(x^i\) 系数。
+考虑分治，将区间 \([l, r)\) 分为 \(T\) 段，每段长度为 \(B = 2^k\)。 \[ [l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r) \] 要分别计算对于 \(0 \leq i &amp;lt; j &amp;lt; T\), \(F[m_i, m_{i+1})\) 对于 \(H[m_j, m_{j+1})\) 的贡献，其中 \(A[l,r)\) 表示多项式 \(A(x)\) 在 \(x^l, x^{l+1}, \dots, x^{r-1}\) 处的系数。
+显然 \(F[m_i, m_{i+1})\) 要乘上 \(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)。</description>
     </item>
     
     <item>
@@ -70,7 +58,16 @@
       <pubDate>Thu, 12 May 2022 00:35:08 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</guid>
-      <description>[传送门](https://codeforces.com/contest/1677/problem/F) &gt; 给定 $n, k, p, a_1, a_2, \dots, a_n$，求 &gt; $$ &gt; \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&gt;0]\right)\right) &gt; $$ &gt; &gt; 答案对 $998244353$ 取模。 &gt; &gt; $1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351$。 考虑对固定的 $[l, r]$ 计算答案，它是两个数乘积之和的形式。可以通过维护 $(\sum xy, \sum x, \sum y, \sum 1)$ 四元组来计算答案。 这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。 这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。 求单个的四元组，可以发现就是要求 $\sum_{i=0}^{a_j} p^ii^k$。 对于这个问题，板子 OJ 有一个 [单次询问的版本](https://judge.</description>
+      <description>传送门
+给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
+答案对 \(998244353\) 取模。
+\(1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351\)。
+考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
+这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。
+这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。
+求单个的四元组，可以发现就是要求 \(\sum_{i=0}^{a_j} p^ii^k\)。
+对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。
+本文主要参考 EI 的评论 以及下面 ecnerwala 的解读。</description>
     </item>
     
     <item>
@@ -79,7 +76,9 @@
       <pubDate>Wed, 04 May 2022 01:19:59 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%B9%B3%E8%A1%A1%E6%A0%91%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
-      <description>支持两个操作：插入，查询 rank。 ## 结果 本机，Intel CPU，Windows，gcc version 10.2.0 (winlibs) ```text 全随机 Treap 1.866 7479 Treap2::Treap2 1.884 7479 Treap3::Treap3 1.542 7479 SCT::SCT 0.986 7479 SegTree 1.214 7479 SegTree2 1.024 7479 Tree 1.638 7479 部分有序 Treap 0.747 15767 Treap2::Treap2 0.895 15767 Treap3::Treap3 0.661 15767 SCT::SCT 0.817 15767 SegTree 0.626 15767 SegTree2 0.574 15767 Tree 0.903 15767 20000棵树 Treap 0.793 11 Treap2::Treap2 0.656 11 Treap3::Treap3 0.636 11 SCT::SCT 0.664 11 SegTree 1.056 11 SegTree2 0.</description>
+      <description>支持两个操作：插入，查询 rank。
+结果 本机，Intel CPU，Windows，gcc version 10.2.0 (winlibs)
+全随机 Treap 1.866 7479 Treap2::Treap2 1.884 7479 Treap3::Treap3 1.542 7479 SCT::SCT 0.986 7479 SegTree 1.214 7479 SegTree2 1.024 7479 Tree&amp;lt;int&amp;gt; 1.638 7479 部分有序 Treap 0.747 15767 Treap2::Treap2 0.895 15767 Treap3::Treap3 0.661 15767 SCT::SCT 0.817 15767 SegTree 0.626 15767 SegTree2 0.574 15767 Tree&amp;lt;int&amp;gt; 0.903 15767 20000棵树 Treap 0.793 11 Treap2::Treap2 0.656 11 Treap3::Treap3 0.636 11 SCT::SCT 0.664 11 SegTree 1.056 11 SegTree2 0.979 11 Tree&amp;lt;int&amp;gt; 1.</description>
     </item>
     
     <item>
@@ -88,7 +87,14 @@
       <pubDate>Tue, 05 Apr 2022 23:56:15 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B0%8F%E8%AE%B0/</guid>
-      <description>“全局平衡二叉树”实际上是静态 Top Tree(实际上，更接近静态 LCT)。 考虑一条重链，它在树上pushup，维护的信息的方式实际上就是 Compress。 而跳轻边，它实际上就是在 Rake。 对于动态DP的模板，它是树上带权独立集，虚儿子信息（rake信息）是可减的 `f[0] -= max(g[0], g[1]), f[1] -= g[0]`。 如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。 所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link, cut, evert 之类的动态树操作罢了。 考虑到 Top Tree 的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。 ```cpp Node *build(int l, int r) { if (l &gt; r) return nullptr; int m = l - 1, sum = 0, now = 0; for (int i = l; i &lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]]; while (now * 2 &lt; sum &amp;&amp; m &lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]]; Node *o = t + s[m]; o-&gt;ls = build(l, m - 1), o-&gt;rs = build(m + 1, r); if (o-&gt;ls) o-&gt;ls-&gt;fa = o; if (o-&gt;rs) o-&gt;rs-&gt;fa = o; pushup(o); return o; } ```</description>
+      <description>“全局平衡二叉树”实际上是静态 Top Tree(实际上，更接近静态 LCT)。
+考虑一条重链，它在树上pushup，维护的信息的方式实际上就是 Compress。
+而跳轻边，它实际上就是在 Rake。
+对于动态DP的模板，它是树上带权独立集，虚儿子信息（rake信息）是可减的 f[0] -= max(g[0], g[1]), f[1] -= g[0]。
+如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。
+所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link, cut, evert 之类的动态树操作罢了。
+考虑到 Top Tree 的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。
+Node *build(int l, int r) { if (l &amp;gt; r) return nullptr; int m = l - 1, sum = 0, now = 0; for (int i = l; i &amp;lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]]; while (now * 2 &amp;lt; sum &amp;amp;&amp;amp; m &amp;lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]]; Node *o = t + s[m]; o-&amp;gt;ls = build(l, m - 1), o-&amp;gt;rs = build(m + 1, r); if (o-&amp;gt;ls) o-&amp;gt;ls-&amp;gt;fa = o; if (o-&amp;gt;rs) o-&amp;gt;rs-&amp;gt;fa = o; pushup(o); return o; } </description>
     </item>
     
     <item>
@@ -97,7 +103,16 @@
       <pubDate>Fri, 01 Apr 2022 12:59:27 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/ynoi/</guid>
-      <description>## 前言 题目是乱序的。因为太菜了不会卡常，所以很多题是九十几分。 **UPD. 2022.04.27** 发现很多以前写的懒得写题解，感觉又都不太会了，后面还是做一题写一题比较好。 发现刷 Ynoi 收益很小，大部分时间只是在卡常。 不过数据结构题写起来有意思，自己写起来乐在其中，可能刷 Ynoi 对于算法竞赛并没有什么用，更多只是自我满足罢了。 ## P5047	[Ynoi2019 模拟赛] Yuno loves sqrt technology II &gt; 给定序列 $a_n$, $m$ 次询问区间逆序对。 &gt; &gt; $1 \leq n, m \leq 10^5, 1 \leq a_i \leq 10^9$。 莫队二次离线。 求前缀比它小/大的数的个数，用 $O(\sqrt n)$ 修改，$O(1)$ 查询的搞一下就行。 ```cpp #include constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry { int l, r, id; bool operator&lt;(const Qry &amp;rhs) const { return l / T == rhs.</description>
+      <description>前言 题目是乱序的。因为太菜了不会卡常，所以很多题是九十几分。
+UPD. 2022.04.27
+发现很多以前写的懒得写题解，感觉又都不太会了，后面还是做一题写一题比较好。
+发现刷 Ynoi 收益很小，大部分时间只是在卡常。
+不过数据结构题写起来有意思，自己写起来乐在其中，可能刷 Ynoi 对于算法竞赛并没有什么用，更多只是自我满足罢了。
+P5047 [Ynoi2019 模拟赛] Yuno loves sqrt technology II 给定序列 \(a_n\), \(m\) 次询问区间逆序对。
+\(1 \leq n, m \leq 10^5, 1 \leq a_i \leq 10^9\)。
+莫队二次离线。
+求前缀比它小/大的数的个数，用 \(O(\sqrt n)\) 修改，\(O(1)\) 查询的搞一下就行。
+#include &amp;lt;bits/stdc++.h&amp;gt; constexpr int T(512), N(1e5 + 5), S(N / T + 1); struct Qry { int l, r, id; bool operator&amp;lt;(const Qry &amp;amp;rhs) const { return l / T == rhs.</description>
     </item>
     
     <item>
@@ -106,7 +121,15 @@
       <pubDate>Mon, 21 Feb 2022 23:11:13 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8%E5%B0%8F%E8%AE%B0/</guid>
-      <description>## 常系数齐次线性递推 对于 $n \geq k$，$\sum_{i=0}^kq_ia_{n-i}=0$，其中 $q_0 \neq 0$。 数列 $a_n$ 的生成函数为 $A(x)$。 上式左边看作卷积，右边看作生成函数 $P(x)$ 的 $n \geq k$ 时的系数。 $$ Q(x)A(x) = P(x) $$ $$ A(x) = \frac{P(x)}{Q(x)} $$ $P(x)$ 为 $k-1$ 次多项式，$Q(x)$ 为 $k$ 次多项式。 然后就是解决 $[x^n]\dfrac{P(x)}{Q(x)}$ 的问题。 使用 EI 提到的方法，考虑 $$ \frac{P(x)}{Q(x)} = \frac{P(x)Q(-x)}{Q(x)Q(-x)} $$ 由于 $Q(x)Q(-x) = Q(-x)Q(x)$，所以它只有偶次项有值，设 $U(x^2) = Q(x)Q(-x)$， $$ \frac{P(x)}{Q(x)} = \frac{E(x^2)}{U(x^2)}+x\frac{O(x^2)}{U(x^2)} $$ 只需要递归到一侧即可。 朴素实现只需要写多项式乘法，优化的实现已经在多项式板子里。 ```cpp int divAt(Poly p, Poly q, LL n) { for (; n; n &gt;&gt;= 1) { Poly r(q); for (int i = 1; i &lt; r.</description>
+      <description>常系数齐次线性递推 对于 \(n \geq k\)，\(\sum_{i=0}^kq_ia_{n-i}=0\)，其中 \(q_0 \neq 0\)。
+数列 \(a_n\) 的生成函数为 \(A(x)\)。
+上式左边看作卷积，右边看作生成函数 \(P(x)\) 的 \(n \geq k\) 时的系数。
+\[ Q(x)A(x) = P(x) \] \[ A(x) = \frac{P(x)}{Q(x)} \]
+\(P(x)\) 为 \(k-1\) 次多项式，\(Q(x)\) 为 \(k\) 次多项式。
+然后就是解决 \([x^n]\dfrac{P(x)}{Q(x)}\) 的问题。
+使用 EI 提到的方法，考虑 \[ \frac{P(x)}{Q(x)} = \frac{P(x)Q(-x)}{Q(x)Q(-x)} \] 由于 \(Q(x)Q(-x) = Q(-x)Q(x)\)，所以它只有偶次项有值，设 \(U(x^2) = Q(x)Q(-x)\)， \[ \frac{P(x)}{Q(x)} = \frac{E(x^2)}{U(x^2)}+x\frac{O(x^2)}{U(x^2)} \] 只需要递归到一侧即可。
+朴素实现只需要写多项式乘法，优化的实现已经在多项式板子里。
+int divAt(Poly p, Poly q, LL n) { for (; n; n &amp;gt;&amp;gt;= 1) { Poly r(q); for (int i = 1; i &amp;lt; r.</description>
     </item>
     
     <item>
@@ -115,7 +138,14 @@
       <pubDate>Sun, 13 Feb 2022 19:25:10 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2022ptzwinter/</guid>
-      <description>Ptz camp 的部分题。 题目是乱序的。 ## E3 Mountains &gt; 求 $n \times m$ 的非负矩阵个数，满足 $(1, 1)$ 到 $(n, m)$ 的最大路径和不超过 $k$。答案对 $10^9 + 7$ 取模。 &gt; &gt; $1 \leq n, m, k \leq 100$ 最大路径和，有个经典DP。 $$ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \} $$ 由 $a_{i, j} \geq 0$，得到 $dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}$。 然后还有 $dp_{n, m} \leq k$。 由上面的等式可知a和dp数组可以相互转化，所以问题转化为求dp矩阵的个数。 画出三维的方块图，$dp_{i, j}$ 表示 (i, j) 上有 $dp_{i, j}$ 个方块，然后可以转化为不相交路径计数，用LGV引理解决。 !</description>
+      <description>Ptz camp 的部分题。
+题目是乱序的。
+E3 Mountains 求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \((n, m)\) 的最大路径和不超过 \(k\)。答案对 \(10^9 + 7\) 取模。
+\(1 \leq n, m, k \leq 100\)
+最大路径和，有个经典DP。
+\[ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \} \]
+由 \(a_{i, j} \geq 0\)，得到 \(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}\)。
+然后还有 \(dp_{n, m} \leq k\)。</description>
     </item>
     
     <item>
@@ -124,7 +154,13 @@
       <pubDate>Thu, 13 Jan 2022 20:31:35 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/agc036d-negative-cycle/</guid>
-      <description>&gt; 题意：$n$ 个点的有向图，初始有边 $i \to i + 1$，边权为 0，不可删除。有边 $i \to j(i \neq j)$，边权为 $\begin{cases}1, &amp;i &gt; j\\-1, &amp;i &gt; $1 \leq n \leq 500$ 有向图上没有负环，则存在最短路，则差分约束有解。 每个点设变量 $x_i$，那么一条 $i \to j$ 边权为 $w$ 的边就代表 $x_j - x_i \leq w$。 所以初始 $i \to i + 1$ 的边表示 $x_i \geq x_{i+1}$。 设 $d_i = x_{i-1} - x_i \geq 0$。 对于边 $i \to j$，$i &lt; j$ 时为第一类边，表示 $\sum\limits_{k = i + 1}^jd_k \geq 1$，则对于一串 $d_k = 0$上的此类边都需要删除； $i &gt; j$ 时为第二类边，表示 $\sum\limits_{k=i+1}^jd_k \leq 1$，跨过多于一个1的边需要删除。 设 $dp(i, j)$ 表示考虑了前 $i$ 个变量，最后两个 1 分别在 $i, j$ 的最小代价，用二维前缀和计算区间删边的代价，时间复杂度 $O(n^3)$。 ```cpp void solve() { int n; std::cin &gt;&gt; n; std::vector a(n + 1, std::vector(n + 1)), b = a; for (int i = 1; i &lt;= n; i++) { for (int j = 1; j &lt;= n; j++) { if (i &lt; j) { std::cin &gt;&gt; a[i][j]; } else if (i &gt; j) { std::cin &gt;&gt; b[i][j]; } a[i][j] += a[i - 1][j] + a[i][j - 1] - a[i - 1][j - 1]; b[i][j] += b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1]; } } std::vector dp(n + 1, std::vector(n + 1, 1e18)); for (int i = 0; i &lt;= n; i++) { dp[i][0] = a[i][i]; for (int j = 1; j &lt; i; j++) { for (int k = 0; k &lt; j; k++) { smin(dp[i][j], dp[j][k] + b[i][k] - b[j][k]); } dp[i][j] += a[i][i] - a[i][j] - a[j][i] + a[j][j]; } } LL ans = 1e18; for (int i = 0; i &lt; n; i++) { smin(ans, dp[n][i]); } std::cout &lt;&lt; ans &lt;&lt; &#34;</description>
+      <description>题意：\(n\) 个点的有向图，初始有边 \(i \to i + 1\)，边权为 0，不可删除。有边 \(i \to j(i \neq j)\)，边权为 \(\begin{cases}1, &amp;amp;i &amp;gt; j\\-1, &amp;amp;i&amp;lt;j\end{cases}\)，可删除，删除代价为 \(a_{i, j}\)，你需要删除一些边，使得这张图上没有负环，求最小代价。
+\(1 \leq n \leq 500\)
+有向图上没有负环，则存在最短路，则差分约束有解。
+每个点设变量 \(x_i\)，那么一条 \(i \to j\) 边权为 \(w\) 的边就代表 \(x_j - x_i \leq w\)。
+所以初始 \(i \to i + 1\) 的边表示 \(x_i \geq x_{i+1}\)。
+设 \(d_i = x_{i-1} - x_i \geq 0\)。
+对于边 \(i \to j\)，\(i &amp;lt; j\) 时为第一类边，表示 \(\sum\limits_{k = i + 1}^jd_k \geq 1\)，则对于一串 \(d_k = 0\)上的此类边都需要删除；</description>
     </item>
     
     <item>
@@ -133,7 +169,8 @@
       <pubDate>Tue, 31 Aug 2021 09:15:07 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021ccpc%E7%BD%91%E7%BB%9C%E8%B5%9B/</guid>
-      <description>| Pro. ID | Problem Title | Solved | | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ | | 7100 | [ Cut The Wire](https://acm.hdu.edu.cn/showproblem.php?pid=7100) | ![ You has solved this problem :-)	](https://acm.hdu.edu.cn/images/ac.gif)（赛时） | | 7101 | [ Time-division Multiplexing](https://acm.hdu.edu.cn/showproblem.php?pid=7101) | ![ You has solved this problem :-)	](https://acm.hdu.edu.cn/images/ac.gif)（赛时） | | 7102 | [ Pattern Recognition](https://acm.hdu.edu.cn/showproblem.php?pid=7102) | ![ You has solved this problem :-)	](https://acm.hdu.edu.cn/images/ac.gif)（赛后） | | 7103 | [ Depth First Search](https://acm.</description>
+      <description>Pro. ID Problem Title Solved 7100 Cut The Wire （赛时） 7101 Time-division Multiplexing （赛时） 7102 Pattern Recognition （赛后） 7103 Depth First Search （赛后） 7104 Easy Math Problem （赛后） 7105 Power Sum （赛时） 7106 Function （赛时） 7107 GCD on Sequence （赛时） 7108 Command Sequence （赛时） 7109 Random Walk （赛后） 7110 Shooting Bricks （赛时） 7111 Remove （赛时） 7112 Start Dash ! ! Cut The Wire Time-division Multiplexing 数据较水，1.1 倍过了。
+// Author: HolyK // Created: Sat Aug 28 13:37:05 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -142,7 +179,7 @@
       <pubDate>Wed, 18 Aug 2021 22:13:07 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder10/</guid>
-      <description>| 题号 | 标题 | 团队的状态 | | :--: | :----------------------------------------------------------: | :--------: | | A | [Browser Games](https://ac.nowcoder.com/acm/contest/11261/A) | 通过 | | B | [Child&#39;s play](https://ac.nowcoder.com/acm/contest/11261/B) | 未通过 | | C | [Dance Party](https://ac.nowcoder.com/acm/contest/11261/C) | 未通过 | | D | [Diameter Counting](https://ac.nowcoder.com/acm/contest/11261/D) | 未通过 | | E | [More Fantastic Chess Problem](https://ac.nowcoder.com/acm/contest/11261/E) | 通过 | | F | [Train Wreck](https://ac.nowcoder.com/acm/contest/11261/F) | 通过 | | G | [Game of Death](https://ac.nowcoder.com/acm/contest/11261/G) | 通过 | | H | [War of Inazuma (Easy Version)](https://ac.</description>
+      <description>题号 标题 团队的状态 A Browser Games 通过 B Child’s play 未通过 C Dance Party 未通过 D Diameter Counting 未通过 E More Fantastic Chess Problem 通过 F Train Wreck 通过 G Game of Death 通过 H War of Inazuma (Easy Version) 通过 I War of Inazuma (Hard Version) 未通过 J Illuminations 通过 K Walking 通过 Browser Games Child’s play Dance Party Diameter Counting More Fantastic Chess Problem // Author: HolyK // Created: Tue Aug 31 10:32:26 2021 #include &amp;lt;algorithm&amp;gt; #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -151,7 +188,10 @@
       <pubDate>Sun, 15 Aug 2021 21:24:32 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/</guid>
-      <description>## 「万能」Euclidean 算法 $$ F(P, R, Q, N, X, Y) = \prod_{i = 0}^N \left(Y^{f(i) - f(i-1)}X\right) $$ 其中 $f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0$​。$X, Y$ ~~为操作序列，有乘法结合律，类比矩阵~~ $\in$ **半群** $(S, \times)$。 若 $R \geq Q$​，则 $f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor + \lfloor\dfrac{R}{Q}\rfloor$​，所以 $$ F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q, N, X, Y) $$ 若 $P \geq Q$​，则 $f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor + \lfloor\dfrac{P}{Q}\rfloor i$​，记 $f&#39;(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor$​ $$ \begin{aligned} F(P, R, Q, N, X, Y) &amp;= X\prod_{i = 1}^N Y^{f&#39;(i) - f&#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;= X\prod_{i = 0}^{N - 1} Y^{f&#39;(i+1) - f&#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1, Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y) \end{aligned} $$ 若 $P &lt; Q$，考虑交换 $X, Y$。 第 $i$ 个 $X$ 前有 $f(i)$ 个 $Y$，设第 $i$ 个 $Y$ 前有 $g(i)$ 个 $X$， $$ \begin{aligned} g(i) &amp;= \sum_{j \geq 0} [f(j) &lt; i+1]\\ &amp;= \sum_{j \geq 0} \left[\lfloor \frac{Pj+R}{Q}\rfloor &lt; i+1\right]\\ &amp;= \sum_{j \geq 0} \left[ Pj+R\ &lt; Qi+Q\right]\\ &amp;= \sum_{j \geq 0} \left[j &lt; \lfloor \frac{Qi + Q-R + P - 1}{P} \rfloor\right]\\ &amp;= \lfloor \frac{Qi + Q-R + P - 1}{P} \rfloor \end{aligned} $$ 但是末尾还有一些 $X$​ 后面没有 $Y$​，需要单独拿出来 $X^{N+1 - \max g(i)}$。​​ 于是 $$ F(P, R, Q, N, X, Y) = F(Q, Q - R + P - 1, P, \lfloor \frac{PN + R}{Q} \rfloor-1, Y, X)X^{N+1 - \max g(i)} $$ 复杂度为 $O(T(S) \log N\log \min\{p, q\})$，$T(S)$ 为 $S$ 上的乘法复杂度。 ## 模板 `S` 即半群 $(S, \times)$ 的结构体，这里假定它是幺半群（否则可以加一个幺元进去），则 `S()` 代表幺元。 ```cpp LL div(LL p, LL i, LL r, LL q) { return (p * i + r) / q; } S cal(LL p, LL r, LL q, LL n, const S &amp;x, const S &amp;y) { if (n &lt; 0) return S(); if (r &gt;= q) { return fpow(y, r / q) * cal(p, r % q, q, n, x, y); } if (p &gt;= q) { return x * cal(p % q, p % q + r, q, n - 1, fpow(y, p / q) * x, y); } if (p == 0) { return fpow(x, n + 1); } LL m = div(p, n, r, q); return cal(q, q - r + p - 1, p, m - 1, y, x) * fpow(x, n + 1 - (!</description>
+      <description>「万能」Euclidean 算法 \[ F(P, R, Q, N, X, Y) = \prod_{i = 0}^N \left(Y^{f(i) - f(i-1)}X\right) \]
+其中 \(f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0\)​。\(X, Y\) 为操作序列，有乘法结合律，类比矩阵 \(\in\) 半群 \((S, \times)\)。
+若 \(R \geq Q\)​，则 \(f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor + \lfloor\dfrac{R}{Q}\rfloor\)​，所以 \[ F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q, N, X, Y) \]
+若 \(P \geq Q\)​，则 \(f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor + \lfloor\dfrac{P}{Q}\rfloor i\)​，记 \(f&amp;#39;(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor\)​ \[ \begin{aligned} F(P, R, Q, N, X, Y) &amp;amp;= X\prod_{i = 1}^N Y^{f&amp;#39;(i) - f&amp;#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= X\prod_{i = 0}^{N - 1} Y^{f&amp;#39;(i+1) - f&amp;#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1, Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y) \end{aligned} \] 若 \(P &amp;lt; Q\)，考虑交换 \(X, Y\)。</description>
     </item>
     
     <item>
@@ -160,7 +200,8 @@
       <pubDate>Sat, 14 Aug 2021 18:36:09 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder9/</guid>
-      <description>| 题号 | 标题 | 团队的状态 | | :--: | :----------------------------------------------------------: | :--------: | | A | [A Math Challenge](https://ac.nowcoder.com/acm/contest/11260/A) | 通过 | | B | [Best Subgraph](https://ac.nowcoder.com/acm/contest/11260/B) | 未通过 | | C | [Cells](https://ac.nowcoder.com/acm/contest/11260/C) | 通过 | | D | [Divide-and-conquer on Tree](https://ac.nowcoder.com/acm/contest/11260/D) | 未通过 | | E | [Eyjafjalla](https://ac.nowcoder.com/acm/contest/11260/E) | 通过 | | F | [Financial Order Execution](https://ac.nowcoder.com/acm/contest/11260/F) | 未通过 | | G | [Glass Balls](https://ac.nowcoder.com/acm/contest/11260/G) | 通过 | | H | [Happy Number](https://ac.</description>
+      <description>题号 标题 团队的状态 A A Math Challenge 通过 B Best Subgraph 未通过 C Cells 通过 D Divide-and-conquer on Tree 未通过 E Eyjafjalla 通过 F Financial Order Execution 未通过 G Glass Balls 通过 H Happy Number 通过 I Incentive Model 通过 J Jam 通过 A Math Challenge LOJ138 + 自然数幂和。
+// Author: HolyK // Created: Sun Aug 15 21:59:21 2021 #include &amp;lt;bits/stdc++.h&amp;gt; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -169,7 +210,7 @@
       <pubDate>Thu, 12 Aug 2021 21:56:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E7%89%B9%E5%BE%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%B0%8F%E8%AE%B0/</guid>
-      <description>## Upper-Hessenberg 矩阵 $$ H_n = \begin{bmatrix} a_{0, 0} &amp; a_{0, 1} &amp; a_{0, 2} &amp; a_{0, 3} &amp; \cdots &amp; a_{0, n - 1} &amp; a_{0, n}\\ a_{1, 0} &amp; a_{1, 1} &amp; a_{1, 2} &amp; a_{1, 3} &amp; \cdots &amp; a_{1, n - 1} &amp; a_{1, n}\\ 0 &amp; a_{2, 1} &amp; a_{2, 2} &amp; a_{2, 3} &amp; \cdots &amp; a_{2, n - 1} &amp; a_{2, n}\\ 0 &amp; 0 &amp; a_{3, 2} &amp; a_{3, 3} &amp; \cdots &amp; a_{3, n - 1} &amp; a_{3, n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{n - 1, n-2} &amp; a_{n - 1, n - 1} &amp; a_{n - 1, n}\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{n, n - 1} &amp; a_{n, n} \end{bmatrix} $$ 设 $h_n = \det H_n$​，则 $$ \begin{aligned} h_n &amp;= a_{n, n}h_{n-1} - a_{n, n-1} \begin{vmatrix} a_{0, 0} &amp; a_{0, 1} &amp; a_{0, 2} &amp; a_{0, 3} &amp; \cdots &amp; a_{0, n}\\ a_{1, 0} &amp; a_{1, 1} &amp; a_{1, 2} &amp; a_{1, 3} &amp; \cdots &amp; a_{1, n}\\ 0 &amp; a_{2, 1} &amp; a_{2, 2} &amp; a_{2, 3} &amp; \cdots &amp; a_{2, n}\\ 0 &amp; 0 &amp; a_{3, 2} &amp; a_{3, 3} &amp; \cdots &amp; a_{3, n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{n - 1, n-2} &amp; a_{n - 1, n}\\ \end{vmatrix}\\ &amp;= a_{n, n}h_{n-1} - a_{n, n-1}\left( a_{n-1, n}h_{n-2} - a_{n-1, n-2} \begin{vmatrix} a_{0, 0} &amp; a_{0, 1} &amp; a_{0, 2} &amp; \cdots &amp; a_{0, n}\\ a_{1, 0} &amp; a_{1, 1} &amp; a_{1, 2} &amp; \cdots &amp; a_{1, n}\\ 0 &amp; a_{2, 1} &amp; a_{2, 2} &amp; \cdots &amp; a_{2, n}\\ 0 &amp; 0 &amp; a_{3, 2} &amp; \cdots &amp; a_{3, n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots\\ 0 &amp; 0 &amp; 0 &amp; a_{n - 2, n-3} &amp; a_{n - 2, n}\\ \end{vmatrix}\\ \right)\\ &amp;= \cdots\cdots\cdots\cdots\\ &amp;= \sum_{i = 0}^{n-1}h_{n-1-i}\cdot(-1)^ia_{n-i, n}\prod_{j=0}^{i-1}a_{n-j, n-j-1} \end{aligned} $$ 复杂度 $O(n^3)$。 ```cpp std::vector charPoly(std::vector</description>
+      <description>Upper-Hessenberg 矩阵 \[ H_n = \begin{bmatrix} a_{0, 0} &amp;amp; a_{0, 1} &amp;amp; a_{0, 2} &amp;amp; a_{0, 3} &amp;amp; \cdots &amp;amp; a_{0, n - 1} &amp;amp; a_{0, n}\\ a_{1, 0} &amp;amp; a_{1, 1} &amp;amp; a_{1, 2} &amp;amp; a_{1, 3} &amp;amp; \cdots &amp;amp; a_{1, n - 1} &amp;amp; a_{1, n}\\ 0 &amp;amp; a_{2, 1} &amp;amp; a_{2, 2} &amp;amp; a_{2, 3} &amp;amp; \cdots &amp;amp; a_{2, n - 1} &amp;amp; a_{2, n}\\ 0 &amp;amp; 0 &amp;amp; a_{3, 2} &amp;amp; a_{3, 3} &amp;amp; \cdots &amp;amp; a_{3, n - 1} &amp;amp; a_{3, n}\\ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \ddots &amp;amp; \ddots &amp;amp; \vdots &amp;amp; \vdots\\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; a_{n - 1, n-2} &amp;amp; a_{n - 1, n - 1} &amp;amp; a_{n - 1, n}\\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; a_{n, n - 1} &amp;amp; a_{n, n} \end{bmatrix} \]</description>
     </item>
     
     <item>
@@ -178,7 +219,8 @@
       <pubDate>Sun, 08 Aug 2021 12:55:13 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/fwt/</guid>
-      <description>## 卷积 运算 $\odot$，序列 $a, b, c$，方阵 $P, Q, R$ 满足 $R$ 可逆，且 $$ \begin{cases} c_n &amp;= \sum_{p \odot q = n}a_pb_q\\ \sum_j R_{i, j}c_j &amp;= \sum_pP_{i,p}a_p\sum_q Q_{i, q}b_q \end{cases} $$ 所以 $$ \begin{aligned} \sum_{j}R_{i, j}\sum_{p, q}[p\odot q = j]a_pb_q &amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ \sum_{p, q}R_{i, p \odot q}a_pb_q &amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ R_{i, p\odot q} &amp;= P_{i, p}Q_{i, q} \end{aligned} $$ 对序列 $a$ 施加线性变换 $P$，序列 $b$ 施加线性变换 $Q$，点乘之后再施加逆变换 $R^{-1}$，就可以实现 $\odot$ 卷积。 对于满足交换律的运算 $\odot$，$P = Q$。 ## [Kronecker product](https://en.</description>
+      <description>卷积 运算 \(\odot\)，序列 \(a, b, c\)，方阵 \(P, Q, R\) 满足 \(R\) 可逆，且 \[ \begin{cases} c_n &amp;amp;= \sum_{p \odot q = n}a_pb_q\\ \sum_j R_{i, j}c_j &amp;amp;= \sum_pP_{i,p}a_p\sum_q Q_{i, q}b_q \end{cases} \] 所以 \[ \begin{aligned} \sum_{j}R_{i, j}\sum_{p, q}[p\odot q = j]a_pb_q &amp;amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ \sum_{p, q}R_{i, p \odot q}a_pb_q &amp;amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ R_{i, p\odot q} &amp;amp;= P_{i, p}Q_{i, q} \end{aligned} \]
+对序列 \(a\) 施加线性变换 \(P\)，序列 \(b\) 施加线性变换 \(Q\)，点乘之后再施加逆变换 \(R^{-1}\)，就可以实现 \(\odot\) 卷积。</description>
     </item>
     
     <item>
@@ -187,7 +229,7 @@
       <pubDate>Sat, 07 Aug 2021 19:38:21 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder7/</guid>
-      <description>| 题号 | 标题 | 团队的状态 | | :--: | :----------------------------------------------------------: | :--------: | | A | [xay loves connected graphs](https://ac.nowcoder.com/acm/contest/11258/A) | 通过 | | B | [xay loves monotonicity](https://ac.nowcoder.com/acm/contest/11258/B) | 通过 | | C | [xay loves jumping](https://ac.nowcoder.com/acm/contest/11258/C) | 未通过 | | D | [xay loves matrices](https://ac.nowcoder.com/acm/contest/11258/D) | 通过 | | E | [xay loves nim](https://ac.nowcoder.com/acm/contest/11258/E) | 通过 | | F | [xay loves trees](https://ac.nowcoder.com/acm/contest/11258/F) | 通过 | | G | [xay loves KDT](https://ac.</description>
+      <description>题号 标题 团队的状态 A xay loves connected graphs 通过 B xay loves monotonicity 通过 C xay loves jumping 未通过 D xay loves matrices 通过 E xay loves nim 通过 F xay loves trees 通过 G xay loves KDT 未通过 H xay loves count 通过 I xay loves or 通过 J xay loves Floyd 通过 K xay loves sequence 通过 xay loves connected graphs // Author: HolyK // Created: Sun Aug 8 18:17:17 2021 #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -196,7 +238,10 @@
       <pubDate>Sat, 07 Aug 2021 10:38:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/min_25/</guid>
-      <description>## min_25 筛 约定 - $\mathbf{P}$ 表示全体质数集合 - $p_i$ 表示第 $i$ 个质数，特别地，$p_0 =1$。 - $\mathrm{lpf}_i$ 表示 $i$​ 的最小质因子。 &gt; 计算数论函数 $f(n)$​​​​ 的前缀和，要求 $f(p_i)$​​​​ 是低阶多项式，且对于合数 $n$​​​​，$f(n)$​ 可以写成形如 $f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)$​​​​的式子，其中 $A(p^e)$​​​​ 可以快速求值或预处理。 &gt; &gt; 当 $f(n)$​ 是积性函数时，$A(p^e) = f(p^e), B(n) = f(n)$​。 ### Part. 1 令 $$ g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\ \mathrm{lpf}_j &gt; p_i] $$ 直观地，$g_k(n, i)$ 表示埃式筛第 $i$ 轮后剩余 $n$ 以内的数的 $k$ 次方之和。 $$ g_k(n, i) = \begin{cases} g_k(n, i - 1), &amp; p_i^2 &gt; n\\ g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp; p_i^2 \leq n \end{cases} $$ 直观地，考虑埃式筛第 $i$ 轮： - 如果 $p_i^2&gt;n$，那么这一轮不会筛去任何数，于是 $g_k(n, i) = g_k(n, i - 1)$ 。 - 如果 $p_i^2\leq n$，那么这一轮会筛去最小质因子等于 $p_i$ 的数，所以要减去计算这些数的 $k$ 次方之和，提出公因子 $p_i^k$ 后可得上式。 递推求出 $g_k(x, \infty)$​​​​ 在所有 $x = \lfloor \dfrac{n}{i}\rfloor$​​​​​​ 处的取值，复杂度是 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$​​。 ```cpp // Calculate g(x, 0) on [n / i] int m = 0; for (LL i = 1, j; i &lt;= n; i = j + 1) { val[++m] = n / i; j = n / val[m]; g0[m] = (val[m] - 1) % P; // x - 1 g1[m] = (val[m] + 2) % P * g0[m] % P * (P + 1 &gt;&gt; 1) % P; // 2 + 3 + .</description>
+      <description>min_25 筛 约定
+\(\mathbf{P}\) 表示全体质数集合 \(p_i\) 表示第 \(i\) 个质数，特别地，\(p_0 =1\)。 \(\mathrm{lpf}_i\) 表示 \(i\)​ 的最小质因子。 计算数论函数 \(f(n)\)​​​​ 的前缀和，要求 \(f(p_i)\)​​​​ 是低阶多项式，且对于合数 \(n\)​​​​，\(f(n)\)​ 可以写成形如 \(f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)\)​​​​的式子，其中 \(A(p^e)\)​​​​ 可以快速求值或预处理。
+当 \(f(n)\)​ 是积性函数时，\(A(p^e) = f(p^e), B(n) = f(n)\)​。
+Part. 1 令 \[ g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\ \mathrm{lpf}_j &amp;gt; p_i] \] 直观地，\(g_k(n, i)\) 表示埃式筛第 \(i\) 轮后剩余 \(n\) 以内的数的 \(k\) 次方之和。 \[ g_k(n, i) = \begin{cases} g_k(n, i - 1), &amp;amp; p_i^2 &amp;gt; n\\ g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp;amp; p_i^2 \leq n \end{cases} \] 直观地，考虑埃式筛第 \(i\) 轮：</description>
     </item>
     
     <item>
@@ -205,7 +250,7 @@
       <pubDate>Sat, 07 Aug 2021 09:53:25 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder6/</guid>
-      <description>| 题号 | 标题 | 团队的状态 | | ---- | ------------------------------------------------------------ | ---------- | | A | [Contracting Convex Hull](https://ac.nowcoder.com/acm/contest/11257/A) | 未通过 | | B | [Defend Ponyville](https://ac.nowcoder.com/acm/contest/11257/B) | 通过 | | C | [Delete Edges](https://ac.nowcoder.com/acm/contest/11257/C) | 通过 | | D | [Gambling Monster](https://ac.nowcoder.com/acm/contest/11257/D) | 通过 | | E | [Growing Tree](https://ac.nowcoder.com/acm/contest/11257/E) | 通过 | | F | [Hamburger Steak](https://ac.nowcoder.com/acm/contest/11257/F) | 通过 | | G | [Hasse Diagram](https://ac.nowcoder.com/acm/contest/11257/G) | 通过 | | H | [Hopping Rabbit](https://ac.</description>
+      <description>题号 标题 团队的状态 A Contracting Convex Hull 未通过 B Defend Ponyville 通过 C Delete Edges 通过 D Gambling Monster 通过 E Growing Tree 通过 F Hamburger Steak 通过 G Hasse Diagram 通过 H Hopping Rabbit 通过 I Intervals on the Ring 通过 J Defend Your Country 通过 K Starch Cat 通过 Contracting Convex Hull Defend Ponyville // Author: HolyK // Created: Fri Aug 13 20:54:58 2021 #include &amp;lt;bits/stdc++.h&amp;gt; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -214,7 +259,7 @@
       <pubDate>Sat, 31 Jul 2021 11:28:53 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder3/</guid>
-      <description>| 题号 | 标题 | 团队的状态 | | :--: | :----------------------------------------------------------: | :--------: | | A | [Guess and lies](https://ac.nowcoder.com/acm/contest/11254/A) | 通过 | | B | [Black and white](https://ac.nowcoder.com/acm/contest/11254/B) | 通过 | | C | [Minimum grid](https://ac.nowcoder.com/acm/contest/11254/C) | 通过 | | D | [Count](https://ac.nowcoder.com/acm/contest/11254/D) | 通过 | | E | [Math](https://ac.nowcoder.com/acm/contest/11254/E) | 通过 | | F | [24dian](https://ac.nowcoder.com/acm/contest/11254/F) | 通过 | | G | [Yu Ling(Ling YueZheng) and Colorful Tree](https://ac.nowcoder.com/acm/contest/11254/G) | 通过 | | H | [Ling Qiu, Luna and Triple Backpack](https://ac.</description>
+      <description>题号 标题 团队的状态 A Guess and lies 通过 B Black and white 通过 C Minimum grid 通过 D Count 通过 E Math 通过 F 24dian 通过 G Yu Ling(Ling YueZheng) and Colorful Tree 通过 H Ling Qiu, Luna and Triple Backpack 未通过 I Kuriyama Mirai and Exclusive Or 通过 J Counting Triangles 通过 Guess and lies Black and white Minimum grid Count Math 24dian Yu Ling(Ling YueZheng) and Colorful Tree 一棵 \(n\) 个点的树，1 是根。\(q\) 次操作：</description>
     </item>
     
     <item>
@@ -223,7 +268,9 @@
       <pubDate>Fri, 30 Jul 2021 20:54:17 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/noi2021-%E5%AF%86%E7%A0%81%E7%AE%B1/</guid>
-      <description>## 题面 ![](statement.png) ## 题解 设向量 $\begin{pmatrix}x \\ y\end{pmatrix}$ 表示分数 $\dfrac x y$。 那么整数加分数的运算 $a+\dfrac x y = \dfrac{x + ay}{y}$ 可以表示为 $$ \begin{pmatrix} 1 &amp; a\\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x\\y \end{pmatrix} = \begin{pmatrix} x+ay\\ y \end{pmatrix} $$ 设 $a_k = \dfrac{x}{y}$，则 $a_{k-1}&#39;=a_{k-1}+\dfrac y x$，写成矩阵形式为 $$ \begin{pmatrix} a_{k-1} &amp; 1\\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} x\\y \end{pmatrix} = \begin{pmatrix} a_{k-1}x+y\\ x \end{pmatrix} $$ 记 $$ F = \begin{pmatrix} a_{0} &amp; 1\\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} a_{1} &amp; 1\\ 1 &amp; 0 \end{pmatrix} \dots \begin{pmatrix} a_{k} &amp; 1\\ 1 &amp; 0 \end{pmatrix} $$ 则 $$ f(a_0, a_1, \dots, a_n) = F_{0, 0} $$ 考虑维护矩阵 $F$。 操作`W`相当于右乘矩阵 $\begin{pmatrix}1 &amp; 0\\1 &amp; 1\end{pmatrix}$ $$ \begin{pmatrix} a_{k} &amp; 1\\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0\\ 1 &amp; 1 \end{pmatrix} = \begin{pmatrix} a_{k} + 1 &amp; 1\\ 1 &amp; 0 \end{pmatrix} $$ 操作`E`先考虑第二种情况，可以发现是右乘矩阵 $\begin{pmatrix}1 &amp; 0\\-1 &amp; 1\end{pmatrix}\begin{pmatrix}1 &amp; 1\\1 &amp; 0\end{pmatrix}^2=\begin{pmatrix}2 &amp; 1\\-1 &amp; 0\end{pmatrix}$ $$ \begin{pmatrix}a_{k} &amp; 1\\1 &amp; 0\end{pmatrix} \begin{pmatrix}2 &amp; 1\\-1 &amp; 0\end{pmatrix} = \begin{pmatrix}2a_{k}-1 &amp; a_k\\2 &amp; 1\end{pmatrix} $$ 验证 $a_k=1$ 时是否也符合题意： 一方面 $$ \begin{pmatrix}a_{k-1} &amp; 1\\1 &amp; 0\end{pmatrix} \begin{pmatrix}2a_{k}-1 &amp; a_k\\2 &amp; 1\end{pmatrix}= \begin{pmatrix}a_{k-1} &amp; 1\\1 &amp; 0\end{pmatrix} \begin{pmatrix}1 &amp; 1\\2 &amp; 1\end{pmatrix}= \begin{pmatrix}a_{k-1}+2 &amp; a_{k-1}+1\\1 &amp; 1\end{pmatrix} $$ 另一方面 $$ \begin{pmatrix}a_{k-1}+1 &amp; 1\\1 &amp; 0\end{pmatrix} \begin{pmatrix}1 &amp; 1\\1 &amp; 0\end{pmatrix}=\begin{pmatrix}a_{k-1}+2 &amp; a_{k-1}+1\\1 &amp; 1\end{pmatrix} $$ 所以操作`E`就是右乘矩阵 $\begin{pmatrix}2 &amp; 1\\-1 &amp; 0\end{pmatrix}$ 平衡树维护即可。 ```cpp // Author: HolyK // Created: Fri Jul 30 19:13:22 2021 #include #define dbg(a.</description>
+      <description>题面 题解 设向量 \(\begin{pmatrix}x \\ y\end{pmatrix}\) 表示分数 \(\dfrac x y\)。
+那么整数加分数的运算 \(a+\dfrac x y = \dfrac{x + ay}{y}\) 可以表示为 \[ \begin{pmatrix} 1 &amp;amp; a\\ 0 &amp;amp; 1 \end{pmatrix} \begin{pmatrix} x\\y \end{pmatrix} = \begin{pmatrix} x+ay\\ y \end{pmatrix} \] 设 \(a_k = \dfrac{x}{y}\)，则 \(a_{k-1}&amp;#39;=a_{k-1}+\dfrac y x\)，写成矩阵形式为
+\[ \begin{pmatrix} a_{k-1} &amp;amp; 1\\ 1 &amp;amp; 0 \end{pmatrix} \begin{pmatrix} x\\y \end{pmatrix} = \begin{pmatrix} a_{k-1}x+y\\ x \end{pmatrix} \] 记 \[ F = \begin{pmatrix} a_{0} &amp;amp; 1\\ 1 &amp;amp; 0 \end{pmatrix} \begin{pmatrix} a_{1} &amp;amp; 1\\ 1 &amp;amp; 0 \end{pmatrix} \dots \begin{pmatrix} a_{k} &amp;amp; 1\\ 1 &amp;amp; 0 \end{pmatrix} \] 则 \[ f(a_0, a_1, \dots, a_n) = F_{0, 0} \] 考虑维护矩阵 \(F\)。</description>
     </item>
     
     <item>
@@ -232,7 +279,10 @@
       <pubDate>Fri, 30 Jul 2021 16:40:08 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/lgv-lemma/</guid>
-      <description>## LGV 引理 设 $G(V, E)$ 是一个 DAG，起点集 $A = \{a_1, \dots, a_n\} \subseteq V$，终点集 $B = \{b_1, \dots, b_n\} \subseteq V$ 。 记 $\omega_e$ 表示有向边 $e$ 的边权，$\omega_e$ 属于某个**交换环**。 对于有向路径 $P$，定义 $\omega(P)$ 表示路径上边权的乘积，即 $$ \omega(P) = \prod\limits_{e \in P} \omega_e $$ 对于任意两点 $a, b$，记 $e(a, b)$ 表示从 $a$ 到 $b$ 的所有路径的权值之和，即 $$ e(a, b) = \sum\limits_{P:a\to b}\omega(P) $$ **特别地**，若 $\omega_e=1$ ，$e(a, b)$ 表示 从 $a$ 到 $b$ 的路径数。 记矩阵 $$ M = \begin{pmatrix} e(a_1, b_1) &amp; e(a_1, b_2) &amp; \cdots &amp; e(a_1, b_n)\\ e(a_2, b_1) &amp; e(a_2, b_2) &amp; \cdots &amp; e(a_2, b_n)\\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\ e(a_n, b_1) &amp; e(a_n, b_2) &amp; \cdots &amp; e(a_n, b_n)\\ \end{pmatrix} $$ 定义从 $A$ 到 $B$ 的 $n$ 元不相交路径组表示 $G$ 中的 $n$ 条有向路径 $(P_1, \dots, P_n)$ 满足： 1.</description>
+      <description>LGV 引理 设 \(G(V, E)\) 是一个 DAG，起点集 \(A = \{a_1, \dots, a_n\} \subseteq V\)，终点集 \(B = \{b_1, \dots, b_n\} \subseteq V\) 。
+记 \(\omega_e\) 表示有向边 \(e\) 的边权，\(\omega_e\) 属于某个交换环。
+对于有向路径 \(P\)，定义 \(\omega(P)\) 表示路径上边权的乘积，即 \[ \omega(P) = \prod\limits_{e \in P} \omega_e \] 对于任意两点 \(a, b\)，记 \(e(a, b)\) 表示从 \(a\) 到 \(b\) 的所有路径的权值之和，即 \[ e(a, b) = \sum\limits_{P:a\to b}\omega(P) \] 特别地，若 \(\omega_e=1\) ，\(e(a, b)\) 表示 从 \(a\) 到 \(b\) 的路径数。
+记矩阵 \[ M = \begin{pmatrix} e(a_1, b_1) &amp;amp; e(a_1, b_2) &amp;amp; \cdots &amp;amp; e(a_1, b_n)\\ e(a_2, b_1) &amp;amp; e(a_2, b_2) &amp;amp; \cdots &amp;amp; e(a_2, b_n)\\ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots\\ e(a_n, b_1) &amp;amp; e(a_n, b_2) &amp;amp; \cdots &amp;amp; e(a_n, b_n)\\ \end{pmatrix} \] 定义从 \(A\) 到 \(B\) 的 \(n\) 元不相交路径组表示 \(G\) 中的 \(n\) 条有向路径 \((P_1, \dots, P_n)\) 满足：</description>
     </item>
     
     <item>
@@ -241,7 +291,9 @@
       <pubDate>Wed, 21 Jul 2021 13:31:31 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2021nowcoder2/</guid>
-      <description>## 总览 | 题号 | 标题 | 团队的状态 | | :--: | :----------------------------------------------------------: | :--------: | | A | [Arithmetic Progression](https://ac.nowcoder.com/acm/contest/11253/A) | 通过 | | B | [Cannon](https://ac.nowcoder.com/acm/contest/11253/B) | 通过 | | C | [Draw Grids](https://ac.nowcoder.com/acm/contest/11253/C) | 通过 | | D | [Er Ba Game](https://ac.nowcoder.com/acm/contest/11253/D) | 通过 | | E | [Gas Station](https://ac.nowcoder.com/acm/contest/11253/E) | 通过 | | F | [Girlfriend](https://ac.nowcoder.com/acm/contest/11253/F) | 通过 | | G | [League of Legends](https://ac.nowcoder.com/acm/contest/11253/G) | 通过 | | H | [Olefin](https://ac.</description>
+      <description>总览 题号 标题 团队的状态 A Arithmetic Progression 通过 B Cannon 通过 C Draw Grids 通过 D Er Ba Game 通过 E Gas Station 通过 F Girlfriend 通过 G League of Legends 通过 H Olefin 未通过 I Penguins 通过 J Product of GCDs 通过 K Stack 通过 L WeChat Walk 通过 Arithmetic Progression 给定每个元素互不相同的序列 \(a_n\)，求排序后能构成等差数列的区间个数。
+\(1 \leq n \leq 10^5, 1 \leq a_i \leq 10^9\)
+结论：对于元素互不相同的序列 \(b_n\)，其排序后是公差为 \(d\) 等差数列的充要条件是 \(d=\gcd(|b_2-b_1|,|b_3-b_2|,\dots)\) 且 \(\max b_i - \min b_i = (n-1)d\)。</description>
     </item>
     
     <item>
@@ -250,7 +302,14 @@
       <pubDate>Wed, 14 Jul 2021 17:02:30 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/pam/</guid>
-      <description>## 基本元素 节点：原串的**一个**本质不同的回文子串。 长度 `len[o]`：回文子串长度。 转移边 `ch[o][x]`：两边同时加字符 $x$。 失配边 `fa[o]`：最长回文后缀。到根的路径是所有回文后缀。 有两个根，奇根`1` 和 偶根`0`，`fa[0] = 1, len[1] = -1`。 常用的构造方法是均摊 $O(n)$ 的，证明很简单，略。 代码： ```cpp char s[N], *now = s; std::array ch[N]; int fa[N], len[N], cnt, dep[N]; int jmp(int x) { for (; now[~len[x]] != *now; x = fa[x]) ; return x; } int ins(int x) { static int p, q; now++; if (!ch[p = jmp(p)][x]) { len[q = ++cnt] = len[p] + 2; fa[q] = ch[jmp(fa[p])][x]; ch[p][x] = q; dep[q] = dep[fa[q]] + 1; } return p = ch[p][x]; } int main() { std::ios::sync_with_stdio(false); std::cin.</description>
+      <description>基本元素 节点：原串的一个本质不同的回文子串。
+长度 len[o]：回文子串长度。
+转移边 ch[o][x]：两边同时加字符 \(x\)。
+失配边 fa[o]：最长回文后缀。到根的路径是所有回文后缀。
+有两个根，奇根1 和 偶根0，fa[0] = 1, len[1] = -1。
+常用的构造方法是均摊 \(O(n)\) 的，证明很简单，略。
+代码：
+char s[N], *now = s; std::array&amp;lt;int, 26&amp;gt; ch[N]; int fa[N], len[N], cnt, dep[N]; int jmp(int x) { for (; now[~len[x]] != *now; x = fa[x]) ; return x; } int ins(int x) { static int p, q; now++; if (!ch[p = jmp(p)][x]) { len[q = ++cnt] = len[p] + 2; fa[q] = ch[jmp(fa[p])][x]; ch[p][x] = q; dep[q] = dep[fa[q]] + 1; } return p = ch[p][x]; } int main() { std::ios::sync_with_stdio(false); std::cin.</description>
     </item>
     
     <item>
@@ -259,7 +318,19 @@
       <pubDate>Mon, 12 Jul 2021 15:21:22 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F/</guid>
-      <description>## 莫队二次离线 从 $[x, y]$ 移动到 $[l, r]$。 - $x \to l$ 查询 $a_i$ 在区间 $[i+1, y]$ 的贡献，拆成两个前缀 $i, y$，预处理 $a_{i-1}$ 对前缀 $i-1$ 的贡献，设贡献的前缀和为 $pre_1[i]$。 1. $xl$ 加入 $a_l\dots a_{x-1}$。 加前缀 $y$ 的贡献、减前缀 $i$ 的贡献。 离线 $\{y, l, x-1,+1\}, \Delta ans= pre_1[l] - pre_1[x]$。 - $y\to r$ 查询 $a_i$ 在区间 $[x, i-1]$ 的贡献，拆成两个前缀 $x-1, i-1$，预处理 $a_{i}$ 对前缀 $i-1$ 的贡献，设贡献的前缀和为 $pre_2[i]$。 1. $yr$ 删除 $a_{r+1}\dots a_y$ 加前缀 $x-1$ 的贡献、减前缀 $i-1$ 的贡献。 离线 $\{x-1, r+1, y, +1\}, \Delta ans = pre_2[r] - pre_2[y]$。 离线形式 $\{i, x, y, z\}$ 表示查询 $a_x\dots a_y$ 对前缀 $i$ 的贡献乘以系数 $z$。 计算方法和预处理方法一般是相同的，注意平衡复杂度，一般是 $O(\sqrt n)$ 修改，$O(1)$ 查询。 关键部分代码： ```cpp std::vector pre1(n + 1), pre2(n + 1); for (int i = 0; i &lt; n; i++) { update(a[i]); pre1[i + 1] = pre1[i] + ask(a[i]); pre2[i + 1] = pre2[i] + ask(a[i + 1]); } std::sort(q.</description>
+      <description>莫队二次离线 从 \([x, y]\) 移动到 \([l, r]\)。
+\(x \to l\)
+查询 \(a_i\) 在区间 \([i+1, y]\) 的贡献，拆成两个前缀 \(i, y\)，预处理 \(a_{i-1}\) 对前缀 \(i-1\) 的贡献，设贡献的前缀和为 \(pre_1[i]\)。
+\(x&amp;lt;l\)
+删除 \(a_{x} \dots a_{l-1}\)。
+减前缀 \(y\) 的贡献、加前缀 \(i\) 的贡献。
+离线 \(\{y, x, l-1,-1\}, \Delta ans= pre_1[l] - pre_1[x]\)。
+\(x&amp;gt;l\)
+加入 \(a_l\dots a_{x-1}\)。
+加前缀 \(y\) 的贡献、减前缀 \(i\) 的贡献。
+离线 \(\{y, l, x-1,+1\}, \Delta ans= pre_1[l] - pre_1[x]\)。
+\(y\to r\)
+查询 \(a_i\) 在区间 \([x, i-1]\) 的贡献，拆成两个前缀 \(x-1, i-1\)，预处理 \(a_{i}\) 对前缀 \(i-1\) 的贡献，设贡献的前缀和为 \(pre_2[i]\)。</description>
     </item>
     
     <item>
@@ -268,7 +339,14 @@
       <pubDate>Mon, 12 Jul 2021 08:17:49 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/uoj91%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C/</guid>
-      <description>&gt; 有一个数列 $a_1,a_2,\dots,a_n$，每个 $a_i$ 都是小于 $2^m$ 的非负整数。 &gt; &gt; 现在需要实现三种操作，格式说明如下： &gt; &gt; - 1 *x* *y* *w*：对于所有 $x≤i≤y$，将 $a_i$ 修改为 $a_i\oplus w$。其中 $w$ 是一个小于 $2^m$ 的非负整数。 &gt; - 2 *x* *y* *w*：对于所有 $x≤i≤y$，将 $a_i$ 修改为 $w$。其中 $w$ 是一个小于 $2^m$ 的非负整数。 &gt; - 3：从 $a_1,a_2,⋯,a_n$ 中选出若干个数，使得选出的数异或和最大。请输出这个最大值。 &gt; &gt; 这里 $\oplus$ 表示按位异或运算，$x_1,x_2,⋯,x_l$ 的异或和是指 $x_1\oplus x_2\oplus \cdots\oplus x_l$。 &gt; &gt; $n,m,q≤2000$。 将原序列差分，线性基不变。 然后每次操作就是单点插入和删除，下面给出两种可删除线性基的写法。 ## 离线 记录存活时间，贪心。 ```cpp using BS = std::bitset&lt;2000&gt;; using PBI = std::pair; PBI base[2000]; void ins(PBI x) { for (int i = 1999; i &gt;= 0; i--) { if (!</description>
+      <description>有一个数列 \(a_1,a_2,\dots,a_n\)，每个 \(a_i\) 都是小于 \(2^m\) 的非负整数。
+现在需要实现三种操作，格式说明如下：
+1 x y w：对于所有 \(x≤i≤y\)，将 \(a_i\) 修改为 \(a_i\oplus w\)。其中 \(w\) 是一个小于 \(2^m\) 的非负整数。 2 x y w：对于所有 \(x≤i≤y\)，将 \(a_i\) 修改为 \(w\)。其中 \(w\) 是一个小于 \(2^m\) 的非负整数。 3：从 \(a_1,a_2,⋯,a_n\) 中选出若干个数，使得选出的数异或和最大。请输出这个最大值。 这里 \(\oplus\) 表示按位异或运算，\(x_1,x_2,⋯,x_l\) 的异或和是指 \(x_1\oplus x_2\oplus \cdots\oplus x_l\)。
+\(n,m,q≤2000\)。
+将原序列差分，线性基不变。
+然后每次操作就是单点插入和删除，下面给出两种可删除线性基的写法。
+离线 记录存活时间，贪心。
+using BS = std::bitset&amp;lt;2000&amp;gt;; using PBI = std::pair&amp;lt;BS, int&amp;gt;; PBI base[2000]; void ins(PBI x) { for (int i = 1999; i &amp;gt;= 0; i--) { if (!</description>
     </item>
     
     <item>
@@ -277,7 +355,15 @@
       <pubDate>Mon, 12 Jul 2021 08:12:01 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/icpc2014-wfpachinko/</guid>
-      <description>&gt; 有一个 $h×w$ 的方格表，有些格子是墙，有些格子是终点，剩下的格子是空地。 &gt; &gt; 你现在要在这里进行随机游走，其中，每一轮向上、下、左、右的概率分别为 $u\%,d\%,l\%,r\%$，如果移动后超过方格表或到达墙，则这次移动失效，保持原地不动。 &gt; &gt; 当你到达终点时，游戏就结束了。现在，在**方格表第一行**的所有空地中均匀随机一个作为起点，求你就进入每个终点的概率。 &gt; &gt; $1≤w≤20, 2≤h≤10000$。 设其中一个终点为 $t$，$f_{i, j}$ 表示 $(i, j)$ 走到 $t$ 的概率。 $$ f_{i, j} = uf_{i-1, j}+df_{i+1, j}+lf_{i, j-1}+rf_{i, j+1} $$ $$ f_{i, j} - uf_{i-1, j} - df_{i+1, j} - lf_{i, j-1} - rf_{i, j+1}=0 $$ $$ f_t=1 $$ $$ P\cdot\mathbf{f}=\mathbf{e} $$ $P$ 是 $wh \times wh$ 的方阵，$\mathbf{f},\mathbf{e}$ 是列向量。其中 $e_i=[i=t]$。 $$ \mathbf{f}=P^{-1}\mathbf{f} $$ 设 $1\dots s$ 为起点 ，答案为 $$ ans = \frac1s \sum_{i=1}^sf_i $$ 写成矩阵的形式，设行向量 $\mathbf{v}^T=\begin{pmatrix} 1 &amp; 1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 &amp; \cdots \end{pmatrix}$，前面有 $s$ 个1，其他都是0。 $$ \begin{aligned} ans &amp;= \frac1s \mathbf{v}^T\mathbf{f}\\ &amp;= \frac1s\mathbf{v}^TP^{-1}\mathbf{e}\\ \end{aligned} $$ 相当于求行向量 $\alpha^T = \dfrac1s\mathbf{v}^TP^{-1}$ 第 $t$ 维的值，所以只要求出这个行向量即可。 $$ \alpha^T P = \frac1s\mathbf{v} $$ $$ P^T\alpha=\frac1s\mathbf{v}^T $$ 解这个线性方程组，直接高斯消元显然不行。 如果按照从上到下从左到右的顺序标号，$P^T$ 是一个带状矩阵，每行只需存储 $2w+1$ 个元素。 ~~然后消元即可。~~ **这还有个小问题没解决，留坑！** ```cpp // Author: HolyK // Created: Mon Jul 5 11:36:58 2021 #include #define dbg(a.</description>
+      <description>有一个 \(h×w\) 的方格表，有些格子是墙，有些格子是终点，剩下的格子是空地。
+你现在要在这里进行随机游走，其中，每一轮向上、下、左、右的概率分别为 \(u\%,d\%,l\%,r\%\)，如果移动后超过方格表或到达墙，则这次移动失效，保持原地不动。
+当你到达终点时，游戏就结束了。现在，在方格表第一行的所有空地中均匀随机一个作为起点，求你就进入每个终点的概率。
+\(1≤w≤20, 2≤h≤10000\)。
+设其中一个终点为 \(t\)，\(f_{i, j}\) 表示 \((i, j)\) 走到 \(t\) 的概率。 \[ f_{i, j} = uf_{i-1, j}+df_{i+1, j}+lf_{i, j-1}+rf_{i, j+1} \]
+\[ f_{i, j} - uf_{i-1, j} - df_{i+1, j} - lf_{i, j-1} - rf_{i, j+1}=0 \]
+\[ f_t=1 \]
+\[ P\cdot\mathbf{f}=\mathbf{e} \]
+\(P\) 是 \(wh \times wh\) 的方阵，\(\mathbf{f},\mathbf{e}\) 是列向量。其中 \(e_i=[i=t]\)。 \[ \mathbf{f}=P^{-1}\mathbf{f} \] 设 \(1\dots s\) 为起点 ，答案为 \[ ans = \frac1s \sum_{i=1}^sf_i \] 写成矩阵的形式，设行向量 \(\mathbf{v}^T=\begin{pmatrix} 1 &amp;amp; 1 &amp;amp; 1 &amp;amp; \cdots &amp;amp; 0 &amp;amp; 0 &amp;amp; \cdots \end{pmatrix}\)，前面有 \(s\) 个1，其他都是0。 \[ \begin{aligned} ans &amp;amp;= \frac1s \mathbf{v}^T\mathbf{f}\\ &amp;amp;= \frac1s\mathbf{v}^TP^{-1}\mathbf{e}\\ \end{aligned} \] 相当于求行向量 \(\alpha^T = \dfrac1s\mathbf{v}^TP^{-1}\) 第 \(t\) 维的值，所以只要求出这个行向量即可。 \[ \alpha^T P = \frac1s\mathbf{v} \]</description>
     </item>
     
     <item>
@@ -286,7 +372,13 @@
       <pubDate>Thu, 15 Apr 2021 17:26:44 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/cf938g/</guid>
-      <description>&gt; 给定一个带权无向图，实现三种操作：加边，删边，询问两点间的异或最短路。 &gt; &gt; $n, m, q \leq 2\times 10^5$。 类似最大 xor 和路径，用线性基可以求解异或最短路。 因为线性基删除很麻烦，所以直接离线用线段树分治。 图可能不连通，需要用并查集维护连通性，然后记录每个点到当前根的异或和 $d_x$。 加边时设 $val = d_x\oplus d_y \oplus w$，如果 $x, y$ 已经联通则将 $val$ 加入当前联通块的线性基，如果不在一个并查集，连接两个根，边权为 $val$。 ```cpp #include #define perr(a...) fprintf(stderr, a) #define dbg(a...) perr(&#34;\033[32;1m&#34;), perr(a), perr(&#34;\033[0m&#34;) template inline bool smin(T &amp;x, const U &amp;y) { return y &lt; x ? x = y, 1 : 0; } template inline bool smax(T &amp;x, const U &amp;y) { return x &lt; y ?</description>
+      <description>给定一个带权无向图，实现三种操作：加边，删边，询问两点间的异或最短路。
+\(n, m, q \leq 2\times 10^5\)。
+类似最大 xor 和路径，用线性基可以求解异或最短路。
+因为线性基删除很麻烦，所以直接离线用线段树分治。
+图可能不连通，需要用并查集维护连通性，然后记录每个点到当前根的异或和 \(d_x\)。
+加边时设 \(val = d_x\oplus d_y \oplus w\)，如果 \(x, y\) 已经联通则将 \(val\) 加入当前联通块的线性基，如果不在一个并查集，连接两个根，边权为 \(val\)。
+#include &amp;lt;bits/stdc++.h&amp;gt; #define perr(a...) fprintf(stderr, a) #define dbg(a...) perr(&amp;quot;\033[32;1m&amp;quot;), perr(a), perr(&amp;quot;\033[0m&amp;quot;) template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ? x = y, 1 : 0; } template &amp;lt;class T, class U&amp;gt; inline bool smax(T &amp;amp;x, const U &amp;amp;y) { return x &amp;lt; y ?</description>
     </item>
     
     <item>
@@ -295,7 +387,8 @@
       <pubDate>Thu, 15 Apr 2021 09:03:20 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102994/</guid>
-      <description>## 总览 | 题号 | A | B | C | D | E | F | G | H | I | J | K | L | M | |:--------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---|---| | 完成情况 | 1 | 1 | 0 | 1 | 1 | 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0 | ## A. Everyone Loves Playing Games &gt; A 有 $N$ 对数， B 有 $M$ 对数，A 从 $N$ 对数中分别选一个数得到异或和 $X$，然后 B 从 $N$ 对数得到一个异或和 $Y$，$A$ 希望 $X \oplus Y$ 最大，$B$ 希望 $X \oplus Y$ 最小，求最后的结果。 &gt; &gt; $N, M \leq 10000, 0 \leq x \leq 10^{18}$。 设每对数为 $(x_i, y_i)$，先都选上 $x_i$，然后变成选或不选 $x_i \oplus y_i$ 的问题。 A 和 B 分别建出线性基，然后从高位向低位考虑。 只需要考虑某一位 A 和 B 都有影响的情况，这位如果为 1 那么 A B 只会选一个，如果为 0 则要么都选，要么都不选，不管哪种情况两种状态都可以通过异或 $A_i \oplus B_i$ 来相互转换，所以这种情况将 $A_i \oplus B_i$ 插入 $A$ 的线性基来提供“反悔”的机会。 ```cpp #include #include #define perr(a.</description>
+      <description>总览 题号 A B C D E F G H I J K L M 完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0 A. Everyone Loves Playing Games A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。
+\(N, M \leq 10000, 0 \leq x \leq 10^{18}\)。</description>
     </item>
     
     <item>
@@ -304,7 +397,10 @@
       <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102441/</guid>
-      <description>## 总览 | 题号 | A | B | C | D | E | F | G | H | I | J | K | |:--------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:| | 完成情况 | 1 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | ## A. Template for Search &gt; 给定由小写字母、字符`*` 和 `?` 组成的字符串 $s$，其中 `*` 可以被替换成任意串（包括空串），`?` 可以被替换成任意字符，求 $s$ 可以表示成的最短回文串。 &gt; &gt; $1 \leq |s| \leq 500$。 设 $dp[l][r]$ 表示 $l \dots r$ 能组成的最短回文串，有三种转移： - $s_l$ 匹配 $s_r$ - $s_l = *$ 匹配右边一段 - $s_r = *$ 匹配左边一段 ## B.</description>
+      <description>总览 题号 A B C D E F G H I J K 完成情况 1 0 1 1 1 1 1 1 1 1 0 A. Template for Search 给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
+\(1 \leq |s| \leq 500\)。
+设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
+\(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段 B. Redistribution of Digits C. Partial Sums \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]</description>
     </item>
     
     <item>
@@ -313,7 +409,15 @@
       <pubDate>Fri, 26 Mar 2021 17:56:38 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces955dscissors/</guid>
-      <description>&gt; 给定两个串 $s,t$ 整数 $k$ ,你可以在 $s$ 中取出任意的两个不相交的长度为 $k$ 串，将它们按顺序拼在一起形成一个新串。 &gt; &gt; 求一种取串的方案使得 $t$ 是新串的子串。 &gt; &gt; $|s|,|t| \leq 5 \times 10^5$。 kmp 算出正串和反串的能匹配 $t$ 的前/后缀最大长度。 设 $s$ 串的前缀 $[pre_1 \dots pre_i]$ 能匹配 $t$ 的前缀集合为 $P$，后缀 $[suf_{i+1},suf_n]$ 能匹配 $t$ 的后缀集合为 $Q$，只要判断是否存在 $x\in P,y\in Q,x, y\leq k,x+y=|s|$ 即可。 类似 AC 自动机那样建出 fail 树，那么一个点能匹配的前缀长度集合就是在 fail 树上到根的路径，在正串 fail 树上维护集合 $P$，每次添加一个数 $x$ 时，标记 $k-x$ 对应在反串 fail 树上的点，每次查询反串 fail 树上一个点的祖先是否被标记。 具体实现时，标记一个点可以用子树加一，查询的时候单点查询即可。 复杂度 $O(n \log n)$。 ```cpp #include #define dbg(.</description>
+      <description>给定两个串 \(s,t\) 整数 \(k\) ,你可以在 \(s\) 中取出任意的两个不相交的长度为 \(k\) 串，将它们按顺序拼在一起形成一个新串。
+求一种取串的方案使得 \(t\) 是新串的子串。
+\(|s|,|t| \leq 5 \times 10^5\)。
+kmp 算出正串和反串的能匹配 \(t\) 的前/后缀最大长度。
+设 \(s\) 串的前缀 \([pre_1 \dots pre_i]\) 能匹配 \(t\) 的前缀集合为 \(P\)，后缀 \([suf_{i+1},suf_n]\) 能匹配 \(t\) 的后缀集合为 \(Q\)，只要判断是否存在 \(x\in P,y\in Q,x, y\leq k,x+y=|s|\) 即可。
+类似 AC 自动机那样建出 fail 树，那么一个点能匹配的前缀长度集合就是在 fail 树上到根的路径，在正串 fail 树上维护集合 \(P\)，每次添加一个数 \(x\) 时，标记 \(k-x\) 对应在反串 fail 树上的点，每次查询反串 fail 树上一个点的祖先是否被标记。
+具体实现时，标记一个点可以用子树加一，查询的时候单点查询即可。
+复杂度 \(O(n \log n)\)。
+#include &amp;lt;bits/stdc++.h&amp;gt; #define dbg(...) std::cerr &amp;lt;&amp;lt; &amp;quot;\033[32;1m&amp;quot;, fprintf(stderr, __VA_ARGS__), std::cerr &amp;lt;&amp;lt; &amp;quot;\033[0m&amp;quot; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ?</description>
     </item>
     
     <item>
@@ -322,7 +426,10 @@
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
-      <description>## 1 欧几里得算法 &gt; 欧几里得算法可以求两个数的最大公约数 $\gcd(a, b)$。 不妨设 $a \geq b, a = kb + r(k \geq 1, 0 \leq r &lt; b)$。 一方面，设 $d_1$ 为 $a, b$ 的一个公约数，则 $$ \begin{aligned} a &amp;= k_ad_1\\ b &amp;= k_bd_1\\ r &amp;= a - kb\\ &amp;= (k_a - kk_b)d_1 \end{aligned} $$ 即 $d_1$ 也是 $r$ 的约数，$b, r$ 的公约数。 另一方面，设 $d_2$ 为 $b, r$ 的一个公约数，则 $$ \begin{aligned} b &amp;= k&#39;_bd_2\\ r &amp;= k_r&#39;d_2\\ a &amp;= kb + r\\ &amp;= (kk&#39;_b + k_r&#39;)d_2 \end{aligned} $$ 即 $d_2$ 也是 $a$ 的约数，$a, b$ 的公约数。 所以 $a, b$ 的公约数集合和 $b, r$ 的公约数集合相同，于是 $\gcd(a, b) = \gcd(b, r) = \gcd(b, a \bmod b)$ 递归求解，终止状态为 $b = 0$，此时原 $a, b$ 的公约数集合为 $a$ 的约数集合。 因为 $a = kb + r &gt; (k + 1)r$ 所以 $r &lt; \frac{a}{k + 1} \leq \frac{a}{2}$，所以每次 $a$ 最少折半，算法复杂度为 $O(\log a + \log b)$。 ```cpp int gcd(int a, int b) { return b ?</description>
+      <description>1 欧几里得算法 欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
+不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
+一方面，设 \(d_1\) 为 \(a, b\) 的一个公约数，则 \[ \begin{aligned} a &amp;amp;= k_ad_1\\ b &amp;amp;= k_bd_1\\ r &amp;amp;= a - kb\\ &amp;amp;= (k_a - kk_b)d_1 \end{aligned} \] 即 \(d_1\) 也是 \(r\) 的约数，\(b, r\) 的公约数。
+另一方面，设 \(d_2\) 为 \(b, r\) 的一个公约数，则 \[ \begin{aligned} b &amp;amp;= k&amp;#39;_bd_2\\ r &amp;amp;= k_r&amp;#39;d_2\\ a &amp;amp;= kb + r\\ &amp;amp;= (kk&amp;#39;_b + k_r&amp;#39;)d_2 \end{aligned} \] 即 \(d_2\) 也是 \(a\) 的约数，\(a, b\) 的公约数。</description>
     </item>
     
     <item>
@@ -331,7 +438,10 @@
       <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
-      <description>&gt; 给定一棵 $n$ 个点的无根树，每条边都有标记0或1。现在有 $m$ 次操作，每次操作将第 $id$ 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。 &gt; &gt; $n,m \leq 5 \times 10^5$。 ## 动态DP 设 $dp[x][0/1]$ 表示 $x$ 向下有偶数/奇数个1的最长路径，$dp[x][2]$ 表示 $x$ 子树内偶数个1的直径。 容易写出转移（$val_y$ 表示 $y$ 的父边的权值）： $$ \begin{aligned} dp&#39;[x][0] &amp;= \max\{dp[x][0], dp[y][val_y] + 1\}\\ dp&#39;[x][1] &amp;= \max\{dp[x][1], dp[y][val_y \oplus 1] + 1\}\\ dp&#39;[x][2] &amp;= \max\{dp[x][0] + dp[y][val_y] + 1, dp[x][1] + dp[y][val_y \oplus 1] + 1, dp[x][2],dp[y][2]\} \end{aligned} $$ 改写成 $x$ 从重儿子 $y$ 转移的矩阵（这里以 $val_y = 0$ 为例）： $$ \begin{bmatrix} dp&#39;[x][0]\\ dp&#39;[x][1]\\ dp&#39;[x][2]\\ 0 \end{bmatrix} = \begin{bmatrix} 1 &amp; -\infty &amp; -\infty &amp; dp[x][0]\\ -\infty &amp; 1 &amp; -\infty &amp; dp[x][1]\\ dp[x][0] + 1 &amp; dp[x][1] + 1 &amp; 0 &amp; dp[x][2]\\ -\infty &amp; -\infty &amp; -\infty &amp; 0 \end{bmatrix} \begin{bmatrix} dp[y][0]\\ dp[y][1]\\ dp[y][2]\\ 0 \end{bmatrix} $$ 上面的 $dp[x]$ 是指排除掉 $x$ 重儿子的答案，$dp&#39;[x]$ 是指完整的 $x$ 的答案。 $dp[x]$ 考虑直接用 `std::multiset` 存一下每个节点虚儿子的 $dp[y][0], dp[y][1], dp[y][2]$，取每个的最大和次大值即可快速求出。 复杂度是 $O(4^3 m \log n + m \log^2n)$，能跑过 $5 \times 10^5$ 也是奇迹。 **细节**：在 `multiset` 中删除 $-\infty$ 时不能直接查找对应的值，应该直接删除 `multiset` 中最小的那个值（具体见函数 `void erase(std::multiset&amp;, int)`）。 ```cpp #include #ifdef LOCAL #define dbg(args.</description>
+      <description>给定一棵 \(n\) 个点的无根树，每条边都有标记0或1。现在有 \(m\) 次操作，每次操作将第 \(id\) 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。
+\(n,m \leq 5 \times 10^5\)。
+动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
+容易写出转移（\(val_y\) 表示 \(y\) 的父边的权值）： \[ \begin{aligned} dp&amp;#39;[x][0] &amp;amp;= \max\{dp[x][0], dp[y][val_y] + 1\}\\ dp&amp;#39;[x][1] &amp;amp;= \max\{dp[x][1], dp[y][val_y \oplus 1] + 1\}\\ dp&amp;#39;[x][2] &amp;amp;= \max\{dp[x][0] + dp[y][val_y] + 1, dp[x][1] + dp[y][val_y \oplus 1] + 1, dp[x][2],dp[y][2]\} \end{aligned} \] 改写成 \(x\) 从重儿子 \(y\) 转移的矩阵（这里以 \(val_y = 0\) 为例）： \[ \begin{bmatrix} dp&amp;#39;[x][0]\\ dp&amp;#39;[x][1]\\ dp&amp;#39;[x][2]\\ 0 \end{bmatrix} = \begin{bmatrix} 1 &amp;amp; -\infty &amp;amp; -\infty &amp;amp; dp[x][0]\\ -\infty &amp;amp; 1 &amp;amp; -\infty &amp;amp; dp[x][1]\\ dp[x][0] + 1 &amp;amp; dp[x][1] + 1 &amp;amp; 0 &amp;amp; dp[x][2]\\ -\infty &amp;amp; -\infty &amp;amp; -\infty &amp;amp; 0 \end{bmatrix} \begin{bmatrix} dp[y][0]\\ dp[y][1]\\ dp[y][2]\\ 0 \end{bmatrix} \] 上面的 \(dp[x]\) 是指排除掉 \(x\) 重儿子的答案，\(dp&amp;#39;[x]\) 是指完整的 \(x\) 的答案。</description>
     </item>
     
     <item>
@@ -340,7 +450,12 @@
       <pubDate>Thu, 18 Mar 2021 21:51:42 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/</guid>
-      <description>&gt; 题意： $N$ 个椰子, 第 $i$ 个需要敲 $a_i$ 下才能打开，问最坏情况下最少要敲多少下才能打开 $k$ 个椰子。 不妨设 $a_i \le a_{i + 1}$。 要敲开一个椰子，现在有两种方法： 1. 随便拿起一个椰子不停地敲，最多要 $a_n$ 次。 2. 有目的性地想要敲开某个椰子 $a_i$，可以发现最优的策略就是每个椰子都敲 $a_i$ 次，最多要敲 $a_i\times(n - i + 1)$ 次，所有情况下取最小值。 第二种情况实际上包含了第一种。 那么要敲开 $k$ 个椰子，也有两种方法： 1. 每次都随便拿一个敲开，最多要 $a_n + a_{n - 1}+ \dots + a_{n - k + 1}$ 次。 2. 选 $k$ 个椰子 $a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &lt; b_{i + 1})$，有目的性地敲开它们。发现最优策略下最多要敲 $\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)$ 次，其中 $a_{b_0} = 0$，所有情况下取最小值。 第二种情况也包含了第一种。 因此考虑第二种情况的求解，设 $dp[i][k]$ 表示前 $i$ 个椰子敲开 $k$ 个（包括第 $i$ 个椰子）的最少次数。 $$ dp[i][k] = \min\{dp[j][k - 1] + (a_i - a_j) \times (n - i + 1)\} $$ 这显然是一个斜率优化的形式，化一下式子（第二维省略）： $$ dp[i] = \min\{a_j \times (i - n - 1) + dp[j]\} + a_i \times (n - i + 1) $$ 设直线 $L_j(x) = a_j \cdot x + dp[j]$，求 $\min L_j(i - n - 1)$，斜率和横坐标都是递增的，可以用栈维护一个上凸壳，复杂度 $O(nk + n\log n)$。 ```cpp #include #ifdef LOCAL #define dbg(args.</description>
+      <description>题意： \(N\) 个椰子, 第 \(i\) 个需要敲 \(a_i\) 下才能打开，问最坏情况下最少要敲多少下才能打开 \(k\) 个椰子。
+不妨设 \(a_i \le a_{i + 1}\)。
+要敲开一个椰子，现在有两种方法：
+随便拿起一个椰子不停地敲，最多要 \(a_n\) 次。 有目的性地想要敲开某个椰子 \(a_i\)，可以发现最优的策略就是每个椰子都敲 \(a_i\) 次，最多要敲 \(a_i\times(n - i + 1)\) 次，所有情况下取最小值。 第二种情况实际上包含了第一种。
+那么要敲开 \(k\) 个椰子，也有两种方法：
+每次都随便拿一个敲开，最多要 \(a_n + a_{n - 1}+ \dots + a_{n - k + 1}\) 次。 选 \(k\) 个椰子 \(a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &amp;lt; b_{i + 1})\)，有目的性地敲开它们。发现最优策略下最多要敲 \(\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)\) 次，其中 \(a_{b_0} = 0\)，所有情况下取最小值。 第二种情况也包含了第一种。</description>
     </item>
     
     <item>
@@ -349,7 +464,11 @@
       <pubDate>Thu, 18 Mar 2021 21:47:16 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/pkuwc2018%E7%8C%8E%E4%BA%BA%E6%9D%80/</guid>
-      <description>&gt; $n$ 个人，每个人有个权值 $a_i$。进行 $n$ 轮操作，每轮开枪杀死一个人，$i$ 被杀死的概率 $p_i=\dfrac{a_i}{\sum_{x\ is\ alive}a_x}$ ，求最后死的那个人是 $1$ 的概率。答案对 $998244353$ 取模。 &gt; &gt; $a_i &gt; 0, 1 \le \sum a_i \le 10^5$。 设 $s = \sum_{i=1}^na_i,w=\sum_{x\ is\ alive}a_x$，那么有 $$ \begin{aligned} p_i &amp;= \frac{a_i}{w}\\ \frac wsp_i &amp;= \frac {a_i}{s}\\ p_i &amp;= \frac {a_i}{s} + \frac{s - w}s p_i \end{aligned} $$ 最后的这个式子可以理解为，每次开枪的目标是所有活人和死人，如果打到活人就会杀死他，如果打到死人不算，重打。 这样变成进行无限轮，每轮的目标都是所有人，打到某个人的概率更容易表示。 然后考虑容斥，设 $A = \{ a_2, a_3, \dots, a_n \}$， $1$ 在第 $r$ 轮被打死，且至少有 $k$ 个人在 $1$ 之后被打死。 $$ \begin{aligned} ans &amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \sum_{r = 1}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r - 1} \cdot \frac{a_1}{s}\\ &amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \sum_{r = 0}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r}\\ &amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \frac{1}{1 - \dfrac{s - a_1 - \sum_{i \in S} a_i}{s}}\\ &amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{a_1 + \sum_{i \in S} a_i}\\ &amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times \sum_{S \subseteq A, \sum_{i \in S} a_i = k} (-1)^{|S|}\\ &amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times [x^k] \prod_{i=2}^n(1 - x^{a_i}) \end{aligned} $$ 分治求 $\prod_{i=2}^n(1 - x^{a_i})$ 即可，复杂度 $O(n \log n \log s)$ 。 ```cpp #include #ifdef LOCAL #define dbg(args.</description>
+      <description>\(n\) 个人，每个人有个权值 \(a_i\)。进行 \(n\) 轮操作，每轮开枪杀死一个人，\(i\) 被杀死的概率 \(p_i=\dfrac{a_i}{\sum_{x\ is\ alive}a_x}\) ，求最后死的那个人是 \(1\) 的概率。答案对 \(998244353\) 取模。
+\(a_i &amp;gt; 0, 1 \le \sum a_i \le 10^5\)。
+设 \(s = \sum_{i=1}^na_i,w=\sum_{x\ is\ alive}a_x\)，那么有 \[ \begin{aligned} p_i &amp;amp;= \frac{a_i}{w}\\ \frac wsp_i &amp;amp;= \frac {a_i}{s}\\ p_i &amp;amp;= \frac {a_i}{s} + \frac{s - w}s p_i \end{aligned} \] 最后的这个式子可以理解为，每次开枪的目标是所有活人和死人，如果打到活人就会杀死他，如果打到死人不算，重打。
+这样变成进行无限轮，每轮的目标都是所有人，打到某个人的概率更容易表示。
+然后考虑容斥，设 \(A = \{ a_2, a_3, \dots, a_n \}\)， \(1\) 在第 \(r\) 轮被打死，且至少有 \(k\) 个人在 \(1\) 之后被打死。 \[ \begin{aligned} ans &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \sum_{r = 1}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r - 1} \cdot \frac{a_1}{s}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \sum_{r = 0}^{\infty} \left(\frac{s - a_1 - \sum_{i \in S} a_i}{s}\right)^{r}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{s} \cdot \frac{1}{1 - \dfrac{s - a_1 - \sum_{i \in S} a_i}{s}}\\ &amp;amp;= \sum_{k = 0}^{n - 1} (-1)^k \sum_{S \subseteq A, |S| = k} \frac{a_1}{a_1 + \sum_{i \in S} a_i}\\ &amp;amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times \sum_{S \subseteq A, \sum_{i \in S} a_i = k} (-1)^{|S|}\\ &amp;amp;= \sum_{k = 0}^{s - a_1} \frac{a_1}{a_1 + k} \times [x^k] \prod_{i=2}^n(1 - x^{a_i}) \end{aligned} \] 分治求 \(\prod_{i=2}^n(1 - x^{a_i})\) 即可，复杂度 \(O(n \log n \log s)\) 。</description>
     </item>
     
     <item>
@@ -358,7 +477,12 @@
       <pubDate>Thu, 18 Mar 2021 21:30:30 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E6%9D%8E%E8%B6%85%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%92%8Cset%E7%BB%B4%E6%8A%A4%E5%87%B8%E5%8C%85/</guid>
-      <description>## 问题引入 有一些点 $(a_i, b_i)$，需要多次询问 $\max\{ax_0+b\}$。 ## 李超线段树 利用李超线段树可以很好地维护上述信息。 李超线段树就是支持 $O(\log N)$ 插入直线和查询 $\max{L_i(x)}$ 的数据结构。 线段树的每个节点保存 $L(mid)$ 最大的那条直线。 插入一条直线时，比较 $L_{old}(mid)$ 和 $L_{new}(mid)$，较大者保留，较小者继续递归。 ```cpp constexpr int N(1e5 + 5); struct Line { LL k, b; LL f(int x) { return k * x + b; } } t[N &lt;&lt; 2]; #define ls o &lt;&lt; 1 #define rs o &lt;&lt; 1 | 1 void ins(int o, int l, int r, Line x) { int m = l + r &gt;&gt; 1; bool lv = x.</description>
+      <description>问题引入 有一些点 \((a_i, b_i)\)，需要多次询问 \(\max\{ax_0+b\}\)。
+李超线段树 利用李超线段树可以很好地维护上述信息。
+李超线段树就是支持 \(O(\log N)\) 插入直线和查询 \(\max{L_i(x)}\) 的数据结构。
+线段树的每个节点保存 \(L(mid)\) 最大的那条直线。
+插入一条直线时，比较 \(L_{old}(mid)\) 和 \(L_{new}(mid)\)，较大者保留，较小者继续递归。
+constexpr int N(1e5 + 5); struct Line { LL k, b; LL f(int x) { return k * x + b; } } t[N &amp;lt;&amp;lt; 2]; #define ls o &amp;lt;&amp;lt; 1 #define rs o &amp;lt;&amp;lt; 1 | 1 void ins(int o, int l, int r, Line x) { int m = l + r &amp;gt;&amp;gt; 1; bool lv = x.</description>
     </item>
     
     <item>
@@ -367,7 +491,11 @@
       <pubDate>Thu, 18 Mar 2021 15:28:59 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/fft/</guid>
-      <description>## Introduction &gt; `快速傅里叶变换(Fast Fourier Transform，FFT)`是一种可在 $O(n \log n)$ 时间内完成的`离散傅里叶变换 (Discrete Fourier Transform，DFT)` 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。 FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。 ### 多项式 形如 $$ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} $$ 的式子称为 $x$ 的 $n - 1$ 次多项式，其中 $a_0, a_1, \dots, a_{n - 1}$ 称为多项式系数，$n-1$ 称为多项式的次数，记为 $\deg A(x)$ 或 $\deg A$。 ### 点值 $n - 1$ 次多项式 $A(x)$ 在 $x = m$ 处的**点值** $$ A(m) = \sum_{k=0}^{n-1} a_km^k $$ ### 多项式乘法 记 $A(x)\times B(x)$ 表示多项式 $A(x), B(x)$ 做多项式乘法，可以简写为 $A(x)\cdot B(x)$ 或 $A(x)B(x)$。 多项式乘法 $$ \begin{aligned} C(x) = &amp;A(x) \times B(x)\\ = &amp;\left(a_0 + a_1x + \dots + a_{\deg A}x^{\deg A}\right)\cdot\left(b_0 + b_1x + \dots + b_{\deg B}x^{\deg B}\right)\\ = &amp;\sum_{r = 0}^{\deg A + \deg B} \sum_{k = 0}^r a_kb_{r - k} x^r \end{aligned} $$ 用系数关系可以表示为 $$ c_r = \sum_{k = 0}^ra_kb_{r - k} $$ 其中 $\deg C = \deg A + \deg B$。 易证它们的点值满足如下关系 $$ C(m) = A(m)B(m) $$ ### 循环卷积 记 $\operatorname{conv}(A, B, n)$ 表示多项式 $A(x), B(x)$ 做长度为 $n$ 的循环卷积。 循环卷积 $$ C(x) = \operatorname{conv}(A, B, n) $$ 系数关系表示为 $$ c_k = \sum_{p, q}[(p + q) \bmod n = k]a_pb_q $$ 其中 $\deg C = n - 1$。 容易发现，当 $n &gt; \deg A + \deg B$ 时，该运算等价于多项式乘法。 ### DFT &gt; `离散傅里叶变换(Discrete Fourier Transform, DFT)` 将多项式 $A(x)=\sum_{k=0}^{n-1}a_kx^k$ 转换为一些特殊的点值。 记 $n$ 次单位复根 $$ \omega_n = e^{\frac{2i\pi}n}=\cos\dfrac{2\pi}{n}+i\sin\dfrac{2\pi}{n} $$ $DFT(A)$ 就是要计算点值 $A(\omega_n^k), k = 0， 1， 2， \dots, n-1$。 单位根自带的循环特性使得循环卷积 $C(x) = \operatorname{conv}(A, B, n)$ 的点值也满足： $$ C(\omega_n^k) = A(\omega_n^k)B(\omega_n^k) $$ ### IDFT IDFT 是 DFT 的逆变换。 首先，用等比数列求和易证： $$ \begin{aligned} \frac1n\sum_{k = 0}^{n - 1}\omega_n^{vk} &amp;= [v \bmod n = 0] \end{aligned} $$ 考虑循环卷积 $C(x) = \operatorname{conv}(A, B, n)$ 的系数表示 $$ \begin{aligned} c_r = &amp;\sum_{p, q}[(p + q) \bmod n = r]a_pb_q\\ = &amp;\sum_{p, q}[(p + q - r) \bmod n = 0]a_pb_q\\ = &amp;\sum_{p, q}\frac1n\sum_{k = 0}^{n - 1}\omega_n^{pk+qk-rk}a_pb_q\\ = &amp;\sum_{p, q}\frac1n\sum_{k = 0}^{n - 1}\omega_n^{-rk}\cdot\omega_n^{pk}a_p\cdot\omega_n^{qk}b_q\\ = &amp;\frac1n\sum_{k = 0}^{n - 1}\omega_n^{-rk}\left(\sum_{p}\omega_n^{pk}a_p\sum_q\omega_n^{qk}b_q\right)\\ = &amp;\frac1n\sum_{k = 0}^{n - 1}\left(\omega_n^{-r}\right)^kA(\omega_n^k)B(\omega_n^k)\\ = &amp;\frac1n\sum_{k = 0}^{n - 1}\left(\omega_n^{n-r}\right)^kC(\omega_n^k) \end{aligned} $$ 设多项式 $$ C&#39;(x) = \sum_{k=0}^{n-1}C(\omega_n^k)x^k $$ 只要计算 $DFT(C&#39;)$ 即可得到 $C(x)$ 的系数，于是我们用 DFT 完成了逆变换 IDFT。 用两次 DFT 和一次 IDFT就可以计算 $\operatorname{conv}(A, B, n)$。 暴力的复杂度是 $O(n^2)$，此处不赘述。 ### FFT 现在尝试将 DFT 问题分解以优化时间复杂度。 **本部分认为 $n = \deg A + 1$ 为 $2$ 的整数次幂。对于更一般的情况，暂不考虑。** #### DIF **将序列 $a_i$ 分成左右两半**。 $$ \begin{aligned} A(\omega_n^{r}) &amp;= \sum_{k = 0}^{n-1}a_k\omega_n^{rk}\\ &amp;= \sum_{k = 0}^{n / 2 - 1} \left(a_k\cdot\omega_n^{rk} + a_{k+n/2}\cdot\omega_n^{rk+rn/2}\right)\\ &amp;= \sum_{k = 0}^{n / 2 - 1} \left[a_k\cdot\omega_n^{rk} + (-1)^r\cdot a_{k+n/2}\cdot\omega_n^{rk}\right]\\ &amp;= \sum_{k = 0}^{n / 2 - 1} \left[a_k+(-1)^ra_{k+n/2}\right]\omega_{n}^{rk} \end{aligned} $$ **进一步，将 $A(\omega_{n}^r)$ 按奇偶分类**： $$ \begin{aligned} A\left(\omega_n^{2r}\right) &amp;= \sum_{k=0}^{n/2-1}\left(a_k+a_{k+n/2}\right)\omega_{n/2}^{rk}\\ A\left(\omega_n^{2r+1}\right) &amp;= \sum_{k=0}^{n/2-1}\left(\omega_{n}^ka_k-\omega_{n}^ka_{k+n/2}\right)\omega_{n/2}^{rk} \end{aligned} $$ 设 $$ \begin{aligned} &amp;p_k=a_k+a_{k+n/2}, &amp;P(x) = \sum_{k = 0}^{n/2-1}p_kx^k\\ &amp;q_k=\omega_{n}^k(a_k-a_{k+n/2}), &amp;Q(x) = \sum_{k=0}^{n/2-1}q_kx^k \end{aligned} $$ 我们只需要求出 $P(\omega_{n/2}^r)$ 和 $Q(\omega_{n/2}^r)$ ，即求解规模为原来一半的两个子问题 $DFT(P), DFT(Q)$，就能在 $O(n)$ 时间内计算出 $DFT(A)$。 #### DIT **在算法竞赛中这种方法更常见。** 注意到在 `DIF` 中我们最后将 $A(\omega_n^r)$ 奇偶分类求解，那不妨思考**将序列 $a_k$ 按奇偶分类**。 设 $$ \begin{aligned} A_0(x) = a_0 + a_2x + \dots + a_{n - 2}x^{n / 2}\\ A_1(x) = a_1 + a_3x+ \dots + a_{n - 1}x^{n / 2} \end{aligned} $$ 则 $$ A(x) = A_0(x^2) + xA_1(x^2) $$ 所以 $$ \begin{aligned} A(\omega_n^k) &amp;= A_0(\omega_n^{2k}) + \omega_n^kA_1(\omega_n^{2k})\\ &amp;= A_0(\omega_{n/2}^k) + \omega_n^kA_1(\omega_{n/2}^k) \end{aligned} $$ **将 $A(\omega_n^k)$ 再分为左右两半**，这里运用了等式 $\omega_{n/2}^k = \omega_{n/2}^{k + n/2}$ 和 $\omega_n^k+\omega_n^{k+n/2} = 0$ : $$ \begin{aligned} A(\omega_n^k) &amp;= A_0(\omega_{n/2}^k) + \omega_n^kA_1(\omega_{n/2}^k)\\ A\left(\omega_n^{k+n/2}\right) &amp;= A_0(\omega_{n/2}^k) - \omega_n^kA_1(\omega_{n/2}^k) \end{aligned} $$ 我们只需要求出 $A_0(\omega_{n/2}^k)$ 和 $A_1(\omega_{n/2}^k)$ ，即求解规模为原来一半的两个子问题 $DFT(A_0), DFT(A_1)$，就能在 $O(n)$ 时间内计算出 $DFT(A)$。 #### Complexity 设次数为 $n - 1$ 的多项式做 DFT 的时间复杂度为 $T(n)$，则 $$ T(n) = 2T(\frac{n}{2}) + O(n) $$ 根据主定理 $$ T(n) = O(n \log n) $$ ## Implementation ### Recursive 上述两种计算方式均可以使用递归实现，这里直接给出代码，不再赘述。 #### DIF ```cpp const double PI = acos(-1.</description>
+      <description>Introduction 快速傅里叶变换(Fast Fourier Transform，FFT)是一种可在 \(O(n \log n)\) 时间内完成的离散傅里叶变换 (Discrete Fourier Transform，DFT) 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。
+FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
+多项式 形如 \[ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} \] 的式子称为 \(x\) 的 \(n - 1\) 次多项式，其中 \(a_0, a_1, \dots, a_{n - 1}\) 称为多项式系数，\(n-1\) 称为多项式的次数，记为 \(\deg A(x)\) 或 \(\deg A\)。
+点值 \(n - 1\) 次多项式 \(A(x)\) 在 \(x = m\) 处的点值 \[ A(m) = \sum_{k=0}^{n-1} a_km^k \]
+多项式乘法 记 \(A(x)\times B(x)\) 表示多项式 \(A(x), B(x)\) 做多项式乘法，可以简写为 \(A(x)\cdot B(x)\) 或 \(A(x)B(x)\)。</description>
     </item>
     
     <item>
@@ -376,7 +504,14 @@
       <pubDate>Sat, 13 Mar 2021 00:43:08 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces1148h-holy-diver/</guid>
-      <description>&gt; 给定一个最初为空的数组，然后进行 $n$ 次操作，每次操作给定 $x,l,r,k$，在数组末尾插入 $x$ ，然后查询满足 $mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k$ 的数对 $(i,j)$ 的个数，**强制在线**。 &gt; &gt; $mex(S)$ 表示集合 $S$ 中最小的未出现的 **自然数**。 &gt; &gt; $n \leq 2 \times 10^5$。 为表示方便，下面记 $mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})$。 容易发现，如果向集合 $S$ 中添加数，$mex(S)$ 不会减小。 所以如果固定右端点 $j$，$mex(i, j)$ 是**非严格单调减**的；固定左端点 $i$，$mex(i, j)$ 是**非严格单调增**的。 维护一个 $n \times n$ 矩阵，$A[i][j] = mex(j, i)$，则矩阵 $A$ 的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。 第 $i$ 次操作增加一个数 $x$，考虑从第 $i - 1$ 行拓展到第 $i$ 行时矩阵 $A$ 的变化。 首先 $A[i][i]=[x=0]$。 下面只考虑 $j &lt; i$ 的情况。 如果 $A[i-1][j]=x$，则 $A[i][j]&gt;x$，否则 $A[i][j] = A[i - 1][j]$。 所以每次变化的只有等于 $x$ 的那些位置，根据单调性，这是一段区间，记为 $[p,q]$。 设 $j \in [p, q]$，要求 $mex(j, i)$，只需要知道最后一次出现的位置小于 $j$ 的最小的数。所以用线段树维护序列 $seq_{lastpos[x]} = x$ ，每次求区间最小值，找到对应位置 $index$，这个位置右边的所有 $A[i][j]$ 都等于这个最小值，然后令 $q = index$，反复迭代，直到待求区间为空。 分析一下这个操作的复杂度，每次相当于删除一个区间 $[p,q]$，添加若干个小区间。 开始只有一个区间，最后的区间数不超过 $n$，中间只会删除最多 $n$ 次区间。 所以添加区间的总次数不会超过 $2n$ ，复杂度为 $O(n \log n)$。 然后考虑回答询问。 ## 矩形交的面积 我们用四元组 $(top,bottom,left,right)$ 描述一个矩形 $\{(i,j):top \leq i \leq bottom,left \leq j \leq right\}$。 每次询问可以看作是询问矩形 $(l, r, l, r)$ 内 $A[i][j]=k$ 的个数。 那么由上面 $mex$ 的单调性可以发现，$A[i][j] = k$ 的点可以组成一个个连通块，每个连通块由若干个矩形构成**阶梯状**（矩形的 $left$ 相同，$right$ 递增）。 且前一个连通块的 $right$ 小于后一个连通块的 $left$。 问题转化为求这些矩形与询问矩形交的面积之和。 用 `std::vector` 存下每个 $k$ 的所有矩形，维护前缀面积和，二分出相交与非相交的临界点，对于完全包含的用前缀和搞定，对于相交却不包含的，由于是阶梯状，所以也可以 $O(1)$ 计算，细节有点多。 由上面的复杂度分析可知，所有矩形的数量不会超过 $2n$ 个，所以总复杂度 $O(n \log n)$。 ```cpp #include #ifdef LOCAL #define dbg(args.</description>
+      <description>给定一个最初为空的数组，然后进行 \(n\) 次操作，每次操作给定 \(x,l,r,k\)，在数组末尾插入 \(x\) ，然后查询满足 \(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\) 的数对 \((i,j)\) 的个数，强制在线。
+\(mex(S)\) 表示集合 \(S\) 中最小的未出现的 自然数。
+\(n \leq 2 \times 10^5\)。
+为表示方便，下面记 \(mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})\)。
+容易发现，如果向集合 \(S\) 中添加数，\(mex(S)\) 不会减小。
+所以如果固定右端点 \(j\)，\(mex(i, j)\) 是非严格单调减的；固定左端点 \(i\)，\(mex(i, j)\) 是非严格单调增的。
+维护一个 \(n \times n\) 矩阵，\(A[i][j] = mex(j, i)\)，则矩阵 \(A\) 的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。
+第 \(i\) 次操作增加一个数 \(x\)，考虑从第 \(i - 1\) 行拓展到第 \(i\) 行时矩阵 \(A\) 的变化。</description>
     </item>
     
     <item>
@@ -385,7 +520,14 @@
       <pubDate>Mon, 07 Dec 2020 21:36:10 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces566c-logistical-questions/</guid>
-      <description>&gt; 一棵 $n$ 个节点的树，点有点权，边有边权。求这棵树的一个点 $r$ 使下面的式子最小： &gt; $$ &gt; \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32} &gt; $$ &gt; $n \le 2 \times 10^5, val_i, dist(u, v) \ge 0$。 带权重心问题，有点妙。 设 $$ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} $$ 这里函数 $f$ 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。 下面研究这个函数的性质。 树上的函数显然不太方便研究，所以考虑换一个 $\mathbf R$ 上的函数研究。 随便选择一条树上路径 $u \rightarrow v$ 作为 $x$ 轴，把 $u$ 当作原点，这样 $x$ 就是路径上的点到 $u$ 的距离。 ![](1.png) 这里以 $0 \rightarrow 5$ 为例，节点 $6 \dots 11$ 分别代表其父亲的一些子树。 记 $d_i = dist(i, 0)$，路径上的点分别考虑贡献： $$ f_i(x) = \begin{cases} \sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32 &amp; x \le d_i\\ \sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32 &amp; x &gt; d_i \end{cases}\\ f(x) = f_0(x) + f_1(x) + f_2(x) + f_3(x) + f_4(x) + f_5(x) $$ 发现 $f_i(x)$ 可以写成下面这种形式（其中 $c_1-x \ge 0, c_2 + x \ge 0$） $$ f_i(x) = \begin{cases} \sum v(c_1 - x)^\frac32 &amp; x \le d_i\\ \sum v(c_2 + x)^\frac32 &amp; x &gt; d_i \end{cases} $$ 求导（这里分段函数的分界点处显然可导） $$ f_i&#39;(x) = \begin{cases} -\frac32\sum v(c_1 - x)^\frac12 &amp; x \le d_i\\ \frac32\sum v(c_2 + x)^\frac12 &amp; x &gt; d_i \end{cases} \\ f_i&#39;&#39;(x) = \begin{cases} \frac34\sum v(c_1 - x)^{-\frac12} &amp; x \le d_i\\ \frac34\sum v(c_2 + x)^{-\frac12} &amp; x &gt; d_i \end{cases} $$ 发现 $f&#39;&#39;_i(x) \ge 0$，所以 $f&#39;&#39;(x) = \sum_if&#39;&#39;_i(x) \ge 0$，所以 $f(x)$ 是个凸函数，至多一个最小值。 注意到对于树上任意路径这个结论都成立，所以固定起点 $u$，对于所有终点 $v$ 求一次最小值就可以得到答案。 下图中 $2, 3, 4$ 都代表子树，假设当前在 $1$ ，需要考虑 $1 \rightarrow 2, 3, 4 \rightarrow \dots$ 几种路径。 !</description>
+      <description>一棵 \(n\) 个节点的树，点有点权，边有边权。求这棵树的一个点 \(r\) 使下面的式子最小： \[ \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32} \] \(n \le 2 \times 10^5, val_i, dist(u, v) \ge 0\)。
+带权重心问题，有点妙。
+设 \[ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} \] 这里函数 \(f\) 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。
+下面研究这个函数的性质。
+树上的函数显然不太方便研究，所以考虑换一个 \(\mathbf R\) 上的函数研究。
+随便选择一条树上路径 \(u \rightarrow v\) 作为 \(x\) 轴，把 \(u\) 当作原点，这样 \(x\) 就是路径上的点到 \(u\) 的距离。
+这里以 \(0 \rightarrow 5\) 为例，节点 \(6 \dots 11\) 分别代表其父亲的一些子树。
+记 \(d_i = dist(i, 0)\)，路径上的点分别考虑贡献： \[ f_i(x) = \begin{cases} \sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32 &amp;amp; x \le d_i\\ \sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32 &amp;amp; x &amp;gt; d_i \end{cases}\\ f(x) = f_0(x) + f_1(x) + f_2(x) + f_3(x) + f_4(x) + f_5(x) \] 发现 \(f_i(x)\) 可以写成下面这种形式（其中 \(c_1-x \ge 0, c_2 + x \ge 0\)） \[ f_i(x) = \begin{cases} \sum v(c_1 - x)^\frac32 &amp;amp; x \le d_i\\ \sum v(c_2 + x)^\frac32 &amp;amp; x &amp;gt; d_i \end{cases} \]</description>
     </item>
     
   </channel>

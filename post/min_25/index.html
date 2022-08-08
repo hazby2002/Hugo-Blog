@@ -241,6 +241,85 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
     <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#min_25-%e7%ad%9b" onclick="onNavClick(`#min_25-筛-nav`)" id="min_25-筛-nav">
+									min_25 筛
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#part.-1" onclick="onNavClick(`#part.-1-nav`)" id="part.-1-nav">
+									Part. 1
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#part.-2" onclick="onNavClick(`#part.-2-nav`)" id="part.-2-nav">
+									Part. 2
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
 </div>
     
     <div class="pagination">
@@ -326,6 +405,85 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
             <div class="toc">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#min_25-%e7%ad%9b" onclick="onNavClick(`#min_25-筛-nav`)" id="min_25-筛-nav">
+									min_25 筛
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#part.-1" onclick="onNavClick(`#part.-1-nav`)" id="part.-1-nav">
+									Part. 1
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#part.-2" onclick="onNavClick(`#part.-2-nav`)" id="part.-2-nav">
+									Part. 2
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
 </div>
             
         </div>
@@ -408,89 +566,99 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    ## min_25 筛
-
-约定
-
-- $\mathbf{P}$ 表示全体质数集合
-- $p_i$ 表示第 $i$ 个质数，特别地，$p_0 =1$。
-- $\mathrm{lpf}_i$ 表示 $i$​ 的最小质因子。
-
-
-
-> 计算数论函数 $f(n)$​​​​ 的前缀和，要求 $f(p_i)$​​​​ 是低阶多项式，且对于合数 $n$​​​​，$f(n)$​ 可以写成形如 $f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)$​​​​的式子，其中 $A(p^e)$​​​​ 可以快速求值或预处理。
->
-> 当 $f(n)$​ 是积性函数时，$A(p^e) = f(p^e), B(n) = f(n)$​。
-
-### Part. 1
-
-
-
-令
-$$
-g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\  \mathrm{lpf}_j > p_i]
-$$
-直观地，$g_k(n, i)$ 表示埃式筛第 $i$ 轮后剩余 $n$ 以内的数的 $k$ 次方之和。
-$$
+                    <h2 id="min_25-筛">min_25 筛</h2>
+<p>约定</p>
+<ul>
+<li><span class="math inline">\(\mathbf{P}\)</span>
+表示全体质数集合</li>
+<li><span class="math inline">\(p_i\)</span> 表示第 <span
+class="math inline">\(i\)</span> 个质数，特别地，<span
+class="math inline">\(p_0 =1\)</span>。</li>
+<li><span class="math inline">\(\mathrm{lpf}_i\)</span> 表示 <span
+class="math inline">\(i\)</span>​ 的最小质因子。</li>
+</ul>
+<blockquote>
+<p>计算数论函数 <span class="math inline">\(f(n)\)</span>​​​​ 的前缀和，要求
+<span class="math inline">\(f(p_i)\)</span>​​​​ 是低阶多项式，且对于合数
+<span class="math inline">\(n\)</span>​​​​，<span
+class="math inline">\(f(n)\)</span>​ 可以写成形如 <span
+class="math inline">\(f(n) =
+A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)\)</span>​​​​的式子，其中
+<span class="math inline">\(A(p^e)\)</span>​​​​ 可以快速求值或预处理。</p>
+<p>当 <span class="math inline">\(f(n)\)</span>​ 是积性函数时，<span
+class="math inline">\(A(p^e) = f(p^e), B(n) = f(n)\)</span>​。</p>
+</blockquote>
+<h3 id="part.-1">Part. 1</h3>
+<p>令 <span class="math display">\[
+g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \
+\mathrm{or}\  \mathrm{lpf}_j &gt; p_i]
+\]</span> 直观地，<span class="math inline">\(g_k(n, i)\)</span>
+表示埃式筛第 <span class="math inline">\(i\)</span> 轮后剩余 <span
+class="math inline">\(n\)</span> 以内的数的 <span
+class="math inline">\(k\)</span> 次方之和。 <span
+class="math display">\[
 g_k(n, i) = \begin{cases}
-g_k(n, i - 1), & p_i^2 > n\\
-g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), & p_i^2 \leq n
+g_k(n, i - 1), &amp; p_i^2 &gt; n\\
+g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor,
+i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp; p_i^2 \leq n
 \end{cases}
-$$
-直观地，考虑埃式筛第 $i$ 轮：
-
-- 如果 $p_i^2>n$，那么这一轮不会筛去任何数，于是 $g_k(n, i) = g_k(n, i - 1)$ 。
-- 如果 $p_i^2\leq n$，那么这一轮会筛去最小质因子等于 $p_i$ 的数，所以要减去计算这些数的 $k$ 次方之和，提出公因子 $p_i^k$ 后可得上式。
-
-递推求出 $g_k(x, \infty)$​​​​ 在所有 $x = \lfloor \dfrac{n}{i}\rfloor$​​​​​​ 处的取值，复杂度是 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$​​。
-
-```cpp
-// Calculate g(x, 0) on [n / i]
-int m = 0;
-for (LL i = 1, j; i <= n; i = j + 1) {
-  val[++m] = n / i;
-  j = n / val[m];
-  g0[m] = (val[m] - 1) % P; // x - 1
-  g1[m] = (val[m] + 2) % P * g0[m] % P * (P + 1 >> 1) % P; // 2 + 3 + ... + x
-  if (val[m] <= sq) {
-    id1[val[m]] = m;
-  } else {
-    id2[j] = m;
-  }
-}
-  
-// Calculate g(x, i)
-for (int i = 1; i <= cnt; i++) {
-  LL limit = 1LL * primes[i] * primes[i];
-  for (int j = 1; val[j] >= limit; j++) {
-    LL x = val[j] / primes[i];
-    int k = x <= sq ? id1[x] : id2[n / x];
-    g0[j] = (g0[j] + i - 1LL - g0[k]) % P;
-    g1[j] = (g1[j] - 1LL * primes[i] * (g1[k] - primeSum[i - 1])) % P;
-  }
-}
-```
-
-### Part. 2
-
-
-
-令
-$$
-s(n, i) = \sum_{j=1}^nf(j)[\mathrm{lpf}_j > p_i]
-$$
-即 $s(n, i)$ 表示 $n$ 以内最小质因子大于等于 $p_i$ 的函数值之和。
-
-则 $f(x)$ 的前缀和为
-$$
+\]</span> 直观地，考虑埃式筛第 <span class="math inline">\(i\)</span>
+轮：</p>
+<ul>
+<li>如果 <span
+class="math inline">\(p_i^2&gt;n\)</span>，那么这一轮不会筛去任何数，于是
+<span class="math inline">\(g_k(n, i) = g_k(n, i - 1)\)</span> 。</li>
+<li>如果 <span class="math inline">\(p_i^2\leq
+n\)</span>，那么这一轮会筛去最小质因子等于 <span
+class="math inline">\(p_i\)</span> 的数，所以要减去计算这些数的 <span
+class="math inline">\(k\)</span> 次方之和，提出公因子 <span
+class="math inline">\(p_i^k\)</span> 后可得上式。</li>
+</ul>
+<p>递推求出 <span class="math inline">\(g_k(x, \infty)\)</span>​​​​ 在所有
+<span class="math inline">\(x = \lfloor \dfrac{n}{i}\rfloor\)</span>​​​​​​
+处的取值，复杂度是 <span
+class="math inline">\(O\left(\dfrac{n^{\frac34}}{\log
+n}\right)\)</span>​​。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate g(x, 0) on [n / i]</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> m <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>LL i <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> j<span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i <span class="op">=</span> j <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  val<span class="op">[++</span>m<span class="op">]</span> <span class="op">=</span> n <span class="op">/</span> i<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  j <span class="op">=</span> n <span class="op">/</span> val<span class="op">[</span>m<span class="op">];</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  g0<span class="op">[</span>m<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>val<span class="op">[</span>m<span class="op">]</span> <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">%</span> P<span class="op">;</span> <span class="co">// x - 1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  g1<span class="op">[</span>m<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>val<span class="op">[</span>m<span class="op">]</span> <span class="op">+</span> <span class="dv">2</span><span class="op">)</span> <span class="op">%</span> P <span class="op">*</span> g0<span class="op">[</span>m<span class="op">]</span> <span class="op">%</span> P <span class="op">*</span> <span class="op">(</span>P <span class="op">+</span> <span class="dv">1</span> <span class="op">&gt;&gt;</span> <span class="dv">1</span><span class="op">)</span> <span class="op">%</span> P<span class="op">;</span> <span class="co">// 2 + 3 + ... + x</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>val<span class="op">[</span>m<span class="op">]</span> <span class="op">&lt;=</span> sq<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    id1<span class="op">[</span>val<span class="op">[</span>m<span class="op">]]</span> <span class="op">=</span> m<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    id2<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> m<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate g(x, i)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> cnt<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  LL limit <span class="op">=</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> primes<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> primes<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> val<span class="op">[</span>j<span class="op">]</span> <span class="op">&gt;=</span> limit<span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    LL x <span class="op">=</span> val<span class="op">[</span>j<span class="op">]</span> <span class="op">/</span> primes<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> k <span class="op">=</span> x <span class="op">&lt;=</span> sq <span class="op">?</span> id1<span class="op">[</span>x<span class="op">]</span> <span class="op">:</span> id2<span class="op">[</span>n <span class="op">/</span> x<span class="op">];</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    g0<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>g0<span class="op">[</span>j<span class="op">]</span> <span class="op">+</span> i <span class="op">-</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">-</span> g0<span class="op">[</span>k<span class="op">])</span> <span class="op">%</span> P<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    g1<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>g1<span class="op">[</span>j<span class="op">]</span> <span class="op">-</span> <span class="dv">1</span><span class="bu">LL</span> <span class="op">*</span> primes<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> <span class="op">(</span>g1<span class="op">[</span>k<span class="op">]</span> <span class="op">-</span> primeSum<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]))</span> <span class="op">%</span> P<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="part.-2">Part. 2</h3>
+<p>令 <span class="math display">\[
+s(n, i) = \sum_{j=1}^nf(j)[\mathrm{lpf}_j &gt; p_i]
+\]</span> 即 <span class="math inline">\(s(n, i)\)</span> 表示 <span
+class="math inline">\(n\)</span> 以内最小质因子大于等于 <span
+class="math inline">\(p_i\)</span> 的函数值之和。</p>
+<p>则 <span class="math inline">\(f(x)\)</span> 的前缀和为 <span
+class="math display">\[
 \sum_{i=1}^nf(i) = s(n, 1) + f(1)
-$$
-考虑计算 $s(n, i)$。
-
-由 Part. 1 可以快速计算质数的贡献 $\sum_{j=p_i}^nf(j)[j \in \mathbf{P}] = \sum_{k}\mathrm{coef_k}\times g_k(n, \infty)$。
-
-考虑合数的贡献，以 $f(n)$ 是积性函数为例，枚举最小质因子得到
-$$
+\]</span> 考虑计算 <span class="math inline">\(s(n, i)\)</span>。</p>
+<p>由 Part. 1 可以快速计算质数的贡献 <span
+class="math inline">\(\sum_{j=p_i}^nf(j)[j \in \mathbf{P}] =
+\sum_{k}\mathrm{coef_k}\times g_k(n, \infty)\)</span>。</p>
+<p>考虑合数的贡献，以 <span class="math inline">\(f(n)\)</span>
+是积性函数为例，枚举最小质因子得到 <span class="math display">\[
 \sum_{j=i}^{p_j^2\leq n}\sum_{c=1}^{p_j^{c+1} \leq n}\left[
 f\left(p^{k+1}\right)+
 f\left(p_j^k\right)s\left(
@@ -500,13 +668,12 @@ f\left(p_j^k\right)s\left(
 j+1
 \right)
 \right]
-$$
-所以
-$$
+\]</span> 所以 <span class="math display">\[
 s(n, i) = \begin{cases}
 \sum\limits_{j=i}^{p_j \leq n} f(p_j)
 +
-\sum\limits_{j=i}^{p_j^2\leq n}\sum\limits_{c=1}^{p_j^{c+1} \leq n}\left[
+\sum\limits_{j=i}^{p_j^2\leq n}\sum\limits_{c=1}^{p_j^{c+1} \leq
+n}\left[
 f\left(p^{k+1}\right)+
 f\left(p_j^k\right)s\left(
 \left\lfloor
@@ -514,11 +681,11 @@ f\left(p_j^k\right)s\left(
 \right\rfloor,
 j+1
 \right)
-\right], & p_i \leq n\\
-0,  & p_i > n
+\right], &amp; p_i \leq n\\
+0,  &amp; p_i &gt; n
 \end{cases}
-$$
-递归求解。
+\]</span> 递归求解。</p>
+
                     
                     <HR width="100%" id="EOF">
 		    <p style="color:#777;">最后修改于 2021-08-13</p>

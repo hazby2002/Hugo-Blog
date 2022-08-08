@@ -14,7 +14,14 @@
       <pubDate>Sun, 13 Feb 2022 19:25:10 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/2022ptzwinter/</guid>
-      <description>Ptz camp 的部分题。 题目是乱序的。 ## E3 Mountains &gt; 求 $n \times m$ 的非负矩阵个数，满足 $(1, 1)$ 到 $(n, m)$ 的最大路径和不超过 $k$。答案对 $10^9 + 7$ 取模。 &gt; &gt; $1 \leq n, m, k \leq 100$ 最大路径和，有个经典DP。 $$ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \} $$ 由 $a_{i, j} \geq 0$，得到 $dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}$。 然后还有 $dp_{n, m} \leq k$。 由上面的等式可知a和dp数组可以相互转化，所以问题转化为求dp矩阵的个数。 画出三维的方块图，$dp_{i, j}$ 表示 (i, j) 上有 $dp_{i, j}$ 个方块，然后可以转化为不相交路径计数，用LGV引理解决。 !</description>
+      <description>Ptz camp 的部分题。
+题目是乱序的。
+E3 Mountains 求 \(n \times m\) 的非负矩阵个数，满足 \((1, 1)\) 到 \((n, m)\) 的最大路径和不超过 \(k\)。答案对 \(10^9 + 7\) 取模。
+\(1 \leq n, m, k \leq 100\)
+最大路径和，有个经典DP。
+\[ dp_{i, j} = a_{i, j} + \max \{ dp_{i - 1, j}, dp_{i, j - 1} \} \]
+由 \(a_{i, j} \geq 0\)，得到 \(dp_{i, j} \geq dp_{i - 1, j}, dp_{i, j} \geq dp_{i, j - 1}\)。
+然后还有 \(dp_{n, m} \leq k\)。</description>
     </item>
     
   </channel>

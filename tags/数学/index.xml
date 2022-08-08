@@ -14,7 +14,16 @@
       <pubDate>Thu, 12 May 2022 00:35:08 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</guid>
-      <description>[传送门](https://codeforces.com/contest/1677/problem/F) &gt; 给定 $n, k, p, a_1, a_2, \dots, a_n$，求 &gt; $$ &gt; \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&gt;0]\right)\right) &gt; $$ &gt; &gt; 答案对 $998244353$ 取模。 &gt; &gt; $1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351$。 考虑对固定的 $[l, r]$ 计算答案，它是两个数乘积之和的形式。可以通过维护 $(\sum xy, \sum x, \sum y, \sum 1)$ 四元组来计算答案。 这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。 这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。 求单个的四元组，可以发现就是要求 $\sum_{i=0}^{a_j} p^ii^k$。 对于这个问题，板子 OJ 有一个 [单次询问的版本](https://judge.</description>
+      <description>传送门
+给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
+答案对 \(998244353\) 取模。
+\(1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351\)。
+考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
+这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。
+这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。
+求单个的四元组，可以发现就是要求 \(\sum_{i=0}^{a_j} p^ii^k\)。
+对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。
+本文主要参考 EI 的评论 以及下面 ecnerwala 的解读。</description>
     </item>
     
     <item>
@@ -23,7 +32,10 @@
       <pubDate>Sun, 15 Aug 2021 21:24:32 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/</guid>
-      <description>## 「万能」Euclidean 算法 $$ F(P, R, Q, N, X, Y) = \prod_{i = 0}^N \left(Y^{f(i) - f(i-1)}X\right) $$ 其中 $f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0$​。$X, Y$ ~~为操作序列，有乘法结合律，类比矩阵~~ $\in$ **半群** $(S, \times)$。 若 $R \geq Q$​，则 $f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor + \lfloor\dfrac{R}{Q}\rfloor$​，所以 $$ F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q, N, X, Y) $$ 若 $P \geq Q$​，则 $f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor + \lfloor\dfrac{P}{Q}\rfloor i$​，记 $f&#39;(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor$​ $$ \begin{aligned} F(P, R, Q, N, X, Y) &amp;= X\prod_{i = 1}^N Y^{f&#39;(i) - f&#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;= X\prod_{i = 0}^{N - 1} Y^{f&#39;(i+1) - f&#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1, Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y) \end{aligned} $$ 若 $P &lt; Q$，考虑交换 $X, Y$。 第 $i$ 个 $X$ 前有 $f(i)$ 个 $Y$，设第 $i$ 个 $Y$ 前有 $g(i)$ 个 $X$， $$ \begin{aligned} g(i) &amp;= \sum_{j \geq 0} [f(j) &lt; i+1]\\ &amp;= \sum_{j \geq 0} \left[\lfloor \frac{Pj+R}{Q}\rfloor &lt; i+1\right]\\ &amp;= \sum_{j \geq 0} \left[ Pj+R\ &lt; Qi+Q\right]\\ &amp;= \sum_{j \geq 0} \left[j &lt; \lfloor \frac{Qi + Q-R + P - 1}{P} \rfloor\right]\\ &amp;= \lfloor \frac{Qi + Q-R + P - 1}{P} \rfloor \end{aligned} $$ 但是末尾还有一些 $X$​ 后面没有 $Y$​，需要单独拿出来 $X^{N+1 - \max g(i)}$。​​ 于是 $$ F(P, R, Q, N, X, Y) = F(Q, Q - R + P - 1, P, \lfloor \frac{PN + R}{Q} \rfloor-1, Y, X)X^{N+1 - \max g(i)} $$ 复杂度为 $O(T(S) \log N\log \min\{p, q\})$，$T(S)$ 为 $S$ 上的乘法复杂度。 ## 模板 `S` 即半群 $(S, \times)$ 的结构体，这里假定它是幺半群（否则可以加一个幺元进去），则 `S()` 代表幺元。 ```cpp LL div(LL p, LL i, LL r, LL q) { return (p * i + r) / q; } S cal(LL p, LL r, LL q, LL n, const S &amp;x, const S &amp;y) { if (n &lt; 0) return S(); if (r &gt;= q) { return fpow(y, r / q) * cal(p, r % q, q, n, x, y); } if (p &gt;= q) { return x * cal(p % q, p % q + r, q, n - 1, fpow(y, p / q) * x, y); } if (p == 0) { return fpow(x, n + 1); } LL m = div(p, n, r, q); return cal(q, q - r + p - 1, p, m - 1, y, x) * fpow(x, n + 1 - (!</description>
+      <description>「万能」Euclidean 算法 \[ F(P, R, Q, N, X, Y) = \prod_{i = 0}^N \left(Y^{f(i) - f(i-1)}X\right) \]
+其中 \(f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0\)​。\(X, Y\) 为操作序列，有乘法结合律，类比矩阵 \(\in\) 半群 \((S, \times)\)。
+若 \(R \geq Q\)​，则 \(f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor + \lfloor\dfrac{R}{Q}\rfloor\)​，所以 \[ F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q, N, X, Y) \]
+若 \(P \geq Q\)​，则 \(f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor + \lfloor\dfrac{P}{Q}\rfloor i\)​，记 \(f&amp;#39;(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor\)​ \[ \begin{aligned} F(P, R, Q, N, X, Y) &amp;amp;= X\prod_{i = 1}^N Y^{f&amp;#39;(i) - f&amp;#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= X\prod_{i = 0}^{N - 1} Y^{f&amp;#39;(i+1) - f&amp;#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1, Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y) \end{aligned} \] 若 \(P &amp;lt; Q\)，考虑交换 \(X, Y\)。</description>
     </item>
     
     <item>
@@ -32,7 +44,7 @@
       <pubDate>Thu, 12 Aug 2021 21:56:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E7%89%B9%E5%BE%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%B0%8F%E8%AE%B0/</guid>
-      <description>## Upper-Hessenberg 矩阵 $$ H_n = \begin{bmatrix} a_{0, 0} &amp; a_{0, 1} &amp; a_{0, 2} &amp; a_{0, 3} &amp; \cdots &amp; a_{0, n - 1} &amp; a_{0, n}\\ a_{1, 0} &amp; a_{1, 1} &amp; a_{1, 2} &amp; a_{1, 3} &amp; \cdots &amp; a_{1, n - 1} &amp; a_{1, n}\\ 0 &amp; a_{2, 1} &amp; a_{2, 2} &amp; a_{2, 3} &amp; \cdots &amp; a_{2, n - 1} &amp; a_{2, n}\\ 0 &amp; 0 &amp; a_{3, 2} &amp; a_{3, 3} &amp; \cdots &amp; a_{3, n - 1} &amp; a_{3, n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{n - 1, n-2} &amp; a_{n - 1, n - 1} &amp; a_{n - 1, n}\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{n, n - 1} &amp; a_{n, n} \end{bmatrix} $$ 设 $h_n = \det H_n$​，则 $$ \begin{aligned} h_n &amp;= a_{n, n}h_{n-1} - a_{n, n-1} \begin{vmatrix} a_{0, 0} &amp; a_{0, 1} &amp; a_{0, 2} &amp; a_{0, 3} &amp; \cdots &amp; a_{0, n}\\ a_{1, 0} &amp; a_{1, 1} &amp; a_{1, 2} &amp; a_{1, 3} &amp; \cdots &amp; a_{1, n}\\ 0 &amp; a_{2, 1} &amp; a_{2, 2} &amp; a_{2, 3} &amp; \cdots &amp; a_{2, n}\\ 0 &amp; 0 &amp; a_{3, 2} &amp; a_{3, 3} &amp; \cdots &amp; a_{3, n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{n - 1, n-2} &amp; a_{n - 1, n}\\ \end{vmatrix}\\ &amp;= a_{n, n}h_{n-1} - a_{n, n-1}\left( a_{n-1, n}h_{n-2} - a_{n-1, n-2} \begin{vmatrix} a_{0, 0} &amp; a_{0, 1} &amp; a_{0, 2} &amp; \cdots &amp; a_{0, n}\\ a_{1, 0} &amp; a_{1, 1} &amp; a_{1, 2} &amp; \cdots &amp; a_{1, n}\\ 0 &amp; a_{2, 1} &amp; a_{2, 2} &amp; \cdots &amp; a_{2, n}\\ 0 &amp; 0 &amp; a_{3, 2} &amp; \cdots &amp; a_{3, n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots\\ 0 &amp; 0 &amp; 0 &amp; a_{n - 2, n-3} &amp; a_{n - 2, n}\\ \end{vmatrix}\\ \right)\\ &amp;= \cdots\cdots\cdots\cdots\\ &amp;= \sum_{i = 0}^{n-1}h_{n-1-i}\cdot(-1)^ia_{n-i, n}\prod_{j=0}^{i-1}a_{n-j, n-j-1} \end{aligned} $$ 复杂度 $O(n^3)$。 ```cpp std::vector charPoly(std::vector</description>
+      <description>Upper-Hessenberg 矩阵 \[ H_n = \begin{bmatrix} a_{0, 0} &amp;amp; a_{0, 1} &amp;amp; a_{0, 2} &amp;amp; a_{0, 3} &amp;amp; \cdots &amp;amp; a_{0, n - 1} &amp;amp; a_{0, n}\\ a_{1, 0} &amp;amp; a_{1, 1} &amp;amp; a_{1, 2} &amp;amp; a_{1, 3} &amp;amp; \cdots &amp;amp; a_{1, n - 1} &amp;amp; a_{1, n}\\ 0 &amp;amp; a_{2, 1} &amp;amp; a_{2, 2} &amp;amp; a_{2, 3} &amp;amp; \cdots &amp;amp; a_{2, n - 1} &amp;amp; a_{2, n}\\ 0 &amp;amp; 0 &amp;amp; a_{3, 2} &amp;amp; a_{3, 3} &amp;amp; \cdots &amp;amp; a_{3, n - 1} &amp;amp; a_{3, n}\\ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \ddots &amp;amp; \ddots &amp;amp; \vdots &amp;amp; \vdots\\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; a_{n - 1, n-2} &amp;amp; a_{n - 1, n - 1} &amp;amp; a_{n - 1, n}\\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; a_{n, n - 1} &amp;amp; a_{n, n} \end{bmatrix} \]</description>
     </item>
     
     <item>
@@ -41,7 +53,15 @@
       <pubDate>Mon, 12 Jul 2021 08:12:01 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/icpc2014-wfpachinko/</guid>
-      <description>&gt; 有一个 $h×w$ 的方格表，有些格子是墙，有些格子是终点，剩下的格子是空地。 &gt; &gt; 你现在要在这里进行随机游走，其中，每一轮向上、下、左、右的概率分别为 $u\%,d\%,l\%,r\%$，如果移动后超过方格表或到达墙，则这次移动失效，保持原地不动。 &gt; &gt; 当你到达终点时，游戏就结束了。现在，在**方格表第一行**的所有空地中均匀随机一个作为起点，求你就进入每个终点的概率。 &gt; &gt; $1≤w≤20, 2≤h≤10000$。 设其中一个终点为 $t$，$f_{i, j}$ 表示 $(i, j)$ 走到 $t$ 的概率。 $$ f_{i, j} = uf_{i-1, j}+df_{i+1, j}+lf_{i, j-1}+rf_{i, j+1} $$ $$ f_{i, j} - uf_{i-1, j} - df_{i+1, j} - lf_{i, j-1} - rf_{i, j+1}=0 $$ $$ f_t=1 $$ $$ P\cdot\mathbf{f}=\mathbf{e} $$ $P$ 是 $wh \times wh$ 的方阵，$\mathbf{f},\mathbf{e}$ 是列向量。其中 $e_i=[i=t]$。 $$ \mathbf{f}=P^{-1}\mathbf{f} $$ 设 $1\dots s$ 为起点 ，答案为 $$ ans = \frac1s \sum_{i=1}^sf_i $$ 写成矩阵的形式，设行向量 $\mathbf{v}^T=\begin{pmatrix} 1 &amp; 1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 &amp; \cdots \end{pmatrix}$，前面有 $s$ 个1，其他都是0。 $$ \begin{aligned} ans &amp;= \frac1s \mathbf{v}^T\mathbf{f}\\ &amp;= \frac1s\mathbf{v}^TP^{-1}\mathbf{e}\\ \end{aligned} $$ 相当于求行向量 $\alpha^T = \dfrac1s\mathbf{v}^TP^{-1}$ 第 $t$ 维的值，所以只要求出这个行向量即可。 $$ \alpha^T P = \frac1s\mathbf{v} $$ $$ P^T\alpha=\frac1s\mathbf{v}^T $$ 解这个线性方程组，直接高斯消元显然不行。 如果按照从上到下从左到右的顺序标号，$P^T$ 是一个带状矩阵，每行只需存储 $2w+1$ 个元素。 ~~然后消元即可。~~ **这还有个小问题没解决，留坑！** ```cpp // Author: HolyK // Created: Mon Jul 5 11:36:58 2021 #include #define dbg(a.</description>
+      <description>有一个 \(h×w\) 的方格表，有些格子是墙，有些格子是终点，剩下的格子是空地。
+你现在要在这里进行随机游走，其中，每一轮向上、下、左、右的概率分别为 \(u\%,d\%,l\%,r\%\)，如果移动后超过方格表或到达墙，则这次移动失效，保持原地不动。
+当你到达终点时，游戏就结束了。现在，在方格表第一行的所有空地中均匀随机一个作为起点，求你就进入每个终点的概率。
+\(1≤w≤20, 2≤h≤10000\)。
+设其中一个终点为 \(t\)，\(f_{i, j}\) 表示 \((i, j)\) 走到 \(t\) 的概率。 \[ f_{i, j} = uf_{i-1, j}+df_{i+1, j}+lf_{i, j-1}+rf_{i, j+1} \]
+\[ f_{i, j} - uf_{i-1, j} - df_{i+1, j} - lf_{i, j-1} - rf_{i, j+1}=0 \]
+\[ f_t=1 \]
+\[ P\cdot\mathbf{f}=\mathbf{e} \]
+\(P\) 是 \(wh \times wh\) 的方阵，\(\mathbf{f},\mathbf{e}\) 是列向量。其中 \(e_i=[i=t]\)。 \[ \mathbf{f}=P^{-1}\mathbf{f} \] 设 \(1\dots s\) 为起点 ，答案为 \[ ans = \frac1s \sum_{i=1}^sf_i \] 写成矩阵的形式，设行向量 \(\mathbf{v}^T=\begin{pmatrix} 1 &amp;amp; 1 &amp;amp; 1 &amp;amp; \cdots &amp;amp; 0 &amp;amp; 0 &amp;amp; \cdots \end{pmatrix}\)，前面有 \(s\) 个1，其他都是0。 \[ \begin{aligned} ans &amp;amp;= \frac1s \mathbf{v}^T\mathbf{f}\\ &amp;amp;= \frac1s\mathbf{v}^TP^{-1}\mathbf{e}\\ \end{aligned} \] 相当于求行向量 \(\alpha^T = \dfrac1s\mathbf{v}^TP^{-1}\) 第 \(t\) 维的值，所以只要求出这个行向量即可。 \[ \alpha^T P = \frac1s\mathbf{v} \]</description>
     </item>
     
     <item>
@@ -50,7 +70,8 @@
       <pubDate>Thu, 15 Apr 2021 09:03:20 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102994/</guid>
-      <description>## 总览 | 题号 | A | B | C | D | E | F | G | H | I | J | K | L | M | |:--------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---|---| | 完成情况 | 1 | 1 | 0 | 1 | 1 | 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0 | ## A. Everyone Loves Playing Games &gt; A 有 $N$ 对数， B 有 $M$ 对数，A 从 $N$ 对数中分别选一个数得到异或和 $X$，然后 B 从 $N$ 对数得到一个异或和 $Y$，$A$ 希望 $X \oplus Y$ 最大，$B$ 希望 $X \oplus Y$ 最小，求最后的结果。 &gt; &gt; $N, M \leq 10000, 0 \leq x \leq 10^{18}$。 设每对数为 $(x_i, y_i)$，先都选上 $x_i$，然后变成选或不选 $x_i \oplus y_i$ 的问题。 A 和 B 分别建出线性基，然后从高位向低位考虑。 只需要考虑某一位 A 和 B 都有影响的情况，这位如果为 1 那么 A B 只会选一个，如果为 0 则要么都选，要么都不选，不管哪种情况两种状态都可以通过异或 $A_i \oplus B_i$ 来相互转换，所以这种情况将 $A_i \oplus B_i$ 插入 $A$ 的线性基来提供“反悔”的机会。 ```cpp #include #include #define perr(a.</description>
+      <description>总览 题号 A B C D E F G H I J K L M 完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0 A. Everyone Loves Playing Games A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。
+\(N, M \leq 10000, 0 \leq x \leq 10^{18}\)。</description>
     </item>
     
     <item>
@@ -59,7 +80,10 @@
       <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102441/</guid>
-      <description>## 总览 | 题号 | A | B | C | D | E | F | G | H | I | J | K | |:--------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:| | 完成情况 | 1 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | ## A. Template for Search &gt; 给定由小写字母、字符`*` 和 `?` 组成的字符串 $s$，其中 `*` 可以被替换成任意串（包括空串），`?` 可以被替换成任意字符，求 $s$ 可以表示成的最短回文串。 &gt; &gt; $1 \leq |s| \leq 500$。 设 $dp[l][r]$ 表示 $l \dots r$ 能组成的最短回文串，有三种转移： - $s_l$ 匹配 $s_r$ - $s_l = *$ 匹配右边一段 - $s_r = *$ 匹配左边一段 ## B.</description>
+      <description>总览 题号 A B C D E F G H I J K 完成情况 1 0 1 1 1 1 1 1 1 1 0 A. Template for Search 给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
+\(1 \leq |s| \leq 500\)。
+设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
+\(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段 B. Redistribution of Digits C. Partial Sums \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]</description>
     </item>
     
     <item>
@@ -68,7 +92,10 @@
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
-      <description>## 1 欧几里得算法 &gt; 欧几里得算法可以求两个数的最大公约数 $\gcd(a, b)$。 不妨设 $a \geq b, a = kb + r(k \geq 1, 0 \leq r &lt; b)$。 一方面，设 $d_1$ 为 $a, b$ 的一个公约数，则 $$ \begin{aligned} a &amp;= k_ad_1\\ b &amp;= k_bd_1\\ r &amp;= a - kb\\ &amp;= (k_a - kk_b)d_1 \end{aligned} $$ 即 $d_1$ 也是 $r$ 的约数，$b, r$ 的公约数。 另一方面，设 $d_2$ 为 $b, r$ 的一个公约数，则 $$ \begin{aligned} b &amp;= k&#39;_bd_2\\ r &amp;= k_r&#39;d_2\\ a &amp;= kb + r\\ &amp;= (kk&#39;_b + k_r&#39;)d_2 \end{aligned} $$ 即 $d_2$ 也是 $a$ 的约数，$a, b$ 的公约数。 所以 $a, b$ 的公约数集合和 $b, r$ 的公约数集合相同，于是 $\gcd(a, b) = \gcd(b, r) = \gcd(b, a \bmod b)$ 递归求解，终止状态为 $b = 0$，此时原 $a, b$ 的公约数集合为 $a$ 的约数集合。 因为 $a = kb + r &gt; (k + 1)r$ 所以 $r &lt; \frac{a}{k + 1} \leq \frac{a}{2}$，所以每次 $a$ 最少折半，算法复杂度为 $O(\log a + \log b)$。 ```cpp int gcd(int a, int b) { return b ?</description>
+      <description>1 欧几里得算法 欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
+不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
+一方面，设 \(d_1\) 为 \(a, b\) 的一个公约数，则 \[ \begin{aligned} a &amp;amp;= k_ad_1\\ b &amp;amp;= k_bd_1\\ r &amp;amp;= a - kb\\ &amp;amp;= (k_a - kk_b)d_1 \end{aligned} \] 即 \(d_1\) 也是 \(r\) 的约数，\(b, r\) 的公约数。
+另一方面，设 \(d_2\) 为 \(b, r\) 的一个公约数，则 \[ \begin{aligned} b &amp;amp;= k&amp;#39;_bd_2\\ r &amp;amp;= k_r&amp;#39;d_2\\ a &amp;amp;= kb + r\\ &amp;amp;= (kk&amp;#39;_b + k_r&amp;#39;)d_2 \end{aligned} \] 即 \(d_2\) 也是 \(a\) 的约数，\(a, b\) 的公约数。</description>
     </item>
     
     <item>
@@ -77,7 +104,14 @@
       <pubDate>Mon, 07 Dec 2020 21:36:10 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces566c-logistical-questions/</guid>
-      <description>&gt; 一棵 $n$ 个节点的树，点有点权，边有边权。求这棵树的一个点 $r$ 使下面的式子最小： &gt; $$ &gt; \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32} &gt; $$ &gt; $n \le 2 \times 10^5, val_i, dist(u, v) \ge 0$。 带权重心问题，有点妙。 设 $$ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} $$ 这里函数 $f$ 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。 下面研究这个函数的性质。 树上的函数显然不太方便研究，所以考虑换一个 $\mathbf R$ 上的函数研究。 随便选择一条树上路径 $u \rightarrow v$ 作为 $x$ 轴，把 $u$ 当作原点，这样 $x$ 就是路径上的点到 $u$ 的距离。 ![](1.png) 这里以 $0 \rightarrow 5$ 为例，节点 $6 \dots 11$ 分别代表其父亲的一些子树。 记 $d_i = dist(i, 0)$，路径上的点分别考虑贡献： $$ f_i(x) = \begin{cases} \sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32 &amp; x \le d_i\\ \sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32 &amp; x &gt; d_i \end{cases}\\ f(x) = f_0(x) + f_1(x) + f_2(x) + f_3(x) + f_4(x) + f_5(x) $$ 发现 $f_i(x)$ 可以写成下面这种形式（其中 $c_1-x \ge 0, c_2 + x \ge 0$） $$ f_i(x) = \begin{cases} \sum v(c_1 - x)^\frac32 &amp; x \le d_i\\ \sum v(c_2 + x)^\frac32 &amp; x &gt; d_i \end{cases} $$ 求导（这里分段函数的分界点处显然可导） $$ f_i&#39;(x) = \begin{cases} -\frac32\sum v(c_1 - x)^\frac12 &amp; x \le d_i\\ \frac32\sum v(c_2 + x)^\frac12 &amp; x &gt; d_i \end{cases} \\ f_i&#39;&#39;(x) = \begin{cases} \frac34\sum v(c_1 - x)^{-\frac12} &amp; x \le d_i\\ \frac34\sum v(c_2 + x)^{-\frac12} &amp; x &gt; d_i \end{cases} $$ 发现 $f&#39;&#39;_i(x) \ge 0$，所以 $f&#39;&#39;(x) = \sum_if&#39;&#39;_i(x) \ge 0$，所以 $f(x)$ 是个凸函数，至多一个最小值。 注意到对于树上任意路径这个结论都成立，所以固定起点 $u$，对于所有终点 $v$ 求一次最小值就可以得到答案。 下图中 $2, 3, 4$ 都代表子树，假设当前在 $1$ ，需要考虑 $1 \rightarrow 2, 3, 4 \rightarrow \dots$ 几种路径。 !</description>
+      <description>一棵 \(n\) 个节点的树，点有点权，边有边权。求这棵树的一个点 \(r\) 使下面的式子最小： \[ \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32} \] \(n \le 2 \times 10^5, val_i, dist(u, v) \ge 0\)。
+带权重心问题，有点妙。
+设 \[ f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32} \] 这里函数 \(f\) 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。
+下面研究这个函数的性质。
+树上的函数显然不太方便研究，所以考虑换一个 \(\mathbf R\) 上的函数研究。
+随便选择一条树上路径 \(u \rightarrow v\) 作为 \(x\) 轴，把 \(u\) 当作原点，这样 \(x\) 就是路径上的点到 \(u\) 的距离。
+这里以 \(0 \rightarrow 5\) 为例，节点 \(6 \dots 11\) 分别代表其父亲的一些子树。
+记 \(d_i = dist(i, 0)\)，路径上的点分别考虑贡献： \[ f_i(x) = \begin{cases} \sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32 &amp;amp; x \le d_i\\ \sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32 &amp;amp; x &amp;gt; d_i \end{cases}\\ f(x) = f_0(x) + f_1(x) + f_2(x) + f_3(x) + f_4(x) + f_5(x) \] 发现 \(f_i(x)\) 可以写成下面这种形式（其中 \(c_1-x \ge 0, c_2 + x \ge 0\)） \[ f_i(x) = \begin{cases} \sum v(c_1 - x)^\frac32 &amp;amp; x \le d_i\\ \sum v(c_2 + x)^\frac32 &amp;amp; x &amp;gt; d_i \end{cases} \]</description>
     </item>
     
   </channel>

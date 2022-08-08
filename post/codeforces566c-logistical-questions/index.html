@@ -409,172 +409,179 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    
-> 一棵 $n$ 个节点的树，点有点权，边有边权。求这棵树的一个点 $r$ 使下面的式子最小：
-> $$
-> \sum_{i \in Tree} val_i \times dist(i, r)^{\frac32}
-> $$
-> $n \le 2 \times 10^5, val_i, dist(u, v) \ge 0$。
-
-带权重心问题，有点妙。
-
-设
-$$
+                    <blockquote>
+<p>一棵 <span class="math inline">\(n\)</span>
+个节点的树，点有点权，边有边权。求这棵树的一个点 <span
+class="math inline">\(r\)</span> 使下面的式子最小： <span
+class="math display">\[
+\sum_{i \in Tree} val_i \times dist(i, r)^{\frac32}
+\]</span> <span class="math inline">\(n \le 2 \times 10^5, val_i,
+dist(u, v) \ge 0\)</span>。</p>
+</blockquote>
+<p>带权重心问题，有点妙。</p>
+<p>设 <span class="math display">\[
 f(x) = \sum_{i \in Tree} val_i \times dist(i, x)^{\frac32}
-$$
-这里函数 $f$ 的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。
-
-下面研究这个函数的性质。
-
-树上的函数显然不太方便研究，所以考虑换一个 $\mathbf R$ 上的函数研究。
-
-随便选择一条树上路径 $u \rightarrow v$ 作为 $x$ 轴，把 $u$ 当作原点，这样 $x$ 就是路径上的点到 $u$ 的距离。
-
-![](1.png)
-
-这里以 $0 \rightarrow 5$ 为例，节点 $6 \dots 11$ 分别代表其父亲的一些子树。
-
-记 $d_i = dist(i, 0)$，路径上的点分别考虑贡献：
-$$
+\]</span> 这里函数 <span class="math inline">\(f\)</span>
+的定义域是整棵树（不仅包括原来的点，还包括边上的点 ）。</p>
+<p>下面研究这个函数的性质。</p>
+<p>树上的函数显然不太方便研究，所以考虑换一个 <span
+class="math inline">\(\mathbf R\)</span> 上的函数研究。</p>
+<p>随便选择一条树上路径 <span class="math inline">\(u \rightarrow
+v\)</span> 作为 <span class="math inline">\(x\)</span> 轴，把 <span
+class="math inline">\(u\)</span> 当作原点，这样 <span
+class="math inline">\(x\)</span> 就是路径上的点到 <span
+class="math inline">\(u\)</span> 的距离。</p>
+<p><img src="1.png" /></p>
+<p>这里以 <span class="math inline">\(0 \rightarrow 5\)</span>
+为例，节点 <span class="math inline">\(6 \dots 11\)</span>
+分别代表其父亲的一些子树。</p>
+<p>记 <span class="math inline">\(d_i = dist(i,
+0)\)</span>，路径上的点分别考虑贡献： <span class="math display">\[
 f_i(x) =
 \begin{cases}
-\sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32 & x \le d_i\\
-\sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32 & x > d_i
+\sum_{c \in subtree(i)} val_i\left (dist(i, c) + d_i - x\right)^\frac32
+&amp; x \le d_i\\
+\sum_{c \in subtree(i)} val_i\left(dist(i, c) + x - d_i\right)^\frac32
+&amp; x &gt; d_i
 \end{cases}\\
 f(x) = f_0(x) + f_1(x) + f_2(x) + f_3(x) + f_4(x) + f_5(x)
-$$
-发现 $f_i(x)$ 可以写成下面这种形式（其中 $c_1-x \ge 0, c_2 + x \ge 0$）
-$$
+\]</span> 发现 <span class="math inline">\(f_i(x)\)</span>
+可以写成下面这种形式（其中 <span class="math inline">\(c_1-x \ge 0, c_2
++ x \ge 0\)</span>） <span class="math display">\[
 f_i(x) =
 \begin{cases}
-\sum v(c_1 - x)^\frac32 & x \le d_i\\
-\sum v(c_2 + x)^\frac32 & x > d_i
+\sum v(c_1 - x)^\frac32 &amp; x \le d_i\\
+\sum v(c_2 + x)^\frac32 &amp; x &gt; d_i
 \end{cases}
-$$
-
-
-求导（这里分段函数的分界点处显然可导）
-$$
-f_i'(x) =
+\]</span></p>
+<p>求导（这里分段函数的分界点处显然可导） <span class="math display">\[
+f_i&#39;(x) =
 \begin{cases}
--\frac32\sum v(c_1 - x)^\frac12 & x \le d_i\\
-\frac32\sum v(c_2 + x)^\frac12 & x > d_i
+-\frac32\sum v(c_1 - x)^\frac12 &amp; x \le d_i\\
+\frac32\sum v(c_2 + x)^\frac12 &amp; x &gt; d_i
 \end{cases}
 \\
-f_i''(x) =
+f_i&#39;&#39;(x) =
 \begin{cases}
-\frac34\sum v(c_1 - x)^{-\frac12} & x \le d_i\\
-\frac34\sum v(c_2 + x)^{-\frac12} & x > d_i
+\frac34\sum v(c_1 - x)^{-\frac12} &amp; x \le d_i\\
+\frac34\sum v(c_2 + x)^{-\frac12} &amp; x &gt; d_i
 \end{cases}
-$$
-发现 $f''_i(x) \ge 0$，所以 $f''(x) = \sum_if''_i(x) \ge 0$，所以 $f(x)$ 是个凸函数，至多一个最小值。
-
-注意到对于树上任意路径这个结论都成立，所以固定起点 $u$，对于所有终点 $v$ 求一次最小值就可以得到答案。
-
-下图中 $2, 3, 4$ 都代表子树，假设当前在 $1$ ，需要考虑 $1 \rightarrow 2, 3, 4 \rightarrow \dots$ 几种路径。
-
-![](2.png)
-
-对于路径 $1 \rightarrow i \rightarrow \dots$，有
-$$
+\]</span> 发现 <span class="math inline">\(f&#39;&#39;_i(x) \ge
+0\)</span>，所以 <span class="math inline">\(f&#39;&#39;(x) =
+\sum_if&#39;&#39;_i(x) \ge 0\)</span>，所以 <span
+class="math inline">\(f(x)\)</span> 是个凸函数，至多一个最小值。</p>
+<p>注意到对于树上任意路径这个结论都成立，所以固定起点 <span
+class="math inline">\(u\)</span>，对于所有终点 <span
+class="math inline">\(v\)</span> 求一次最小值就可以得到答案。</p>
+<p>下图中 <span class="math inline">\(2, 3, 4\)</span>
+都代表子树，假设当前在 <span class="math inline">\(1\)</span> ，需要考虑
+<span class="math inline">\(1 \rightarrow 2, 3, 4 \rightarrow
+\dots\)</span> 几种路径。</p>
+<p><img src="2.png" /></p>
+<p>对于路径 <span class="math inline">\(1 \rightarrow i \rightarrow
+\dots\)</span>，有 <span class="math display">\[
 \begin{aligned}
-f'(0)_i &= \frac32\left(\sum_{x\in 0} val_xdist(x, 1)^\frac12 - \sum_{x\in i}val_xdist(x, 1)^\frac12\right)\\
-&= \frac32\left(\sum_{x}val_xdist(x, 1)^\frac12 - 2\sum_{x\in i}val_xdist(x, 1)^\frac12\right)
+f&#39;(0)_i &amp;= \frac32\left(\sum_{x\in 0} val_xdist(x, 1)^\frac12 -
+\sum_{x\in i}val_xdist(x, 1)^\frac12\right)\\
+&amp;= \frac32\left(\sum_{x}val_xdist(x, 1)^\frac12 - 2\sum_{x\in
+i}val_xdist(x, 1)^\frac12\right)
 \end{aligned}
-$$
-观察这个式子，发现最多只有一个 $i$ 会使导数小于零，就是使 $\sum_{x \in i}val_xdist(x, i)^{\frac12}$ 最大的那个。
+\]</span> 观察这个式子，发现最多只有一个 <span
+class="math inline">\(i\)</span> 会使导数小于零，就是使 <span
+class="math inline">\(\sum_{x \in i}val_xdist(x, i)^{\frac12}\)</span>
+最大的那个。</p>
+<p>所以我们只需要向导数小于零的那个方向走就可以了。</p>
+<p>假如从根出发向叶子的方向走，最多走 <span
+class="math inline">\(maxdep\)</span> 次，每次需要花 <span
+class="math inline">\(O(n)\)</span> 时间计算答案和导数， 最坏是 <span
+class="math inline">\(O(n^2)\)</span> 的，考虑优化。</p>
+<p>每次走到一个节点时，需要考虑的节点范围会缩小到当前节点的子树内，如果每次找到当前子树的重心，每次规模会减半，这样最多走
+<span class="math inline">\(\log n\)</span> 次，最终复杂度 <span
+class="math inline">\(O(n \log n)\)</span>。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">,</span> <span class="kw">class</span> U<span class="op">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smin<span class="op">(</span>T <span class="op">&amp;</span>x<span class="op">,</span> <span class="at">const</span> U <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> y <span class="op">&lt;</span> x <span class="op">?</span> x <span class="op">=</span> y<span class="op">,</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">,</span> <span class="kw">class</span> U<span class="op">&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">bool</span> smax<span class="op">(</span>T <span class="op">&amp;</span>x<span class="op">,</span> <span class="at">const</span> U <span class="op">&amp;</span>y<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> x <span class="op">&lt;</span> y <span class="op">?</span> x <span class="op">=</span> y<span class="op">,</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> N<span class="op">(</span><span class="fl">2e5</span> <span class="op">+</span> <span class="dv">5</span><span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">,</span> a<span class="op">[</span>N<span class="op">],</span> head<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Edge <span class="op">{</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> v<span class="op">,</span> w<span class="op">,</span> next<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> e<span class="op">[</span>N <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">];</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> addEdge<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">,</span> <span class="dt">int</span> z<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">static</span> <span class="dt">int</span> c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  e<span class="op">[++</span>c<span class="op">]</span> <span class="op">=</span> <span class="op">{</span> y<span class="op">,</span> z<span class="op">,</span> head<span class="op">[</span>x<span class="op">]</span> <span class="op">},</span> head<span class="op">[</span>x<span class="op">]</span> <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  e<span class="op">[++</span>c<span class="op">]</span> <span class="op">=</span> <span class="op">{</span> x<span class="op">,</span> z<span class="op">,</span> head<span class="op">[</span>y<span class="op">]</span> <span class="op">},</span> head<span class="op">[</span>y<span class="op">]</span> <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> vis<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> rt<span class="op">,</span> tSize<span class="op">,</span> mSize<span class="op">,</span> siz<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> getSize<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> fa<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  siz<span class="op">[</span>x<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> head<span class="op">[</span>x<span class="op">];</span> i<span class="op">;</span> i <span class="op">=</span> e<span class="op">[</span>i<span class="op">].</span>next<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y <span class="op">=</span> e<span class="op">[</span>i<span class="op">].</span>v<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>y <span class="op">==</span> fa <span class="op">||</span> vis<span class="op">[</span>y<span class="op">])</span>  <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    getSize<span class="op">(</span>y<span class="op">,</span> x<span class="op">);</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    siz<span class="op">[</span>x<span class="op">]</span> <span class="op">+=</span> siz<span class="op">[</span>y<span class="op">];</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> findrt<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> fa<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> max <span class="op">=</span> tSize <span class="op">-</span> siz<span class="op">[</span>x<span class="op">];</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> head<span class="op">[</span>x<span class="op">];</span> i<span class="op">;</span> i <span class="op">=</span> e<span class="op">[</span>i<span class="op">].</span>next<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y <span class="op">=</span> e<span class="op">[</span>i<span class="op">].</span>v<span class="op">;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>y <span class="op">==</span> fa <span class="op">||</span> vis<span class="op">[</span>y<span class="op">])</span> <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    findrt<span class="op">(</span>y<span class="op">,</span> x<span class="op">);</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    smax<span class="op">(</span>max<span class="op">,</span> siz<span class="op">[</span>y<span class="op">]);</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>smin<span class="op">(</span>mSize<span class="op">,</span> max<span class="op">))</span> rt <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> ans <span class="op">=</span> INFINITY<span class="op">,</span> f<span class="op">,</span> diff<span class="op">;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> pos<span class="op">;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dfs<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> fa<span class="op">,</span> <span class="dt">int</span> d<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  f <span class="op">+=</span> a<span class="op">[</span>x<span class="op">]</span> <span class="op">*</span> sqrt<span class="op">(</span>d<span class="op">)</span> <span class="op">*</span> d<span class="op">,</span> diff <span class="op">+=</span> a<span class="op">[</span>x<span class="op">]</span> <span class="op">*</span> sqrt<span class="op">(</span>d<span class="op">);</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> head<span class="op">[</span>x<span class="op">];</span> i<span class="op">;</span> i <span class="op">=</span> e<span class="op">[</span>i<span class="op">].</span>next<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y <span class="op">=</span> e<span class="op">[</span>i<span class="op">].</span>v<span class="op">;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>y <span class="op">==</span> fa<span class="op">)</span> <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    dfs<span class="op">(</span>y<span class="op">,</span> x<span class="op">,</span> d <span class="op">+</span> e<span class="op">[</span>i<span class="op">].</span>w<span class="op">);</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>vis<span class="op">[</span>x<span class="op">])</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  vis<span class="op">[</span>x<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> p<span class="op">;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">double</span> s <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> m <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  f <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> head<span class="op">[</span>x<span class="op">];</span> i<span class="op">;</span> i <span class="op">=</span> e<span class="op">[</span>i<span class="op">].</span>next<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y <span class="op">=</span> e<span class="op">[</span>i<span class="op">].</span>v<span class="op">;</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    diff <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    dfs<span class="op">(</span>y<span class="op">,</span> x<span class="op">,</span> e<span class="op">[</span>i<span class="op">].</span>w<span class="op">);</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>smax<span class="op">(</span>m<span class="op">,</span> diff<span class="op">))</span> p <span class="op">=</span> y<span class="op">;</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> diff<span class="op">;</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>smin<span class="op">(</span>ans<span class="op">,</span> f<span class="op">))</span> pos <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>m <span class="op">*</span> <span class="dv">2</span> <span class="op">&gt;</span> s <span class="op">&amp;&amp;</span> <span class="op">!</span>vis<span class="op">[</span>p<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    getSize<span class="op">(</span>p<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    tSize <span class="op">=</span> mSize <span class="op">=</span> siz<span class="op">[</span>p<span class="op">];</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    findrt<span class="op">(</span>p<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    solve<span class="op">(</span>rt<span class="op">);</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>ios<span class="bu">::</span>sync_with_stdio<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op">.</span>tie<span class="op">(</span><span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n<span class="op">;</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> a<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> z<span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> x <span class="op">&gt;&gt;</span> y <span class="op">&gt;&gt;</span> z<span class="op">;</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>    addEdge<span class="op">(</span>x<span class="op">,</span> y<span class="op">,</span> z<span class="op">);</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>  getSize<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">),</span> tSize <span class="op">=</span> mSize <span class="op">=</span> n<span class="op">,</span> findrt<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">),</span> solve<span class="op">(</span>rt<span class="op">);</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d</span><span class="st"> </span><span class="sc">%.10f</span><span class="st">&quot;</span><span class="op">,</span> pos<span class="op">,</span> ans<span class="op">);</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 
-所以我们只需要向导数小于零的那个方向走就可以了。
-
-假如从根出发向叶子的方向走，最多走 $maxdep$ 次，每次需要花 $O(n)$ 时间计算答案和导数， 最坏是 $O(n^2)$ 的，考虑优化。
-
-每次走到一个节点时，需要考虑的节点范围会缩小到当前节点的子树内，如果每次找到当前子树的重心，每次规模会减半，这样最多走 $\log n$ 次，最终复杂度 $O(n \log n)$。
-
-```cpp
-#include <bits/stdc++.h>
-
-template <class T, class U>
-inline bool smin(T &x, const U &y) { return y < x ? x = y, 1 : 0; }
-template <class T, class U>
-inline bool smax(T &x, const U &y) { return x < y ? x = y, 1 : 0; }
-
-constexpr int N(2e5 + 5);
-int n, a[N], head[N];
-struct Edge {
-  int v, w, next;
-} e[N << 1];
-void addEdge(int x, int y, int z) {
-  static int c = 0;
-  e[++c] = { y, z, head[x] }, head[x] = c;
-  e[++c] = { x, z, head[y] }, head[y] = c;
-}
-bool vis[N];
-int rt, tSize, mSize, siz[N];
-void getSize(int x, int fa) {
-  siz[x] = 1;
-  for (int i = head[x]; i; i = e[i].next) {
-    int y = e[i].v;
-    if (y == fa || vis[y])  continue;
-    getSize(y, x);
-    siz[x] += siz[y];
-  }
-}
-void findrt(int x, int fa) {
-  int max = tSize - siz[x];
-  for (int i = head[x]; i; i = e[i].next) {
-    int y = e[i].v;
-    if (y == fa || vis[y]) continue;
-    findrt(y, x);
-    smax(max, siz[y]);
-  }
-  if (smin(mSize, max)) rt = x;
-}
-double ans = INFINITY, f, diff;
-int pos;
-void dfs(int x, int fa, int d) {
-  f += a[x] * sqrt(d) * d, diff += a[x] * sqrt(d);
-  for (int i = head[x]; i; i = e[i].next) {
-    int y = e[i].v;
-    if (y == fa) continue;
-    dfs(y, x, d + e[i].w);
-  }
-}
-void solve(int x) {
-  if (vis[x]) return;
-  vis[x] = 1;
-  int p;
-  double s = 0, m = 0;
-  f = 0;
-  for (int i = head[x]; i; i = e[i].next) {
-    int y = e[i].v;
-    diff = 0;
-    dfs(y, x, e[i].w);
-    if (smax(m, diff)) p = y;
-    s += diff;
-  }
-  if (smin(ans, f)) pos = x;
-  if (m * 2 > s && !vis[p]) {
-    getSize(p, 0);
-    tSize = mSize = siz[p];
-    findrt(p, 0);
-    solve(rt);
-  }
-}
-int main() {
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
-  std::cin >> n;
-  for (int i = 1; i <= n; i++) std::cin >> a[i];
-  for (int i = 1, x, y, z; i < n; i++) {
-    std::cin >> x >> y >> z;
-    addEdge(x, y, z);
-  }
-  getSize(1, 0), tSize = mSize = n, findrt(1, 0), solve(rt);
-  printf("%d %.10f", pos, ans);
-  return 0;
-}
-
-```
                     
                     <HR width="100%" id="EOF">
 		    <p style="color:#777;">最后修改于 2021-08-13</p>

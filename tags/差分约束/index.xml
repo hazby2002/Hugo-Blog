@@ -14,7 +14,13 @@
       <pubDate>Thu, 13 Jan 2022 20:31:35 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/agc036d-negative-cycle/</guid>
-      <description>&gt; 题意：$n$ 个点的有向图，初始有边 $i \to i + 1$，边权为 0，不可删除。有边 $i \to j(i \neq j)$，边权为 $\begin{cases}1, &amp;i &gt; j\\-1, &amp;i &gt; $1 \leq n \leq 500$ 有向图上没有负环，则存在最短路，则差分约束有解。 每个点设变量 $x_i$，那么一条 $i \to j$ 边权为 $w$ 的边就代表 $x_j - x_i \leq w$。 所以初始 $i \to i + 1$ 的边表示 $x_i \geq x_{i+1}$。 设 $d_i = x_{i-1} - x_i \geq 0$。 对于边 $i \to j$，$i &lt; j$ 时为第一类边，表示 $\sum\limits_{k = i + 1}^jd_k \geq 1$，则对于一串 $d_k = 0$上的此类边都需要删除； $i &gt; j$ 时为第二类边，表示 $\sum\limits_{k=i+1}^jd_k \leq 1$，跨过多于一个1的边需要删除。 设 $dp(i, j)$ 表示考虑了前 $i$ 个变量，最后两个 1 分别在 $i, j$ 的最小代价，用二维前缀和计算区间删边的代价，时间复杂度 $O(n^3)$。 ```cpp void solve() { int n; std::cin &gt;&gt; n; std::vector a(n + 1, std::vector(n + 1)), b = a; for (int i = 1; i &lt;= n; i++) { for (int j = 1; j &lt;= n; j++) { if (i &lt; j) { std::cin &gt;&gt; a[i][j]; } else if (i &gt; j) { std::cin &gt;&gt; b[i][j]; } a[i][j] += a[i - 1][j] + a[i][j - 1] - a[i - 1][j - 1]; b[i][j] += b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1]; } } std::vector dp(n + 1, std::vector(n + 1, 1e18)); for (int i = 0; i &lt;= n; i++) { dp[i][0] = a[i][i]; for (int j = 1; j &lt; i; j++) { for (int k = 0; k &lt; j; k++) { smin(dp[i][j], dp[j][k] + b[i][k] - b[j][k]); } dp[i][j] += a[i][i] - a[i][j] - a[j][i] + a[j][j]; } } LL ans = 1e18; for (int i = 0; i &lt; n; i++) { smin(ans, dp[n][i]); } std::cout &lt;&lt; ans &lt;&lt; &#34;</description>
+      <description>题意：\(n\) 个点的有向图，初始有边 \(i \to i + 1\)，边权为 0，不可删除。有边 \(i \to j(i \neq j)\)，边权为 \(\begin{cases}1, &amp;amp;i &amp;gt; j\\-1, &amp;amp;i&amp;lt;j\end{cases}\)，可删除，删除代价为 \(a_{i, j}\)，你需要删除一些边，使得这张图上没有负环，求最小代价。
+\(1 \leq n \leq 500\)
+有向图上没有负环，则存在最短路，则差分约束有解。
+每个点设变量 \(x_i\)，那么一条 \(i \to j\) 边权为 \(w\) 的边就代表 \(x_j - x_i \leq w\)。
+所以初始 \(i \to i + 1\) 的边表示 \(x_i \geq x_{i+1}\)。
+设 \(d_i = x_{i-1} - x_i \geq 0\)。
+对于边 \(i \to j\)，\(i &amp;lt; j\) 时为第一类边，表示 \(\sum\limits_{k = i + 1}^jd_k \geq 1\)，则对于一串 \(d_k = 0\)上的此类边都需要删除；</description>
     </item>
     
   </channel>

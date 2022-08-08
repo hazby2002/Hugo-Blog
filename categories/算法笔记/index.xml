@@ -14,7 +14,12 @@
       <pubDate>Fri, 20 May 2022 12:26:31 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/</guid>
-      <description> ## 前言 本文写于 2021-12-02 14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。 今天想起，需要重新整理好二叉（半）在线卷积的模板，这个东西在考场上还是很有用的。 相关题目： - [ABC230H](https://atcoder.jp/contests/abc230/submissions/27677271) ## 半在线卷积 &gt; 设 $H = FG$。其中 $G$ 的系数事先给出，$F$ 的系数从低次到高次在线地给出，每次给出 $F$ 的 $x^i$ 系数后，你需要在线地计算 $H$ 的 $x^i$ 系数。 考虑分治，将区间 $[l, r)$ 分为 $T$ 段，每段长度为 $B = 2^k$。 $$ [l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r) $$ 要分别计算对于 $0 \leq i &lt; j &lt; T$, $F[m_i, m_{i+1})$ 对于 $H[m_j, m_{j+1})$ 的贡献，其中 $A[l,r)$ 表示多项式 $A(x)$ 在 $x^l, x^{l+1}, \dots, x^{r-1}$ 处的系数。 显然 $F[m_i, m_{i+1})$ 要乘上 $G[m_j-m_{i+1}+1, m_{j+1} - m_i)$。 结果有 $3B - 1$ 项，从 0 开始标号，取第 $B-1$ 到 $2B-2$ 项，做长度为 $2B$ 的循环卷积即可。 存储 $F[m_i, m_{i+1})$ 和 $G[m_j-m_{i+1}+1, m_{j+1} - m_i)$ 的点值，需要做 $T$ 次长度为 $2B$ 的 DFT，两两作点乘，最后再 IDFT，单层复杂度为 $$ O(BT\log B+T^2B+B\log B) = O(n \log \frac{n}{T} + nT) $$ 设总时间复杂度为 $S(n)$，则 $$ S(n) = T\cdot S(\frac{n}{T}) + O(n\log \frac nT + nT) $$ 这里复杂度不会算，但是大家都取 $T = \log n$，然后得到 $O\bigg(\dfrac{n \log^2 n}{\log\log n}\bigg)$。 ## 在线卷积 &gt; 设 $H = FG$。$F, G$ 的系数从低次到高次在线地给出，每次给出 $F, G$ 的 $x^i$ 系数后，你需要在线地计算 $H$ 的 $x^i$ 系数。 类似刚刚思路，但是进行到 &gt; $F[m_i, m_{i+1})$ 要乘上 $G[m_j-m_{i+1}+1, m_{j+1} - m_i)$ 这一步时，发现了问题：如果 $m_i=0$，那么 $G[m_{j}, m_{j+1})$ 还没给出，无法计算。 于是这里先避开 $F[m_i, m_{i+1}) \times G[m_{j}, m_{j+1})$ 这部分贡献不算，递归到 $[m_{j}, m_{j+1})$ 这个区间时，再把这个补上。 综上所述，对于当前区间 $[l, r)$，如果 $l = 0$，那么需要计算 $F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)$；如果 $l &gt; 0$，那么除了 $F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)$ 之外，还要计算 $G[m_i, m_{i+1}) \times F[m_j-m_{i+1}+1, m_{j+1} - m_i)$。 其余部分前面的半在线卷积完全相同。 </description>
+      <description>前言 本文写于 2021-12-02 14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。
+今天想起，需要重新整理好二叉（半）在线卷积的模板，这个东西在考场上还是很有用的。
+相关题目：
+ABC230H 半在线卷积 设 \(H = FG\)。其中 \(G\) 的系数事先给出，\(F\) 的系数从低次到高次在线地给出，每次给出 \(F\) 的 \(x^i\) 系数后，你需要在线地计算 \(H\) 的 \(x^i\) 系数。
+考虑分治，将区间 \([l, r)\) 分为 \(T\) 段，每段长度为 \(B = 2^k\)。 \[ [l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r) \] 要分别计算对于 \(0 \leq i &amp;lt; j &amp;lt; T\), \(F[m_i, m_{i+1})\) 对于 \(H[m_j, m_{j+1})\) 的贡献，其中 \(A[l,r)\) 表示多项式 \(A(x)\) 在 \(x^l, x^{l+1}, \dots, x^{r-1}\) 处的系数。
+显然 \(F[m_i, m_{i+1})\) 要乘上 \(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)。</description>
     </item>
     
     <item>
@@ -23,7 +28,9 @@
       <pubDate>Wed, 04 May 2022 01:19:59 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%B9%B3%E8%A1%A1%E6%A0%91%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
-      <description>支持两个操作：插入，查询 rank。 ## 结果 本机，Intel CPU，Windows，gcc version 10.2.0 (winlibs) ```text 全随机 Treap 1.866 7479 Treap2::Treap2 1.884 7479 Treap3::Treap3 1.542 7479 SCT::SCT 0.986 7479 SegTree 1.214 7479 SegTree2 1.024 7479 Tree 1.638 7479 部分有序 Treap 0.747 15767 Treap2::Treap2 0.895 15767 Treap3::Treap3 0.661 15767 SCT::SCT 0.817 15767 SegTree 0.626 15767 SegTree2 0.574 15767 Tree 0.903 15767 20000棵树 Treap 0.793 11 Treap2::Treap2 0.656 11 Treap3::Treap3 0.636 11 SCT::SCT 0.664 11 SegTree 1.056 11 SegTree2 0.</description>
+      <description>支持两个操作：插入，查询 rank。
+结果 本机，Intel CPU，Windows，gcc version 10.2.0 (winlibs)
+全随机 Treap 1.866 7479 Treap2::Treap2 1.884 7479 Treap3::Treap3 1.542 7479 SCT::SCT 0.986 7479 SegTree 1.214 7479 SegTree2 1.024 7479 Tree&amp;lt;int&amp;gt; 1.638 7479 部分有序 Treap 0.747 15767 Treap2::Treap2 0.895 15767 Treap3::Treap3 0.661 15767 SCT::SCT 0.817 15767 SegTree 0.626 15767 SegTree2 0.574 15767 Tree&amp;lt;int&amp;gt; 0.903 15767 20000棵树 Treap 0.793 11 Treap2::Treap2 0.656 11 Treap3::Treap3 0.636 11 SCT::SCT 0.664 11 SegTree 1.056 11 SegTree2 0.979 11 Tree&amp;lt;int&amp;gt; 1.</description>
     </item>
     
     <item>
@@ -32,7 +39,14 @@
       <pubDate>Tue, 05 Apr 2022 23:56:15 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B0%8F%E8%AE%B0/</guid>
-      <description>“全局平衡二叉树”实际上是静态 Top Tree(实际上，更接近静态 LCT)。 考虑一条重链，它在树上pushup，维护的信息的方式实际上就是 Compress。 而跳轻边，它实际上就是在 Rake。 对于动态DP的模板，它是树上带权独立集，虚儿子信息（rake信息）是可减的 `f[0] -= max(g[0], g[1]), f[1] -= g[0]`。 如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。 所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link, cut, evert 之类的动态树操作罢了。 考虑到 Top Tree 的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。 ```cpp Node *build(int l, int r) { if (l &gt; r) return nullptr; int m = l - 1, sum = 0, now = 0; for (int i = l; i &lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]]; while (now * 2 &lt; sum &amp;&amp; m &lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]]; Node *o = t + s[m]; o-&gt;ls = build(l, m - 1), o-&gt;rs = build(m + 1, r); if (o-&gt;ls) o-&gt;ls-&gt;fa = o; if (o-&gt;rs) o-&gt;rs-&gt;fa = o; pushup(o); return o; } ```</description>
+      <description>“全局平衡二叉树”实际上是静态 Top Tree(实际上，更接近静态 LCT)。
+考虑一条重链，它在树上pushup，维护的信息的方式实际上就是 Compress。
+而跳轻边，它实际上就是在 Rake。
+对于动态DP的模板，它是树上带权独立集，虚儿子信息（rake信息）是可减的 f[0] -= max(g[0], g[1]), f[1] -= g[0]。
+如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。
+所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link, cut, evert 之类的动态树操作罢了。
+考虑到 Top Tree 的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。
+Node *build(int l, int r) { if (l &amp;gt; r) return nullptr; int m = l - 1, sum = 0, now = 0; for (int i = l; i &amp;lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]]; while (now * 2 &amp;lt; sum &amp;amp;&amp;amp; m &amp;lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]]; Node *o = t + s[m]; o-&amp;gt;ls = build(l, m - 1), o-&amp;gt;rs = build(m + 1, r); if (o-&amp;gt;ls) o-&amp;gt;ls-&amp;gt;fa = o; if (o-&amp;gt;rs) o-&amp;gt;rs-&amp;gt;fa = o; pushup(o); return o; } </description>
     </item>
     
     <item>
@@ -41,7 +55,15 @@
       <pubDate>Mon, 21 Feb 2022 23:11:13 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8%E5%B0%8F%E8%AE%B0/</guid>
-      <description>## 常系数齐次线性递推 对于 $n \geq k$，$\sum_{i=0}^kq_ia_{n-i}=0$，其中 $q_0 \neq 0$。 数列 $a_n$ 的生成函数为 $A(x)$。 上式左边看作卷积，右边看作生成函数 $P(x)$ 的 $n \geq k$ 时的系数。 $$ Q(x)A(x) = P(x) $$ $$ A(x) = \frac{P(x)}{Q(x)} $$ $P(x)$ 为 $k-1$ 次多项式，$Q(x)$ 为 $k$ 次多项式。 然后就是解决 $[x^n]\dfrac{P(x)}{Q(x)}$ 的问题。 使用 EI 提到的方法，考虑 $$ \frac{P(x)}{Q(x)} = \frac{P(x)Q(-x)}{Q(x)Q(-x)} $$ 由于 $Q(x)Q(-x) = Q(-x)Q(x)$，所以它只有偶次项有值，设 $U(x^2) = Q(x)Q(-x)$， $$ \frac{P(x)}{Q(x)} = \frac{E(x^2)}{U(x^2)}+x\frac{O(x^2)}{U(x^2)} $$ 只需要递归到一侧即可。 朴素实现只需要写多项式乘法，优化的实现已经在多项式板子里。 ```cpp int divAt(Poly p, Poly q, LL n) { for (; n; n &gt;&gt;= 1) { Poly r(q); for (int i = 1; i &lt; r.</description>
+      <description>常系数齐次线性递推 对于 \(n \geq k\)，\(\sum_{i=0}^kq_ia_{n-i}=0\)，其中 \(q_0 \neq 0\)。
+数列 \(a_n\) 的生成函数为 \(A(x)\)。
+上式左边看作卷积，右边看作生成函数 \(P(x)\) 的 \(n \geq k\) 时的系数。
+\[ Q(x)A(x) = P(x) \] \[ A(x) = \frac{P(x)}{Q(x)} \]
+\(P(x)\) 为 \(k-1\) 次多项式，\(Q(x)\) 为 \(k\) 次多项式。
+然后就是解决 \([x^n]\dfrac{P(x)}{Q(x)}\) 的问题。
+使用 EI 提到的方法，考虑 \[ \frac{P(x)}{Q(x)} = \frac{P(x)Q(-x)}{Q(x)Q(-x)} \] 由于 \(Q(x)Q(-x) = Q(-x)Q(x)\)，所以它只有偶次项有值，设 \(U(x^2) = Q(x)Q(-x)\)， \[ \frac{P(x)}{Q(x)} = \frac{E(x^2)}{U(x^2)}+x\frac{O(x^2)}{U(x^2)} \] 只需要递归到一侧即可。
+朴素实现只需要写多项式乘法，优化的实现已经在多项式板子里。
+int divAt(Poly p, Poly q, LL n) { for (; n; n &amp;gt;&amp;gt;= 1) { Poly r(q); for (int i = 1; i &amp;lt; r.</description>
     </item>
     
     <item>
@@ -50,7 +72,10 @@
       <pubDate>Sun, 15 Aug 2021 21:24:32 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E4%B8%87%E8%83%BD-euclidean-%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/</guid>
-      <description>## 「万能」Euclidean 算法 $$ F(P, R, Q, N, X, Y) = \prod_{i = 0}^N \left(Y^{f(i) - f(i-1)}X\right) $$ 其中 $f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0$​。$X, Y$ ~~为操作序列，有乘法结合律，类比矩阵~~ $\in$ **半群** $(S, \times)$。 若 $R \geq Q$​，则 $f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor + \lfloor\dfrac{R}{Q}\rfloor$​，所以 $$ F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q, N, X, Y) $$ 若 $P \geq Q$​，则 $f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor + \lfloor\dfrac{P}{Q}\rfloor i$​，记 $f&#39;(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor$​ $$ \begin{aligned} F(P, R, Q, N, X, Y) &amp;= X\prod_{i = 1}^N Y^{f&#39;(i) - f&#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;= X\prod_{i = 0}^{N - 1} Y^{f&#39;(i+1) - f&#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1, Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y) \end{aligned} $$ 若 $P &lt; Q$，考虑交换 $X, Y$。 第 $i$ 个 $X$ 前有 $f(i)$ 个 $Y$，设第 $i$ 个 $Y$ 前有 $g(i)$ 个 $X$， $$ \begin{aligned} g(i) &amp;= \sum_{j \geq 0} [f(j) &lt; i+1]\\ &amp;= \sum_{j \geq 0} \left[\lfloor \frac{Pj+R}{Q}\rfloor &lt; i+1\right]\\ &amp;= \sum_{j \geq 0} \left[ Pj+R\ &lt; Qi+Q\right]\\ &amp;= \sum_{j \geq 0} \left[j &lt; \lfloor \frac{Qi + Q-R + P - 1}{P} \rfloor\right]\\ &amp;= \lfloor \frac{Qi + Q-R + P - 1}{P} \rfloor \end{aligned} $$ 但是末尾还有一些 $X$​ 后面没有 $Y$​，需要单独拿出来 $X^{N+1 - \max g(i)}$。​​ 于是 $$ F(P, R, Q, N, X, Y) = F(Q, Q - R + P - 1, P, \lfloor \frac{PN + R}{Q} \rfloor-1, Y, X)X^{N+1 - \max g(i)} $$ 复杂度为 $O(T(S) \log N\log \min\{p, q\})$，$T(S)$ 为 $S$ 上的乘法复杂度。 ## 模板 `S` 即半群 $(S, \times)$ 的结构体，这里假定它是幺半群（否则可以加一个幺元进去），则 `S()` 代表幺元。 ```cpp LL div(LL p, LL i, LL r, LL q) { return (p * i + r) / q; } S cal(LL p, LL r, LL q, LL n, const S &amp;x, const S &amp;y) { if (n &lt; 0) return S(); if (r &gt;= q) { return fpow(y, r / q) * cal(p, r % q, q, n, x, y); } if (p &gt;= q) { return x * cal(p % q, p % q + r, q, n - 1, fpow(y, p / q) * x, y); } if (p == 0) { return fpow(x, n + 1); } LL m = div(p, n, r, q); return cal(q, q - r + p - 1, p, m - 1, y, x) * fpow(x, n + 1 - (!</description>
+      <description>「万能」Euclidean 算法 \[ F(P, R, Q, N, X, Y) = \prod_{i = 0}^N \left(Y^{f(i) - f(i-1)}X\right) \]
+其中 \(f(i) = \lfloor \dfrac{Pi+R}{Q}\rfloor, f(-1) = 0\)​。\(X, Y\) 为操作序列，有乘法结合律，类比矩阵 \(\in\) 半群 \((S, \times)\)。
+若 \(R \geq Q\)​，则 \(f(i)= \lfloor \dfrac{Pi+(R \bmod Q)}{Q}\rfloor + \lfloor\dfrac{R}{Q}\rfloor\)​，所以 \[ F(P, R, Q, N, X, Y) = Y^{\lfloor\dfrac{R}{Q}\rfloor}F(P, R \bmod Q, Q, N, X, Y) \]
+若 \(P \geq Q\)​，则 \(f(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor + \lfloor\dfrac{P}{Q}\rfloor i\)​，记 \(f&amp;#39;(i)= \lfloor \dfrac{(P \bmod Q)i+R}{Q}\rfloor\)​ \[ \begin{aligned} F(P, R, Q, N, X, Y) &amp;amp;= X\prod_{i = 1}^N Y^{f&amp;#39;(i) - f&amp;#39;(i-1)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= X\prod_{i = 0}^{N - 1} Y^{f&amp;#39;(i+1) - f&amp;#39;(i)}Y^{\lfloor\dfrac{P}{Q}\rfloor}X\\ &amp;amp;= XF(P \bmod Q, (P \bmod Q) + R, Q, N - 1, Y^{\lfloor\dfrac{P}{Q}\rfloor}X, Y) \end{aligned} \] 若 \(P &amp;lt; Q\)，考虑交换 \(X, Y\)。</description>
     </item>
     
     <item>
@@ -59,7 +84,7 @@
       <pubDate>Thu, 12 Aug 2021 21:56:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E7%89%B9%E5%BE%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%B0%8F%E8%AE%B0/</guid>
-      <description>## Upper-Hessenberg 矩阵 $$ H_n = \begin{bmatrix} a_{0, 0} &amp; a_{0, 1} &amp; a_{0, 2} &amp; a_{0, 3} &amp; \cdots &amp; a_{0, n - 1} &amp; a_{0, n}\\ a_{1, 0} &amp; a_{1, 1} &amp; a_{1, 2} &amp; a_{1, 3} &amp; \cdots &amp; a_{1, n - 1} &amp; a_{1, n}\\ 0 &amp; a_{2, 1} &amp; a_{2, 2} &amp; a_{2, 3} &amp; \cdots &amp; a_{2, n - 1} &amp; a_{2, n}\\ 0 &amp; 0 &amp; a_{3, 2} &amp; a_{3, 3} &amp; \cdots &amp; a_{3, n - 1} &amp; a_{3, n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{n - 1, n-2} &amp; a_{n - 1, n - 1} &amp; a_{n - 1, n}\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{n, n - 1} &amp; a_{n, n} \end{bmatrix} $$ 设 $h_n = \det H_n$​，则 $$ \begin{aligned} h_n &amp;= a_{n, n}h_{n-1} - a_{n, n-1} \begin{vmatrix} a_{0, 0} &amp; a_{0, 1} &amp; a_{0, 2} &amp; a_{0, 3} &amp; \cdots &amp; a_{0, n}\\ a_{1, 0} &amp; a_{1, 1} &amp; a_{1, 2} &amp; a_{1, 3} &amp; \cdots &amp; a_{1, n}\\ 0 &amp; a_{2, 1} &amp; a_{2, 2} &amp; a_{2, 3} &amp; \cdots &amp; a_{2, n}\\ 0 &amp; 0 &amp; a_{3, 2} &amp; a_{3, 3} &amp; \cdots &amp; a_{3, n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{n - 1, n-2} &amp; a_{n - 1, n}\\ \end{vmatrix}\\ &amp;= a_{n, n}h_{n-1} - a_{n, n-1}\left( a_{n-1, n}h_{n-2} - a_{n-1, n-2} \begin{vmatrix} a_{0, 0} &amp; a_{0, 1} &amp; a_{0, 2} &amp; \cdots &amp; a_{0, n}\\ a_{1, 0} &amp; a_{1, 1} &amp; a_{1, 2} &amp; \cdots &amp; a_{1, n}\\ 0 &amp; a_{2, 1} &amp; a_{2, 2} &amp; \cdots &amp; a_{2, n}\\ 0 &amp; 0 &amp; a_{3, 2} &amp; \cdots &amp; a_{3, n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots\\ 0 &amp; 0 &amp; 0 &amp; a_{n - 2, n-3} &amp; a_{n - 2, n}\\ \end{vmatrix}\\ \right)\\ &amp;= \cdots\cdots\cdots\cdots\\ &amp;= \sum_{i = 0}^{n-1}h_{n-1-i}\cdot(-1)^ia_{n-i, n}\prod_{j=0}^{i-1}a_{n-j, n-j-1} \end{aligned} $$ 复杂度 $O(n^3)$。 ```cpp std::vector charPoly(std::vector</description>
+      <description>Upper-Hessenberg 矩阵 \[ H_n = \begin{bmatrix} a_{0, 0} &amp;amp; a_{0, 1} &amp;amp; a_{0, 2} &amp;amp; a_{0, 3} &amp;amp; \cdots &amp;amp; a_{0, n - 1} &amp;amp; a_{0, n}\\ a_{1, 0} &amp;amp; a_{1, 1} &amp;amp; a_{1, 2} &amp;amp; a_{1, 3} &amp;amp; \cdots &amp;amp; a_{1, n - 1} &amp;amp; a_{1, n}\\ 0 &amp;amp; a_{2, 1} &amp;amp; a_{2, 2} &amp;amp; a_{2, 3} &amp;amp; \cdots &amp;amp; a_{2, n - 1} &amp;amp; a_{2, n}\\ 0 &amp;amp; 0 &amp;amp; a_{3, 2} &amp;amp; a_{3, 3} &amp;amp; \cdots &amp;amp; a_{3, n - 1} &amp;amp; a_{3, n}\\ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \ddots &amp;amp; \ddots &amp;amp; \vdots &amp;amp; \vdots\\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; a_{n - 1, n-2} &amp;amp; a_{n - 1, n - 1} &amp;amp; a_{n - 1, n}\\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; a_{n, n - 1} &amp;amp; a_{n, n} \end{bmatrix} \]</description>
     </item>
     
     <item>
@@ -68,7 +93,8 @@
       <pubDate>Sun, 08 Aug 2021 12:55:13 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/fwt/</guid>
-      <description>## 卷积 运算 $\odot$，序列 $a, b, c$，方阵 $P, Q, R$ 满足 $R$ 可逆，且 $$ \begin{cases} c_n &amp;= \sum_{p \odot q = n}a_pb_q\\ \sum_j R_{i, j}c_j &amp;= \sum_pP_{i,p}a_p\sum_q Q_{i, q}b_q \end{cases} $$ 所以 $$ \begin{aligned} \sum_{j}R_{i, j}\sum_{p, q}[p\odot q = j]a_pb_q &amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ \sum_{p, q}R_{i, p \odot q}a_pb_q &amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ R_{i, p\odot q} &amp;= P_{i, p}Q_{i, q} \end{aligned} $$ 对序列 $a$ 施加线性变换 $P$，序列 $b$ 施加线性变换 $Q$，点乘之后再施加逆变换 $R^{-1}$，就可以实现 $\odot$ 卷积。 对于满足交换律的运算 $\odot$，$P = Q$。 ## [Kronecker product](https://en.</description>
+      <description>卷积 运算 \(\odot\)，序列 \(a, b, c\)，方阵 \(P, Q, R\) 满足 \(R\) 可逆，且 \[ \begin{cases} c_n &amp;amp;= \sum_{p \odot q = n}a_pb_q\\ \sum_j R_{i, j}c_j &amp;amp;= \sum_pP_{i,p}a_p\sum_q Q_{i, q}b_q \end{cases} \] 所以 \[ \begin{aligned} \sum_{j}R_{i, j}\sum_{p, q}[p\odot q = j]a_pb_q &amp;amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ \sum_{p, q}R_{i, p \odot q}a_pb_q &amp;amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ R_{i, p\odot q} &amp;amp;= P_{i, p}Q_{i, q} \end{aligned} \]
+对序列 \(a\) 施加线性变换 \(P\)，序列 \(b\) 施加线性变换 \(Q\)，点乘之后再施加逆变换 \(R^{-1}\)，就可以实现 \(\odot\) 卷积。</description>
     </item>
     
     <item>
@@ -77,7 +103,10 @@
       <pubDate>Sat, 07 Aug 2021 10:38:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/min_25/</guid>
-      <description>## min_25 筛 约定 - $\mathbf{P}$ 表示全体质数集合 - $p_i$ 表示第 $i$ 个质数，特别地，$p_0 =1$。 - $\mathrm{lpf}_i$ 表示 $i$​ 的最小质因子。 &gt; 计算数论函数 $f(n)$​​​​ 的前缀和，要求 $f(p_i)$​​​​ 是低阶多项式，且对于合数 $n$​​​​，$f(n)$​ 可以写成形如 $f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)$​​​​的式子，其中 $A(p^e)$​​​​ 可以快速求值或预处理。 &gt; &gt; 当 $f(n)$​ 是积性函数时，$A(p^e) = f(p^e), B(n) = f(n)$​。 ### Part. 1 令 $$ g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\ \mathrm{lpf}_j &gt; p_i] $$ 直观地，$g_k(n, i)$ 表示埃式筛第 $i$ 轮后剩余 $n$ 以内的数的 $k$ 次方之和。 $$ g_k(n, i) = \begin{cases} g_k(n, i - 1), &amp; p_i^2 &gt; n\\ g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp; p_i^2 \leq n \end{cases} $$ 直观地，考虑埃式筛第 $i$ 轮： - 如果 $p_i^2&gt;n$，那么这一轮不会筛去任何数，于是 $g_k(n, i) = g_k(n, i - 1)$ 。 - 如果 $p_i^2\leq n$，那么这一轮会筛去最小质因子等于 $p_i$ 的数，所以要减去计算这些数的 $k$ 次方之和，提出公因子 $p_i^k$ 后可得上式。 递推求出 $g_k(x, \infty)$​​​​ 在所有 $x = \lfloor \dfrac{n}{i}\rfloor$​​​​​​ 处的取值，复杂度是 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$​​。 ```cpp // Calculate g(x, 0) on [n / i] int m = 0; for (LL i = 1, j; i &lt;= n; i = j + 1) { val[++m] = n / i; j = n / val[m]; g0[m] = (val[m] - 1) % P; // x - 1 g1[m] = (val[m] + 2) % P * g0[m] % P * (P + 1 &gt;&gt; 1) % P; // 2 + 3 + .</description>
+      <description>min_25 筛 约定
+\(\mathbf{P}\) 表示全体质数集合 \(p_i\) 表示第 \(i\) 个质数，特别地，\(p_0 =1\)。 \(\mathrm{lpf}_i\) 表示 \(i\)​ 的最小质因子。 计算数论函数 \(f(n)\)​​​​ 的前缀和，要求 \(f(p_i)\)​​​​ 是低阶多项式，且对于合数 \(n\)​​​​，\(f(n)\)​ 可以写成形如 \(f(n) = A(\mathrm{lpf}_n^e)B\left(\dfrac{n}{\mathrm{lpf_n^e}}\right)\)​​​​的式子，其中 \(A(p^e)\)​​​​ 可以快速求值或预处理。
+当 \(f(n)\)​ 是积性函数时，\(A(p^e) = f(p^e), B(n) = f(n)\)​。
+Part. 1 令 \[ g_k(n, i) = \sum_{j=1}^nj^k[j \in \mathbf{P} \ \mathrm{or}\ \mathrm{lpf}_j &amp;gt; p_i] \] 直观地，\(g_k(n, i)\) 表示埃式筛第 \(i\) 轮后剩余 \(n\) 以内的数的 \(k\) 次方之和。 \[ g_k(n, i) = \begin{cases} g_k(n, i - 1), &amp;amp; p_i^2 &amp;gt; n\\ g_k(n, i - 1) - p_i^k\left(g_k\left(\lfloor \dfrac{n}{p_i}\rfloor, i-1\right) - \sum_{j=1}^{i-1}p_j^k\right), &amp;amp; p_i^2 \leq n \end{cases} \] 直观地，考虑埃式筛第 \(i\) 轮：</description>
     </item>
     
     <item>
@@ -86,7 +115,10 @@
       <pubDate>Fri, 30 Jul 2021 16:40:08 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/lgv-lemma/</guid>
-      <description>## LGV 引理 设 $G(V, E)$ 是一个 DAG，起点集 $A = \{a_1, \dots, a_n\} \subseteq V$，终点集 $B = \{b_1, \dots, b_n\} \subseteq V$ 。 记 $\omega_e$ 表示有向边 $e$ 的边权，$\omega_e$ 属于某个**交换环**。 对于有向路径 $P$，定义 $\omega(P)$ 表示路径上边权的乘积，即 $$ \omega(P) = \prod\limits_{e \in P} \omega_e $$ 对于任意两点 $a, b$，记 $e(a, b)$ 表示从 $a$ 到 $b$ 的所有路径的权值之和，即 $$ e(a, b) = \sum\limits_{P:a\to b}\omega(P) $$ **特别地**，若 $\omega_e=1$ ，$e(a, b)$ 表示 从 $a$ 到 $b$ 的路径数。 记矩阵 $$ M = \begin{pmatrix} e(a_1, b_1) &amp; e(a_1, b_2) &amp; \cdots &amp; e(a_1, b_n)\\ e(a_2, b_1) &amp; e(a_2, b_2) &amp; \cdots &amp; e(a_2, b_n)\\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\ e(a_n, b_1) &amp; e(a_n, b_2) &amp; \cdots &amp; e(a_n, b_n)\\ \end{pmatrix} $$ 定义从 $A$ 到 $B$ 的 $n$ 元不相交路径组表示 $G$ 中的 $n$ 条有向路径 $(P_1, \dots, P_n)$ 满足： 1.</description>
+      <description>LGV 引理 设 \(G(V, E)\) 是一个 DAG，起点集 \(A = \{a_1, \dots, a_n\} \subseteq V\)，终点集 \(B = \{b_1, \dots, b_n\} \subseteq V\) 。
+记 \(\omega_e\) 表示有向边 \(e\) 的边权，\(\omega_e\) 属于某个交换环。
+对于有向路径 \(P\)，定义 \(\omega(P)\) 表示路径上边权的乘积，即 \[ \omega(P) = \prod\limits_{e \in P} \omega_e \] 对于任意两点 \(a, b\)，记 \(e(a, b)\) 表示从 \(a\) 到 \(b\) 的所有路径的权值之和，即 \[ e(a, b) = \sum\limits_{P:a\to b}\omega(P) \] 特别地，若 \(\omega_e=1\) ，\(e(a, b)\) 表示 从 \(a\) 到 \(b\) 的路径数。
+记矩阵 \[ M = \begin{pmatrix} e(a_1, b_1) &amp;amp; e(a_1, b_2) &amp;amp; \cdots &amp;amp; e(a_1, b_n)\\ e(a_2, b_1) &amp;amp; e(a_2, b_2) &amp;amp; \cdots &amp;amp; e(a_2, b_n)\\ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots\\ e(a_n, b_1) &amp;amp; e(a_n, b_2) &amp;amp; \cdots &amp;amp; e(a_n, b_n)\\ \end{pmatrix} \] 定义从 \(A\) 到 \(B\) 的 \(n\) 元不相交路径组表示 \(G\) 中的 \(n\) 条有向路径 \((P_1, \dots, P_n)\) 满足：</description>
     </item>
     
     <item>
@@ -95,7 +127,14 @@
       <pubDate>Wed, 14 Jul 2021 17:02:30 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/pam/</guid>
-      <description>## 基本元素 节点：原串的**一个**本质不同的回文子串。 长度 `len[o]`：回文子串长度。 转移边 `ch[o][x]`：两边同时加字符 $x$。 失配边 `fa[o]`：最长回文后缀。到根的路径是所有回文后缀。 有两个根，奇根`1` 和 偶根`0`，`fa[0] = 1, len[1] = -1`。 常用的构造方法是均摊 $O(n)$ 的，证明很简单，略。 代码： ```cpp char s[N], *now = s; std::array ch[N]; int fa[N], len[N], cnt, dep[N]; int jmp(int x) { for (; now[~len[x]] != *now; x = fa[x]) ; return x; } int ins(int x) { static int p, q; now++; if (!ch[p = jmp(p)][x]) { len[q = ++cnt] = len[p] + 2; fa[q] = ch[jmp(fa[p])][x]; ch[p][x] = q; dep[q] = dep[fa[q]] + 1; } return p = ch[p][x]; } int main() { std::ios::sync_with_stdio(false); std::cin.</description>
+      <description>基本元素 节点：原串的一个本质不同的回文子串。
+长度 len[o]：回文子串长度。
+转移边 ch[o][x]：两边同时加字符 \(x\)。
+失配边 fa[o]：最长回文后缀。到根的路径是所有回文后缀。
+有两个根，奇根1 和 偶根0，fa[0] = 1, len[1] = -1。
+常用的构造方法是均摊 \(O(n)\) 的，证明很简单，略。
+代码：
+char s[N], *now = s; std::array&amp;lt;int, 26&amp;gt; ch[N]; int fa[N], len[N], cnt, dep[N]; int jmp(int x) { for (; now[~len[x]] != *now; x = fa[x]) ; return x; } int ins(int x) { static int p, q; now++; if (!ch[p = jmp(p)][x]) { len[q = ++cnt] = len[p] + 2; fa[q] = ch[jmp(fa[p])][x]; ch[p][x] = q; dep[q] = dep[fa[q]] + 1; } return p = ch[p][x]; } int main() { std::ios::sync_with_stdio(false); std::cin.</description>
     </item>
     
     <item>
@@ -104,7 +143,19 @@
       <pubDate>Mon, 12 Jul 2021 15:21:22 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E8%8E%AB%E9%98%9F/</guid>
-      <description>## 莫队二次离线 从 $[x, y]$ 移动到 $[l, r]$。 - $x \to l$ 查询 $a_i$ 在区间 $[i+1, y]$ 的贡献，拆成两个前缀 $i, y$，预处理 $a_{i-1}$ 对前缀 $i-1$ 的贡献，设贡献的前缀和为 $pre_1[i]$。 1. $xl$ 加入 $a_l\dots a_{x-1}$。 加前缀 $y$ 的贡献、减前缀 $i$ 的贡献。 离线 $\{y, l, x-1,+1\}, \Delta ans= pre_1[l] - pre_1[x]$。 - $y\to r$ 查询 $a_i$ 在区间 $[x, i-1]$ 的贡献，拆成两个前缀 $x-1, i-1$，预处理 $a_{i}$ 对前缀 $i-1$ 的贡献，设贡献的前缀和为 $pre_2[i]$。 1. $yr$ 删除 $a_{r+1}\dots a_y$ 加前缀 $x-1$ 的贡献、减前缀 $i-1$ 的贡献。 离线 $\{x-1, r+1, y, +1\}, \Delta ans = pre_2[r] - pre_2[y]$。 离线形式 $\{i, x, y, z\}$ 表示查询 $a_x\dots a_y$ 对前缀 $i$ 的贡献乘以系数 $z$。 计算方法和预处理方法一般是相同的，注意平衡复杂度，一般是 $O(\sqrt n)$ 修改，$O(1)$ 查询。 关键部分代码： ```cpp std::vector pre1(n + 1), pre2(n + 1); for (int i = 0; i &lt; n; i++) { update(a[i]); pre1[i + 1] = pre1[i] + ask(a[i]); pre2[i + 1] = pre2[i] + ask(a[i + 1]); } std::sort(q.</description>
+      <description>莫队二次离线 从 \([x, y]\) 移动到 \([l, r]\)。
+\(x \to l\)
+查询 \(a_i\) 在区间 \([i+1, y]\) 的贡献，拆成两个前缀 \(i, y\)，预处理 \(a_{i-1}\) 对前缀 \(i-1\) 的贡献，设贡献的前缀和为 \(pre_1[i]\)。
+\(x&amp;lt;l\)
+删除 \(a_{x} \dots a_{l-1}\)。
+减前缀 \(y\) 的贡献、加前缀 \(i\) 的贡献。
+离线 \(\{y, x, l-1,-1\}, \Delta ans= pre_1[l] - pre_1[x]\)。
+\(x&amp;gt;l\)
+加入 \(a_l\dots a_{x-1}\)。
+加前缀 \(y\) 的贡献、减前缀 \(i\) 的贡献。
+离线 \(\{y, l, x-1,+1\}, \Delta ans= pre_1[l] - pre_1[x]\)。
+\(y\to r\)
+查询 \(a_i\) 在区间 \([x, i-1]\) 的贡献，拆成两个前缀 \(x-1, i-1\)，预处理 \(a_{i}\) 对前缀 \(i-1\) 的贡献，设贡献的前缀和为 \(pre_2[i]\)。</description>
     </item>
     
     <item>
@@ -113,7 +164,10 @@
       <pubDate>Fri, 19 Mar 2021 10:28:29 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
-      <description>## 1 欧几里得算法 &gt; 欧几里得算法可以求两个数的最大公约数 $\gcd(a, b)$。 不妨设 $a \geq b, a = kb + r(k \geq 1, 0 \leq r &lt; b)$。 一方面，设 $d_1$ 为 $a, b$ 的一个公约数，则 $$ \begin{aligned} a &amp;= k_ad_1\\ b &amp;= k_bd_1\\ r &amp;= a - kb\\ &amp;= (k_a - kk_b)d_1 \end{aligned} $$ 即 $d_1$ 也是 $r$ 的约数，$b, r$ 的公约数。 另一方面，设 $d_2$ 为 $b, r$ 的一个公约数，则 $$ \begin{aligned} b &amp;= k&#39;_bd_2\\ r &amp;= k_r&#39;d_2\\ a &amp;= kb + r\\ &amp;= (kk&#39;_b + k_r&#39;)d_2 \end{aligned} $$ 即 $d_2$ 也是 $a$ 的约数，$a, b$ 的公约数。 所以 $a, b$ 的公约数集合和 $b, r$ 的公约数集合相同，于是 $\gcd(a, b) = \gcd(b, r) = \gcd(b, a \bmod b)$ 递归求解，终止状态为 $b = 0$，此时原 $a, b$ 的公约数集合为 $a$ 的约数集合。 因为 $a = kb + r &gt; (k + 1)r$ 所以 $r &lt; \frac{a}{k + 1} \leq \frac{a}{2}$，所以每次 $a$ 最少折半，算法复杂度为 $O(\log a + \log b)$。 ```cpp int gcd(int a, int b) { return b ?</description>
+      <description>1 欧几里得算法 欧几里得算法可以求两个数的最大公约数 \(\gcd(a, b)\)。
+不妨设 \(a \geq b, a = kb + r(k \geq 1, 0 \leq r &amp;lt; b)\)。
+一方面，设 \(d_1\) 为 \(a, b\) 的一个公约数，则 \[ \begin{aligned} a &amp;amp;= k_ad_1\\ b &amp;amp;= k_bd_1\\ r &amp;amp;= a - kb\\ &amp;amp;= (k_a - kk_b)d_1 \end{aligned} \] 即 \(d_1\) 也是 \(r\) 的约数，\(b, r\) 的公约数。
+另一方面，设 \(d_2\) 为 \(b, r\) 的一个公约数，则 \[ \begin{aligned} b &amp;amp;= k&amp;#39;_bd_2\\ r &amp;amp;= k_r&amp;#39;d_2\\ a &amp;amp;= kb + r\\ &amp;amp;= (kk&amp;#39;_b + k_r&amp;#39;)d_2 \end{aligned} \] 即 \(d_2\) 也是 \(a\) 的约数，\(a, b\) 的公约数。</description>
     </item>
     
     <item>
@@ -122,7 +176,12 @@
       <pubDate>Thu, 18 Mar 2021 21:30:30 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E6%9D%8E%E8%B6%85%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%92%8Cset%E7%BB%B4%E6%8A%A4%E5%87%B8%E5%8C%85/</guid>
-      <description>## 问题引入 有一些点 $(a_i, b_i)$，需要多次询问 $\max\{ax_0+b\}$。 ## 李超线段树 利用李超线段树可以很好地维护上述信息。 李超线段树就是支持 $O(\log N)$ 插入直线和查询 $\max{L_i(x)}$ 的数据结构。 线段树的每个节点保存 $L(mid)$ 最大的那条直线。 插入一条直线时，比较 $L_{old}(mid)$ 和 $L_{new}(mid)$，较大者保留，较小者继续递归。 ```cpp constexpr int N(1e5 + 5); struct Line { LL k, b; LL f(int x) { return k * x + b; } } t[N &lt;&lt; 2]; #define ls o &lt;&lt; 1 #define rs o &lt;&lt; 1 | 1 void ins(int o, int l, int r, Line x) { int m = l + r &gt;&gt; 1; bool lv = x.</description>
+      <description>问题引入 有一些点 \((a_i, b_i)\)，需要多次询问 \(\max\{ax_0+b\}\)。
+李超线段树 利用李超线段树可以很好地维护上述信息。
+李超线段树就是支持 \(O(\log N)\) 插入直线和查询 \(\max{L_i(x)}\) 的数据结构。
+线段树的每个节点保存 \(L(mid)\) 最大的那条直线。
+插入一条直线时，比较 \(L_{old}(mid)\) 和 \(L_{new}(mid)\)，较大者保留，较小者继续递归。
+constexpr int N(1e5 + 5); struct Line { LL k, b; LL f(int x) { return k * x + b; } } t[N &amp;lt;&amp;lt; 2]; #define ls o &amp;lt;&amp;lt; 1 #define rs o &amp;lt;&amp;lt; 1 | 1 void ins(int o, int l, int r, Line x) { int m = l + r &amp;gt;&amp;gt; 1; bool lv = x.</description>
     </item>
     
     <item>
@@ -131,7 +190,11 @@
       <pubDate>Thu, 18 Mar 2021 15:28:59 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/fft/</guid>
-      <description>## Introduction &gt; `快速傅里叶变换(Fast Fourier Transform，FFT)`是一种可在 $O(n \log n)$ 时间内完成的`离散傅里叶变换 (Discrete Fourier Transform，DFT)` 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。 FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。 ### 多项式 形如 $$ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} $$ 的式子称为 $x$ 的 $n - 1$ 次多项式，其中 $a_0, a_1, \dots, a_{n - 1}$ 称为多项式系数，$n-1$ 称为多项式的次数，记为 $\deg A(x)$ 或 $\deg A$。 ### 点值 $n - 1$ 次多项式 $A(x)$ 在 $x = m$ 处的**点值** $$ A(m) = \sum_{k=0}^{n-1} a_km^k $$ ### 多项式乘法 记 $A(x)\times B(x)$ 表示多项式 $A(x), B(x)$ 做多项式乘法，可以简写为 $A(x)\cdot B(x)$ 或 $A(x)B(x)$。 多项式乘法 $$ \begin{aligned} C(x) = &amp;A(x) \times B(x)\\ = &amp;\left(a_0 + a_1x + \dots + a_{\deg A}x^{\deg A}\right)\cdot\left(b_0 + b_1x + \dots + b_{\deg B}x^{\deg B}\right)\\ = &amp;\sum_{r = 0}^{\deg A + \deg B} \sum_{k = 0}^r a_kb_{r - k} x^r \end{aligned} $$ 用系数关系可以表示为 $$ c_r = \sum_{k = 0}^ra_kb_{r - k} $$ 其中 $\deg C = \deg A + \deg B$。 易证它们的点值满足如下关系 $$ C(m) = A(m)B(m) $$ ### 循环卷积 记 $\operatorname{conv}(A, B, n)$ 表示多项式 $A(x), B(x)$ 做长度为 $n$ 的循环卷积。 循环卷积 $$ C(x) = \operatorname{conv}(A, B, n) $$ 系数关系表示为 $$ c_k = \sum_{p, q}[(p + q) \bmod n = k]a_pb_q $$ 其中 $\deg C = n - 1$。 容易发现，当 $n &gt; \deg A + \deg B$ 时，该运算等价于多项式乘法。 ### DFT &gt; `离散傅里叶变换(Discrete Fourier Transform, DFT)` 将多项式 $A(x)=\sum_{k=0}^{n-1}a_kx^k$ 转换为一些特殊的点值。 记 $n$ 次单位复根 $$ \omega_n = e^{\frac{2i\pi}n}=\cos\dfrac{2\pi}{n}+i\sin\dfrac{2\pi}{n} $$ $DFT(A)$ 就是要计算点值 $A(\omega_n^k), k = 0， 1， 2， \dots, n-1$。 单位根自带的循环特性使得循环卷积 $C(x) = \operatorname{conv}(A, B, n)$ 的点值也满足： $$ C(\omega_n^k) = A(\omega_n^k)B(\omega_n^k) $$ ### IDFT IDFT 是 DFT 的逆变换。 首先，用等比数列求和易证： $$ \begin{aligned} \frac1n\sum_{k = 0}^{n - 1}\omega_n^{vk} &amp;= [v \bmod n = 0] \end{aligned} $$ 考虑循环卷积 $C(x) = \operatorname{conv}(A, B, n)$ 的系数表示 $$ \begin{aligned} c_r = &amp;\sum_{p, q}[(p + q) \bmod n = r]a_pb_q\\ = &amp;\sum_{p, q}[(p + q - r) \bmod n = 0]a_pb_q\\ = &amp;\sum_{p, q}\frac1n\sum_{k = 0}^{n - 1}\omega_n^{pk+qk-rk}a_pb_q\\ = &amp;\sum_{p, q}\frac1n\sum_{k = 0}^{n - 1}\omega_n^{-rk}\cdot\omega_n^{pk}a_p\cdot\omega_n^{qk}b_q\\ = &amp;\frac1n\sum_{k = 0}^{n - 1}\omega_n^{-rk}\left(\sum_{p}\omega_n^{pk}a_p\sum_q\omega_n^{qk}b_q\right)\\ = &amp;\frac1n\sum_{k = 0}^{n - 1}\left(\omega_n^{-r}\right)^kA(\omega_n^k)B(\omega_n^k)\\ = &amp;\frac1n\sum_{k = 0}^{n - 1}\left(\omega_n^{n-r}\right)^kC(\omega_n^k) \end{aligned} $$ 设多项式 $$ C&#39;(x) = \sum_{k=0}^{n-1}C(\omega_n^k)x^k $$ 只要计算 $DFT(C&#39;)$ 即可得到 $C(x)$ 的系数，于是我们用 DFT 完成了逆变换 IDFT。 用两次 DFT 和一次 IDFT就可以计算 $\operatorname{conv}(A, B, n)$。 暴力的复杂度是 $O(n^2)$，此处不赘述。 ### FFT 现在尝试将 DFT 问题分解以优化时间复杂度。 **本部分认为 $n = \deg A + 1$ 为 $2$ 的整数次幂。对于更一般的情况，暂不考虑。** #### DIF **将序列 $a_i$ 分成左右两半**。 $$ \begin{aligned} A(\omega_n^{r}) &amp;= \sum_{k = 0}^{n-1}a_k\omega_n^{rk}\\ &amp;= \sum_{k = 0}^{n / 2 - 1} \left(a_k\cdot\omega_n^{rk} + a_{k+n/2}\cdot\omega_n^{rk+rn/2}\right)\\ &amp;= \sum_{k = 0}^{n / 2 - 1} \left[a_k\cdot\omega_n^{rk} + (-1)^r\cdot a_{k+n/2}\cdot\omega_n^{rk}\right]\\ &amp;= \sum_{k = 0}^{n / 2 - 1} \left[a_k+(-1)^ra_{k+n/2}\right]\omega_{n}^{rk} \end{aligned} $$ **进一步，将 $A(\omega_{n}^r)$ 按奇偶分类**： $$ \begin{aligned} A\left(\omega_n^{2r}\right) &amp;= \sum_{k=0}^{n/2-1}\left(a_k+a_{k+n/2}\right)\omega_{n/2}^{rk}\\ A\left(\omega_n^{2r+1}\right) &amp;= \sum_{k=0}^{n/2-1}\left(\omega_{n}^ka_k-\omega_{n}^ka_{k+n/2}\right)\omega_{n/2}^{rk} \end{aligned} $$ 设 $$ \begin{aligned} &amp;p_k=a_k+a_{k+n/2}, &amp;P(x) = \sum_{k = 0}^{n/2-1}p_kx^k\\ &amp;q_k=\omega_{n}^k(a_k-a_{k+n/2}), &amp;Q(x) = \sum_{k=0}^{n/2-1}q_kx^k \end{aligned} $$ 我们只需要求出 $P(\omega_{n/2}^r)$ 和 $Q(\omega_{n/2}^r)$ ，即求解规模为原来一半的两个子问题 $DFT(P), DFT(Q)$，就能在 $O(n)$ 时间内计算出 $DFT(A)$。 #### DIT **在算法竞赛中这种方法更常见。** 注意到在 `DIF` 中我们最后将 $A(\omega_n^r)$ 奇偶分类求解，那不妨思考**将序列 $a_k$ 按奇偶分类**。 设 $$ \begin{aligned} A_0(x) = a_0 + a_2x + \dots + a_{n - 2}x^{n / 2}\\ A_1(x) = a_1 + a_3x+ \dots + a_{n - 1}x^{n / 2} \end{aligned} $$ 则 $$ A(x) = A_0(x^2) + xA_1(x^2) $$ 所以 $$ \begin{aligned} A(\omega_n^k) &amp;= A_0(\omega_n^{2k}) + \omega_n^kA_1(\omega_n^{2k})\\ &amp;= A_0(\omega_{n/2}^k) + \omega_n^kA_1(\omega_{n/2}^k) \end{aligned} $$ **将 $A(\omega_n^k)$ 再分为左右两半**，这里运用了等式 $\omega_{n/2}^k = \omega_{n/2}^{k + n/2}$ 和 $\omega_n^k+\omega_n^{k+n/2} = 0$ : $$ \begin{aligned} A(\omega_n^k) &amp;= A_0(\omega_{n/2}^k) + \omega_n^kA_1(\omega_{n/2}^k)\\ A\left(\omega_n^{k+n/2}\right) &amp;= A_0(\omega_{n/2}^k) - \omega_n^kA_1(\omega_{n/2}^k) \end{aligned} $$ 我们只需要求出 $A_0(\omega_{n/2}^k)$ 和 $A_1(\omega_{n/2}^k)$ ，即求解规模为原来一半的两个子问题 $DFT(A_0), DFT(A_1)$，就能在 $O(n)$ 时间内计算出 $DFT(A)$。 #### Complexity 设次数为 $n - 1$ 的多项式做 DFT 的时间复杂度为 $T(n)$，则 $$ T(n) = 2T(\frac{n}{2}) + O(n) $$ 根据主定理 $$ T(n) = O(n \log n) $$ ## Implementation ### Recursive 上述两种计算方式均可以使用递归实现，这里直接给出代码，不再赘述。 #### DIF ```cpp const double PI = acos(-1.</description>
+      <description>Introduction 快速傅里叶变换(Fast Fourier Transform，FFT)是一种可在 \(O(n \log n)\) 时间内完成的离散傅里叶变换 (Discrete Fourier Transform，DFT) 的算法，用来实现将信号从原始域（通常是时间或空间）到频域的互相转化。
+FFT 在算法竞赛中主要用来加速多项式乘法（循环卷积）。
+多项式 形如 \[ A(x) = a_0 + a_1x + a_2x^2 + \dots + a_{n-1}x^{n - 1} \] 的式子称为 \(x\) 的 \(n - 1\) 次多项式，其中 \(a_0, a_1, \dots, a_{n - 1}\) 称为多项式系数，\(n-1\) 称为多项式的次数，记为 \(\deg A(x)\) 或 \(\deg A\)。
+点值 \(n - 1\) 次多项式 \(A(x)\) 在 \(x = m\) 处的点值 \[ A(m) = \sum_{k=0}^{n-1} a_km^k \]
+多项式乘法 记 \(A(x)\times B(x)\) 表示多项式 \(A(x), B(x)\) 做多项式乘法，可以简写为 \(A(x)\cdot B(x)\) 或 \(A(x)B(x)\)。</description>
     </item>
     
   </channel>

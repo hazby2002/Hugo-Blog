@@ -14,7 +14,13 @@
       <pubDate>Thu, 13 Jan 2022 20:31:35 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/agc036d-negative-cycle/</guid>
-      <description>&gt; 题意：$n$ 个点的有向图，初始有边 $i \to i + 1$，边权为 0，不可删除。有边 $i \to j(i \neq j)$，边权为 $\begin{cases}1, &amp;i &gt; j\\-1, &amp;i &gt; $1 \leq n \leq 500$ 有向图上没有负环，则存在最短路，则差分约束有解。 每个点设变量 $x_i$，那么一条 $i \to j$ 边权为 $w$ 的边就代表 $x_j - x_i \leq w$。 所以初始 $i \to i + 1$ 的边表示 $x_i \geq x_{i+1}$。 设 $d_i = x_{i-1} - x_i \geq 0$。 对于边 $i \to j$，$i &lt; j$ 时为第一类边，表示 $\sum\limits_{k = i + 1}^jd_k \geq 1$，则对于一串 $d_k = 0$上的此类边都需要删除； $i &gt; j$ 时为第二类边，表示 $\sum\limits_{k=i+1}^jd_k \leq 1$，跨过多于一个1的边需要删除。 设 $dp(i, j)$ 表示考虑了前 $i$ 个变量，最后两个 1 分别在 $i, j$ 的最小代价，用二维前缀和计算区间删边的代价，时间复杂度 $O(n^3)$。 ```cpp void solve() { int n; std::cin &gt;&gt; n; std::vector a(n + 1, std::vector(n + 1)), b = a; for (int i = 1; i &lt;= n; i++) { for (int j = 1; j &lt;= n; j++) { if (i &lt; j) { std::cin &gt;&gt; a[i][j]; } else if (i &gt; j) { std::cin &gt;&gt; b[i][j]; } a[i][j] += a[i - 1][j] + a[i][j - 1] - a[i - 1][j - 1]; b[i][j] += b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1]; } } std::vector dp(n + 1, std::vector(n + 1, 1e18)); for (int i = 0; i &lt;= n; i++) { dp[i][0] = a[i][i]; for (int j = 1; j &lt; i; j++) { for (int k = 0; k &lt; j; k++) { smin(dp[i][j], dp[j][k] + b[i][k] - b[j][k]); } dp[i][j] += a[i][i] - a[i][j] - a[j][i] + a[j][j]; } } LL ans = 1e18; for (int i = 0; i &lt; n; i++) { smin(ans, dp[n][i]); } std::cout &lt;&lt; ans &lt;&lt; &#34;</description>
+      <description>题意：\(n\) 个点的有向图，初始有边 \(i \to i + 1\)，边权为 0，不可删除。有边 \(i \to j(i \neq j)\)，边权为 \(\begin{cases}1, &amp;amp;i &amp;gt; j\\-1, &amp;amp;i&amp;lt;j\end{cases}\)，可删除，删除代价为 \(a_{i, j}\)，你需要删除一些边，使得这张图上没有负环，求最小代价。
+\(1 \leq n \leq 500\)
+有向图上没有负环，则存在最短路，则差分约束有解。
+每个点设变量 \(x_i\)，那么一条 \(i \to j\) 边权为 \(w\) 的边就代表 \(x_j - x_i \leq w\)。
+所以初始 \(i \to i + 1\) 的边表示 \(x_i \geq x_{i+1}\)。
+设 \(d_i = x_{i-1} - x_i \geq 0\)。
+对于边 \(i \to j\)，\(i &amp;lt; j\) 时为第一类边，表示 \(\sum\limits_{k = i + 1}^jd_k \geq 1\)，则对于一串 \(d_k = 0\)上的此类边都需要删除；</description>
     </item>
     
     <item>
@@ -23,7 +29,8 @@
       <pubDate>Thu, 15 Apr 2021 09:03:20 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102994/</guid>
-      <description>## 总览 | 题号 | A | B | C | D | E | F | G | H | I | J | K | L | M | |:--------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---|---| | 完成情况 | 1 | 1 | 0 | 1 | 1 | 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0 | ## A. Everyone Loves Playing Games &gt; A 有 $N$ 对数， B 有 $M$ 对数，A 从 $N$ 对数中分别选一个数得到异或和 $X$，然后 B 从 $N$ 对数得到一个异或和 $Y$，$A$ 希望 $X \oplus Y$ 最大，$B$ 希望 $X \oplus Y$ 最小，求最后的结果。 &gt; &gt; $N, M \leq 10000, 0 \leq x \leq 10^{18}$。 设每对数为 $(x_i, y_i)$，先都选上 $x_i$，然后变成选或不选 $x_i \oplus y_i$ 的问题。 A 和 B 分别建出线性基，然后从高位向低位考虑。 只需要考虑某一位 A 和 B 都有影响的情况，这位如果为 1 那么 A B 只会选一个，如果为 0 则要么都选，要么都不选，不管哪种情况两种状态都可以通过异或 $A_i \oplus B_i$ 来相互转换，所以这种情况将 $A_i \oplus B_i$ 插入 $A$ 的线性基来提供“反悔”的机会。 ```cpp #include #include #define perr(a.</description>
+      <description>总览 题号 A B C D E F G H I J K L M 完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0 A. Everyone Loves Playing Games A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。
+\(N, M \leq 10000, 0 \leq x \leq 10^{18}\)。</description>
     </item>
     
     <item>
@@ -32,7 +39,10 @@
       <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102441/</guid>
-      <description>## 总览 | 题号 | A | B | C | D | E | F | G | H | I | J | K | |:--------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:| | 完成情况 | 1 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | ## A. Template for Search &gt; 给定由小写字母、字符`*` 和 `?` 组成的字符串 $s$，其中 `*` 可以被替换成任意串（包括空串），`?` 可以被替换成任意字符，求 $s$ 可以表示成的最短回文串。 &gt; &gt; $1 \leq |s| \leq 500$。 设 $dp[l][r]$ 表示 $l \dots r$ 能组成的最短回文串，有三种转移： - $s_l$ 匹配 $s_r$ - $s_l = *$ 匹配右边一段 - $s_r = *$ 匹配左边一段 ## B.</description>
+      <description>总览 题号 A B C D E F G H I J K 完成情况 1 0 1 1 1 1 1 1 1 1 0 A. Template for Search 给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
+\(1 \leq |s| \leq 500\)。
+设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
+\(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段 B. Redistribution of Digits C. Partial Sums \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]</description>
     </item>
     
     <item>
@@ -41,7 +51,10 @@
       <pubDate>Fri, 19 Mar 2021 10:09:39 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces1413froads-and-ramen/</guid>
-      <description>&gt; 给定一棵 $n$ 个点的无根树，每条边都有标记0或1。现在有 $m$ 次操作，每次操作将第 $id$ 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。 &gt; &gt; $n,m \leq 5 \times 10^5$。 ## 动态DP 设 $dp[x][0/1]$ 表示 $x$ 向下有偶数/奇数个1的最长路径，$dp[x][2]$ 表示 $x$ 子树内偶数个1的直径。 容易写出转移（$val_y$ 表示 $y$ 的父边的权值）： $$ \begin{aligned} dp&#39;[x][0] &amp;= \max\{dp[x][0], dp[y][val_y] + 1\}\\ dp&#39;[x][1] &amp;= \max\{dp[x][1], dp[y][val_y \oplus 1] + 1\}\\ dp&#39;[x][2] &amp;= \max\{dp[x][0] + dp[y][val_y] + 1, dp[x][1] + dp[y][val_y \oplus 1] + 1, dp[x][2],dp[y][2]\} \end{aligned} $$ 改写成 $x$ 从重儿子 $y$ 转移的矩阵（这里以 $val_y = 0$ 为例）： $$ \begin{bmatrix} dp&#39;[x][0]\\ dp&#39;[x][1]\\ dp&#39;[x][2]\\ 0 \end{bmatrix} = \begin{bmatrix} 1 &amp; -\infty &amp; -\infty &amp; dp[x][0]\\ -\infty &amp; 1 &amp; -\infty &amp; dp[x][1]\\ dp[x][0] + 1 &amp; dp[x][1] + 1 &amp; 0 &amp; dp[x][2]\\ -\infty &amp; -\infty &amp; -\infty &amp; 0 \end{bmatrix} \begin{bmatrix} dp[y][0]\\ dp[y][1]\\ dp[y][2]\\ 0 \end{bmatrix} $$ 上面的 $dp[x]$ 是指排除掉 $x$ 重儿子的答案，$dp&#39;[x]$ 是指完整的 $x$ 的答案。 $dp[x]$ 考虑直接用 `std::multiset` 存一下每个节点虚儿子的 $dp[y][0], dp[y][1], dp[y][2]$，取每个的最大和次大值即可快速求出。 复杂度是 $O(4^3 m \log n + m \log^2n)$，能跑过 $5 \times 10^5$ 也是奇迹。 **细节**：在 `multiset` 中删除 $-\infty$ 时不能直接查找对应的值，应该直接删除 `multiset` 中最小的那个值（具体见函数 `void erase(std::multiset&amp;, int)`）。 ```cpp #include #ifdef LOCAL #define dbg(args.</description>
+      <description>给定一棵 \(n\) 个点的无根树，每条边都有标记0或1。现在有 \(m\) 次操作，每次操作将第 \(id\) 条边的标记异或1。在每次操作后输出当前树上最长的有偶数个1的路径长度。
+\(n,m \leq 5 \times 10^5\)。
+动态DP 设 \(dp[x][0/1]\) 表示 \(x\) 向下有偶数/奇数个1的最长路径，\(dp[x][2]\) 表示 \(x\) 子树内偶数个1的直径。
+容易写出转移（\(val_y\) 表示 \(y\) 的父边的权值）： \[ \begin{aligned} dp&amp;#39;[x][0] &amp;amp;= \max\{dp[x][0], dp[y][val_y] + 1\}\\ dp&amp;#39;[x][1] &amp;amp;= \max\{dp[x][1], dp[y][val_y \oplus 1] + 1\}\\ dp&amp;#39;[x][2] &amp;amp;= \max\{dp[x][0] + dp[y][val_y] + 1, dp[x][1] + dp[y][val_y \oplus 1] + 1, dp[x][2],dp[y][2]\} \end{aligned} \] 改写成 \(x\) 从重儿子 \(y\) 转移的矩阵（这里以 \(val_y = 0\) 为例）： \[ \begin{bmatrix} dp&amp;#39;[x][0]\\ dp&amp;#39;[x][1]\\ dp&amp;#39;[x][2]\\ 0 \end{bmatrix} = \begin{bmatrix} 1 &amp;amp; -\infty &amp;amp; -\infty &amp;amp; dp[x][0]\\ -\infty &amp;amp; 1 &amp;amp; -\infty &amp;amp; dp[x][1]\\ dp[x][0] + 1 &amp;amp; dp[x][1] + 1 &amp;amp; 0 &amp;amp; dp[x][2]\\ -\infty &amp;amp; -\infty &amp;amp; -\infty &amp;amp; 0 \end{bmatrix} \begin{bmatrix} dp[y][0]\\ dp[y][1]\\ dp[y][2]\\ 0 \end{bmatrix} \] 上面的 \(dp[x]\) 是指排除掉 \(x\) 重儿子的答案，\(dp&amp;#39;[x]\) 是指完整的 \(x\) 的答案。</description>
     </item>
     
     <item>
@@ -50,7 +63,12 @@
       <pubDate>Thu, 18 Mar 2021 21:51:42 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codechef-ccchit-the-coconuts/</guid>
-      <description>&gt; 题意： $N$ 个椰子, 第 $i$ 个需要敲 $a_i$ 下才能打开，问最坏情况下最少要敲多少下才能打开 $k$ 个椰子。 不妨设 $a_i \le a_{i + 1}$。 要敲开一个椰子，现在有两种方法： 1. 随便拿起一个椰子不停地敲，最多要 $a_n$ 次。 2. 有目的性地想要敲开某个椰子 $a_i$，可以发现最优的策略就是每个椰子都敲 $a_i$ 次，最多要敲 $a_i\times(n - i + 1)$ 次，所有情况下取最小值。 第二种情况实际上包含了第一种。 那么要敲开 $k$ 个椰子，也有两种方法： 1. 每次都随便拿一个敲开，最多要 $a_n + a_{n - 1}+ \dots + a_{n - k + 1}$ 次。 2. 选 $k$ 个椰子 $a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &lt; b_{i + 1})$，有目的性地敲开它们。发现最优策略下最多要敲 $\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)$ 次，其中 $a_{b_0} = 0$，所有情况下取最小值。 第二种情况也包含了第一种。 因此考虑第二种情况的求解，设 $dp[i][k]$ 表示前 $i$ 个椰子敲开 $k$ 个（包括第 $i$ 个椰子）的最少次数。 $$ dp[i][k] = \min\{dp[j][k - 1] + (a_i - a_j) \times (n - i + 1)\} $$ 这显然是一个斜率优化的形式，化一下式子（第二维省略）： $$ dp[i] = \min\{a_j \times (i - n - 1) + dp[j]\} + a_i \times (n - i + 1) $$ 设直线 $L_j(x) = a_j \cdot x + dp[j]$，求 $\min L_j(i - n - 1)$，斜率和横坐标都是递增的，可以用栈维护一个上凸壳，复杂度 $O(nk + n\log n)$。 ```cpp #include #ifdef LOCAL #define dbg(args.</description>
+      <description>题意： \(N\) 个椰子, 第 \(i\) 个需要敲 \(a_i\) 下才能打开，问最坏情况下最少要敲多少下才能打开 \(k\) 个椰子。
+不妨设 \(a_i \le a_{i + 1}\)。
+要敲开一个椰子，现在有两种方法：
+随便拿起一个椰子不停地敲，最多要 \(a_n\) 次。 有目的性地想要敲开某个椰子 \(a_i\)，可以发现最优的策略就是每个椰子都敲 \(a_i\) 次，最多要敲 \(a_i\times(n - i + 1)\) 次，所有情况下取最小值。 第二种情况实际上包含了第一种。
+那么要敲开 \(k\) 个椰子，也有两种方法：
+每次都随便拿一个敲开，最多要 \(a_n + a_{n - 1}+ \dots + a_{n - k + 1}\) 次。 选 \(k\) 个椰子 \(a_{b_1}, a_{b_2}, \dots, a_{b_k}(b_i &amp;lt; b_{i + 1})\)，有目的性地敲开它们。发现最优策略下最多要敲 \(\sum_{i = 1}^k (a_{b_i} - a_{b_i - 1}) \times (n - b_i + 1)\) 次，其中 \(a_{b_0} = 0\)，所有情况下取最小值。 第二种情况也包含了第一种。</description>
     </item>
     
   </channel>

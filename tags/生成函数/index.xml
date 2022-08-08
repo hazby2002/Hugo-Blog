@@ -14,7 +14,12 @@
       <pubDate>Fri, 20 May 2022 12:26:31 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/</guid>
-      <description> ## 前言 本文写于 2021-12-02 14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。 今天想起，需要重新整理好二叉（半）在线卷积的模板，这个东西在考场上还是很有用的。 相关题目： - [ABC230H](https://atcoder.jp/contests/abc230/submissions/27677271) ## 半在线卷积 &gt; 设 $H = FG$。其中 $G$ 的系数事先给出，$F$ 的系数从低次到高次在线地给出，每次给出 $F$ 的 $x^i$ 系数后，你需要在线地计算 $H$ 的 $x^i$ 系数。 考虑分治，将区间 $[l, r)$ 分为 $T$ 段，每段长度为 $B = 2^k$。 $$ [l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r) $$ 要分别计算对于 $0 \leq i &lt; j &lt; T$, $F[m_i, m_{i+1})$ 对于 $H[m_j, m_{j+1})$ 的贡献，其中 $A[l,r)$ 表示多项式 $A(x)$ 在 $x^l, x^{l+1}, \dots, x^{r-1}$ 处的系数。 显然 $F[m_i, m_{i+1})$ 要乘上 $G[m_j-m_{i+1}+1, m_{j+1} - m_i)$。 结果有 $3B - 1$ 项，从 0 开始标号，取第 $B-1$ 到 $2B-2$ 项，做长度为 $2B$ 的循环卷积即可。 存储 $F[m_i, m_{i+1})$ 和 $G[m_j-m_{i+1}+1, m_{j+1} - m_i)$ 的点值，需要做 $T$ 次长度为 $2B$ 的 DFT，两两作点乘，最后再 IDFT，单层复杂度为 $$ O(BT\log B+T^2B+B\log B) = O(n \log \frac{n}{T} + nT) $$ 设总时间复杂度为 $S(n)$，则 $$ S(n) = T\cdot S(\frac{n}{T}) + O(n\log \frac nT + nT) $$ 这里复杂度不会算，但是大家都取 $T = \log n$，然后得到 $O\bigg(\dfrac{n \log^2 n}{\log\log n}\bigg)$。 ## 在线卷积 &gt; 设 $H = FG$。$F, G$ 的系数从低次到高次在线地给出，每次给出 $F, G$ 的 $x^i$ 系数后，你需要在线地计算 $H$ 的 $x^i$ 系数。 类似刚刚思路，但是进行到 &gt; $F[m_i, m_{i+1})$ 要乘上 $G[m_j-m_{i+1}+1, m_{j+1} - m_i)$ 这一步时，发现了问题：如果 $m_i=0$，那么 $G[m_{j}, m_{j+1})$ 还没给出，无法计算。 于是这里先避开 $F[m_i, m_{i+1}) \times G[m_{j}, m_{j+1})$ 这部分贡献不算，递归到 $[m_{j}, m_{j+1})$ 这个区间时，再把这个补上。 综上所述，对于当前区间 $[l, r)$，如果 $l = 0$，那么需要计算 $F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)$；如果 $l &gt; 0$，那么除了 $F[m_i, m_{i+1}) \times G[m_j-m_{i+1}+1, m_{j+1} - m_i)$ 之外，还要计算 $G[m_i, m_{i+1}) \times F[m_j-m_{i+1}+1, m_{j+1} - m_i)$。 其余部分前面的半在线卷积完全相同。 </description>
+      <description>前言 本文写于 2021-12-02 14:47，是上学期我研究的对于算法竞赛来说用处很小的东西。
+今天想起，需要重新整理好二叉（半）在线卷积的模板，这个东西在考场上还是很有用的。
+相关题目：
+ABC230H 半在线卷积 设 \(H = FG\)。其中 \(G\) 的系数事先给出，\(F\) 的系数从低次到高次在线地给出，每次给出 \(F\) 的 \(x^i\) 系数后，你需要在线地计算 \(H\) 的 \(x^i\) 系数。
+考虑分治，将区间 \([l, r)\) 分为 \(T\) 段，每段长度为 \(B = 2^k\)。 \[ [l=m_0, m_1), [m_1, m_2), \dots, [m_{T-1}, m_T=r) \] 要分别计算对于 \(0 \leq i &amp;lt; j &amp;lt; T\), \(F[m_i, m_{i+1})\) 对于 \(H[m_j, m_{j+1})\) 的贡献，其中 \(A[l,r)\) 表示多项式 \(A(x)\) 在 \(x^l, x^{l+1}, \dots, x^{r-1}\) 处的系数。
+显然 \(F[m_i, m_{i+1})\) 要乘上 \(G[m_j-m_{i+1}+1, m_{j+1} - m_i)\)。</description>
     </item>
     
     <item>
@@ -23,7 +28,16 @@
       <pubDate>Thu, 12 May 2022 00:35:08 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces1677ftokitsukaze-and-gems/</guid>
-      <description>[传送门](https://codeforces.com/contest/1677/problem/F) &gt; 给定 $n, k, p, a_1, a_2, \dots, a_n$，求 &gt; $$ &gt; \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&gt;0]\right)\right) &gt; $$ &gt; &gt; 答案对 $998244353$ 取模。 &gt; &gt; $1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351$。 考虑对固定的 $[l, r]$ 计算答案，它是两个数乘积之和的形式。可以通过维护 $(\sum xy, \sum x, \sum y, \sum 1)$ 四元组来计算答案。 这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。 这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。 求单个的四元组，可以发现就是要求 $\sum_{i=0}^{a_j} p^ii^k$。 对于这个问题，板子 OJ 有一个 [单次询问的版本](https://judge.</description>
+      <description>传送门
+给定 \(n, k, p, a_1, a_2, \dots, a_n\)，求 \[ \sum_{1 \leq l \leq r \leq n}\sum_{l \leq i \leq r, 0 \leq t_i \leq a_i} \left(\left(\sum_{i=1}^np^{t_i}t_i^k\right)\left(\sum_{i=1}^n[t_i&amp;gt;0]\right)\right) \]
+答案对 \(998244353\) 取模。
+\(1 \leq n, k\leq 10^5, 2 \leq p \leq 998244351, 1 \leq a_i \leq 998244351\)。
+考虑对固定的 \([l, r]\) 计算答案，它是两个数乘积之和的形式。可以通过维护 \((\sum xy, \sum x, \sum y, \sum 1)\) 四元组来计算答案。
+这个玩意是线性变换，写成矩阵形式可以发现，答案最后就是要你求所有区间的矩阵乘积之和。
+这个可以直接维护每个位置作为右端点的答案，只要维护当前后缀的四元组即可。
+求单个的四元组，可以发现就是要求 \(\sum_{i=0}^{a_j} p^ii^k\)。
+对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。
+本文主要参考 EI 的评论 以及下面 ecnerwala 的解读。</description>
     </item>
     
   </channel>

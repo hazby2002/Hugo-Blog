@@ -14,7 +14,14 @@
       <pubDate>Wed, 14 Jul 2021 17:02:30 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/pam/</guid>
-      <description>## 基本元素 节点：原串的**一个**本质不同的回文子串。 长度 `len[o]`：回文子串长度。 转移边 `ch[o][x]`：两边同时加字符 $x$。 失配边 `fa[o]`：最长回文后缀。到根的路径是所有回文后缀。 有两个根，奇根`1` 和 偶根`0`，`fa[0] = 1, len[1] = -1`。 常用的构造方法是均摊 $O(n)$ 的，证明很简单，略。 代码： ```cpp char s[N], *now = s; std::array ch[N]; int fa[N], len[N], cnt, dep[N]; int jmp(int x) { for (; now[~len[x]] != *now; x = fa[x]) ; return x; } int ins(int x) { static int p, q; now++; if (!ch[p = jmp(p)][x]) { len[q = ++cnt] = len[p] + 2; fa[q] = ch[jmp(fa[p])][x]; ch[p][x] = q; dep[q] = dep[fa[q]] + 1; } return p = ch[p][x]; } int main() { std::ios::sync_with_stdio(false); std::cin.</description>
+      <description>基本元素 节点：原串的一个本质不同的回文子串。
+长度 len[o]：回文子串长度。
+转移边 ch[o][x]：两边同时加字符 \(x\)。
+失配边 fa[o]：最长回文后缀。到根的路径是所有回文后缀。
+有两个根，奇根1 和 偶根0，fa[0] = 1, len[1] = -1。
+常用的构造方法是均摊 \(O(n)\) 的，证明很简单，略。
+代码：
+char s[N], *now = s; std::array&amp;lt;int, 26&amp;gt; ch[N]; int fa[N], len[N], cnt, dep[N]; int jmp(int x) { for (; now[~len[x]] != *now; x = fa[x]) ; return x; } int ins(int x) { static int p, q; now++; if (!ch[p = jmp(p)][x]) { len[q = ++cnt] = len[p] + 2; fa[q] = ch[jmp(fa[p])][x]; ch[p][x] = q; dep[q] = dep[fa[q]] + 1; } return p = ch[p][x]; } int main() { std::ios::sync_with_stdio(false); std::cin.</description>
     </item>
     
   </channel>
