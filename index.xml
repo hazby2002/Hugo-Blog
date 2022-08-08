@@ -64,7 +64,6 @@ class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt
 &lt;ul&gt;
 &lt;li&gt;随机点集的凸包点数是 &lt;span class=&#34;math inline&#34;&gt;\(O(\log
 n)\)&lt;/span&gt;。&lt;/li&gt;
-&lt;li&gt;测试缓存&lt;/li&gt;
 &lt;/ul&gt;
 - https://blog.asukakyle.top/post/notes/ - CC BY-NC-SA 4.0</description>
         </item>
