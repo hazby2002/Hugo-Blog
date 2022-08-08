@@ -14,13 +14,7 @@
       <pubDate>Thu, 15 Apr 2021 17:26:44 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/cf938g/</guid>
-      <description>给定一个带权无向图，实现三种操作：加边，删边，询问两点间的异或最短路。
-\(n, m, q \leq 2\times 10^5\)。
-类似最大 xor 和路径，用线性基可以求解异或最短路。
-因为线性基删除很麻烦，所以直接离线用线段树分治。
-图可能不连通，需要用并查集维护连通性，然后记录每个点到当前根的异或和 \(d_x\)。
-加边时设 \(val = d_x\oplus d_y \oplus w\)，如果 \(x, y\) 已经联通则将 \(val\) 加入当前联通块的线性基，如果不在一个并查集，连接两个根，边权为 \(val\)。
-#include &amp;lt;bits/stdc++.h&amp;gt; #define perr(a...) fprintf(stderr, a) #define dbg(a...) perr(&amp;quot;\033[32;1m&amp;quot;), perr(a), perr(&amp;quot;\033[0m&amp;quot;) template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ? x = y, 1 : 0; } template &amp;lt;class T, class U&amp;gt; inline bool smax(T &amp;amp;x, const U &amp;amp;y) { return x &amp;lt; y ?</description>
+      <description>&gt; 给定一个带权无向图，实现三种操作：加边，删边，询问两点间的异或最短路。 &gt; &gt; $n, m, q \leq 2\times 10^5$。 类似最大 xor 和路径，用线性基可以求解异或最短路。 因为线性基删除很麻烦，所以直接离线用线段树分治。 图可能不连通，需要用并查集维护连通性，然后记录每个点到当前根的异或和 $d_x$。 加边时设 $val = d_x\oplus d_y \oplus w$，如果 $x, y$ 已经联通则将 $val$ 加入当前联通块的线性基，如果不在一个并查集，连接两个根，边权为 $val$。 ```cpp #include #define perr(a...) fprintf(stderr, a) #define dbg(a...) perr(&#34;\033[32;1m&#34;), perr(a), perr(&#34;\033[0m&#34;) template inline bool smin(T &amp;x, const U &amp;y) { return y &lt; x ? x = y, 1 : 0; } template inline bool smax(T &amp;x, const U &amp;y) { return x &lt; y ?</description>
     </item>
     
   </channel>

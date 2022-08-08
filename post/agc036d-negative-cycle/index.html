@@ -408,73 +408,60 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    <blockquote>
-<p>题意：<span class="math inline">\(n\)</span> 个点的有向图，初始有边
-<span class="math inline">\(i \to i + 1\)</span>，边权为
-0，不可删除。有边 <span class="math inline">\(i \to j(i \neq
-j)\)</span>，边权为 <span class="math inline">\(\begin{cases}1, &amp;i
-&gt; j\\-1, &amp;i&lt;j\end{cases}\)</span>，可删除，删除代价为 <span
-class="math inline">\(a_{i,
-j}\)</span>，你需要删除一些边，使得这张图上没有负环，求最小代价。</p>
-<p><span class="math inline">\(1 \leq n \leq 500\)</span></p>
-</blockquote>
-<p>有向图上没有负环，则存在最短路，则差分约束有解。</p>
-<p>每个点设变量 <span class="math inline">\(x_i\)</span>，那么一条 <span
-class="math inline">\(i \to j\)</span> 边权为 <span
-class="math inline">\(w\)</span> 的边就代表 <span
-class="math inline">\(x_j - x_i \leq w\)</span>。</p>
-<p>所以初始 <span class="math inline">\(i \to i + 1\)</span> 的边表示
-<span class="math inline">\(x_i \geq x_{i+1}\)</span>。</p>
-<p>设 <span class="math inline">\(d_i = x_{i-1} - x_i \geq
-0\)</span>。</p>
-<p>对于边 <span class="math inline">\(i \to j\)</span>，<span
-class="math inline">\(i &lt; j\)</span> 时为第一类边，表示 <span
-class="math inline">\(\sum\limits_{k = i + 1}^jd_k \geq
-1\)</span>，则对于一串 <span class="math inline">\(d_k =
-0\)</span>上的此类边都需要删除；</p>
-<p><span class="math inline">\(i &gt; j\)</span> 时为第二类边，表示
-<span class="math inline">\(\sum\limits_{k=i+1}^jd_k \leq
-1\)</span>，跨过多于一个1的边需要删除。</p>
-<p>设 <span class="math inline">\(dp(i, j)\)</span> 表示考虑了前 <span
-class="math inline">\(i\)</span> 个变量，最后两个 1 分别在 <span
-class="math inline">\(i, j\)</span>
-的最小代价，用二维前缀和计算区间删边的代价，时间复杂度 <span
-class="math inline">\(O(n^3)\)</span>。</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> solve<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> n<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op"> </span>a<span class="op">(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>LL<span class="op">&gt;(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">)),</span> b <span class="op">=</span> a<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> n<span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>i <span class="op">&lt;</span> j<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> a<span class="op">[</span>i<span class="op">][</span>j<span class="op">];</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>i <span class="op">&gt;</span> j<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> b<span class="op">[</span>i<span class="op">][</span>j<span class="op">];</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      a<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">+=</span> a<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>j<span class="op">]</span> <span class="op">+</span> a<span class="op">[</span>i<span class="op">][</span>j <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">-</span> a<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>j <span class="op">-</span> <span class="dv">1</span><span class="op">];</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      b<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">+=</span> b<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>j<span class="op">]</span> <span class="op">+</span> b<span class="op">[</span>i<span class="op">][</span>j <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">-</span> b<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>j <span class="op">-</span> <span class="dv">1</span><span class="op">];</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op"> </span>dp<span class="op">(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>LL<span class="op">&gt;(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="fl">1e18</span><span class="op">));</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    dp<span class="op">[</span>i<span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>i<span class="op">][</span>i<span class="op">];</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;</span> i<span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> j<span class="op">;</span> k<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        smin<span class="op">(</span>dp<span class="op">[</span>i<span class="op">][</span>j<span class="op">],</span> dp<span class="op">[</span>j<span class="op">][</span>k<span class="op">]</span> <span class="op">+</span> b<span class="op">[</span>i<span class="op">][</span>k<span class="op">]</span> <span class="op">-</span> b<span class="op">[</span>j<span class="op">][</span>k<span class="op">]);</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      dp<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">+=</span> a<span class="op">[</span>i<span class="op">][</span>i<span class="op">]</span> <span class="op">-</span> a<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">-</span> a<span class="op">[</span>j<span class="op">][</span>i<span class="op">]</span> <span class="op">+</span> a<span class="op">[</span>j<span class="op">][</span>j<span class="op">];</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  LL ans <span class="op">=</span> <span class="fl">1e18</span><span class="op">;</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    smin<span class="op">(</span>ans<span class="op">,</span> dp<span class="op">[</span>n<span class="op">][</span>i<span class="op">]);</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> ans <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+                    
+> 题意：$n$ 个点的有向图，初始有边 $i \to i + 1$，边权为 0，不可删除。有边 $i \to j(i \neq j)$，边权为 $\begin{cases}1, &i > j\\-1, &i<j\end{cases}$，可删除，删除代价为 $a_{i, j}$，你需要删除一些边，使得这张图上没有负环，求最小代价。
+> 
+> $1 \leq n \leq 500$
 
+有向图上没有负环，则存在最短路，则差分约束有解。
+
+每个点设变量 $x_i$，那么一条 $i \to j$ 边权为 $w$ 的边就代表 $x_j - x_i \leq w$。
+
+所以初始 $i \to i + 1$ 的边表示 $x_i \geq x_{i+1}$。
+
+设 $d_i = x_{i-1} - x_i \geq 0$。
+
+对于边 $i \to j$，$i < j$ 时为第一类边，表示 $\sum\limits_{k = i + 1}^jd_k \geq 1$，则对于一串 $d_k = 0$上的此类边都需要删除；
+
+$i > j$ 时为第二类边，表示 $\sum\limits_{k=i+1}^jd_k \leq 1$，跨过多于一个1的边需要删除。
+
+设 $dp(i, j)$ 表示考虑了前 $i$ 个变量，最后两个 1 分别在 $i, j$ 的最小代价，用二维前缀和计算区间删边的代价，时间复杂度 $O(n^3)$。
+
+```cpp
+void solve() {
+  int n;
+  std::cin >> n;
+  std::vector a(n + 1, std::vector<LL>(n + 1)), b = a;
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+      if (i < j) {
+        std::cin >> a[i][j];
+      } else if (i > j) {
+        std::cin >> b[i][j];
+      }
+      a[i][j] += a[i - 1][j] + a[i][j - 1] - a[i - 1][j - 1];
+      b[i][j] += b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1];
+    }
+  }
+
+  std::vector dp(n + 1, std::vector<LL>(n + 1, 1e18));
+  for (int i = 0; i <= n; i++) {
+    dp[i][0] = a[i][i];
+    for (int j = 1; j < i; j++) {
+      for (int k = 0; k < j; k++) {
+        smin(dp[i][j], dp[j][k] + b[i][k] - b[j][k]);
+      }
+      dp[i][j] += a[i][i] - a[i][j] - a[j][i] + a[j][j];
+    }
+  }
+  
+  LL ans = 1e18;
+  for (int i = 0; i < n; i++) {
+    smin(ans, dp[n][i]);
+  }
+  std::cout << ans << "\n";
+}
+```
                     
                     <HR width="100%" id="EOF">
 		    <p style="color:#777;">最后修改于 2022-01-13</p>

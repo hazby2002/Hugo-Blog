@@ -14,8 +14,7 @@
       <pubDate>Thu, 15 Apr 2021 09:03:20 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102994/</guid>
-      <description>总览 题号 A B C D E F G H I J K L M 完成情况 1 1 0 1 1 1 1 0 0 1 1 1 0 A. Everyone Loves Playing Games A 有 \(N\) 对数， B 有 \(M\) 对数，A 从 \(N\) 对数中分别选一个数得到异或和 \(X\)，然后 B 从 \(N\) 对数得到一个异或和 \(Y\)，\(A\) 希望 \(X \oplus Y\) 最大，\(B\) 希望 \(X \oplus Y\) 最小，求最后的结果。
-\(N, M \leq 10000, 0 \leq x \leq 10^{18}\)。</description>
+      <description>## 总览 | 题号 | A | B | C | D | E | F | G | H | I | J | K | L | M | |:--------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---|---| | 完成情况 | 1 | 1 | 0 | 1 | 1 | 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0 | ## A. Everyone Loves Playing Games &gt; A 有 $N$ 对数， B 有 $M$ 对数，A 从 $N$ 对数中分别选一个数得到异或和 $X$，然后 B 从 $N$ 对数得到一个异或和 $Y$，$A$ 希望 $X \oplus Y$ 最大，$B$ 希望 $X \oplus Y$ 最小，求最后的结果。 &gt; &gt; $N, M \leq 10000, 0 \leq x \leq 10^{18}$。 设每对数为 $(x_i, y_i)$，先都选上 $x_i$，然后变成选或不选 $x_i \oplus y_i$ 的问题。 A 和 B 分别建出线性基，然后从高位向低位考虑。 只需要考虑某一位 A 和 B 都有影响的情况，这位如果为 1 那么 A B 只会选一个，如果为 0 则要么都选，要么都不选，不管哪种情况两种状态都可以通过异或 $A_i \oplus B_i$ 来相互转换，所以这种情况将 $A_i \oplus B_i$ 插入 $A$ 的线性基来提供“反悔”的机会。 ```cpp #include #include #define perr(a.</description>
     </item>
     
     <item>
@@ -24,10 +23,7 @@
       <pubDate>Thu, 08 Apr 2021 22:39:55 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/gym102441/</guid>
-      <description>总览 题号 A B C D E F G H I J K 完成情况 1 0 1 1 1 1 1 1 1 1 0 A. Template for Search 给定由小写字母、字符* 和 ? 组成的字符串 \(s\)，其中 * 可以被替换成任意串（包括空串），? 可以被替换成任意字符，求 \(s\) 可以表示成的最短回文串。
-\(1 \leq |s| \leq 500\)。
-设 \(dp[l][r]\) 表示 \(l \dots r\) 能组成的最短回文串，有三种转移：
-\(s_l\) 匹配 \(s_r\) \(s_l = *\) 匹配右边一段 \(s_r = *\) 匹配左边一段 B. Redistribution of Digits C. Partial Sums \(n \times m\) 矩阵列 \(\{A_k\}\) 满足递推关系 \[ A_k[i, j] = \sum_{u = 1}^i\sum_{v = 1}^jA_{k-1}[u, v] \bmod 2 \]</description>
+      <description>## 总览 | 题号 | A | B | C | D | E | F | G | H | I | J | K | |:--------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:| | 完成情况 | 1 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | ## A. Template for Search &gt; 给定由小写字母、字符`*` 和 `?` 组成的字符串 $s$，其中 `*` 可以被替换成任意串（包括空串），`?` 可以被替换成任意字符，求 $s$ 可以表示成的最短回文串。 &gt; &gt; $1 \leq |s| \leq 500$。 设 $dp[l][r]$ 表示 $l \dots r$ 能组成的最短回文串，有三种转移： - $s_l$ 匹配 $s_r$ - $s_l = *$ 匹配右边一段 - $s_r = *$ 匹配左边一段 ## B.</description>
     </item>
     
     <item>
@@ -36,14 +32,7 @@
       <pubDate>Sat, 13 Mar 2021 00:43:08 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/codeforces1148h-holy-diver/</guid>
-      <description>给定一个最初为空的数组，然后进行 \(n\) 次操作，每次操作给定 \(x,l,r,k\)，在数组末尾插入 \(x\) ，然后查询满足 \(mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k\) 的数对 \((i,j)\) 的个数，强制在线。
-\(mex(S)\) 表示集合 \(S\) 中最小的未出现的 自然数。
-\(n \leq 2 \times 10^5\)。
-为表示方便，下面记 \(mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})\)。
-容易发现，如果向集合 \(S\) 中添加数，\(mex(S)\) 不会减小。
-所以如果固定右端点 \(j\)，\(mex(i, j)\) 是非严格单调减的；固定左端点 \(i\)，\(mex(i, j)\) 是非严格单调增的。
-维护一个 \(n \times n\) 矩阵，\(A[i][j] = mex(j, i)\)，则矩阵 \(A\) 的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。
-第 \(i\) 次操作增加一个数 \(x\)，考虑从第 \(i - 1\) 行拓展到第 \(i\) 行时矩阵 \(A\) 的变化。</description>
+      <description>&gt; 给定一个最初为空的数组，然后进行 $n$ 次操作，每次操作给定 $x,l,r,k$，在数组末尾插入 $x$ ，然后查询满足 $mex(\{a_i, a_{i + 1}, \dots, a_j\}) = k$ 的数对 $(i,j)$ 的个数，**强制在线**。 &gt; &gt; $mex(S)$ 表示集合 $S$ 中最小的未出现的 **自然数**。 &gt; &gt; $n \leq 2 \times 10^5$。 为表示方便，下面记 $mex(i, j) = mex(\{a_i, a_{i + 1}, \dots, a_j\})$。 容易发现，如果向集合 $S$ 中添加数，$mex(S)$ 不会减小。 所以如果固定右端点 $j$，$mex(i, j)$ 是**非严格单调减**的；固定左端点 $i$，$mex(i, j)$ 是**非严格单调增**的。 维护一个 $n \times n$ 矩阵，$A[i][j] = mex(j, i)$，则矩阵 $A$ 的每一行从左到右都是非严格单调减的，每一列从上到下都是非严格单调增的。 第 $i$ 次操作增加一个数 $x$，考虑从第 $i - 1$ 行拓展到第 $i$ 行时矩阵 $A$ 的变化。 首先 $A[i][i]=[x=0]$。 下面只考虑 $j &lt; i$ 的情况。 如果 $A[i-1][j]=x$，则 $A[i][j]&gt;x$，否则 $A[i][j] = A[i - 1][j]$。 所以每次变化的只有等于 $x$ 的那些位置，根据单调性，这是一段区间，记为 $[p,q]$。 设 $j \in [p, q]$，要求 $mex(j, i)$，只需要知道最后一次出现的位置小于 $j$ 的最小的数。所以用线段树维护序列 $seq_{lastpos[x]} = x$ ，每次求区间最小值，找到对应位置 $index$，这个位置右边的所有 $A[i][j]$ 都等于这个最小值，然后令 $q = index$，反复迭代，直到待求区间为空。 分析一下这个操作的复杂度，每次相当于删除一个区间 $[p,q]$，添加若干个小区间。 开始只有一个区间，最后的区间数不超过 $n$，中间只会删除最多 $n$ 次区间。 所以添加区间的总次数不会超过 $2n$ ，复杂度为 $O(n \log n)$。 然后考虑回答询问。 ## 矩形交的面积 我们用四元组 $(top,bottom,left,right)$ 描述一个矩形 $\{(i,j):top \leq i \leq bottom,left \leq j \leq right\}$。 每次询问可以看作是询问矩形 $(l, r, l, r)$ 内 $A[i][j]=k$ 的个数。 那么由上面 $mex$ 的单调性可以发现，$A[i][j] = k$ 的点可以组成一个个连通块，每个连通块由若干个矩形构成**阶梯状**（矩形的 $left$ 相同，$right$ 递增）。 且前一个连通块的 $right$ 小于后一个连通块的 $left$。 问题转化为求这些矩形与询问矩形交的面积之和。 用 `std::vector` 存下每个 $k$ 的所有矩形，维护前缀面积和，二分出相交与非相交的临界点，对于完全包含的用前缀和搞定，对于相交却不包含的，由于是阶梯状，所以也可以 $O(1)$ 计算，细节有点多。 由上面的复杂度分析可知，所有矩形的数量不会超过 $2n$ 个，所以总复杂度 $O(n \log n)$。 ```cpp #include #ifdef LOCAL #define dbg(args.</description>
     </item>
     
   </channel>

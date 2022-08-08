@@ -14,8 +14,7 @@
       <pubDate>Sun, 08 Aug 2021 12:55:13 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/fwt/</guid>
-      <description>卷积 运算 \(\odot\)，序列 \(a, b, c\)，方阵 \(P, Q, R\) 满足 \(R\) 可逆，且 \[ \begin{cases} c_n &amp;amp;= \sum_{p \odot q = n}a_pb_q\\ \sum_j R_{i, j}c_j &amp;amp;= \sum_pP_{i,p}a_p\sum_q Q_{i, q}b_q \end{cases} \] 所以 \[ \begin{aligned} \sum_{j}R_{i, j}\sum_{p, q}[p\odot q = j]a_pb_q &amp;amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ \sum_{p, q}R_{i, p \odot q}a_pb_q &amp;amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ R_{i, p\odot q} &amp;amp;= P_{i, p}Q_{i, q} \end{aligned} \]
-对序列 \(a\) 施加线性变换 \(P\)，序列 \(b\) 施加线性变换 \(Q\)，点乘之后再施加逆变换 \(R^{-1}\)，就可以实现 \(\odot\) 卷积。</description>
+      <description>## 卷积 运算 $\odot$，序列 $a, b, c$，方阵 $P, Q, R$ 满足 $R$ 可逆，且 $$ \begin{cases} c_n &amp;= \sum_{p \odot q = n}a_pb_q\\ \sum_j R_{i, j}c_j &amp;= \sum_pP_{i,p}a_p\sum_q Q_{i, q}b_q \end{cases} $$ 所以 $$ \begin{aligned} \sum_{j}R_{i, j}\sum_{p, q}[p\odot q = j]a_pb_q &amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ \sum_{p, q}R_{i, p \odot q}a_pb_q &amp;= \sum_{p, q}P_{i, p}Q_{i, q}a_pb_q\\ R_{i, p\odot q} &amp;= P_{i, p}Q_{i, q} \end{aligned} $$ 对序列 $a$ 施加线性变换 $P$，序列 $b$ 施加线性变换 $Q$，点乘之后再施加逆变换 $R^{-1}$，就可以实现 $\odot$ 卷积。 对于满足交换律的运算 $\odot$，$P = Q$。 ## [Kronecker product](https://en.</description>
     </item>
     
   </channel>

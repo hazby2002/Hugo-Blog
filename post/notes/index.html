@@ -395,52 +395,32 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    <ul>
-<li>慎用无符号整数。注意 <code>0 - 1 = ~0</code>。</li>
-<li>注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建
-<code>Null</code> 节点的方式写。</li>
-<li>关于模板的整理：
-<ul>
-<li>需要在保证正确性的同时，做好代码长度和效率的平衡。</li>
-<li>不能为短而短，刻意压行。</li>
-<li>一些常用的操作都尽量封装。</li>
-</ul></li>
-<li>对于 <span class="math inline">\(INF\)</span>（很大的数）
-的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 <span
-class="math inline">\(X + INF = INF\)</span> 之类的情况。在进行 <span
-class="math inline">\(INF\)</span>
-之间的比较时，如果前面图方便，计算时会出现 <span class="math inline">\(X
-+ INF\)</span> 这样的数，这里就要注意诸如 <span class="math inline">\(X
-+ INF \leq INF\)</span> 的比较。（问题出现于决策单调性优化）</li>
-<li>计算几何随机旋转可以避免很多小错误。</li>
-<li>(CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用
-<code>std::map&lt;int, Info&gt;</code>，其中 key
-为段的左端点，左闭右开这样 next 就是右端点，value
-为段的信息，这种方式非常好写。每次进行区间染色 <span
-class="math inline">\([l, r)\)</span> 的时候，先把 <span
-class="math inline">\(l, r\)</span>
-两点加入map，然后就可以直接循环删除中间的，然后处理修改。</li>
-<li>思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。</li>
-<li>非旋转 Treap 的 <code>merge</code> 是有返回值的，内部实现时的
-<code>x-&gt;rs = merge(x-&gt;rs, y)</code> 不要把前面的
-<code>x-&gt;rs =</code> 漏掉。</li>
-<li>有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。</li>
-<li>让new变得cache友好，直接把全局的 <code>operator new</code>
-重载：</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="op">*</span><span class="kw">operator</span> <span class="kw">new</span><span class="op">(</span><span class="dt">size_t</span> n<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">static</span> <span class="dt">char</span> <span class="op">*</span>l<span class="op">,</span> <span class="op">*</span>r  </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>r <span class="op">&lt;</span> l <span class="op">+</span> n<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">static</span> <span class="kw">constexpr</span> <span class="dt">int</span> L <span class="op">=</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">24</span><span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> <span class="op">(</span><span class="dt">char</span> <span class="op">*)</span>malloc<span class="op">(</span>L<span class="op">),</span> r <span class="op">=</span> l <span class="op">+</span> L<span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> r <span class="op">-=</span> n<span class="op">;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<ul>
-<li>随机点集的凸包点数是 <span class="math inline">\(O(\log
-n)\)</span>。</li>
-</ul>
+                    
+- 慎用无符号整数。注意 `0 - 1 = ~0`。
+- 注意平衡树之类的数据结构的 0 节点，注意特判。尽量按照指针不建 `Null` 节点的方式写。
+- 关于模板的整理：
+   - 需要在保证正确性的同时，做好代码长度和效率的平衡。
+   - 不能为短而短，刻意压行。
+   - 一些常用的操作都尽量封装。
+- 对于 $INF$（很大的数） 的处理，需要谨慎，如果图方便，要保证相加不能加爆。否则应该处理 $X + INF = INF$ 之类的情况。在进行 $INF$ 之间的比较时，如果前面图方便，计算时会出现 $X + INF$ 这样的数，这里就要注意诸如 $X + INF \leq INF$ 的比较。（问题出现于决策单调性优化）
+- 计算几何随机旋转可以避免很多小错误。
+- (CF1638E，学习自jiangly) 维护同色段，可以直接用线段树，也可以用 `std::map<int, Info>`，其中 key 为段的左端点，左闭右开这样 next 就是右端点，value 为段的信息，这种方式非常好写。每次进行区间染色 $[l, r)$ 的时候，先把 $l, r$ 两点加入map，然后就可以直接循环删除中间的，然后处理修改。
+- 思路进行不下去的题，多想想根号算法。一些常见的根号分治题，想不到根号就暴毙。
+- 非旋转 Treap 的 `merge` 是有返回值的，内部实现时的 `x->rs = merge(x->rs, y)` 不要把前面的 `x->rs =` 漏掉。
+- 有时候会把几个名字一样的内层局部变量拿到外面来，但是忘记删掉内层的，导致外层的变量没有被改变。
+- 让new变得cache友好，直接把全局的 `operator new` 重载：
+```cpp
+void *operator new(size_t n) {
+  static char *l, *r  
+  if (r < l + n) {
+     static constexpr int L = 1 << 24;
+    l = (char *)malloc(L), r = l + L;
+  }
+  return r -= n;
+}
+```
+- 随机点集的凸包点数是 $O(\log n)$。
+- 权值线段树求前k小和，要注意在 $l=r$ 的时候返回 $k\cdot l$。
 
                     
                     <HR width="100%" id="EOF">
