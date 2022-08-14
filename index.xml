@@ -133,80 +133,107 @@ file，访问文件，如果文件不存在则创建新的。&lt;/p&gt;
         <pubDate>Fri, 05 Aug 2022 23:16:50 +0800</pubDate>
         
         <guid>https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/</guid>
-        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/ -&lt;ul&gt;
-&lt;li&gt;&lt;a href = &#34;https://www.luogu.com.cn/problem/P5576&#34;&gt;P5576
-[CmdOI2019]口头禅&lt;/a&gt;
-给定一堆字符串，多次询问&lt;strong&gt;区间字符串最长公共子串&lt;/strong&gt;。
-广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。&lt;/li&gt;
-&lt;li&gt;&lt;a href = &#34;https://www.luogu.com.cn/problem/P4482&#34;&gt;P4482
-[BJWC2018]Border 的四种求法&lt;/a&gt;
-多次询问字符串&lt;strong&gt;区间border&lt;/strong&gt;。
-&lt;strong&gt;parent树上链分治。&lt;/strong&gt;先考虑 &lt;span
-class=&#34;math inline&#34;&gt;\(node_r\)&lt;/span&gt; 暴力向上跳，找 pos
+        <description>HolyK&#39;s Blog https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/ -&lt;h2 id=&#34;p6292-区间本质不同子串个数&#34;&gt;&lt;a
+href=&#34;https://www.luogu.com.cn/problem/P6292&#34;&gt;P6292
+区间本质不同子串个数&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定字符串，多次询问区间本质不同子串数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;类似区间数颜色，将询问离线之后，移动右端点，维护左端点的答案，每次修改access一下，是一个区间加区间求和。&lt;/p&gt;
+&lt;h2
+id=&#34;p5576-cmdoi2019口头禅&#34;&gt;&lt;a href = &#34;https://www.luogu.com.cn/problem/P5576&#34;&gt;P5576
+[CmdOI2019]口头禅&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定一堆字符串，多次询问&lt;strong&gt;区间字符串最长公共子串&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。&lt;/p&gt;
+&lt;h2
+id=&#34;p4482-bjwc2018border-的四种求法&#34;&gt;&lt;a href = &#34;https://www.luogu.com.cn/problem/P4482&#34;&gt;P4482
+[BJWC2018]Border 的四种求法&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;多次询问字符串&lt;strong&gt;区间border&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;parent树上链分治。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;先考虑 &lt;span class=&#34;math inline&#34;&gt;\(node_r\)&lt;/span&gt; 暴力向上跳，找 pos
 集合区间最大值的方法。HLD 之后把跳的过程拆到重链上。利用轻子树大小和为
 &lt;span class=&#34;math inline&#34;&gt;\(O(n\log n)\)&lt;/span&gt;，每条重链处理，要求
-&lt;span class=&#34;math inline&#34;&gt;\(pos - len &amp;lt; L\)&lt;/span&gt;，线段树以 &lt;span
+&lt;span class=&#34;math inline&#34;&gt;\(pos-len &amp;lt; L\)&lt;/span&gt;，线段树以 &lt;span
 class=&#34;math inline&#34;&gt;\(pos\)&lt;/span&gt; 为下标，维护 &lt;span
-class=&#34;math inline&#34;&gt;\(\min\{pos-len\}\)&lt;/span&gt;，然后线段树上二分。&lt;/li&gt;
-&lt;li&gt;&lt;a href = &#34;https://www.luogu.com.cn/problem/CF1098F&#34;&gt;CF1098F
-Ж-function&lt;/a&gt; 多次询问 &lt;span class=&#34;math inline&#34;&gt;\(f(l, r)\)&lt;/span&gt;
-表示子串 &lt;span class=&#34;math inline&#34;&gt;\(s[l, r]\)&lt;/span&gt; 每个后缀与该子串的
-lcp 的和。 思路同上，用 HLD
-优化暴力跳的过程，拆到重链上变成一个三维偏序，然后用 CDQ 分治做。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/33191/L&#34;&gt;2022牛客多校6
-L Striking String Problem&lt;/a&gt; 给定串 &lt;span class=&#34;math inline&#34;&gt;\(S,
-T\)&lt;/span&gt;，令 &lt;span class=&#34;math inline&#34;&gt;\(U = S[l_1, r_1] + S[l_2, r_2]
-+ \dots + S[l_k, r_k]\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt;
-次询问 &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; 在 &lt;span
-class=&#34;math inline&#34;&gt;\(U[x_i, y_i]\)&lt;/span&gt;
-中的出现次数。&lt;strong&gt;数据结构优化KMP。&lt;/strong&gt;
-询问可以拆成两个前缀的答案之差，考虑对一个前缀的查询，设它在 &lt;span
+class=&#34;math inline&#34;&gt;\(\min\{pos-len\}\)&lt;/span&gt;，然后线段树上二分。&lt;/p&gt;
+&lt;h2
+id=&#34;cf1098f-ж-function&#34;&gt;&lt;a href = &#34;https://www.luogu.com.cn/problem/CF1098F&#34;&gt;CF1098F
+Ж-function&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;多次询问 &lt;span class=&#34;math inline&#34;&gt;\(f(l, r)\)&lt;/span&gt; 表示子串 &lt;span
+class=&#34;math inline&#34;&gt;\(s[l, r]\)&lt;/span&gt; 每个后缀与该子串的 lcp 的和。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;思路同上，用 HLD 优化暴力跳的过程，拆到重链上变成一个三维偏序，然后用
+CDQ 分治做。&lt;/p&gt;
+&lt;h2 id=&#34;牛客多校6-l-striking-string-problem&#34;&gt;&lt;a
+href=&#34;https://ac.nowcoder.com/acm/contest/33191/L&#34;&gt;2022牛客多校6 L
+Striking String Problem&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定串 &lt;span class=&#34;math inline&#34;&gt;\(S, T\)&lt;/span&gt;，令 &lt;span
+class=&#34;math inline&#34;&gt;\(U = S[l_1, r_1] + S[l_2, r_2] + \dots + S[l_k,
+r_k]\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; 次询问 &lt;span
+class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; 在 &lt;span class=&#34;math inline&#34;&gt;\(U[x_i,
+y_i]\)&lt;/span&gt; 中的出现次数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;数据结构优化KMP。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;询问可以拆成两个前缀的答案之差，考虑对一个前缀的查询，设它在 &lt;span
 class=&#34;math inline&#34;&gt;\(S[l_i, r_i]\)&lt;/span&gt; 里，预处理前 &lt;span
 class=&#34;math inline&#34;&gt;\(i-1\)&lt;/span&gt; 的答案，设 &lt;span
 class=&#34;math inline&#34;&gt;\(\operatorname{query}(i, p)\)&lt;/span&gt; 表示右端点在
 &lt;span class=&#34;math inline&#34;&gt;\([l_i, l_i+p)\)&lt;/span&gt; 的答案，完全落在 &lt;span
-class=&#34;math inline&#34;&gt;\(S[l, r]\)&lt;/span&gt; 内的答案可以预处理前缀和。 跨过
-&lt;span class=&#34;math inline&#34;&gt;\(l_i\)&lt;/span&gt; 的答案，设超出长度为 &lt;span
-class=&#34;math inline&#34;&gt;\(D\)&lt;/span&gt;，需要满足 &lt;span
+class=&#34;math inline&#34;&gt;\(S[l, r]\)&lt;/span&gt; 内的答案可以预处理前缀和。&lt;/p&gt;
+&lt;p&gt;跨过 &lt;span class=&#34;math inline&#34;&gt;\(l_i\)&lt;/span&gt; 的答案，设超出长度为
+&lt;span class=&#34;math inline&#34;&gt;\(D\)&lt;/span&gt;，需要满足 &lt;span
 class=&#34;math inline&#34;&gt;\(D+p \geq |T|, D+\operatorname{lcp}(S[l:], T[D+1:])
 \geq |T|\)&lt;/span&gt;，对于同一个 &lt;span
 class=&#34;math inline&#34;&gt;\(D\)&lt;/span&gt;，&lt;span
 class=&#34;math inline&#34;&gt;\(S[l:]\)&lt;/span&gt;
-要满足的条件是后缀树上的一个子树。对 &lt;span
-class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; 的 kmp
+要满足的条件是后缀树上的一个子树。&lt;/p&gt;
+&lt;p&gt;对 &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; 的 kmp
 失配树建可持久化线段树，区间修改单点查询。满足条件的 &lt;span
 class=&#34;math inline&#34;&gt;\(D\)&lt;/span&gt; 是失配树上的一个祖孙链，需要知道 &lt;span
 class=&#34;math inline&#34;&gt;\(S[l_1, r_1]+\dots+S[l_{i-1}, r_{i-1}]\)&lt;/span&gt; 和
 &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;
 的匹配长度，这个可以预处理，分匹配完全在 &lt;span
 class=&#34;math inline&#34;&gt;\(S[l, r]\)&lt;/span&gt;
-和跨左端点讨论一下，后者还是在失配树上用线段树搞一下。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/CF700E&#34;&gt;CF700E Cool
-Slogans&lt;/a&gt; 给定字符串 &lt;span
-class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，求字符串序列 &lt;span
+和跨左端点讨论一下，后者还是在失配树上用线段树搞一下。&lt;/p&gt;
+&lt;h2 id=&#34;cf700e-cool-slogans&#34;&gt;&lt;a
+href=&#34;https://www.luogu.com.cn/problem/CF700E&#34;&gt;CF700E Cool
+Slogans&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定字符串 &lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，求字符串序列 &lt;span
 class=&#34;math inline&#34;&gt;\(s_1, s_2, \dots, s_k\)&lt;/span&gt; 的最大长度，满足
 &lt;span class=&#34;math inline&#34;&gt;\(s_i\)&lt;/span&gt; 是 &lt;span
 class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt; 的子串，并且 &lt;span
 class=&#34;math inline&#34;&gt;\(s_{i-1}\)&lt;/span&gt; 在 &lt;span
-class=&#34;math inline&#34;&gt;\(s_i\)&lt;/span&gt;
-中出现至少两次。&lt;strong&gt;关键思路是，转换成前一个串是后一个串的
-border&lt;/strong&gt;。然后在 parent 树上从上往下
-dp，dp值加1的条件是dp值为当前值的最短串在当前串中出现了2次，用线段树合并维护endpos集合即可。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/CF1063F&#34;&gt;CF1063F String
-Journey&lt;/a&gt; 给定字符串 &lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，从 &lt;span
+class=&#34;math inline&#34;&gt;\(s_i\)&lt;/span&gt; 中出现至少两次。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;关键思路是，转换成前一个串是后一个串的 border&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;然后在 parent 树上从上往下
+dp，dp值加1的条件是dp值为当前值的最短串在当前串中出现了2次，用线段树合并维护endpos集合即可。&lt;/p&gt;
+&lt;h2 id=&#34;cf1063f-string-journey&#34;&gt;&lt;a
+href=&#34;https://www.luogu.com.cn/problem/CF1063F&#34;&gt;CF1063F String
+Journey&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定字符串 &lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，从 &lt;span
 class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;
-中按顺序拿出一些不相交的子串，使得前一个串是后一个串的真子串，求最多的数量。&lt;strong&gt;观察1：存在答案，len是1,2,3…&lt;/strong&gt;，在这个前提下，设
-&lt;span class=&#34;math inline&#34;&gt;\(dp_i\)&lt;/span&gt; 表示存在以 &lt;span
+中按顺序拿出一些不相交的子串，使得前一个串是后一个串的真子串，求最多的数量。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;观察1：存在答案，len是1,2,3…&lt;/strong&gt;，在这个前提下，设 &lt;span
+class=&#34;math inline&#34;&gt;\(dp_i\)&lt;/span&gt; 表示存在以 &lt;span
 class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 结尾的长度为 &lt;span
-class=&#34;math inline&#34;&gt;\(dp_i\)&lt;/span&gt; 的序列；&lt;strong&gt;观察2: dp(i) &amp;lt;=
-dp(i-1)+1&lt;/strong&gt;，这是由于将 &lt;span
+class=&#34;math inline&#34;&gt;\(dp_i\)&lt;/span&gt; 的序列；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;观察2: dp(i) &amp;lt;= dp(i-1)+1&lt;/strong&gt;，这是由于将 &lt;span
 class=&#34;math inline&#34;&gt;\(dp_{i+1}\)&lt;/span&gt;
 那个方案中每个字符串末尾去掉一个字符可以构造出一个 &lt;span
 class=&#34;math inline&#34;&gt;\(dp_i\)&lt;/span&gt; 的方案。于是可以每次从 &lt;span
 class=&#34;math inline&#34;&gt;\(dp_{i-1}+1\)&lt;/span&gt; 倒着枚举并且用倍增+线段树
 check 一个区间是否存在某个位置 dp &amp;gt;= k，显然是 &lt;span
-class=&#34;math inline&#34;&gt;\(O(n\log n)\)&lt;/span&gt; 的。&lt;/li&gt;
-&lt;/ul&gt;
+class=&#34;math inline&#34;&gt;\(O(n\log n)\)&lt;/span&gt; 的。&lt;/p&gt;
 - https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/ - CC BY-NC-SA 4.0</description>
         </item>
     

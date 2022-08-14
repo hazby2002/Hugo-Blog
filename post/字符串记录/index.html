@@ -48,8 +48,6 @@
 
 
 
-  <script src="/js/toc.js"></script>
-
 
 
 
@@ -238,11 +236,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 </div><div id="extraContainer" class="extra-container">
     
     
-    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
-
-
-</div>
-    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -405,80 +398,107 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    <ul>
-<li><a href = "https://www.luogu.com.cn/problem/P5576">P5576
-[CmdOI2019]口头禅</a>
-给定一堆字符串，多次询问<strong>区间字符串最长公共子串</strong>。
-广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。</li>
-<li><a href = "https://www.luogu.com.cn/problem/P4482">P4482
-[BJWC2018]Border 的四种求法</a>
-多次询问字符串<strong>区间border</strong>。
-<strong>parent树上链分治。</strong>先考虑 <span
-class="math inline">\(node_r\)</span> 暴力向上跳，找 pos
+                    <h2 id="p6292-区间本质不同子串个数"><a
+href="https://www.luogu.com.cn/problem/P6292">P6292
+区间本质不同子串个数</a></h2>
+<blockquote>
+<p>给定字符串，多次询问区间本质不同子串数</p>
+</blockquote>
+<p>类似区间数颜色，将询问离线之后，移动右端点，维护左端点的答案，每次修改access一下，是一个区间加区间求和。</p>
+<h2
+id="p5576-cmdoi2019口头禅"><a href = "https://www.luogu.com.cn/problem/P5576">P5576
+[CmdOI2019]口头禅</a></h2>
+<blockquote>
+<p>给定一堆字符串，多次询问<strong>区间字符串最长公共子串</strong>。</p>
+</blockquote>
+<p>广义SAM，用set维护子树内有的连续区间，自底向上启发式合并，增加区间时在线段树上查找可以回答的询问，并且将该询问删除。由于自底向上，保证len越来越小，所以回答完就可以删除。</p>
+<h2
+id="p4482-bjwc2018border-的四种求法"><a href = "https://www.luogu.com.cn/problem/P4482">P4482
+[BJWC2018]Border 的四种求法</a></h2>
+<blockquote>
+<p>多次询问字符串<strong>区间border</strong>。</p>
+</blockquote>
+<p><strong>parent树上链分治。</strong></p>
+<p>先考虑 <span class="math inline">\(node_r\)</span> 暴力向上跳，找 pos
 集合区间最大值的方法。HLD 之后把跳的过程拆到重链上。利用轻子树大小和为
 <span class="math inline">\(O(n\log n)\)</span>，每条重链处理，要求
-<span class="math inline">\(pos - len &lt; L\)</span>，线段树以 <span
+<span class="math inline">\(pos-len &lt; L\)</span>，线段树以 <span
 class="math inline">\(pos\)</span> 为下标，维护 <span
-class="math inline">\(\min\{pos-len\}\)</span>，然后线段树上二分。</li>
-<li><a href = "https://www.luogu.com.cn/problem/CF1098F">CF1098F
-Ж-function</a> 多次询问 <span class="math inline">\(f(l, r)\)</span>
-表示子串 <span class="math inline">\(s[l, r]\)</span> 每个后缀与该子串的
-lcp 的和。 思路同上，用 HLD
-优化暴力跳的过程，拆到重链上变成一个三维偏序，然后用 CDQ 分治做。</li>
-<li><a href="https://ac.nowcoder.com/acm/contest/33191/L">2022牛客多校6
-L Striking String Problem</a> 给定串 <span class="math inline">\(S,
-T\)</span>，令 <span class="math inline">\(U = S[l_1, r_1] + S[l_2, r_2]
-+ \dots + S[l_k, r_k]\)</span>，<span class="math inline">\(q\)</span>
-次询问 <span class="math inline">\(T\)</span> 在 <span
-class="math inline">\(U[x_i, y_i]\)</span>
-中的出现次数。<strong>数据结构优化KMP。</strong>
-询问可以拆成两个前缀的答案之差，考虑对一个前缀的查询，设它在 <span
+class="math inline">\(\min\{pos-len\}\)</span>，然后线段树上二分。</p>
+<h2
+id="cf1098f-ж-function"><a href = "https://www.luogu.com.cn/problem/CF1098F">CF1098F
+Ж-function</a></h2>
+<blockquote>
+<p>多次询问 <span class="math inline">\(f(l, r)\)</span> 表示子串 <span
+class="math inline">\(s[l, r]\)</span> 每个后缀与该子串的 lcp 的和。</p>
+</blockquote>
+<p>思路同上，用 HLD 优化暴力跳的过程，拆到重链上变成一个三维偏序，然后用
+CDQ 分治做。</p>
+<h2 id="牛客多校6-l-striking-string-problem"><a
+href="https://ac.nowcoder.com/acm/contest/33191/L">2022牛客多校6 L
+Striking String Problem</a></h2>
+<blockquote>
+<p>给定串 <span class="math inline">\(S, T\)</span>，令 <span
+class="math inline">\(U = S[l_1, r_1] + S[l_2, r_2] + \dots + S[l_k,
+r_k]\)</span>，<span class="math inline">\(q\)</span> 次询问 <span
+class="math inline">\(T\)</span> 在 <span class="math inline">\(U[x_i,
+y_i]\)</span> 中的出现次数。</p>
+</blockquote>
+<p><strong>数据结构优化KMP。</strong></p>
+<p>询问可以拆成两个前缀的答案之差，考虑对一个前缀的查询，设它在 <span
 class="math inline">\(S[l_i, r_i]\)</span> 里，预处理前 <span
 class="math inline">\(i-1\)</span> 的答案，设 <span
 class="math inline">\(\operatorname{query}(i, p)\)</span> 表示右端点在
 <span class="math inline">\([l_i, l_i+p)\)</span> 的答案，完全落在 <span
-class="math inline">\(S[l, r]\)</span> 内的答案可以预处理前缀和。 跨过
-<span class="math inline">\(l_i\)</span> 的答案，设超出长度为 <span
-class="math inline">\(D\)</span>，需要满足 <span
+class="math inline">\(S[l, r]\)</span> 内的答案可以预处理前缀和。</p>
+<p>跨过 <span class="math inline">\(l_i\)</span> 的答案，设超出长度为
+<span class="math inline">\(D\)</span>，需要满足 <span
 class="math inline">\(D+p \geq |T|, D+\operatorname{lcp}(S[l:], T[D+1:])
 \geq |T|\)</span>，对于同一个 <span
 class="math inline">\(D\)</span>，<span
 class="math inline">\(S[l:]\)</span>
-要满足的条件是后缀树上的一个子树。对 <span
-class="math inline">\(T\)</span> 的 kmp
+要满足的条件是后缀树上的一个子树。</p>
+<p>对 <span class="math inline">\(T\)</span> 的 kmp
 失配树建可持久化线段树，区间修改单点查询。满足条件的 <span
 class="math inline">\(D\)</span> 是失配树上的一个祖孙链，需要知道 <span
 class="math inline">\(S[l_1, r_1]+\dots+S[l_{i-1}, r_{i-1}]\)</span> 和
 <span class="math inline">\(T\)</span>
 的匹配长度，这个可以预处理，分匹配完全在 <span
 class="math inline">\(S[l, r]\)</span>
-和跨左端点讨论一下，后者还是在失配树上用线段树搞一下。</li>
-<li><a href="https://www.luogu.com.cn/problem/CF700E">CF700E Cool
-Slogans</a> 给定字符串 <span
-class="math inline">\(S\)</span>，求字符串序列 <span
+和跨左端点讨论一下，后者还是在失配树上用线段树搞一下。</p>
+<h2 id="cf700e-cool-slogans"><a
+href="https://www.luogu.com.cn/problem/CF700E">CF700E Cool
+Slogans</a></h2>
+<blockquote>
+<p>给定字符串 <span class="math inline">\(S\)</span>，求字符串序列 <span
 class="math inline">\(s_1, s_2, \dots, s_k\)</span> 的最大长度，满足
 <span class="math inline">\(s_i\)</span> 是 <span
 class="math inline">\(S\)</span> 的子串，并且 <span
 class="math inline">\(s_{i-1}\)</span> 在 <span
-class="math inline">\(s_i\)</span>
-中出现至少两次。<strong>关键思路是，转换成前一个串是后一个串的
-border</strong>。然后在 parent 树上从上往下
-dp，dp值加1的条件是dp值为当前值的最短串在当前串中出现了2次，用线段树合并维护endpos集合即可。</li>
-<li><a href="https://www.luogu.com.cn/problem/CF1063F">CF1063F String
-Journey</a> 给定字符串 <span class="math inline">\(S\)</span>，从 <span
+class="math inline">\(s_i\)</span> 中出现至少两次。</p>
+</blockquote>
+<p><strong>关键思路是，转换成前一个串是后一个串的 border</strong>。</p>
+<p>然后在 parent 树上从上往下
+dp，dp值加1的条件是dp值为当前值的最短串在当前串中出现了2次，用线段树合并维护endpos集合即可。</p>
+<h2 id="cf1063f-string-journey"><a
+href="https://www.luogu.com.cn/problem/CF1063F">CF1063F String
+Journey</a></h2>
+<blockquote>
+<p>给定字符串 <span class="math inline">\(S\)</span>，从 <span
 class="math inline">\(S\)</span>
-中按顺序拿出一些不相交的子串，使得前一个串是后一个串的真子串，求最多的数量。<strong>观察1：存在答案，len是1,2,3…</strong>，在这个前提下，设
-<span class="math inline">\(dp_i\)</span> 表示存在以 <span
+中按顺序拿出一些不相交的子串，使得前一个串是后一个串的真子串，求最多的数量。</p>
+</blockquote>
+<p><strong>观察1：存在答案，len是1,2,3…</strong>，在这个前提下，设 <span
+class="math inline">\(dp_i\)</span> 表示存在以 <span
 class="math inline">\(i\)</span> 结尾的长度为 <span
-class="math inline">\(dp_i\)</span> 的序列；<strong>观察2: dp(i) &lt;=
-dp(i-1)+1</strong>，这是由于将 <span
+class="math inline">\(dp_i\)</span> 的序列；</p>
+<p><strong>观察2: dp(i) &lt;= dp(i-1)+1</strong>，这是由于将 <span
 class="math inline">\(dp_{i+1}\)</span>
 那个方案中每个字符串末尾去掉一个字符可以构造出一个 <span
 class="math inline">\(dp_i\)</span> 的方案。于是可以每次从 <span
 class="math inline">\(dp_{i-1}+1\)</span> 倒着枚举并且用倍增+线段树
 check 一个区间是否存在某个位置 dp &gt;= k，显然是 <span
-class="math inline">\(O(n\log n)\)</span> 的。</li>
-</ul>
+class="math inline">\(O(n\log n)\)</span> 的。</p>
 
                     
                     <HR width="100%" id="EOF">
