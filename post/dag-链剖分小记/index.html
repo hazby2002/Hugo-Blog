@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>DAG 链剖分小记</title>
+<title>SAM-DAg 链剖分小记</title>
 
 
 
@@ -24,26 +24,44 @@
 
 
 
-<script src="/vendor/js/jquery.min.js" ></script>
-<script src="/vendor/js/popper.min.js" ></script>
-<script src="/vendor/js/bootstrap.min.js" ></script>
-<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
 <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
-<script src="/vendor/js/vue.min.js" ></script>
+
+
+  
 
 
 
 
 
 
-<link rel="stylesheet" href="https://blog.asukakyle.top/scss/journal.min.b004aa19808631cfff794a1a3d1399e3a76e24a400954e0d6beb974a6de22835.css" integrity="sha256-sASqGYCGMc//eUoaPROZ46duJKQAlU4Na&#43;uXSm3iKDU=" media="screen">
+<link rel="stylesheet" href="/scss/journal.min.8e28ea12f6e17fa31de20b68201547b6843cb5deca28115ad2f58c2a899823e3.css" integrity="sha256-jijqEvbhf6Md4gtoIBVHtoQ8td7KKBFa0vWMKomYI&#43;M=" media="screen">
 
 
 
-<script src="https://blog.asukakyle.top/js/loadCSS.js"></script>
+<script src="/vendor/js/loadCSS.js"></script>
 <script>
-  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+  loadCSS("https://fonts.googleapis.com/css?family=Fira+Mono|Material+Icons");
 </script>
+
+
+
+
+
+
+  <script src="/js/toc.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -118,23 +136,9 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
 <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
 
-
-  
-    <script src="https://blog.asukakyle.top/js/toc-collapse.js"></script>
-  
-
-
-
-
-
-
-
-
-
-
 </head>
 <body>
-    	<div id="app"><div ref="sideContainer" class="side-container">
+    	<div id="app"><div id="sideContainer" class="side-container">
     
     <a class="a-block nav-head false" href="https://blog.asukakyle.top">
     
@@ -219,7 +223,7 @@
 
     <div class="nav-footer">
         
-Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
 <br>
 移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
 <br>
@@ -231,11 +235,108 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 
     </div>
     
-</div><div ref="extraContainer" class="extra-container">
+</div><div id="extraContainer" class="extra-container">
     
     
-    <div class="toc animated-visibility">
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
 
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e7%ae%97%e6%b3%95%e7%ae%80%e8%bf%b0" onclick="onNavClick(`#算法简述-nav`)" id="算法简述-nav">
+									算法简述
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bb%a3%e7%a0%81" onclick="onNavClick(`#代码-nav`)" id="代码-nav">
+									代码
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e9%a2%84%e5%a4%84%e7%90%86" onclick="onNavClick(`#预处理-nav`)" id="预处理-nav">
+									预处理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%9a%e4%bd%8d" onclick="onNavClick(`#定位-nav`)" id="定位-nav">
+									定位
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
 
 </div>
     
@@ -249,7 +350,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
         
     </div>
 </div>
-<div class="single-column-drawer-container" ref="drawer"
+<div class="single-column-drawer-container" id="drawer"
      v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
     <div class="drawer-content">
         <div class="drawer-menu">
@@ -322,29 +423,126 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
             <div class="toc">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e7%ae%97%e6%b3%95%e7%ae%80%e8%bf%b0" onclick="onNavClick(`#算法简述-nav`)" id="算法简述-nav">
+									算法简述
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bb%a3%e7%a0%81" onclick="onNavClick(`#代码-nav`)" id="代码-nav">
+									代码
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e9%a2%84%e5%a4%84%e7%90%86" onclick="onNavClick(`#预处理-nav`)" id="预处理-nav">
+									预处理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%9a%e4%bd%8d" onclick="onNavClick(`#定位-nav`)" id="定位-nav">
+									定位
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
 </div>
             
         </div>
     </div>
 </div>
 <transition name="fade">
-    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
 </transition>
-<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
-    <div ref="navBackground" class="nav-background"></div>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
     <div class="container container-narrow nav-content">
         <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
             <i class="material-icons">
                 menu
             </i>
         </button>
-        <a ref="navTitle" class="navbar-brand" href="https://blog.asukakyle.top">
+        <a id="navTitle" class="navbar-brand" href="https://blog.asukakyle.top">
             HolyK&#39;s Blog
         </a>
         
     </div>
 </nav>
-<div class="single-column-header-container" ref="pageHead"
+<div class="single-column-header-container" id="pageHead"
      v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
     <a href="https://blog.asukakyle.top">
         <div class="single-column-header-title">HolyK&#39;s Blog</div>
@@ -356,7 +554,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 </div>
 
             <div id="content">
-<div ref="streamContainer" class="stream-container">
+                <div id="streamContainer" class="stream-container">
+
     <div class="post-list-container post-list-container-shadow">
         <div class="post">
             
@@ -368,10 +567,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                     style="background-image: url('http://www.dmoe.cc/random.php')"
                 
             >
-            
-            
                 <div class="post-title">
-                    DAG 链剖分小记
+                    SAM-DAg 链剖分小记
                     
                     <div class="post-meta">
                         
@@ -380,10 +577,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                         </time>
                         
 
-                        
-                            <i class="material-icons" style="">folder</i>
-                                <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0">算法笔记</a>
-                                &nbsp;
                         
 
                         
@@ -396,21 +589,90 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    <p>这个东西出自 <a
-href="https://uoj.ac/problem/697">UOJ697【候选队互测2022】广为人知题</a>，可能是比较新的科技。</p>
-<p>这里，对每个结点 <span class="math inline">\(v\)</span>，记以 <span
-class="math inline">\(v\)</span> 为起点的路径有 <span
-class="math inline">\(f_v\)</span> 条，以 <span
-class="math inline">\(v\)</span> 为终点的有 <span
-class="math inline">\(g_v\)</span> 条。则令 <span
-class="math inline">\((u,v)\)</span> 为重边当且仅当 <span
-class="math inline">\(2f_v&gt;f_u\)</span> 且 <span
-class="math inline">\(2g_u&gt;g_v\)</span>。则可以发现一条路径上至多经过
-<span class="math inline">\(O(\log n)\)</span> 条轻边。</p>
+                    <h2 id="算法简述">算法简述</h2>
+<p>这个东西出现在 <a
+href="https://uoj.ac/problem/697">UOJ697【候选队互测2022】广为人知题</a>，也许是比较新的科技。</p>
+<p>在 SAM 的 DAg 上，对每个结点 <span
+class="math inline">\(x\)</span>，记以 <span
+class="math inline">\(x\)</span> 为终点的有 <span
+class="math inline">\(f_x\)</span> 条，以 <span
+class="math inline">\(x\)</span> 为起点的路径有 <span
+class="math inline">\(g_x\)</span> 条。则令 <span
+class="math inline">\((x,y)\)</span> 为重边当且仅当 <span
+class="math inline">\(2f_x&gt;f_y, 2g_y&gt;g_x\)</span>。</p>
+<p>对于一条轻边，<span class="math inline">\(2g_y \leq g_x\)</span> 或
+<span class="math inline">\(2f_x \leq f_y\)</span>，意味着 <span
+class="math inline">\(g\)</span> 除以 2 或者 <span
+class="math inline">\(f\)</span> 乘 2。在一般 DAG 上 <span
+class="math inline">\(g, f\)</span> 关于 <span
+class="math inline">\(n\)</span> 是指数级别的，但是 <strong>在 SAM
+上</strong> 是 <span class="math inline">\(O(poly(n))\)</span>
+级别的，所以一条路径上至多有 <span class="math inline">\(O(\log
+n)\)</span> 条轻边，可以将一条路径拆分成 <span
+class="math inline">\(O(\log n)\)</span> 条重链。</p>
+<h2 id="代码">代码</h2>
+<h3 id="预处理">预处理</h3>
+<p>dfs序从0开始，同一条重链上的pos是连续的，ht是到重链底端的距离，从零开始。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> in<span class="op">[</span>N<span class="op">],</span> id<span class="op">[</span>N<span class="op">],</span> dfn<span class="op">,</span> pos<span class="op">[</span>N<span class="op">],</span> ht<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dag_hld<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>LL<span class="op">&gt;</span> f<span class="op">(</span>cnt <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">),</span> g<span class="op">(</span>cnt <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> p<span class="op">(</span>cnt <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>iota<span class="op">(</span>p<span class="op">.</span>begin<span class="op">(),</span> p<span class="op">.</span>end<span class="op">(),</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>sort<span class="op">(</span>p<span class="op">.</span>begin<span class="op">(),</span> p<span class="op">.</span>end<span class="op">(),</span> <span class="op">[&amp;](</span><span class="dt">int</span> i<span class="op">,</span> <span class="dt">int</span> j<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> len<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> len<span class="op">[</span>j<span class="op">];</span> <span class="op">});</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">:</span> p<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">26</span><span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>ch<span class="op">[</span>i<span class="op">][</span>j<span class="op">])</span> f<span class="op">[</span>ch<span class="op">[</span>i<span class="op">][</span>j<span class="op">]]</span> <span class="op">+=</span> f<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> cnt<span class="op">;</span> i <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">;</span> i<span class="op">--)</span> <span class="op">{</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> p<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">26</span><span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>ch<span class="op">[</span>x<span class="op">][</span>j<span class="op">])</span> g<span class="op">[</span>x<span class="op">]</span> <span class="op">+=</span> g<span class="op">[</span>ch<span class="op">[</span>x<span class="op">][</span>j<span class="op">]];</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>function<span class="op">&lt;</span><span class="dt">void</span><span class="op">(</span><span class="dt">int</span><span class="op">)&gt;</span> dfs <span class="op">=</span> <span class="op">[&amp;](</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    in<span class="op">[</span>x<span class="op">]</span> <span class="op">=</span> dfn<span class="op">++;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    id<span class="op">[</span>in<span class="op">[</span>x<span class="op">]]</span> <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">26</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="dt">int</span> y <span class="op">=</span> ch<span class="op">[</span>x<span class="op">][</span>i<span class="op">];</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>y <span class="op">&amp;&amp;</span> <span class="dv">2</span> <span class="op">*</span> f<span class="op">[</span>x<span class="op">]</span> <span class="op">&gt;</span> f<span class="op">[</span>y<span class="op">]</span> <span class="op">&amp;&amp;</span> <span class="dv">2</span> <span class="op">*</span> g<span class="op">[</span>y<span class="op">]</span> <span class="op">&gt;</span> g<span class="op">[</span>x<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        dfs<span class="op">(</span>y<span class="op">);</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        pos<span class="op">[</span>x<span class="op">]</span> <span class="op">=</span> pos<span class="op">[</span>y<span class="op">]</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        ht<span class="op">[</span>x<span class="op">]</span> <span class="op">=</span> ht<span class="op">[</span>y<span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">:</span> p<span class="op">)</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>i <span class="op">||</span> <span class="op">!</span>in<span class="op">[</span>i<span class="op">])</span> dfs<span class="op">(</span>i<span class="op">);</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="定位">定位</h3>
+<p>定位 <span class="math inline">\(S[l, r)\)</span>。</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> o <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> match <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>l <span class="op">&lt;</span> r<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  o <span class="op">=</span> ch<span class="op">[</span>o<span class="op">][</span>s<span class="op">[</span>l<span class="op">]</span> <span class="op">-</span> <span class="ch">&#39;a&#39;</span><span class="op">];</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>o<span class="op">)</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> k <span class="op">=</span> <span class="bu">std::</span>min<span class="op">({</span>ht<span class="op">[</span>o<span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> r <span class="op">-</span> l<span class="op">,</span> sa<span class="op">.</span>lcp<span class="op">(</span>l<span class="op">,</span> pos<span class="op">[</span>o<span class="op">])});</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// interval [in[o], in[o] + k)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  l <span class="op">+=</span> k<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  match <span class="op">+=</span> k<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  o <span class="op">=</span> id<span class="op">[</span>in<span class="op">[</span>o<span class="op">]</span> <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span><span class="op">];</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<!-- 
+## 例题
+### [UOJ #697. 【候选队互测2022】广为人知题](https://uoj.ac/problem/697)
+
+### [UOJ #752. 【UNR #6】Border 的第五种求法](https://uoj.ac/problem/752) -->
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2022-07-18</p>
+		    <p style="color:#777;">最后修改于 2022-08-14</p>
                     
                 </div>
             </div>
@@ -419,13 +681,13 @@ class="math inline">\(2g_u&gt;g_v\)</span>。则可以发现一条路径上至�
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="https://blog.asukakyle.top/post/emacs/">
-			下回<br>【置顶】Emacs 常用快捷键
+                <a class="newer-posts" href="/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/">
+			下回<br>字符串记录
                 </a>
                 
                 
                 
-                <a class="older-posts" href="https://blog.asukakyle.top/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/">
+                <a class="older-posts" href="/post/%E5%8D%8A%E5%9C%A8%E7%BA%BF%E5%8D%B7%E7%A7%AF%E5%B0%8F%E8%AE%B0/">
 			上回<br>（半）在线卷积小记
                 </a>
                 
@@ -439,13 +701,17 @@ class="math inline">\(2g_u&gt;g_v\)</span>。则可以发现一条路径上至�
 
 
 
+
+
+
             </div>
         </div>
     </div>
-</div>
 
+
+                    </div>
             </div><div id="single-column-footer">
-Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
 <br>
 移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
 <br>
@@ -456,106 +722,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 	
 </div>
             </div>
-    <script>
-let app;
-
-app = new Vue({
-    el: '#app',
-    data: {
-        scrollY: 0,
-        navOpacity: 0,
-        isDrawerOpen: false,
-        mounted: false,
-        isDarkMode: false
-    },
-    methods: {
-            sgn(t, x) {
-                let k = 1. / (1. - 2 * t);
-                if (x <= t) return 0;
-                else if (x >= 1 - t) return 1;
-                else {
-                    return k * (x - t);
-                }
-            },
-            handleScroll() {
-                this.scrollY = window.scrollY;
-                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
-                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
-
-                if (this.navOpacity >= 1) {
-                    navBackground.style.opacity = 1;
-                    navTitle.style.opacity = 1;
-                } else {
-                    navBackground.style.opacity = 0;
-                    navTitle.style.opacity = 0;
-                }
-            },
-            handleResize() {
-                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
-                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
-            },
-            navBarHeight() {
-                return this.$refs.navBar.offsetHeight;
-            },
-            pageHeadHeight() {
-                return this.$refs.pageHead.offsetHeight;
-            },
-            toggleDrawer() {
-                this.isDrawerOpen = !this.isDrawerOpen;
-                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
-            },
-            closeDrawer() {
-                this.isDrawerOpen = false;
-                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
-            },
-            toggleDarkMode() {
-                this.isDarkMode = !this.isDarkMode;
-                if (this.isDarkMode==true){
-                    document.cookie = "night=1;path=/";
-                    document.body.classList.add("night");
-                } else {
-                    document.cookie = "night=0;path=/";
-                    document.body.classList.remove("night");
-                }
-            }
-    },
-    created() {
-        window.addEventListener('scroll', this.handleScroll);
-        window.addEventListener('resize', this.handleResize);
-        window._nonDesktop = function () {
-            let check = false;
-            (function (a) {
-                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
-            })(navigator.userAgent || navigator.vendor || window.opera);
-            return check;
-        };
-        
-        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        if (night==""){
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                
-            }
-        }else{
-            
-            if (night=="1") {
-                this.toggleDarkMode();
-            }
-        }
-    },
-    mounted() {
-        this.handleScroll();
-        this.handleResize();
-        this.mounted = true;
-
-        
-    },
-    destroyed() {
-        window.removeEventListener('scroll', this.handleScroll);
-        window.removeEventListener('resize', this.handleResize);
-    }
-});
-</script>
-
-<script src="https://blog.asukakyle.top/js/journal.js"></script>
+    
+    <script src="/js/journal.js"></script>
     </body>
 </html>
