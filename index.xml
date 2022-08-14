@@ -181,6 +181,31 @@ class=&#34;math inline&#34;&gt;\(S[l_1, r_1]+\dots+S[l_{i-1}, r_{i-1}]\)&lt;/spa
 的匹配长度，这个可以预处理，分匹配完全在 &lt;span
 class=&#34;math inline&#34;&gt;\(S[l, r]\)&lt;/span&gt;
 和跨左端点讨论一下，后者还是在失配树上用线段树搞一下。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/CF700E&#34;&gt;CF700E Cool
+Slogans&lt;/a&gt; 给定字符串 &lt;span
+class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，求字符串序列 &lt;span
+class=&#34;math inline&#34;&gt;\(s_1, s_2, \dots, s_k\)&lt;/span&gt; 的最大长度，满足
+&lt;span class=&#34;math inline&#34;&gt;\(s_i\)&lt;/span&gt; 是 &lt;span
+class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt; 的子串，并且 &lt;span
+class=&#34;math inline&#34;&gt;\(s_{i-1}\)&lt;/span&gt; 在 &lt;span
+class=&#34;math inline&#34;&gt;\(s_i\)&lt;/span&gt;
+中出现至少两次。&lt;strong&gt;关键思路是，转换成前一个串是后一个串的
+border&lt;/strong&gt;。然后在 parent 树上从上往下
+dp，dp值加1的条件是dp值为当前值的最短串在当前串中出现了2次，用线段树合并维护endpos集合即可。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/CF1063F&#34;&gt;CF1063F String
+Journey&lt;/a&gt; 给定字符串 &lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，从 &lt;span
+class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;
+中按顺序拿出一些不相交的子串，使得前一个串是后一个串的真子串，求最多的数量。&lt;strong&gt;观察1：存在答案，len是1,2,3…&lt;/strong&gt;，在这个前提下，设
+&lt;span class=&#34;math inline&#34;&gt;\(dp_i\)&lt;/span&gt; 表示存在以 &lt;span
+class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 结尾的长度为 &lt;span
+class=&#34;math inline&#34;&gt;\(dp_i\)&lt;/span&gt; 的序列；&lt;strong&gt;观察2: dp(i) &amp;lt;=
+dp(i-1)+1&lt;/strong&gt;，这是由于将 &lt;span
+class=&#34;math inline&#34;&gt;\(dp_{i+1}\)&lt;/span&gt;
+那个方案中每个字符串末尾去掉一个字符可以构造出一个 &lt;span
+class=&#34;math inline&#34;&gt;\(dp_i\)&lt;/span&gt; 的方案。于是可以每次从 &lt;span
+class=&#34;math inline&#34;&gt;\(dp_{i-1}+1\)&lt;/span&gt; 倒着枚举并且用倍增+线段树
+check 一个区间是否存在某个位置 dp &amp;gt;= k，显然是 &lt;span
+class=&#34;math inline&#34;&gt;\(O(n\log n)\)&lt;/span&gt; 的。&lt;/li&gt;
 &lt;/ul&gt;
 - https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/ - CC BY-NC-SA 4.0</description>
         </item>

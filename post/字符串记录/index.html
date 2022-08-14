@@ -453,11 +453,36 @@ class="math inline">\(S[l_1, r_1]+\dots+S[l_{i-1}, r_{i-1}]\)</span> 和
 的匹配长度，这个可以预处理，分匹配完全在 <span
 class="math inline">\(S[l, r]\)</span>
 和跨左端点讨论一下，后者还是在失配树上用线段树搞一下。</li>
+<li><a href="https://www.luogu.com.cn/problem/CF700E">CF700E Cool
+Slogans</a> 给定字符串 <span
+class="math inline">\(S\)</span>，求字符串序列 <span
+class="math inline">\(s_1, s_2, \dots, s_k\)</span> 的最大长度，满足
+<span class="math inline">\(s_i\)</span> 是 <span
+class="math inline">\(S\)</span> 的子串，并且 <span
+class="math inline">\(s_{i-1}\)</span> 在 <span
+class="math inline">\(s_i\)</span>
+中出现至少两次。<strong>关键思路是，转换成前一个串是后一个串的
+border</strong>。然后在 parent 树上从上往下
+dp，dp值加1的条件是dp值为当前值的最短串在当前串中出现了2次，用线段树合并维护endpos集合即可。</li>
+<li><a href="https://www.luogu.com.cn/problem/CF1063F">CF1063F String
+Journey</a> 给定字符串 <span class="math inline">\(S\)</span>，从 <span
+class="math inline">\(S\)</span>
+中按顺序拿出一些不相交的子串，使得前一个串是后一个串的真子串，求最多的数量。<strong>观察1：存在答案，len是1,2,3…</strong>，在这个前提下，设
+<span class="math inline">\(dp_i\)</span> 表示存在以 <span
+class="math inline">\(i\)</span> 结尾的长度为 <span
+class="math inline">\(dp_i\)</span> 的序列；<strong>观察2: dp(i) &lt;=
+dp(i-1)+1</strong>，这是由于将 <span
+class="math inline">\(dp_{i+1}\)</span>
+那个方案中每个字符串末尾去掉一个字符可以构造出一个 <span
+class="math inline">\(dp_i\)</span> 的方案。于是可以每次从 <span
+class="math inline">\(dp_{i-1}+1\)</span> 倒着枚举并且用倍增+线段树
+check 一个区间是否存在某个位置 dp &gt;= k，显然是 <span
+class="math inline">\(O(n\log n)\)</span> 的。</li>
 </ul>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2022-08-07</p>
+		    <p style="color:#777;">最后修改于 2022-08-14</p>
                     
                 </div>
             </div>
