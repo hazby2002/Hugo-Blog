@@ -55,7 +55,7 @@ CF1098F Ж-function 多次询问 \(f(l, r)\) 表示子串 \(s[l, r]\) 每个后�
       
       <guid>https://blog.asukakyle.top/post/dag-%E9%93%BE%E5%89%96%E5%88%86%E5%B0%8F%E8%AE%B0/</guid>
       <description>算法简述 这个东西出现在 UOJ697【候选队互测2022】广为人知题，也许是比较新的科技。
-在 SAM 的 DAg 上，对每个结点 \(x\)，记以 \(x\) 为终点的有 \(f_x\) 条，以 \(x\) 为起点的路径有 \(g_x\) 条。则令 \((x,y)\) 为重边当且仅当 \(2f_x&amp;gt;f_y, 2g_y&amp;gt;g_x\)。
+在 SAM 的 DAG 上，对每个结点 \(x\)，记以 \(x\) 为终点的有 \(f_x\) 条，以 \(x\) 为起点的路径有 \(g_x\) 条。则令 \((x,y)\) 为重边当且仅当 \(2f_x&amp;gt;f_y, 2g_y&amp;gt;g_x\)。
 对于一条轻边，\(2g_y \leq g_x\) 或 \(2f_x \leq f_y\)，意味着 \(g\) 除以 2 或者 \(f\) 乘 2。在一般 DAG 上 \(g, f\) 关于 \(n\) 是指数级别的，但是 在 SAM 上 是 \(O(poly(n))\) 级别的，所以一条路径上至多有 \(O(\log n)\) 条轻边，可以将一条路径拆分成 \(O(\log n)\) 条重链。
 代码 预处理 dfs序从0开始，同一条重链上的pos是连续的，ht是到重链底端的距离，从零开始。
 int in[N], id[N], dfn, pos[N], ht[N]; void dag_hld() { std::vector&amp;lt;LL&amp;gt; f(cnt + 1, 1), g(cnt + 1, 1); std::vector&amp;lt;int&amp;gt; p(cnt + 1); std::iota(p.</description>
