@@ -68,6 +68,7 @@ n)\)&lt;/span&gt;。&lt;/li&gt;
 class=&#34;math inline&#34;&gt;\(l=r\)&lt;/span&gt; 的时候返回 &lt;span
 class=&#34;math inline&#34;&gt;\(k\cdot l\)&lt;/span&gt;。&lt;/li&gt;
 &lt;/ul&gt;
+&lt;!-- 关于图的割集的快速判定 https://www.luogu.com.cn/blog/gyh20/solution-p5227 --&gt;
 - https://blog.asukakyle.top/post/notes/ - CC BY-NC-SA 4.0</description>
         </item>
     
@@ -234,6 +235,42 @@ class=&#34;math inline&#34;&gt;\(dp_i\)&lt;/span&gt; 的方案。于是可以每
 class=&#34;math inline&#34;&gt;\(dp_{i-1}+1\)&lt;/span&gt; 倒着枚举并且用倍增+线段树
 check 一个区间是否存在某个位置 dp &amp;gt;= k，显然是 &lt;span
 class=&#34;math inline&#34;&gt;\(O(n\log n)\)&lt;/span&gt; 的。&lt;/p&gt;
+&lt;h2
+id=&#34;p6095-jsoi2015串分割&#34;&gt;&lt;a href = &#34;https://www.luogu.com.cn/problem/P6095&#34;&gt;P6095
+[JSOI2015]串分割&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定只包含 &lt;span class=&#34;math inline&#34;&gt;\(1\cdots 9\)&lt;/span&gt;
+的数字环状串，要求切成 &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;
+段字符串，使得十进制表示下最大的数字最小。输出这个值。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;显然答案串长为 &lt;span class=&#34;math inline&#34;&gt;\(v = \lceil \frac{n}{k}
+\rceil\)&lt;/span&gt;，先求后缀数组，然后二分答案串的排名。断环成链，枚举
+&lt;span class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt; 个断点，每次能取 &lt;span
+class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt; 就取 &lt;span
+class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt;，不然就取 &lt;span
+class=&#34;math inline&#34;&gt;\(v-1\)&lt;/span&gt;，显然这样就是对的。&lt;/p&gt;
+&lt;h2 id=&#34;icpc2021-沈阳-m-string-problem&#34;&gt;&lt;a
+href=&#34;https://ac.nowcoder.com/acm/contest/24346/M&#34;&gt;ICPC2021 沈阳 M
+String Problem&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定字符串 &lt;span
+class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，求每个前缀的字典序最大的子串。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;昨晚有人问我这题怎么做，结果我原来现场会做现在反倒不会做了，回来详细说一下当时的做法。&lt;/p&gt;
+&lt;p&gt;显然一个字符串最大的子串是它的一个后缀，用起始位置 &lt;span
+class=&#34;math inline&#34;&gt;\(l\)&lt;/span&gt;
+表示，为了比较后缀大小，建出后缀数组，用排名 &lt;span
+class=&#34;math inline&#34;&gt;\(rank_l\)&lt;/span&gt; 来表示后缀 &lt;span
+class=&#34;math inline&#34;&gt;\(l\)&lt;/span&gt; 的大小。&lt;/p&gt;
+&lt;p&gt;显然只有前缀最大值能成为答案，而且答案的左端点是单调不降的。考虑用队列维护当前的前缀最大值，队首是当前的答案，如果队首比下一个小的话就弹掉。&lt;/p&gt;
+&lt;p&gt;这样可能会存在一个疑问，是否可能出现 &lt;span class=&#34;math inline&#34;&gt;\(l_1,
+l_2, l_3\)&lt;/span&gt; 满足 &lt;span class=&#34;math inline&#34;&gt;\([l_2, i]\)&lt;/span&gt; 是
+&lt;span class=&#34;math inline&#34;&gt;\([l_1, i]\)&lt;/span&gt; 的前缀，此时不会弹掉 &lt;span
+class=&#34;math inline&#34;&gt;\(l_1\)&lt;/span&gt;，但是 &lt;span
+class=&#34;math inline&#34;&gt;\([l_3, i]\)&lt;/span&gt; 更大，但是如果出现这种情况，由于
+&lt;span class=&#34;math inline&#34;&gt;\([l_2, i]\)&lt;/span&gt; 包含了 &lt;span
+class=&#34;math inline&#34;&gt;\([l_3, i]\)&lt;/span&gt;，后者必然在之前就出现过，&lt;span
+class=&#34;math inline&#34;&gt;\(l_2\)&lt;/span&gt; 必不可能成为前缀最大值。&lt;/p&gt;
 - https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/ - CC BY-NC-SA 4.0</description>
         </item>
     
