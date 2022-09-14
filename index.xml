@@ -256,7 +256,7 @@ String Problem&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;给定字符串 &lt;span
 class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，求每个前缀的字典序最大的子串。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;昨晚有人问我这题怎么做，结果我原来现场会做现在反倒不会做了，回来详细说一下当时的做法。&lt;/p&gt;
+&lt;p&gt;昨晚有人问我这题怎么做，回来详细说一下当时的做法。&lt;/p&gt;
 &lt;p&gt;显然一个字符串最大的子串是它的一个后缀，用起始位置 &lt;span
 class=&#34;math inline&#34;&gt;\(l\)&lt;/span&gt;
 表示，为了比较后缀大小，建出后缀数组，用排名 &lt;span
