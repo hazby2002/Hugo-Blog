@@ -46,12 +46,14 @@ CF1098F Ж-function 多次询问 \(f(l, r)\) 表示子串 \(s[l, r]\) 每个后�
     </item>
     
     <item>
-      <title>Ynoi 等 lxl 题做题记录</title>
+      <title>DS 记录</title>
       <link>https://blog.asukakyle.top/post/ynoi/</link>
       <pubDate>Fri, 01 Apr 2022 12:59:27 +0800</pubDate>
       
       <guid>https://blog.asukakyle.top/post/ynoi/</guid>
       <description>前言 题目是乱序的。因为太菜了不会卡常，所以很多题是九十几分。
+UPD. 2022.09.19
+改名为 DS 记录
 UPD. 2022.04.27
 发现很多以前写的懒得写题解，感觉又都不太会了，后面还是做一题写一题比较好。
 发现刷 Ynoi 收益很小，大部分时间只是在卡常。
