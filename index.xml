@@ -5182,7 +5182,7 @@ class=&#34;math inline&#34;&gt;\(O(xnB + mn^{1/x})\)&lt;/span&gt;。&lt;/p&gt;
 &lt;p&gt;如果 &lt;span class=&#34;math inline&#34;&gt;\(k \geq B\)&lt;/span&gt;，把 &lt;span
 class=&#34;math inline&#34;&gt;\(L, R\)&lt;/span&gt;
 离散化，然后是经典的用链表维护连续段的问题，可以用回滚莫队解决。这部分的复杂度是
-&lt;span class=&#34;math inline&#34;&gt;\(O(\sum k\sqrt m) = O(n\sqr m)\)&lt;/span&gt;&lt;/p&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(O(\sum k\sqrt m) = O(n\sqrt m)\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;总结：如果我们需要做询问次数为 &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;
 的若干次莫队，莫队序列总长度为 &lt;span
 class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;，则它的复杂度是 &lt;span
