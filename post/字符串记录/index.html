@@ -72,6 +72,24 @@
 
 
 
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.8.0/gitalk.css">
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+<script src="/vendor/js/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+  clientID: '340901eac09312b10dec',
+  clientSecret: '58e8e3d1d5497acf6d2e7f829577edc794915d0d',
+  repo: 'Hugo-Blog-Comments',
+  owner: 'hazby2002',
+  admin: ['hazby2002'],
+  id: md5(location.pathname),
+  distractionFreeMode: 'false'
+  });
+  window.onload = function () {
+        gitalk.render('gitalk-container')
+  }
+</script>
+
 
 
 
@@ -967,6 +985,8 @@ class="math inline">\(l_2\)</span> 必不可能成为前缀最大值。</p>
             <div class="post-comment-wrapper">
                 
 
+
+<div id="gitalk-container"></div>
 
 
 
