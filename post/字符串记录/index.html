@@ -434,6 +434,50 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 					
 				
 			
+				
+				
+					
+						
+						
+						
+						
+						
+						
+
+						
+
+							<li>
+								<a href="#duff-is-mad" onclick="onNavClick(`#duff-is-mad-nav`)" id="duff-is-mad-nav">
+									Duff is Mad
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+						
+
+						
+
+							<li>
+								<a href="#p8571-jrksj-r6-dedicatus545" onclick="onNavClick(`#p8571-jrksj-r6-dedicatus545-nav`)" id="p8571-jrksj-r6-dedicatus545-nav">
+									P8571 [JRKSJ R6] Dedicatus545
+								</a>
+							</li>
+						
+						
+					
+				
+			
 		</ul>
 	</div>
 
@@ -740,6 +784,50 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 					
 				
 			
+				
+				
+					
+						
+						
+						
+						
+						
+						
+
+						
+
+							<li>
+								<a href="#duff-is-mad" onclick="onNavClick(`#duff-is-mad-nav`)" id="duff-is-mad-nav">
+									Duff is Mad
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+						
+
+						
+
+							<li>
+								<a href="#p8571-jrksj-r6-dedicatus545" onclick="onNavClick(`#p8571-jrksj-r6-dedicatus545-nav`)" id="p8571-jrksj-r6-dedicatus545-nav">
+									P8571 [JRKSJ R6] Dedicatus545
+								</a>
+							</li>
+						
+						
+					
+				
+			
 		</ul>
 	</div>
 
@@ -959,10 +1047,75 @@ class="math inline">\([l_3, i]\)</span> 更大，但是如果出现这种情况�
 <span class="math inline">\([l_2, i]\)</span> 包含了 <span
 class="math inline">\([l_3, i]\)</span>，后者必然在之前就出现过，<span
 class="math inline">\(l_2\)</span> 必不可能成为前缀最大值。</p>
+<h2 id="duff-is-mad"><a
+href="https://www.luogu.com.cn/problem/CF587F">Duff is Mad</a></h2>
+<blockquote>
+<p>给定 <span class="math inline">\(n\)</span> 个字符串 <span
+class="math inline">\(s_{1 \dots n}\)</span>。</p>
+<p><span class="math inline">\(q\)</span> 次询问 <span
+class="math inline">\(s_{l \dots r}\)</span> 在 <span
+class="math inline">\(s_k\)</span> 中出现了多少次。</p>
+<p><span class="math inline">\(n,q,\sum_{i=1}^n |s_i| \le
+10^5\)</span>。</p>
+</blockquote>
+<p>出现多串一定要考虑一下根号分治。</p>
+<p>对于 <span class="math inline">\(|s_k| &lt; B\)</span> 的，可以在 ac
+自动机上暴力跑，差分一下用扫描线求一下，需要一个 <span
+class="math inline">\(O(\sqrt N)\)</span> - <span
+class="math inline">\(O(1)\)</span> 的数据结构。</p>
+<p>对于 <span class="math inline">\(|s_k| \geq B\)</span>
+的，这样的串不会有很多种，对于每种，把该串在ac自动机上的路径加1，然后计算子树和就可获得每个点在该串的出现次数。</p>
+<p>总复杂度 <span class="math inline">\(O(n\sqrt n)\)</span></p>
+<h2
+id="p8571-jrksj-r6-dedicatus545"><a href = "https://www.luogu.com.cn/problem/P8571">P8571
+[JRKSJ R6] Dedicatus545</a></h2>
+<blockquote>
+<p>对于字符串 <span class="math inline">\(x,y\)</span>，定义 <span
+class="math inline">\(w(x,y)\)</span> 为 <span
+class="math inline">\(x\)</span> 在 <span
+class="math inline">\(y\)</span> 中的出现次数。</p>
+<p>Index 给了你 <span class="math inline">\(n\)</span> 个字符串 <span
+class="math inline">\(s_{1\dots n}\)</span>，<span
+class="math inline">\(m\)</span> 次询问，每次询问给定 <span
+class="math inline">\(l,r,k\)</span>，求 <span
+class="math inline">\(\max_{i=l}^r w(s_i,s_k)\)</span>。</p>
+<p>对于 <span class="math inline">\(100\%\)</span> 的数据，<span
+class="math inline">\(1\le n,m\le 10^5\)</span>，<span
+class="math inline">\(1\le \sum |s|\le 5\times 10^5\)</span>，<span
+class="math inline">\(1\le l\le r\le n\)</span>，<span
+class="math inline">\(1\le k\le n\)</span>。</p>
+</blockquote>
+<p>不知道为什么要猫树分治。</p>
+<p>首先建出 AC 自动机。</p>
+<p>考虑根号分治，记 <span class="math inline">\(N = \sum |s|, B = \sqrt
+N\)</span>。</p>
+<p>如果 <span class="math inline">\(|s_k| \geq B\)</span>，不同的 <span
+class="math inline">\(k\)</span> 不会超过 <span
+class="math inline">\(B\)</span> 个，对于每个 <span
+class="math inline">\(k\)</span>，把该串在 AC 自动机上的每个点权值加
+<span
+class="math inline">\(1\)</span>，然后求出每个点的子树权值之和。这样就可以知道每个点在
+<span class="math inline">\(s_k\)</span>
+的出现次数，用线段树维护区间最大值，这部分复杂度是 <span
+class="math inline">\(O((n+N)\sqrt N + m \log n)\)</span>。</p>
+<p>如果 <span class="math inline">\(|s_k| &lt; B\)</span>，考虑对 <span
+class="math inline">\(s_k\)</span> 建立虚树，如果某个虚树上的点 <span
+class="math inline">\(x\)</span> 到根的路径上存在某个 <span
+class="math inline">\([l, r]\)</span> 的终止节点，说明答案至少是 <span
+class="math inline">\(siz_x\)</span>（<span
+class="math inline">\(siz_x\)</span> 表示虚树中 <span
+class="math inline">\(x\)</span> 的子树大小）。</p>
+<p>对 <span class="math inline">\(r\)</span>
+做扫描线，维护每个点到根的最大标号，如果这个标号 <span
+class="math inline">\(\geq l\)</span> 说明合法，因此需要一个区间取 <span
+class="math inline">\(\max\)</span>，单点查询的数据结构。可以用分块做到
+<span class="math inline">\(O(\sqrt N) - O(1)\)</span>。</p>
+<p>这部分复杂度是 <span class="math inline">\(O(N\log N + (n+m)\sqrt
+N)\)</span>。</p>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">最后修改于 2022-09-22</p>
+		    <p style="color:#777;">最后修改于 2022-10-25</p>
                     
                 </div>
             </div>

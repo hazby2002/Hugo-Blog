@@ -271,6 +271,71 @@ class=&#34;math inline&#34;&gt;\([l_3, i]\)&lt;/span&gt; 更大，但是如果�
 &lt;span class=&#34;math inline&#34;&gt;\([l_2, i]\)&lt;/span&gt; 包含了 &lt;span
 class=&#34;math inline&#34;&gt;\([l_3, i]\)&lt;/span&gt;，后者必然在之前就出现过，&lt;span
 class=&#34;math inline&#34;&gt;\(l_2\)&lt;/span&gt; 必不可能成为前缀最大值。&lt;/p&gt;
+&lt;h2 id=&#34;duff-is-mad&#34;&gt;&lt;a
+href=&#34;https://www.luogu.com.cn/problem/CF587F&#34;&gt;Duff is Mad&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 个字符串 &lt;span
+class=&#34;math inline&#34;&gt;\(s_{1 \dots n}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; 次询问 &lt;span
+class=&#34;math inline&#34;&gt;\(s_{l \dots r}\)&lt;/span&gt; 在 &lt;span
+class=&#34;math inline&#34;&gt;\(s_k\)&lt;/span&gt; 中出现了多少次。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(n,q,\sum_{i=1}^n |s_i| \le
+10^5\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;出现多串一定要考虑一下根号分治。&lt;/p&gt;
+&lt;p&gt;对于 &lt;span class=&#34;math inline&#34;&gt;\(|s_k| &amp;lt; B\)&lt;/span&gt; 的，可以在 ac
+自动机上暴力跑，差分一下用扫描线求一下，需要一个 &lt;span
+class=&#34;math inline&#34;&gt;\(O(\sqrt N)\)&lt;/span&gt; - &lt;span
+class=&#34;math inline&#34;&gt;\(O(1)\)&lt;/span&gt; 的数据结构。&lt;/p&gt;
+&lt;p&gt;对于 &lt;span class=&#34;math inline&#34;&gt;\(|s_k| \geq B\)&lt;/span&gt;
+的，这样的串不会有很多种，对于每种，把该串在ac自动机上的路径加1，然后计算子树和就可获得每个点在该串的出现次数。&lt;/p&gt;
+&lt;p&gt;总复杂度 &lt;span class=&#34;math inline&#34;&gt;\(O(n\sqrt n)\)&lt;/span&gt;&lt;/p&gt;
+&lt;h2
+id=&#34;p8571-jrksj-r6-dedicatus545&#34;&gt;&lt;a href = &#34;https://www.luogu.com.cn/problem/P8571&#34;&gt;P8571
+[JRKSJ R6] Dedicatus545&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对于字符串 &lt;span class=&#34;math inline&#34;&gt;\(x,y\)&lt;/span&gt;，定义 &lt;span
+class=&#34;math inline&#34;&gt;\(w(x,y)\)&lt;/span&gt; 为 &lt;span
+class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 在 &lt;span
+class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; 中的出现次数。&lt;/p&gt;
+&lt;p&gt;Index 给了你 &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; 个字符串 &lt;span
+class=&#34;math inline&#34;&gt;\(s_{1\dots n}\)&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; 次询问，每次询问给定 &lt;span
+class=&#34;math inline&#34;&gt;\(l,r,k\)&lt;/span&gt;，求 &lt;span
+class=&#34;math inline&#34;&gt;\(\max_{i=l}^r w(s_i,s_k)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;对于 &lt;span class=&#34;math inline&#34;&gt;\(100\%\)&lt;/span&gt; 的数据，&lt;span
+class=&#34;math inline&#34;&gt;\(1\le n,m\le 10^5\)&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;\(1\le \sum |s|\le 5\times 10^5\)&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;\(1\le l\le r\le n\)&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;\(1\le k\le n\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;不知道为什么要猫树分治。&lt;/p&gt;
+&lt;p&gt;首先建出 AC 自动机。&lt;/p&gt;
+&lt;p&gt;考虑根号分治，记 &lt;span class=&#34;math inline&#34;&gt;\(N = \sum |s|, B = \sqrt
+N\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;如果 &lt;span class=&#34;math inline&#34;&gt;\(|s_k| \geq B\)&lt;/span&gt;，不同的 &lt;span
+class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; 不会超过 &lt;span
+class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; 个，对于每个 &lt;span
+class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;，把该串在 AC 自动机上的每个点权值加
+&lt;span
+class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;，然后求出每个点的子树权值之和。这样就可以知道每个点在
+&lt;span class=&#34;math inline&#34;&gt;\(s_k\)&lt;/span&gt;
+的出现次数，用线段树维护区间最大值，这部分复杂度是 &lt;span
+class=&#34;math inline&#34;&gt;\(O((n+N)\sqrt N + m \log n)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;如果 &lt;span class=&#34;math inline&#34;&gt;\(|s_k| &amp;lt; B\)&lt;/span&gt;，考虑对 &lt;span
+class=&#34;math inline&#34;&gt;\(s_k\)&lt;/span&gt; 建立虚树，如果某个虚树上的点 &lt;span
+class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 到根的路径上存在某个 &lt;span
+class=&#34;math inline&#34;&gt;\([l, r]\)&lt;/span&gt; 的终止节点，说明答案至少是 &lt;span
+class=&#34;math inline&#34;&gt;\(siz_x\)&lt;/span&gt;（&lt;span
+class=&#34;math inline&#34;&gt;\(siz_x\)&lt;/span&gt; 表示虚树中 &lt;span
+class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; 的子树大小）。&lt;/p&gt;
+&lt;p&gt;对 &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt;
+做扫描线，维护每个点到根的最大标号，如果这个标号 &lt;span
+class=&#34;math inline&#34;&gt;\(\geq l\)&lt;/span&gt; 说明合法，因此需要一个区间取 &lt;span
+class=&#34;math inline&#34;&gt;\(\max\)&lt;/span&gt;，单点查询的数据结构。可以用分块做到
+&lt;span class=&#34;math inline&#34;&gt;\(O(\sqrt N) - O(1)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;这部分复杂度是 &lt;span class=&#34;math inline&#34;&gt;\(O(N\log N + (n+m)\sqrt
+N)\)&lt;/span&gt;。&lt;/p&gt;
 - https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/ - CC BY-NC-SA 4.0</description>
         </item>
     
