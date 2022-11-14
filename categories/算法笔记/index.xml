@@ -23,22 +23,6 @@ ABC230H 半在线卷积 设 \(H = FG\)。其中 \(G\) 的系数事先给出，\(
     </item>
     
     <item>
-      <title>全局平衡二叉树小记</title>
-      <link>https://blog.asukakyle.top/post/%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B0%8F%E8%AE%B0/</link>
-      <pubDate>Tue, 05 Apr 2022 23:56:15 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B0%8F%E8%AE%B0/</guid>
-      <description>“全局平衡二叉树”实际上是静态 Top Tree(实际上，更接近静态 LCT)。
-考虑一条重链，它在树上pushup，维护的信息的方式实际上就是 Compress。
-而跳轻边，它实际上就是在 Rake。
-对于动态DP的模板，它是树上带权独立集，虚儿子信息（rake信息）是可减的 f[0] -= max(g[0], g[1]), f[1] -= g[0]。
-如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。
-所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link, cut, evert 之类的动态树操作罢了。
-考虑到 Top Tree 的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。
-Node *build(int l, int r) { if (l &amp;gt; r) return nullptr; int m = l - 1, sum = 0, now = 0; for (int i = l; i &amp;lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]]; while (now * 2 &amp;lt; sum &amp;amp;&amp;amp; m &amp;lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]]; Node *o = t + s[m]; o-&amp;gt;ls = build(l, m - 1), o-&amp;gt;rs = build(m + 1, r); if (o-&amp;gt;ls) o-&amp;gt;ls-&amp;gt;fa = o; if (o-&amp;gt;rs) o-&amp;gt;rs-&amp;gt;fa = o; pushup(o); return o; } </description>
-    </item>
-    
-    <item>
       <title>常系数齐次线性递推小记</title>
       <link>https://blog.asukakyle.top/post/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Mon, 21 Feb 2022 23:11:13 +0800</pubDate>

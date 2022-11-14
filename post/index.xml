@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Fri, 05 Aug 2022 23:16:50 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Nov 2022 22:00:49 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【置顶】Notes</title>
       <link>https://blog.asukakyle.top/post/notes/</link>
@@ -27,6 +27,15 @@
 例如 C-x C-f 表示 Ctrl+x Ctrl+f，visit new file，访问文件，如果文件不存在则创建新的。
 C-x C-f：访问文件 C-x C-s：保存 C-x C-c：关闭emacs C-x C-z：最小化emacs C-x h：全选 C-x C-p：全选 C-x 1：关闭其他window C-x 2：向下分裂window C-x 3：向右分裂window C-x 0：关闭当前window C-x o：切换window C-x k：关闭buffer M-x shell：打开shell M-! 即 M-S-1 或 ESC !：shell-command M-%：替换 C-s：向下查找 C-r：向上查找 C-a：移动到行首 C-e：移动到行尾 C-k：剪切当前行光标后的内容 C-S-Backspace：删除当前行 C-w：剪切 M-w：复制 C-y：粘贴 C-/：撤销(undo) CUA-Keys（在options菜单里）开启的情况下：
 C-x：剪切 C-c：复制 C-v：粘贴 C-z：撤销(undo) 想要撤销(redo)上次撤销(undo)操作，可以在上次 C-/(C-z) 之后进行一次非编辑指令(比如移动一下光标)，然后再按 C-/(C-z)。</description>
+    </item>
+    
+    <item>
+      <title>GCC builtin函数性能测试</title>
+      <link>https://blog.asukakyle.top/post/builtin%E5%87%BD%E6%95%B0%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Fri, 11 Nov 2022 22:00:49 +0800</pubDate>
+      
+      <guid>https://blog.asukakyle.top/post/builtin%E5%87%BD%E6%95%B0%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
+      <description>代码 // Author: HolyK // Created: Fri Nov 11 21:36:42 2022 #include &amp;quot;bits/stdc++.h&amp;quot; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ? x = y, 1 : 0; } template &amp;lt;class T, class U&amp;gt; inline bool smax(T &amp;amp;x, const U &amp;amp;y) { return x &amp;lt; y ? x = y, 1 : 0; } using LL = long long; using PII = std::pair&amp;lt;int, int&amp;gt;; std::mt19937_64 rng(std::random_device{}()); #define TEST(F) \ std::cout &amp;lt;&amp;lt; #F&amp;quot;:&amp;quot; &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; \ test(F, LLONG_MAX) #define TESTW(F) \ std::cout &amp;lt;&amp;lt; #F&amp;quot;:&amp;quot; &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; \ test(F, INT_MAX) \ std::cout &amp;lt;&amp;lt; #F&amp;quot;ll:&amp;quot; &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; \ test(F##ll, LLONG_MAX) #define test(T, M) \ v = 0; \ t = (double)clock() / CLOCKS_PER_SEC; \ for (int n = 5e7; n; n--) { \ uint64_t x = (rng() &amp;amp; M) + 1; \ v ^= T(x); \ } \ std::cout &amp;lt;&amp;lt; (double)clock() / CLOCKS_PER_SEC - t &amp;lt;&amp;lt; &amp;quot; &amp;quot; &amp;lt;&amp;lt; v &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; uint64_t rnd(uint64_t) { return rng(); } constexpr int N(1 &amp;lt;&amp;lt; 22); int lg[N + 5]; inline int getLG(int x) { return lg[x]; } void solve() { double t; uint64_t v; TEST(rnd); TESTW(__builtin_popcount); TESTW(__builtin_parity); TESTW(__builtin_ctz); TESTW(__builtin_clz); TESTW(__builtin_ffs); TEST(std::__lg); for (int i = 2; i &amp;lt;= N; i++) lg[i] = lg[i &amp;gt;&amp;gt; 1] + 1; std::cout &amp;lt;&amp;lt; &amp;quot;getLG:\n&amp;quot;; test(getLG, N - 1); } int main() { // freopen(&amp;quot;t.</description>
     </item>
     
     <item>
@@ -91,22 +100,6 @@ ABC230H 半在线卷积 设 \(H = FG\)。其中 \(G\) 的系数事先给出，\(
 求单个的四元组，可以发现就是要求 \(\sum_{i=0}^{a_j} p^ii^k\)。
 对于这个问题，板子 OJ 有一个 单次询问的版本，本题解没有参考上面的做法。
 本文主要参考 EI 的评论 以及下面 ecnerwala 的解读。</description>
-    </item>
-    
-    <item>
-      <title>全局平衡二叉树小记</title>
-      <link>https://blog.asukakyle.top/post/%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B0%8F%E8%AE%B0/</link>
-      <pubDate>Tue, 05 Apr 2022 23:56:15 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/%E5%85%A8%E5%B1%80%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B0%8F%E8%AE%B0/</guid>
-      <description>“全局平衡二叉树”实际上是静态 Top Tree(实际上，更接近静态 LCT)。
-考虑一条重链，它在树上pushup，维护的信息的方式实际上就是 Compress。
-而跳轻边，它实际上就是在 Rake。
-对于动态DP的模板，它是树上带权独立集，虚儿子信息（rake信息）是可减的 f[0] -= max(g[0], g[1]), f[1] -= g[0]。
-如果不可减，就得用平衡树（比如 set 等，复杂的还得手写）维护。
-所以全局平衡二叉树实际上就在干 Top Tree 干的事情，只不过不支持 link, cut, evert 之类的动态树操作罢了。
-考虑到 Top Tree 的结构，下面的建树过程就比较显而易见了，每个点要把虚儿子子树大小加上。
-Node *build(int l, int r) { if (l &amp;gt; r) return nullptr; int m = l - 1, sum = 0, now = 0; for (int i = l; i &amp;lt;= r; i++) sum += siz[s[i]] - siz[son[s[i]]]; while (now * 2 &amp;lt; sum &amp;amp;&amp;amp; m &amp;lt;= r) m++, now += siz[s[m]] - siz[son[s[m]]]; Node *o = t + s[m]; o-&amp;gt;ls = build(l, m - 1), o-&amp;gt;rs = build(m + 1, r); if (o-&amp;gt;ls) o-&amp;gt;ls-&amp;gt;fa = o; if (o-&amp;gt;rs) o-&amp;gt;rs-&amp;gt;fa = o; pushup(o); return o; } </description>
     </item>
     
     <item>
