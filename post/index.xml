@@ -7,16 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>CC BY-NC-SA 4.0</copyright>
-    <lastBuildDate>Fri, 11 Nov 2022 22:00:49 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>GCC builtin函数性能测试</title>
-      <link>https://blog.asukakyle.top/post/builtin%E5%87%BD%E6%95%B0%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
-      <pubDate>Fri, 11 Nov 2022 22:00:49 +0800</pubDate>
-      
-      <guid>https://blog.asukakyle.top/post/builtin%E5%87%BD%E6%95%B0%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
-      <description>代码 // Author: HolyK // Created: Fri Nov 11 21:36:42 2022 #include &amp;quot;bits/stdc++.h&amp;quot; template &amp;lt;class T, class U&amp;gt; inline bool smin(T &amp;amp;x, const U &amp;amp;y) { return y &amp;lt; x ? x = y, 1 : 0; } template &amp;lt;class T, class U&amp;gt; inline bool smax(T &amp;amp;x, const U &amp;amp;y) { return x &amp;lt; y ? x = y, 1 : 0; } using LL = long long; using PII = std::pair&amp;lt;int, int&amp;gt;; std::mt19937_64 rng(std::random_device{}()); #define TEST(F) \ std::cout &amp;lt;&amp;lt; #F&amp;quot;:&amp;quot; &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; \ test(F, LLONG_MAX) #define TESTW(F) \ std::cout &amp;lt;&amp;lt; #F&amp;quot;:&amp;quot; &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; \ test(F, INT_MAX) \ std::cout &amp;lt;&amp;lt; #F&amp;quot;ll:&amp;quot; &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; \ test(F##ll, LLONG_MAX) #define test(T, M) \ v = 0; \ t = (double)clock() / CLOCKS_PER_SEC; \ for (int n = 5e7; n; n--) { \ uint64_t x = (rng() &amp;amp; M) + 1; \ v ^= T(x); \ } \ std::cout &amp;lt;&amp;lt; (double)clock() / CLOCKS_PER_SEC - t &amp;lt;&amp;lt; &amp;quot; &amp;quot; &amp;lt;&amp;lt; v &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; uint64_t rnd(uint64_t) { return rng(); } constexpr int N(1 &amp;lt;&amp;lt; 22); int lg[N + 5]; inline int getLG(int x) { return lg[x]; } void solve() { double t; uint64_t v; TEST(rnd); TESTW(__builtin_popcount); TESTW(__builtin_parity); TESTW(__builtin_ctz); TESTW(__builtin_clz); TESTW(__builtin_ffs); TEST(std::__lg); for (int i = 2; i &amp;lt;= N; i++) lg[i] = lg[i &amp;gt;&amp;gt; 1] + 1; std::cout &amp;lt;&amp;lt; &amp;quot;getLG:\n&amp;quot;; test(getLG, N - 1); } int main() { // freopen(&amp;quot;t.</description>
-    </item>
-    
+    <lastBuildDate>Fri, 05 Aug 2022 23:16:50 +0800</lastBuildDate><atom:link href="https://blog.asukakyle.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>字符串记录</title>
       <link>https://blog.asukakyle.top/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%B0%E5%BD%95/</link>
